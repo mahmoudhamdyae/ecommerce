@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/widgets/cart_icon.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/color_manager.dart';
@@ -17,24 +18,18 @@ class HomeScreen extends StatelessWidget {
             color: ColorManager.primary,
             child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppPadding.mediumPadding),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppPadding.mediumPadding),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           AppStrings.mainLabel,
                           style: TextStyle(
                               color: ColorManager.white
                           ),
                         ),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                                Icons.shopping_cart,
-                                color: ColorManager.white
-                            )
-                        )
+                        CartIcon(),
                       ],
                     ),
                   ),
