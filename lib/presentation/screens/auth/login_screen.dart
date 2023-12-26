@@ -1,6 +1,7 @@
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -271,7 +272,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             const Text(AppStrings.noAccount),
                             InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.to(const RegisterScreen());
+                                },
                                 child: const Text(
                                     AppStrings.createAccount,
                                     style: TextStyle(
