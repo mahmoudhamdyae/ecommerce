@@ -160,7 +160,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
                                     )
                                 ),
-                                backgroundColor: MaterialStateProperty.all(ColorManager.red),
+                                backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                               ),
                               onPressed: () async {
                                 await _confirmPhoneNumber();

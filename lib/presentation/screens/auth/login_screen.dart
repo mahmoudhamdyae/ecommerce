@@ -243,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
                                     )
                                 ),
-                                backgroundColor: MaterialStateProperty.all(ColorManager.red),
+                                backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                             ),
                             onPressed: () async {
                               await _logIn();
