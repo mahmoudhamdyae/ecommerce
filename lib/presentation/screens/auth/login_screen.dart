@@ -26,6 +26,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordTextController = TextEditingController();
   bool _obscureText = false;
 
+  @override
+  void initState() async {
+    super.initState();
+    if (await _appPreferences.isUserLoggedIn()) {
+      Get.offAll(const MainScreen());
+    }
+  }
+
   // Toggles the password show status
   void _toggle() {
     setState(() {
