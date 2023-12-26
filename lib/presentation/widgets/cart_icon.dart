@@ -6,7 +6,8 @@ import '../resources/color_manager.dart';
 import 'package:badges/badges.dart' as badges;
 
 class CartIcon extends StatelessWidget {
-  const CartIcon({super.key});
+  final Color color;
+  const CartIcon({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,9 @@ class CartIcon extends StatelessWidget {
             ),
           ),
         ),
-        child: const Icon(
+        child: Icon(
           Icons.shopping_cart_outlined,
-          color: ColorManager.white,
+          color: color,
           size: 32,
         ),
       );

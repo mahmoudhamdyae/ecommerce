@@ -28,11 +28,12 @@ class HomeScreen extends StatelessWidget {
                         Text(
                           AppStrings.mainLabel,
                           style: TextStyle(
-                              color: ColorManager.white,
+                            color: ColorManager.white,
                             fontSize: FontSize.s20,
+                            fontWeight: FontWeightManager.medium,
                           ),
                         ),
-                        CartIcon(),
+                        CartIcon(color: ColorManager.white),
                       ],
                     ),
                   ),

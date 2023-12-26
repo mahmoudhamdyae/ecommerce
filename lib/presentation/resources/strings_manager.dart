@@ -38,4 +38,21 @@ class AppStrings {
   static const searchHint = 'ابحث عن منتج معين';
   static const bestSeller = 'الأكثر مبيعا';
   static const showMore = 'إظهار المزيد';
+
+  // More Screen
+  static const moreLabel = 'المزيد';
+  static const moreLanguage = 'لغة التطبيق';
+  static const whoAreWe = 'من نحن';
+  static const conditions = 'الشروط والأحكام';
+  static const changeStore = 'تغيير نوع المتجر';
+  static const signOut = 'تسجيل خروج';
+  static const signIn = 'تسجيل دخول';
+
+  // Store Type
+  static const defineStore = 'حدد المتجر';
+  static const defineStoreDesc = 'برجاء تحديد المتجر الذى تريده حتى يتم الانتقال إليه';
+  static const handTools = 'العدد والأدوات اليدوية';
+  static const handToolsDesc = 'أكبر متجر للعدد والأدوات اليدوية، حيث قمنا بتوفير كافة العدد والأدوات اليدوية فى مكان واحد';
+  static const airConditionStore = 'متجر التكييفات';
+  static const airConditionStoreDesc = 'أكبر متجر للتكييفات حيث قمنا بتوفير كافة التكييفات فى مكان واحد';
 }

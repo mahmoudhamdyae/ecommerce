@@ -27,11 +27,15 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = false;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-    if (await _appPreferences.isUserLoggedIn()) {
-      Get.offAll(const MainScreen());
-    }
+    _checkAuth().then((isLogged) {
+      if (isLogged) Get.offAll(const MainScreen());
+    });
+  }
+
+  Future<bool> _checkAuth() async {
+    return await _appPreferences.isUserLoggedIn();
   }
 
   // Toggles the password show status
@@ -69,7 +73,6 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Container(
                   width: double.infinity,
-                  // height: double.infinity,
                   color: ColorManager.white,
                   child: const Padding(
                     padding: EdgeInsets.only(
@@ -90,7 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(AppMargin.loginMargin),
                 child: Container(
-                  // height: double.infinity,
                   decoration: const BoxDecoration(
                       color: ColorManager.white,
                       borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
