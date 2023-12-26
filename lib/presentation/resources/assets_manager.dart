@@ -1,5 +1,6 @@
 const String imagePath = "assets/images";
 
 class ImageAssets {
-  // static const String splashLogo = "$imagePath/splash_logo.png";
+  static const String arabic = "$imagePath/arabic.png";
+  static const String english = "$imagePath/english.png";
 }

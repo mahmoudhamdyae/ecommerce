@@ -73,7 +73,7 @@ class MoreScreen extends StatelessWidget {
                           icon: Icons.question_mark,
                           title: AppStrings.moreLanguage,
                           action: () {
-                            Get.to(const LanguageScreen());
+                            Get.to(LanguageScreen());
                           },
                           isRed: false,
                       ),

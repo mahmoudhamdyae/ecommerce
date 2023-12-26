@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class AppStrings {
   static const appName = 'E commerce';
 
@@ -47,6 +49,13 @@ class AppStrings {
   static const changeStore = 'تغيير نوع المتجر';
   static const signOut = 'تسجيل خروج';
   static const signIn = 'تسجيل دخول';
+
+  // Language Screen
+  static const languageLabel = 'لغة التطبيق';
+  static const languageLabelDesc = 'من فضلك قم بتحديد اللغة التى تريدها';
+  static const arabicLanguage = 'اللغة العربية';
+  static const englishLanguage = 'English';
+  static const saveChanges = 'حفظ التغييرات';
 
   // Store Type
   static const defineStore = 'حدد المتجر';

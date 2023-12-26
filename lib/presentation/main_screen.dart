@@ -5,6 +5,7 @@ import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
 import 'package:ecommerce/presentation/screens/more/more_screen.dart';
 import 'package:ecommerce/presentation/screens/orders/widgets/orders_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -50,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
               Icons.home,
               color: _selectedIndex == 0 ? ColorManager.yellow : ColorManager.grey,
             ),
-            label: AppStrings.main,
+            label: AppStrings.main.tr,
           ),
           // طلباتى
           BottomNavigationBarItem(
