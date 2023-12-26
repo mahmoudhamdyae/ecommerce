@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/widgets/cart_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -22,11 +23,13 @@ class HomeScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: AppPadding.mediumPadding),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           AppStrings.mainLabel,
                           style: TextStyle(
-                              color: ColorManager.white
+                              color: ColorManager.white,
+                            fontSize: FontSize.s20,
                           ),
                         ),
                         CartIcon(),
@@ -36,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(AppPadding.mediumPadding,),
                     child: TextField(
-                      textInputAction: TextInputAction.done,
+                      textInputAction: TextInputAction.search,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: ColorManager.white,
