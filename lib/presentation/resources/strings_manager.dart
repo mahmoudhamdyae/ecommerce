@@ -26,4 +26,16 @@ class AppStrings {
   static const confirmPhoneNo = 'تأكيد رقم الجوال';
   static const hasAccount = 'لديك حساب بالفعل ؟';
   static const clickHere = 'اضغط هنا';
+
+  // Bottom Navigation Bar
+  static const main = 'الرئيسية';
+  static const myOrders = 'طلباتى';
+  static const fav = 'المفضلة';
+  static const more = 'المزيد';
+
+  // Main Screen
+  static const mainLabel = 'الرئيسية';
+  static const searchHint = 'ابحث عن منتج معين';
+  static const bestSeller = 'الأكثر مبيعا';
+  static const showMore = 'إظهار المزيد';
 }

@@ -1,4 +1,3 @@
-import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/resources/theme_manager.dart';
 import 'package:ecommerce/presentation/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';

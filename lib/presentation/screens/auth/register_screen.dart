@@ -121,7 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                               TextFormField(
                                 controller: phoneController,
-                                textInputAction: TextInputAction.next,
+                                textInputAction: TextInputAction.done,
                                 keyboardType: TextInputType.phone,
                                 validator: (val) {
                                   if (val.toString().isNotEmpty) {
