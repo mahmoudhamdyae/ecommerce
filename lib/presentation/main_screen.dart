@@ -59,7 +59,7 @@ class _MainScreenState extends State<MainScreen> {
               Icons.abc,
               color: _selectedIndex == 1 ? ColorManager.yellow : ColorManager.grey,
             ),
-            label: AppStrings.myOrders,
+            label: AppStrings.myOrders.tr,
           ),
           // المفضلة
           BottomNavigationBarItem(
@@ -67,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
               Icons.favorite_border,
               color: _selectedIndex == 2 ? ColorManager.yellow : ColorManager.grey,
             ),
-            label: AppStrings.fav,
+            label: AppStrings.fav.tr,
           ),
           // المزيد
           BottomNavigationBarItem(
@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
               Icons.square,
               color: _selectedIndex == 3 ? ColorManager.yellow : ColorManager.grey,
             ),
-            label: AppStrings.more,
+            label: AppStrings.more.tr,
           ),
         ],
       ),

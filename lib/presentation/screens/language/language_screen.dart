@@ -1,4 +1,6 @@
-import 'package:ecommerce/core/local_controller.dart';
+import 'package:ecommerce/core/app_prefs.dart';
+import 'package:ecommerce/core/translations/local_controller.dart';
+import 'package:ecommerce/di/di.dart';
 import 'package:ecommerce/presentation/resources/assets_manager.dart';
 import 'package:ecommerce/presentation/screens/language/language_item.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,7 @@ import '../../resources/values_manager.dart';
 
 class LanguageScreen extends StatelessWidget {
 
-  final AppLocalController _controller = Get.find<AppLocalController>();
+  final AppLocalController _controller = Get.put(AppLocalController(instance<AppPreferences>()), permanent: true);
   LanguageScreen({super.key});
 
   @override
@@ -34,9 +36,9 @@ class LanguageScreen extends StatelessWidget {
                     },
                     icon: const Icon(Icons.arrow_back),
                   ),
-                  const Text(
-                    AppStrings.languageLabel,
-                    style: TextStyle(
+                  Text(
+                    AppStrings.languageLabel.tr,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeightManager.medium,
                     ),
@@ -45,29 +47,29 @@ class LanguageScreen extends StatelessWidget {
               ),
             ),
             // لغة التطبيق
-            const Padding(
-              padding: EdgeInsets.only(
+            Padding(
+              padding: const EdgeInsets.only(
                 top: AppPadding.mediumPadding,
                 right: AppPadding.mediumPadding,
                 left: AppPadding.mediumPadding,
               ),
               child: Text(
-                AppStrings.languageLabel,
-                style: TextStyle(
+                AppStrings.languageLabel.tr,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeightManager.bold,
                 ),
               ),
             ),
             // من فضلك قم بتحديد اللغة التى تريدها
-            const Padding(
-              padding: EdgeInsets.only(
+            Padding(
+              padding: const EdgeInsets.only(
                 right: AppPadding.mediumPadding,
                 left: AppPadding.mediumPadding,
               ),
               child: Text(
-                AppStrings.languageLabelDesc,
-                style: TextStyle(
+                AppStrings.languageLabelDesc.tr,
+                style: const TextStyle(
                   color: ColorManager.grey,
                   fontSize: 16,
                   fontWeight: FontWeightManager.regular,
@@ -76,14 +78,14 @@ class LanguageScreen extends StatelessWidget {
             ),
             LanguageItem(
                 icon: ImageAssets.arabic,
-                languageName: AppStrings.arabicLanguage,
+                languageName: AppStrings.arabicLanguage.tr,
                 action: () {
                   Get.updateLocale(const Locale('ar'));
                   _controller.changeLanguage('ar');
                 }),
             LanguageItem(
                 icon: ImageAssets.english,
-                languageName: AppStrings.englishLanguage,
+                languageName: AppStrings.englishLanguage.tr,
                 action: () {
                   Get.updateLocale(const Locale('en'));
                   _controller.changeLanguage('en');
@@ -105,11 +107,11 @@ class LanguageScreen extends StatelessWidget {
                   onPressed: () async {
                     Get.back();
                   },
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: AppSize.s16),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
                     child: Text(
-                      AppStrings.saveChanges,
-                      style: TextStyle(
+                      AppStrings.saveChanges.tr,
+                      style: const TextStyle(
                           fontSize: FontSize.s16
                       ),
                     ),

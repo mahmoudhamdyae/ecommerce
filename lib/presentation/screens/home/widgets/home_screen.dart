@@ -1,6 +1,7 @@
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/widgets/cart_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../resources/color_manager.dart';
 import '../../../resources/strings_manager.dart';
@@ -19,21 +20,21 @@ class HomeScreen extends StatelessWidget {
             color: ColorManager.primary,
             child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: AppPadding.mediumPadding),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppPadding.mediumPadding),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          AppStrings.mainLabel,
-                          style: TextStyle(
+                          AppStrings.mainLabel.tr,
+                          style: const TextStyle(
                             color: ColorManager.white,
                             fontSize: FontSize.s20,
                             fontWeight: FontWeightManager.medium,
                           ),
                         ),
-                        CartIcon(color: ColorManager.white),
+                        const CartIcon(color: ColorManager.white),
                       ],
                     ),
                   ),
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                           onPressed: () {
                           },
                         ),
-                        hintText: AppStrings.searchHint,
+                        hintText: AppStrings.searchHint.tr,
                         hintStyle: const TextStyle(
                           color: ColorManager.grey,
                         ),

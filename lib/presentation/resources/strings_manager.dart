@@ -22,7 +22,7 @@ class AppStrings {
   static const createAccount = 'إنشاء حساب';
 
   // Register
-  static const createAccountLabel = 'إنشاء حساب';
+  static const createAccountLabel = ' إنشاء حساب';
   static const newAccount = 'حساب جديد';
   static const newAccountDesc = 'يرجى تحديد نوع العضوية';
   static const confirmPhoneNo = 'تأكيد رقم الجوال';
@@ -36,22 +36,22 @@ class AppStrings {
   static const more = 'المزيد';
 
   // Main Screen
-  static const mainLabel = 'الرئيسية';
+  static const mainLabel = 'الرئيسية ';
   static const searchHint = 'ابحث عن منتج معين';
   static const bestSeller = 'الأكثر مبيعا';
   static const showMore = 'إظهار المزيد';
 
   // More Screen
-  static const moreLabel = 'المزيد';
+  static const moreLabel = 'المزيد ';
   static const moreLanguage = 'لغة التطبيق';
   static const whoAreWe = 'من نحن';
   static const conditions = 'الشروط والأحكام';
   static const changeStore = 'تغيير نوع المتجر';
   static const signOut = 'تسجيل خروج';
-  static const signIn = 'تسجيل دخول';
+  static const signIn = ' تسجيل دخول';
 
   // Language Screen
-  static const languageLabel = 'لغة التطبيق';
+  static const languageLabel = ' لغة التطبيق';
   static const languageLabelDesc = 'من فضلك قم بتحديد اللغة التى تريدها';
   static const arabicLanguage = 'اللغة العربية';
   static const englishLanguage = 'English';

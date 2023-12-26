@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/local_controller.dart';
+import 'package:ecommerce/core/translations/local_controller.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -12,6 +12,6 @@ class GetXDi implements Bindings {
   void dependencies() async {
     Get.lazyPut<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionChecker()), fenix: true);
 
-    Get.lazyPut<AppLocalController>(() => AppLocalController(instance<AppPreferences>()), fenix: true);
+    Get.put<AppLocalController>(AppLocalController(instance<AppPreferences>()), permanent: true);
   }
 }

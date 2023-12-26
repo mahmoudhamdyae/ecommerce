@@ -52,9 +52,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           icon: const Icon(Icons.arrow_back),
                       ),
-                      const Text(
-                        AppStrings.createAccountLabel,
-                        style: TextStyle(
+                      Text(
+                        AppStrings.createAccountLabel.tr,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeightManager.medium,
                         ),
@@ -76,29 +76,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // حساب جديد
-                        const Padding(
-                          padding: EdgeInsets.only(
+                        Padding(
+                          padding: const EdgeInsets.only(
                             top: AppPadding.mediumPadding,
                             right: AppPadding.smallPadding,
                             left: AppPadding.smallPadding,
                           ),
                           child: Text(
-                            AppStrings.newAccount,
-                            style: TextStyle(
+                            AppStrings.newAccount.tr,
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeightManager.bold,
                             ),
                           ),
                         ),
                         // يرجى تحديد نوع العضوية
-                        const Padding(
-                          padding: EdgeInsets.only(
+                        Padding(
+                          padding: const EdgeInsets.only(
                             right: AppPadding.smallPadding,
                             left: AppPadding.smallPadding,
                           ),
                           child: Text(
-                            AppStrings.newAccountDesc,
-                            style: TextStyle(
+                            AppStrings.newAccountDesc.tr,
+                            style: const TextStyle(
                               color: ColorManager.grey,
                               fontSize: 16,
                               fontWeight: FontWeightManager.regular,
@@ -110,14 +110,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Padding(
-                                padding: EdgeInsets.only(
+                              Padding(
+                                padding: const EdgeInsets.only(
                                   top: AppPadding.mediumPadding,
                                   bottom: AppPadding.smallPadding,
                                   right: AppPadding.smallPadding,
                                   left: AppPadding.smallPadding,
                                 ),
-                                child: Text(AppStrings.phoneNo),
+                                child: Text(AppStrings.phoneNo.tr),
                               ),
                               TextFormField(
                                 controller: phoneController,
@@ -127,14 +127,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   if (val.toString().isNotEmpty) {
                                     return null;
                                   }
-                                  return AppStrings.mobileNumberInvalid;
+                                  return AppStrings.mobileNumberInvalid.tr;
                                 },
-                                decoration: const InputDecoration(
-                                  hintText: AppStrings.phoneNoHint,
-                                  hintStyle: TextStyle(
+                                decoration: InputDecoration(
+                                  hintText: AppStrings.phoneNoHint.tr,
+                                  hintStyle: const TextStyle(
                                     color: ColorManager.grey,
                                   ),
-                                  border: OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(AppSize.borderRadius),
                                     ),
@@ -165,11 +165,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onPressed: () async {
                                 await _confirmPhoneNumber();
                               },
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(vertical: AppSize.s16),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
                                 child: Text(
-                                  AppStrings.confirmPhoneNo,
-                                  style: TextStyle(
+                                  AppStrings.confirmPhoneNo.tr,
+                                  style: const TextStyle(
                                       fontSize: FontSize.s16
                                   ),
                                 ),
@@ -180,14 +180,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(AppStrings.hasAccount),
+                            Text(AppStrings.hasAccount.tr),
                             InkWell(
                                 onTap: () {
                                   Get.to(const RegisterScreen());
                                 },
-                                child: const Text(
-                                  AppStrings.clickHere,
-                                  style: TextStyle(
+                                child: Text(
+                                  AppStrings.clickHere.tr,
+                                  style: const TextStyle(
                                     color: ColorManager.yellow,
                                     decoration: TextDecoration.underline,
                                   ),

@@ -32,8 +32,8 @@ class MoreScreen extends StatelessWidget {
                 width: double.infinity,
                 // height: double.infinity,
                 color: ColorManager.white,
-                child: const Padding(
-                  padding: EdgeInsets.only(
+                child: Padding(
+                  padding: const EdgeInsets.only(
                     top: AppPadding.p50,
                     bottom: AppPadding.mediumPadding,
                     right: AppPadding.mediumPadding,
@@ -44,14 +44,14 @@ class MoreScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        AppStrings.moreLabel,
-                        style: TextStyle(
+                        AppStrings.moreLabel.tr,
+                        style: const TextStyle(
                           color: ColorManager.black,
                           fontSize: FontSize.s20,
                           fontWeight: FontWeightManager.medium,
                         ),
                       ),
-                      CartIcon(color: ColorManager.primary,),
+                      const CartIcon(color: ColorManager.primary,),
                     ],
                   ),
                 ),
@@ -71,7 +71,7 @@ class MoreScreen extends StatelessWidget {
                       // لغة التطبيق
                       MoreSingleItem(
                           icon: Icons.question_mark,
-                          title: AppStrings.moreLanguage,
+                          title: AppStrings.moreLanguage.tr,
                           action: () {
                             Get.to(LanguageScreen());
                           },
@@ -80,7 +80,7 @@ class MoreScreen extends StatelessWidget {
                       // من نحن
                       MoreSingleItem(
                         icon: Icons.question_mark,
-                        title: AppStrings.whoAreWe,
+                        title: AppStrings.whoAreWe.tr,
                         action: () {
                           Get.to(const WhoAreWeScreen());
                         },
@@ -89,7 +89,7 @@ class MoreScreen extends StatelessWidget {
                       // الشروط والأحكام
                       MoreSingleItem(
                         icon: Icons.question_mark,
-                        title: AppStrings.conditions,
+                        title: AppStrings.conditions.tr,
                         action: () {
                           //
                         },
@@ -98,7 +98,7 @@ class MoreScreen extends StatelessWidget {
                       // تغيير نوع المتجر
                       MoreSingleItem(
                         icon: Icons.published_with_changes,
-                        title: AppStrings.changeStore,
+                        title: AppStrings.changeStore.tr,
                         action: () {
                           Get.to(const StoreTypeScreen());
                         },
@@ -110,7 +110,7 @@ class MoreScreen extends StatelessWidget {
                           builder: (BuildContext context, AsyncSnapshot snapshot) {
                             return MoreSingleItem(
                               icon: snapshot.data ? Icons.question_mark : Icons.question_mark,
-                              title: snapshot.data ? AppStrings.signOut : AppStrings.signOut,
+                              title: snapshot.data ? AppStrings.signOut.tr : AppStrings.signIn.tr,
                               action: () {
                                 _appPreferences.logout();
                                 Get.to(const LoginScreen());

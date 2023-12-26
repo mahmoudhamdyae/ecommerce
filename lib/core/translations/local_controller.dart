@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 
-import 'app_prefs.dart';
+import '../app_prefs.dart';
 
 class AppLocalController extends GetxController {
 

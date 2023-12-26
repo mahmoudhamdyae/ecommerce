@@ -74,16 +74,16 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                   width: double.infinity,
                   color: ColorManager.white,
-                  child: const Padding(
-                    padding: EdgeInsets.only(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
                       top: AppPadding.p50,
                       bottom: AppPadding.mediumPadding,
                       right: AppPadding.mediumPadding,
                       left: AppPadding.mediumPadding,
                     ),
                     child: Text(
-                      AppStrings.loginLabel,
-                      style: TextStyle(
+                      AppStrings.loginLabel.tr,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeightManager.medium,
                       ),
@@ -102,29 +102,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       children: [
                         // مرحبا بك
-                        const Padding(
-                          padding: EdgeInsets.only(
+                        Padding(
+                          padding: const EdgeInsets.only(
                             top: AppPadding.mediumPadding,
                             right: AppPadding.smallPadding,
                             left: AppPadding.smallPadding,
                           ),
                           child: Text(
-                            AppStrings.hello,
-                            style: TextStyle(
+                            AppStrings.hello.tr,
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeightManager.bold,
                             ),
                           ),
                         ),
                         // برجاء إدخال بيانات الدخول الخاصة بك
-                        const Padding(
-                          padding: EdgeInsets.only(
+                        Padding(
+                          padding: const EdgeInsets.only(
                             right: AppPadding.smallPadding,
                             left: AppPadding.smallPadding,
                           ),
                           child: Text(
-                            AppStrings.helloDesc,
-                            style: TextStyle(
+                            AppStrings.helloDesc.tr,
+                            style: const TextStyle(
                               color: ColorManager.grey,
                               fontSize: 16,
                               fontWeight: FontWeightManager.regular,
@@ -136,14 +136,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(
+                                Padding(
+                                  padding: const EdgeInsets.only(
                                     top: AppPadding.mediumPadding,
                                     bottom: AppPadding.smallPadding,
                                     right: AppPadding.smallPadding,
                                     left: AppPadding.smallPadding,
                                   ),
-                                  child: Text(AppStrings.phoneNo),
+                                  child: Text(AppStrings.phoneNo.tr),
                                 ),
                                 TextFormField(
                                   controller: phoneController,
@@ -153,14 +153,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                     if (val.toString().isNotEmpty) {
                                       return null;
                                     }
-                                    return AppStrings.mobileNumberInvalid;
+                                    return AppStrings.mobileNumberInvalid.tr;
                                   },
-                                  decoration: const InputDecoration(
-                                      hintText: AppStrings.phoneNoHint,
-                                      hintStyle: TextStyle(
+                                  decoration: InputDecoration(
+                                      hintText: AppStrings.phoneNoHint.tr,
+                                      hintStyle: const TextStyle(
                                         color: ColorManager.grey,
                                       ),
-                                      border: OutlineInputBorder(
+                                      border: const OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(AppSize.borderRadius),
                                         ),
@@ -171,14 +171,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                   ),
                                 ),
-                                const Padding(
-                                  padding: EdgeInsets.only(
+                                Padding(
+                                  padding: const EdgeInsets.only(
                                     top: AppPadding.mediumPadding,
                                     bottom: AppPadding.smallPadding,
                                     right: AppPadding.smallPadding,
                                     left: AppPadding.smallPadding,
                                   ),
-                                  child: Text(AppStrings.password),
+                                  child: Text(AppStrings.password.tr),
                                 ),
                                 // Password Edit Text
                                 TextFormField(
@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   textInputAction: TextInputAction.done,
                                   validator: (val) {
                                     if (val == null || val.isEmpty) {
-                                      return AppStrings.passwordInvalid;
+                                      return AppStrings.passwordInvalid.tr;
                                     }
                                     return null;
                                   },
@@ -202,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           _toggle();
                                         },
                                       ),
-                                      hintText: AppStrings.passwordHint,
+                                      hintText: AppStrings.passwordHint.tr,
                                       hintStyle: const TextStyle(
                                         color: ColorManager.grey,
                                       ),
@@ -221,17 +221,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                         ),
                         // هل نسيت كلمة المرور ؟
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                 top: AppPadding.mediumPadding,
                                 bottom: AppPadding.mediumPadding,
                                 right: AppPadding.smallPadding,
                                 left: AppPadding.smallPadding,
                               ),
-                              child: Text(AppStrings.forgotPassword),
+                              child: Text(AppStrings.forgotPassword.tr),
                             ),
                           ],
                         ),
@@ -250,11 +250,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () async {
                               await _logIn();
                             },
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(vertical: AppSize.s16),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
                               child: Text(
-                                AppStrings.login,
-                                style: TextStyle(
+                                AppStrings.login.tr,
+                                style: const TextStyle(
                                   fontSize: FontSize.s16
                                 ),
                               ),
@@ -268,9 +268,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () {
                               Get.to(const MainScreen());
                             },
-                            child: const Text(
-                              AppStrings.loginAsGuest,
-                              style: TextStyle(
+                            child: Text(
+                              AppStrings.loginAsGuest.tr,
+                              style: const TextStyle(
                                 color: ColorManager.black,
                                 fontWeight: FontWeight.w400
                               ),
@@ -280,14 +280,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(AppStrings.noAccount),
+                            Text(AppStrings.noAccount.tr),
                             InkWell(
                                 onTap: () {
                                   Get.to(const RegisterScreen());
                                 },
-                                child: const Text(
-                                    AppStrings.createAccount,
-                                    style: TextStyle(
+                                child: Text(
+                                    AppStrings.createAccount.tr,
+                                    style: const TextStyle(
                                       color: ColorManager.yellow,
                                       decoration: TextDecoration.underline,
                                     ),
