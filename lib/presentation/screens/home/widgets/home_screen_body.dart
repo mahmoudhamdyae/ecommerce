@@ -11,8 +11,7 @@ class HomeScreenBody extends StatelessWidget {
     return ListView(
       children: [
         SwiperWidget(),
-        const ProductsList(),
-
+        ProductsList(),
       ],
     );
   }
