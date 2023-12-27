@@ -22,12 +22,12 @@ class MoreSingleItem extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                  color: isRed ? ColorManager.lightRed : ColorManager.lightGrey,
+                  color: isRed ? ColorManager.lightOrange : ColorManager.lightGrey,
                   shape: BoxShape.circle
               ),
               child: Padding(
                 padding: const EdgeInsets.all(AppPadding.smallPadding),
-                child: Icon(icon, color: isRed ? ColorManager.red : ColorManager.grey,),
+                child: Icon(icon, color: isRed ? ColorManager.orange : ColorManager.grey,),
               ),
             ),
             const SizedBox(width: AppSize.s8,),
