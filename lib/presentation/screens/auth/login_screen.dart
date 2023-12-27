@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
           _appPreferences.setUserLoggedIn();
           Get.offAll(const MainScreen());
         // });
-      } on Exception catch (e) {
+      } on Exception {
         Get.back();
         // if (context.mounted) showError(context, e.toString(), () {});
       }

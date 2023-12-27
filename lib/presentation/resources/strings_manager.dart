@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 
 class AppStrings {
   static const appName = 'E commerce';
