@@ -2,9 +2,9 @@ import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
+import 'package:ecommerce/presentation/screens/home/widgets/best_seller_grid_view.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/products_list.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/swiper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -53,6 +53,7 @@ class HomeScreenBody extends StatelessWidget {
             )
           ],
         ),
+        // BestSellerGridView(),
       ],
     );
   }

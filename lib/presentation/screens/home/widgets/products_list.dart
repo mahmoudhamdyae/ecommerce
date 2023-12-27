@@ -6,14 +6,7 @@ import '../../../../domain/models/product.dart';
 
 class ProductsList extends StatelessWidget {
 
-  final List<Product> products = [
-    Product('معدات كهربية', ImageAssets.test),
-    Product('معدات كهربية', ImageAssets.test),
-    Product('معدات كهربية', ImageAssets.test),
-    Product('معدات كهربية', ImageAssets.test),
-    Product('معدات كهربية', ImageAssets.test),
-    Product('معدات كهربية', ImageAssets.test),
-  ];
+  final List<Product> products = Product.getMockProducts();
   ProductsList({super.key});
 
   @override
