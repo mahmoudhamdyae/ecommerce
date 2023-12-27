@@ -66,6 +66,7 @@ class LanguageScreen extends StatelessWidget {
               padding: const EdgeInsets.only(
                 right: AppPadding.mediumPadding,
                 left: AppPadding.mediumPadding,
+                bottom: AppPadding.mediumPadding,
               ),
               child: Text(
                 AppStrings.languageLabelDesc.tr,
@@ -79,6 +80,7 @@ class LanguageScreen extends StatelessWidget {
             LanguageItem(
                 icon: ImageAssets.arabic,
                 languageName: AppStrings.arabicLanguage.tr,
+                isSelected: true,
                 action: () {
                   Get.updateLocale(const Locale('ar'));
                   _controller.changeLanguage('ar');
@@ -86,6 +88,7 @@ class LanguageScreen extends StatelessWidget {
             LanguageItem(
                 icon: ImageAssets.english,
                 languageName: AppStrings.englishLanguage.tr,
+                isSelected: false,
                 action: () {
                   Get.updateLocale(const Locale('en'));
                   _controller.changeLanguage('en');
