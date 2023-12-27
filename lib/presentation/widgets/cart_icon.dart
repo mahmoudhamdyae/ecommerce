@@ -26,6 +26,7 @@ class CartIcon extends StatelessWidget {
             showRequireAuthDialog(context);
           }
         },
+        badgeStyle: const badges.BadgeStyle(badgeColor: ColorManager.yellow),
         position: badges.BadgePosition.topStart(top: -10, start: -12),
         badgeContent: const Padding(
           padding: EdgeInsets.only(top: 4.0),
