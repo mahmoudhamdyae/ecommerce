@@ -1,5 +1,6 @@
 import 'package:ecommerce/domain/models/product.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
+import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class BestSellerItem extends StatelessWidget {
           child: SizedBox(
             width: 150,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,10 +63,15 @@ class BestSellerItem extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: AppSize.s8,),
-                Container(
-                  color: ColorManager.grey,
-                  height: 100,
-                  width: 130,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      color: ColorManager.grey,
+                      height: 100,
+                      width: 130,
+                    ),
+                  ],
                 ),
                 const SizedBox(height: AppSize.s8,),
                 const Text(
@@ -89,6 +96,25 @@ class BestSellerItem extends StatelessWidget {
                     color: Colors.amber,
                   ),
                   onRatingUpdate: (rating) {},
+                ),
+                const SizedBox(height: AppSize.s8,),
+                // Price
+                Text(
+                  '${product.price} EGP',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: FontSize.s16,
+                  ),
+                ),
+                // Price Discount
+                const Text(
+                  '350 EGP',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: FontSize.s14,
+                      color: ColorManager.grey,
+                      decoration: TextDecoration.lineThrough
+                  ),
                 ),
               ],
             ),

@@ -39,6 +39,7 @@ class AppStrings {
   static const mainLabel = 'الرئيسية ';
   static const searchHint = 'ابحث عن منتج معين';
   static const bestSeller = 'الأكثر مبيعا';
+  static const recentlyAdded = 'المضاف حديثا';
   static const showMore = 'إظهار المزيد';
 
   // More Screen

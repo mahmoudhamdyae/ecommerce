@@ -28,7 +28,11 @@ class HomeScreenBody extends StatelessWidget {
           children: [
             // الأكثر مبيعا
             Padding(
-              padding: const EdgeInsets.all(AppPadding.mediumPadding),
+              padding: const EdgeInsets.only(
+                  top: AppPadding.mediumPadding,
+                  right: AppPadding.mediumPadding,
+                  left: AppPadding.mediumPadding,
+              ),
               child: Text(
                 AppStrings.bestSeller.tr,
                 style: const TextStyle(
