@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/products_list.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/swiper.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +12,10 @@ class HomeScreenBody extends StatelessWidget {
     return ListView(
       children: [
         SwiperWidget(),
-        ProductsList(),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppPadding.mediumPadding),
+          child: ProductsList(),
+        ),
       ],
     );
   }

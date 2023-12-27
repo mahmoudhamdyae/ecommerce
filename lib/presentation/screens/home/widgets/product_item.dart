@@ -17,12 +17,13 @@ class ProductItem extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               color: ColorManager.grey,
-              shape: BoxShape.circle
+              shape: BoxShape.circle,
             ),
             child: Image.asset(
-                product.image,
-                height: 50,
-                width: 50,
+              product.image,
+              height: 50,
+              width: 50,
+              fit: BoxFit.cover,
             ),
           ),
           Text(product.name),
