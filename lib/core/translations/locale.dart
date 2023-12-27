@@ -53,6 +53,9 @@ class AppLocal extends Translations {
       AppStrings.handToolsDesc: 'أكبر متجر للعدد والأدوات اليدوية، حيث قمنا بتوفير كافة العدد والأدوات اليدوية فى مكان واحد',
       AppStrings.airConditionStore: 'متجر التكييفات',
       AppStrings.airConditionStoreDesc: 'أكبر متجر للتكييفات حيث قمنا بتوفير كافة التكييفات فى مكان واحد',
+      AppStrings.pleaseLogIn: 'يجب عليك تسجيل الدخول أولا',
+      AppStrings.loginContinueButton: 'تسجيل دخول',
+      AppStrings.cancel: 'الغاء',
     },
     'en': {
       AppStrings.appName: 'E commerce',
@@ -102,6 +105,9 @@ class AppLocal extends Translations {
       AppStrings.handToolsDesc: 'أكبر متجر للعدد والأدوات اليدوية، حيث قمنا بتوفير كافة العدد والأدوات اليدوية فى مكان واحد',
       AppStrings.airConditionStore: 'متجر التكييفات',
       AppStrings.airConditionStoreDesc: 'أكبر متجر للتكييفات حيث قمنا بتوفير كافة التكييفات فى مكان واحد',
+      AppStrings.pleaseLogIn: 'يجب عليك تسجيل الدخول أولا',
+      AppStrings.loginContinueButton: 'تسجيل دخول',
+      AppStrings.cancel: 'الغاء',
     }
   };
 }

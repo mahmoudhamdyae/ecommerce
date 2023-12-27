@@ -105,19 +105,14 @@ class MoreScreen extends StatelessWidget {
                         isRed: false,
                       ),
                       // تسجيل دخول أو خروج
-                      FutureBuilder(
-                          future: _appPreferences.isUserLoggedIn(),
-                          builder: (BuildContext context, AsyncSnapshot snapshot) {
-                            return MoreSingleItem(
-                              icon: snapshot.data ? Icons.question_mark : Icons.question_mark,
-                              title: snapshot.data ? AppStrings.signOut.tr : AppStrings.signIn.tr,
-                              action: () {
-                                _appPreferences.logout();
-                                Get.to(const LoginScreen());
-                              },
-                              isRed: false,
-                            );
-                          }
+                      MoreSingleItem(
+                        icon: _appPreferences.isUserLoggedIn() ? Icons.question_mark : Icons.question_mark,
+                        title: _appPreferences.isUserLoggedIn() ? AppStrings.signOut.tr : AppStrings.signIn.tr,
+                        action: () {
+                          _appPreferences.logout();
+                          Get.to(const LoginScreen());
+                        },
+                        isRed: false,
                       ),
                     ],
                   ),

@@ -4,8 +4,12 @@ import 'package:ecommerce/presentation/screens/fav/widgets/fav_screen.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
 import 'package:ecommerce/presentation/screens/more/more_screen.dart';
 import 'package:ecommerce/presentation/screens/orders/widgets/orders_screen.dart';
+import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../core/app_prefs.dart';
+import '../di/di.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -16,6 +20,9 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+  late final bool isUserLoggedIn;
+
   int _selectedIndex = 0;
   static final List<Widget> _pages = <Widget>[
     const HomeScreen(),
@@ -25,9 +32,25 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index == 0 || index == 3) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    } else {
+      if (isUserLoggedIn) {
+        setState(() {
+          _selectedIndex = index;
+        });
+      } else {
+        showRequireAuthDialog(context);
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    isUserLoggedIn = _appPreferences.isUserLoggedIn();
   }
 
   @override
@@ -80,7 +103,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       body:  Center(
-        child: _pages.elementAt(_selectedIndex), //New
+        child: _pages.elementAt(_selectedIndex),
       ),
     );
   }

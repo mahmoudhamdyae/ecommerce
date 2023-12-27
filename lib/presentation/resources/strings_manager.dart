@@ -64,4 +64,9 @@ class AppStrings {
   static const handToolsDesc = 'أكبر متجر للعدد والأدوات اليدوية، حيث قمنا بتوفير كافة العدد والأدوات اليدوية فى مكان واحد';
   static const airConditionStore = 'متجر التكييفات';
   static const airConditionStoreDesc = 'أكبر متجر للتكييفات حيث قمنا بتوفير كافة التكييفات فى مكان واحد';
+
+  // Require Auth Dialog
+  static const pleaseLogIn = 'يجب عليك تسجيل الدخول أولا';
+  static const loginContinueButton = '  تسجيل دخول';
+  static const cancel = 'الغاء';
 }

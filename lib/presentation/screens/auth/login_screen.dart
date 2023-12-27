@@ -29,13 +29,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _checkAuth().then((isLogged) {
-      if (isLogged) Get.offAll(const MainScreen());
-    });
+    if (_checkAuth()) Get.offAll(const MainScreen());
   }
 
-  Future<bool> _checkAuth() async {
-    return await _appPreferences.isUserLoggedIn();
+  bool _checkAuth() {
+    return _appPreferences.isUserLoggedIn();
   }
 
   // Toggles the password show status
