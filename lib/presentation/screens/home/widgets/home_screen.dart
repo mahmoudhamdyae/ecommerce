@@ -1,4 +1,5 @@
 import 'package:ecommerce/presentation/resources/font_manager.dart';
+import 'package:ecommerce/presentation/screens/home/widgets/home_screen_body.dart';
 import 'package:ecommerce/presentation/widgets/cart_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -71,7 +72,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ]
             ),
-          )
+          ),
+          const HomeScreenBody(),
         ],
       ),
     );
