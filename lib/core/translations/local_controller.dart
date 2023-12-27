@@ -16,6 +16,6 @@ class AppLocalController extends GetxController {
   void changeLanguage(String codeLang) {
     Locale locale = Locale(codeLang);
     Get.updateLocale(locale);
-    _appPreferences.setLanguage('en');
+    _appPreferences.setLanguage(codeLang);
   }
 }
