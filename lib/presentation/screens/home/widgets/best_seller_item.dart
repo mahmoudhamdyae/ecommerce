@@ -20,6 +20,12 @@ class BestSellerItem extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(AppSize.s8)),
                 color: ColorManager.primary
               ),
+              child: Text(
+                product.percent.toString(),
+                style: const TextStyle(
+                  color: ColorManager.white
+                ),
+              ),
             )
           ],
         ),

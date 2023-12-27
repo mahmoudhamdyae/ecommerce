@@ -12,6 +12,8 @@ class BestSellerGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: AppPadding.p12, vertical: AppPadding.p28),
       crossAxisCount:(MediaQuery.of(context).size.width ~/ 150).toInt(),
       crossAxisSpacing: 15,

@@ -7,6 +7,8 @@ import 'package:ecommerce/presentation/screens/home/widgets/swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'best_seller_grid_view.dart';
+
 class HomeScreenBody extends StatelessWidget {
 
   const HomeScreenBody({super.key});
@@ -53,7 +55,7 @@ class HomeScreenBody extends StatelessWidget {
             )
           ],
         ),
-        // BestSellerGridView(),
+        BestSellerGridView(),
       ],
     );
   }
