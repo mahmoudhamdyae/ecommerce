@@ -112,7 +112,7 @@ class MoreScreen extends StatelessWidget {
                           _appPreferences.logout();
                           Get.to(const LoginScreen());
                         },
-                        isRed: false,
+                        isRed: true,
                       ),
                     ],
                   ),
