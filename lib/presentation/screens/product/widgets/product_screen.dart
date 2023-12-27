@@ -116,8 +116,49 @@ class ProductScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                        const SizedBox(height: AppPadding.smallPadding,),
                         const Text(
-                            'كمبروسر'
+                            'متوفر 3 قطع',
+                          style: TextStyle(
+                            color: ColorManager.red,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: AppPadding.smallPadding,),
+                        const Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '28661 EGP',
+                              style: TextStyle(
+                                  color: ColorManager.red,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(width: AppPadding.smallPadding,),
+                            Text(
+                              '28661 EGP',
+                              style: TextStyle(
+                                color: ColorManager.grey,
+                                decoration: TextDecoration.lineThrough
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: AppSize.s16,),
+                        Text(
+                          AppStrings.productDetails.tr,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w600
+                          ),
+                        ),
+                        const SizedBox(height: AppSize.s8,),
+                        const Text(
+                          'الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: ColorManager.grey
+                          ),
                         ),
                       ],
                     ),
