@@ -1,7 +1,6 @@
 import 'package:ecommerce/domain/models/product.dart';
-import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
 
@@ -14,18 +13,10 @@ class ProductItem extends StatelessWidget {
       padding: const EdgeInsets.all(AppPadding.smallPadding),
       child: Column(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: ColorManager.grey,
-              shape: BoxShape.circle,
-            ),
-            child: Image.asset(
-              product.image,
-              height: 50,
-              width: 50,
-              fit: BoxFit.cover,
-            ),
+          CircleAvatar(
+            backgroundImage: AssetImage(product.image),
           ),
+          const SizedBox(height: AppSize.s8,),
           Text(product.name),
         ],
       ),

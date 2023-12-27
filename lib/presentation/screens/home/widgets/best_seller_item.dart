@@ -2,6 +2,7 @@ import 'package:ecommerce/domain/models/product.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class BestSellerItem extends StatelessWidget {
 
@@ -10,35 +11,53 @@ class BestSellerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 150,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        color: ColorManager.white,
+        child: SizedBox(
+          width: 150,
+          child: Column(
             children: [
-              Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(AppSize.s8)),
-                  color: ColorManager.primary
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 4,
-                      vertical: 2,
-                  ),
-                  child: Text(
-                    '${product.percent} %',
-                    style: const TextStyle(
-                      color: ColorManager.white
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Percentage
+                  Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(AppSize.s8)),
+                      color: ColorManager.primary
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 4,
+                          vertical: 2,
+                      ),
+                      child: Text(
+                        '${product.percent} %',
+                        style: const TextStyle(
+                          color: ColorManager.white
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              )
+                  // Fav Button
+                  Container(
+                    decoration: BoxDecoration(
+                      color: ColorManager.grey,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Icon(Icons.favorite_border, size: 16,),
+                    ),
+                  )
+                ],
+              ),
+              Image.asset(product.image, height: 50, width: 50,)
             ],
           ),
-          Image.asset(product.image, height: 50, width: 50,)
-        ],
+        ),
       ),
     );
   }
