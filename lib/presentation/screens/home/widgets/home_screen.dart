@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                 ]
             ),
           ),
-          Flexible(child: HomeScreenBody()),
+          const Flexible(child: HomeScreenBody()),
         ],
       ),
     );
