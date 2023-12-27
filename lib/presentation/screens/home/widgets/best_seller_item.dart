@@ -59,7 +59,19 @@ class BestSellerItem extends StatelessWidget {
                     )
                   ],
                 ),
-                Image.asset(product.image, height: 50, width: 50,)
+                const SizedBox(height: AppSize.s8,),
+                Container(
+                  color: ColorManager.grey,
+                  height: 100,
+                  width: 130,
+                ),
+                const SizedBox(height: AppSize.s8,),
+                Text(
+                  'هيلتى كباية 1050 وات ظرف 26 مللى - ERHRP1052',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
               ],
             ),
           ),
