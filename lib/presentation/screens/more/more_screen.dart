@@ -70,7 +70,7 @@ class MoreScreen extends StatelessWidget {
                     children: [
                       // لغة التطبيق
                       MoreSingleItem(
-                          icon: Icons.question_mark,
+                          icon: Icons.language,
                           title: AppStrings.moreLanguage.tr,
                           action: () {
                             Get.to(LanguageScreen());
@@ -88,7 +88,7 @@ class MoreScreen extends StatelessWidget {
                       ),
                       // الشروط والأحكام
                       MoreSingleItem(
-                        icon: Icons.question_mark,
+                        icon: Icons.view_list_outlined,
                         title: AppStrings.conditions.tr,
                         action: () {
                           //
@@ -106,7 +106,7 @@ class MoreScreen extends StatelessWidget {
                       ),
                       // تسجيل دخول أو خروج
                       MoreSingleItem(
-                        icon: _appPreferences.isUserLoggedIn() ? Icons.question_mark : Icons.question_mark,
+                        icon: _appPreferences.isUserLoggedIn() ? Icons.logout_outlined : Icons.login,
                         title: _appPreferences.isUserLoggedIn() ? AppStrings.signOut.tr : AppStrings.signIn.tr,
                         action: () {
                           _appPreferences.logout();
