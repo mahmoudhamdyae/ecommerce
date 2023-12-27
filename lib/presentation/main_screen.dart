@@ -79,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
           // طلباتى
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.abc,
+              Icons.local_offer_outlined,
               color: _selectedIndex == 1 ? ColorManager.yellow : ColorManager.grey,
             ),
             label: AppStrings.myOrders.tr,
@@ -95,7 +95,7 @@ class _MainScreenState extends State<MainScreen> {
           // المزيد
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.square,
+              Icons.more,
               color: _selectedIndex == 3 ? ColorManager.yellow : ColorManager.grey,
             ),
             label: AppStrings.more.tr,
