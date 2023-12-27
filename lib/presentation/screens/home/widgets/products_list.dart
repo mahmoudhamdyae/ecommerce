@@ -1,4 +1,3 @@
-import 'package:ecommerce/presentation/resources/assets_manager.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/product_item.dart';
 import 'package:flutter/cupertino.dart';
 
