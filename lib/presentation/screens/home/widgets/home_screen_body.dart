@@ -17,9 +17,10 @@ class HomeScreenBody extends StatelessWidget {
       children: [
         SwiperWidget(),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: AppPadding.mediumPadding),
+          padding: const EdgeInsets.only(top: AppPadding.mediumPadding),
           child: ProductsList(),
         ),
+        // الأكثر مبيعا
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
