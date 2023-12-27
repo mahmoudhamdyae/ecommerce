@@ -14,48 +14,54 @@ class BestSellerItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        color: ColorManager.white,
-        child: SizedBox(
-          width: 150,
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Percentage
-                  Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(AppSize.s8)),
-                      color: ColorManager.primary
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 4,
-                          vertical: 2,
+        decoration: const BoxDecoration(
+          color: ColorManager.white,
+          borderRadius: BorderRadius.all(Radius.circular(AppSize.s8)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            width: 150,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Percentage
+                    Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s8)),
+                        color: ColorManager.primary
                       ),
-                      child: Text(
-                        '${product.percent} %',
-                        style: const TextStyle(
-                          color: ColorManager.white
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 4,
+                            vertical: 2,
+                        ),
+                        child: Text(
+                          '${product.percent} %',
+                          style: const TextStyle(
+                            color: ColorManager.white
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  // Fav Button
-                  Container(
-                    decoration: BoxDecoration(
-                      color: ColorManager.grey,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Icon(Icons.favorite_border, size: 16,),
-                    ),
-                  )
-                ],
-              ),
-              Image.asset(product.image, height: 50, width: 50,)
-            ],
+                    // Fav Button
+                    Container(
+                      decoration: const BoxDecoration(
+                        color: ColorManager.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(Icons.favorite_border, size: 16,),
+                      ),
+                    )
+                  ],
+                ),
+                Image.asset(product.image, height: 50, width: 50,)
+              ],
+            ),
           ),
         ),
       ),
