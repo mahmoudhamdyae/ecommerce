@@ -3,6 +3,7 @@ import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class BestSellerItem extends StatelessWidget {
 
@@ -66,12 +67,29 @@ class BestSellerItem extends StatelessWidget {
                   width: 130,
                 ),
                 const SizedBox(height: AppSize.s8,),
-                Text(
+                const Text(
                   'هيلتى كباية 1050 وات ظرف 26 مللى - ERHRP1052',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                   ),
-                )
+                ),
+                const SizedBox(height: AppSize.s8,),
+                RatingBar.builder(
+                  initialRating: product.rate,
+                  minRating: 0,
+                  updateOnDrag: false,
+                  ignoreGestures: true,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemSize: 18,
+                  itemBuilder: (context, _) => const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  onRatingUpdate: (rating) {},
+                ),
               ],
             ),
           ),
