@@ -57,6 +57,10 @@ class AppLocal extends Translations {
       AppStrings.pleaseLogIn: 'يجب عليك تسجيل الدخول أولا',
       AppStrings.loginContinueButton: 'تسجيل دخول',
       AppStrings.cancel: 'الغاء',
+      AppStrings.productDetails: 'تفاصيل المنتج',
+      AppStrings.productDescription: 'وصف المنتج',
+      AppStrings.productDetails2: 'مواصفات المنتج',
+      AppStrings.comments: 'التعليقات',
     },
     'en': {
       AppStrings.appName: 'E commerce',
@@ -110,6 +114,10 @@ class AppLocal extends Translations {
       AppStrings.pleaseLogIn: 'يجب عليك تسجيل الدخول أولا',
       AppStrings.loginContinueButton: 'تسجيل دخول',
       AppStrings.cancel: 'الغاء',
+      AppStrings.productDetails: 'تفاصيل المنتج',
+      AppStrings.productDescription: 'وصف المنتج',
+      AppStrings.productDetails2: 'مواصفات المنتج',
+      AppStrings.comments: 'التعليقات',
     }
   };
 }

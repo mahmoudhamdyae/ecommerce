@@ -70,4 +70,10 @@ class AppStrings {
   static const pleaseLogIn = 'يجب عليك تسجيل الدخول أولا';
   static const loginContinueButton = '  تسجيل دخول';
   static const cancel = 'الغاء';
+
+  // Product Screen
+  static const productDetails = 'تفاصيل المنتج';
+  static const productDescription = 'وصف المنتج';
+  static const productDetails2 = 'مواصفات المنتج';
+  static const comments = 'التعليقات';
 }
