@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                             fontWeight: FontWeightManager.medium,
                           ),
                         ),
-                        const CartIcon(color: ColorManager.white),
+                        CartIcon(color: ColorManager.white),
                       ],
                     ),
                   ),

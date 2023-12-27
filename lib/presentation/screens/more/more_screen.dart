@@ -51,7 +51,7 @@ class MoreScreen extends StatelessWidget {
                           fontWeight: FontWeightManager.medium,
                         ),
                       ),
-                      const CartIcon(color: ColorManager.primary,),
+                      CartIcon(color: ColorManager.primary,),
                     ],
                   ),
                 ),
