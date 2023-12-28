@@ -1,4 +1,6 @@
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
+import 'package:ecommerce/presentation/screens/product/widgets/product_tab_bar.dart';
+import 'package:ecommerce/presentation/screens/product/widgets/product_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -171,63 +173,8 @@ class ProductScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 50,
-                child: AppBar(
-                  backgroundColor: ColorManager.white,
-                  bottom: TabBar(
-                    dividerColor: ColorManager.grey,
-                    indicatorColor: ColorManager.yellow,
-                    labelColor: ColorManager.black,
-                    unselectedLabelColor: ColorManager.grey,
-                    labelStyle: const TextStyle(
-                      fontSize: FontSize.s12
-                    ),
-                    tabs: [
-                      Tab(child: Text(AppStrings.productDescription.tr,),),
-                      Tab(child: Text(AppStrings.productDetails2.tr,),),
-                      Tab(child: Text(AppStrings.comments.tr,),),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                  height: 300,
-                  child: TabBarView(
-                    children: [
-                      Container(
-                        color: Colors.white,
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت ',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: ColorManager.black),
-                          ),
-                        ),
-                      ),
-                      // second tab bar view widget
-                      Container(
-                        color: Colors.white,
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Car',
-                          ),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Car',
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
+              const ProductTabBar(),
+              const ProductTabs(),
             ],
           ),
         ),
