@@ -20,12 +20,14 @@ class ProductTopBar extends StatelessWidget {
       color: ColorManager.white,
       child: Row(
         children: [
+          // Back Button
           IconButton(
             onPressed: () {
               Get.back();
             },
             icon: const Icon(Icons.arrow_back),
           ),
+          // تفاصيل المنتج
           Text(
             AppStrings.productDetails.tr,
             style: const TextStyle(
