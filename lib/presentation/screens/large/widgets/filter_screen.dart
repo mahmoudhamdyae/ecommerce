@@ -16,9 +16,9 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
 
-  List<bool> stars = List.filled(5, false);
-  List<bool> markat = List.filled(13, false);
-  List<String> markatNames = [
+  final List<bool> _stars = List.filled(5, false);
+  final List<bool> _markat = List.filled(13, false);
+  final List<String> _markatNames = [
     AppStrings.marka1.tr,
     AppStrings.marka2.tr,
     AppStrings.marka3.tr,
@@ -33,6 +33,7 @@ class _FilterScreenState extends State<FilterScreen> {
     AppStrings.marka12.tr,
     AppStrings.marka13.tr,
   ];
+  RangeValues _currentRangeValues = const RangeValues(0, 5000);
 
   @override
   Widget build(BuildContext context) {
@@ -68,15 +69,15 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 child: Column(
                   children:
-                  List.generate(markat.length, (index) {
+                  List.generate(_markat.length, (index) {
                     return CheckboxListTile(
-                      title: Text(markatNames[index]),
+                      title: Text(_markatNames[index]),
                       activeColor: ColorManager.primary,
-                      value: markat[index],
+                      value: _markat[index],
                       onChanged: (bool? newValue) {
                         setState(() {
                           debugPrint(newValue.toString());
-                          markat[index] = newValue!;
+                          _markat[index] = newValue!;
                         });
                       },
                       controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
@@ -94,11 +95,26 @@ class _FilterScreenState extends State<FilterScreen> {
               ),
               const SizedBox(height: AppSize.s16,),
               Container(
-                height: 100,
+                height: 70,
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
                   color: ColorManager.white,
+                ),
+                child: RangeSlider(
+                  values: _currentRangeValues,
+                  max: 30000,
+                  divisions: 5000,
+                  labels: RangeLabels(
+                    _currentRangeValues.start.round().toString(),
+                    _currentRangeValues.end.round().toString(),
+                  ),
+                  onChanged: (RangeValues values) {
+                    setState(() {
+                      _currentRangeValues = values;
+                    });
+                  },
+                  activeColor: ColorManager.yellow,
                 ),
               ),
               const SizedBox(height: AppSize.s16,),
@@ -120,15 +136,15 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 child: Column(
                       children:
-                        List.generate(stars.length, (index) {
+                        List.generate(_stars.length, (index) {
                           return CheckboxListTile(
                             title: StaticRatingBar(initialRating: (index + 1).toDouble()),
                             activeColor: ColorManager.primary,
-                            value: stars[index],
+                            value: _stars[index],
                             onChanged: (bool? newValue) {
                               setState(() {
                                 debugPrint(newValue.toString());
-                                stars[index] = newValue!;
+                                _stars[index] = newValue!;
                               });
                             },
                             controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
