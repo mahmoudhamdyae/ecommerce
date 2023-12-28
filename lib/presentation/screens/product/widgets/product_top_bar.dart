@@ -1,6 +1,7 @@
 import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../core/app_prefs.dart';
 import '../../../../di/di.dart';
@@ -62,16 +63,22 @@ class ProductTopBar extends StatelessWidget {
             width: AppSize.s8,
           ),
           // Share Button
-          Container(
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: ColorManager.white,
-                border: Border.all(color: ColorManager.grey)),
-            child: const Padding(
-              padding: EdgeInsets.all(4.0),
-              child: Icon(
-                Icons.share,
-                color: ColorManager.grey,
+          InkWell(
+            onTap: () {
+              debugPrint('Share Button Clicked');
+              Share.share('check out my website https://example.com');
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: ColorManager.white,
+                  border: Border.all(color: ColorManager.grey)),
+              child: const Padding(
+                padding: EdgeInsets.all(4.0),
+                child: Icon(
+                  Icons.share,
+                  color: ColorManager.grey,
+                ),
               ),
             ),
           ),
