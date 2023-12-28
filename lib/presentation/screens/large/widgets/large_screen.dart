@@ -73,17 +73,68 @@ class LargeScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: AppSize.s16,),
-                    Container(
-                      width: 64,
-                      height: 64,
-                      decoration: BoxDecoration(
-                        color: ColorManager.white,
-                        borderRadius: BorderRadius.circular(AppSize.borderRadius)
-                      ),
-                      child: const Icon(
-                        Icons.filter_list,
-                        color: ColorManager.grey,
-                        size: 40,
+                    InkWell(
+                      onTap: () {
+                        debugPrint('Filter Clicked');
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SizedBox(
+                              height: 280,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 24.0
+                                ),
+                                child: ListView(
+                                  // crossAxisAlignment: CrossAxisAlignment.start,
+                                  // mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: AppPadding.mediumPadding,
+                                          left: AppPadding.mediumPadding
+                                      ),
+                                      child: Text(
+                                        AppStrings.orderBy.tr,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: FontSize.s16
+                                        ),
+                                      ),
+                                    ),
+                                    ListTile(
+                                      title: Text(AppStrings.orderByAll.tr),
+                                      trailing: const Icon(Icons.done,),
+                                      iconColor: ColorManager.yellow,
+                                    ),
+                                    ListTile(
+                                        title: Text(AppStrings.orderByHigh.tr)
+                                    ),
+                                    ListTile(
+                                        title: Text(AppStrings.orderByLow.tr)
+                                    ),
+                                    ListTile(
+                                        title: Text(AppStrings.orderByRecent.tr)
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: Container(
+                        width: 64,
+                        height: 64,
+                        decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: BorderRadius.circular(AppSize.borderRadius)
+                        ),
+                        child: const Icon(
+                          Icons.filter_list,
+                          color: ColorManager.grey,
+                          size: 40,
+                        ),
                       ),
                     )
                   ],

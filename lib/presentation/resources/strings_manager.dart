@@ -75,4 +75,11 @@ class AppStrings {
   static const productDescription = 'وصف المنتج';
   static const productDetails2 = 'مواصفات المنتج';
   static const comments = 'التعليقات';
+
+  // Modal Bottom Sheet
+  static const orderBy = 'رتب حسب';
+  static const orderByAll = 'الكل';
+  static const orderByHigh = 'الأعلى سعرا';
+  static const orderByLow = 'الأقل سعرا';
+  static const orderByRecent = 'المضاف حديثا ';
 }

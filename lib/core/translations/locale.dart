@@ -61,6 +61,11 @@ class AppLocal extends Translations {
       AppStrings.productDescription: 'وصف المنتج',
       AppStrings.productDetails2: 'مواصفات المنتج',
       AppStrings.comments: 'التعليقات',
+      AppStrings.orderBy: 'رتب حسب:',
+      AppStrings.orderByAll: 'الكل',
+      AppStrings.orderByHigh: 'الأعلى سعرا',
+      AppStrings.orderByLow: 'الأقل سعرا',
+      AppStrings.orderByRecent: 'المضاف حديثا',
     },
     'en': {
       AppStrings.appName: 'E commerce',
@@ -118,6 +123,11 @@ class AppLocal extends Translations {
       AppStrings.productDescription: 'وصف المنتج',
       AppStrings.productDetails2: 'مواصفات المنتج',
       AppStrings.comments: 'التعليقات',
+      AppStrings.orderBy: 'رتب حسب:',
+      AppStrings.orderByAll: 'الكل',
+      AppStrings.orderByHigh: 'الأعلى سعرا',
+      AppStrings.orderByLow: 'الأقل سعرا',
+      AppStrings.orderByRecent: 'المضاف حديثا',
     }
   };
 }
