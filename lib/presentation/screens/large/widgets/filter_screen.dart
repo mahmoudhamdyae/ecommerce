@@ -33,7 +33,7 @@ class _FilterScreenState extends State<FilterScreen> {
     AppStrings.marka12.tr,
     AppStrings.marka13.tr,
   ];
-  RangeValues _currentRangeValues = const RangeValues(0, 5000);
+  RangeValues _currentRangeValues = const RangeValues(0, 30000);
 
   @override
   Widget build(BuildContext context) {
