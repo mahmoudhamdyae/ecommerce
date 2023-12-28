@@ -16,11 +16,12 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
 
-  bool isFiveStar = false;
-  bool isFourStar = false;
-  bool isThreeStar = false;
-  bool isTwoStar = false;
-  bool isOneStar = false;
+  List<bool> stars = [false, false, false, false, false];
+  // bool isFiveStar = false;
+  // bool isFourStar = false;
+  // bool isThreeStar = false;
+  // bool isTwoStar = false;
+  // bool isOneStar = false;
 
   @override
   Widget build(BuildContext context) {
@@ -89,70 +90,23 @@ class _FilterScreenState extends State<FilterScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
                   color: ColorManager.white,
                 ),
-                child: ListView(
-                  children: [
-                    CheckboxListTile(
-                      title: const StaticRatingBar(initialRating: 5),
-                      activeColor: ColorManager.primary,
-                      value: isFiveStar,
-                      onChanged: (bool? newValue) {
-                        setState(() {
-                          debugPrint(newValue.toString());
-                          isFiveStar = newValue!;
-                        });
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                child: Column(
+                      children:
+                        List.generate(stars.length, (index) {
+                          return CheckboxListTile(
+                            title: StaticRatingBar(initialRating: (index + 1).toDouble()),
+                            activeColor: ColorManager.primary,
+                            value: stars[index],
+                            onChanged: (bool? newValue) {
+                              setState(() {
+                                debugPrint(newValue.toString());
+                                stars[index] = newValue!;
+                              });
+                            },
+                            controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                          );
+                        }),
                     ),
-                    CheckboxListTile(
-                      title: const StaticRatingBar(initialRating: 4),
-                      activeColor: ColorManager.primary,
-                      value: isFourStar,
-                      onChanged: (bool? newValue) {
-                        setState(() {
-                          debugPrint(newValue.toString());
-                          isFourStar = newValue!;
-                        });
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
-                    ),
-                    CheckboxListTile(
-                      title: const StaticRatingBar(initialRating: 3),
-                      activeColor: ColorManager.primary,
-                      value: isThreeStar,
-                      onChanged: (bool? newValue) {
-                        setState(() {
-                          debugPrint(newValue.toString());
-                          isThreeStar = newValue!;
-                        });
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
-                    ),
-                    CheckboxListTile(
-                      title: const StaticRatingBar(initialRating: 2),
-                      activeColor: ColorManager.primary,
-                      value: isTwoStar,
-                      onChanged: (bool? newValue) {
-                        setState(() {
-                          debugPrint(newValue.toString());
-                          isTwoStar = newValue!;
-                        });
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
-                    ),
-                    CheckboxListTile(
-                      title: const StaticRatingBar(initialRating: 1),
-                      activeColor: ColorManager.primary,
-                      value: isOneStar,
-                      onChanged: (bool? newValue) {
-                        setState(() {
-                          debugPrint(newValue.toString());
-                          isOneStar = newValue!;
-                        });
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
-                    ),
-                  ],
-                ),
               ),
               const SizedBox(height: AppSize.s16,),
               // Two Buttons
