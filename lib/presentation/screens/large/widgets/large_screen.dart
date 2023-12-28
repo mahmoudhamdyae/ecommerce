@@ -22,6 +22,14 @@ class _LargeScreenState extends State<LargeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: ColorManager.yellow,
+        foregroundColor: ColorManager.white,
+        elevation: 32,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.filter_alt),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: AppPadding.p50),
         child: Container(
