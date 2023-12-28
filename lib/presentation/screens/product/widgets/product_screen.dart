@@ -21,7 +21,7 @@ class ProductScreen extends StatelessWidget {
           color: ColorManager.grey,
           child: ListView(
             children: [
-              const ProductTopBar(),
+              ProductTopBar(),
               Container(
                 height: 200,
                 color: ColorManager.grey,
