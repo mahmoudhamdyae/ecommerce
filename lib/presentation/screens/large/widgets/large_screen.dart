@@ -26,41 +26,75 @@ class _LargeScreenState extends State<LargeScreen> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
+            isScrollControlled: true,
             builder: (BuildContext context) {
               return SizedBox(
                 height: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: AppPadding.p28,
-                      right: AppPadding.mediumPadding,
-                      left: AppPadding.mediumPadding
+                child: Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
+                    color: ColorManager.lightGrey,
                   ),
-                  child: ListView(
-                    children: [
-                      Text(
-                        AppStrings.marka.tr,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: FontSize.s16
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: AppPadding.p50,
+                        right: AppPadding.mediumPadding,
+                        left: AppPadding.mediumPadding
+                    ),
+                    child: ListView(
+                      children: [
+                        Text(
+                          AppStrings.marka.tr,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: FontSize.s16
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: AppSize.s16,),
-                      Text(
-                        AppStrings.byPrice.tr,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: FontSize.s16
+                        const SizedBox(height: AppSize.s16,),
+                        Container(
+                          height: 100,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
+                            color: ColorManager.white,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: AppSize.s16,),
-                      Text(
-                        AppStrings.byEvaluation.tr,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: FontSize.s16
+                        const SizedBox(height: AppSize.s16,),
+                        Text(
+                          AppStrings.byPrice.tr,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: FontSize.s16
+                          ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: AppSize.s16,),
+                        Container(
+                          height: 100,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
+                            color: ColorManager.white,
+                          ),
+                        ),
+                        const SizedBox(height: AppSize.s16,),
+                        Text(
+                          AppStrings.byEvaluation.tr,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: FontSize.s16
+                          ),
+                        ),
+                        const SizedBox(height: AppSize.s16,),
+                        Container(
+                          height: 100,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
+                            color: ColorManager.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
