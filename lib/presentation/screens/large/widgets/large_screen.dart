@@ -100,6 +100,14 @@ class _LargeScreenState extends State<LargeScreen> {
                               child: FilledButton(
                                   onPressed: () {
                                   },
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all(
+                                        const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                                        )
+                                    ),
+                                    backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+                                  ),
                                   child: Text(
                                     AppStrings.showResults.tr,
                                   )
@@ -110,8 +118,18 @@ class _LargeScreenState extends State<LargeScreen> {
                               child: OutlinedButton(
                                   onPressed: () {
                                   },
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all(
+                                        const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                                        )
+                                    ),
+                                  ),
                                   child: Text(
                                     AppStrings.reset.tr,
+                                    style: const TextStyle(
+                                      color: ColorManager.primary,
+                                    ),
                                   )
                               ),
                             ),
