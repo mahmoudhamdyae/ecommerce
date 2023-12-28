@@ -16,12 +16,23 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
 
-  List<bool> stars = [false, false, false, false, false];
-  // bool isFiveStar = false;
-  // bool isFourStar = false;
-  // bool isThreeStar = false;
-  // bool isTwoStar = false;
-  // bool isOneStar = false;
+  List<bool> stars = List.filled(5, false);
+  List<bool> markat = List.filled(13, false);
+  List<String> markatNames = [
+    AppStrings.marka1.tr,
+    AppStrings.marka2.tr,
+    AppStrings.marka3.tr,
+    AppStrings.marka4.tr,
+    AppStrings.marka5.tr,
+    AppStrings.marka6.tr,
+    AppStrings.marka7.tr,
+    AppStrings.marka8.tr,
+    AppStrings.marka9.tr,
+    AppStrings.marka10.tr,
+    AppStrings.marka11.tr,
+    AppStrings.marka12.tr,
+    AppStrings.marka13.tr,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +60,28 @@ class _FilterScreenState extends State<FilterScreen> {
               ),
               const SizedBox(height: AppSize.s16,),
               Container(
-                height: 100,
+                height: 730,
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
                   color: ColorManager.white,
+                ),
+                child: Column(
+                  children:
+                  List.generate(markat.length, (index) {
+                    return CheckboxListTile(
+                      title: Text(markatNames[index]),
+                      activeColor: ColorManager.primary,
+                      value: markat[index],
+                      onChanged: (bool? newValue) {
+                        setState(() {
+                          debugPrint(newValue.toString());
+                          markat[index] = newValue!;
+                        });
+                      },
+                      controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                    );
+                  }),
                 ),
               ),
               const SizedBox(height: AppSize.s16,),
