@@ -3,12 +3,21 @@ import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/models/order_by.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
 import 'best_seller_grid_view.dart';
 
-class LargeScreen extends StatelessWidget {
+class LargeScreen extends StatefulWidget {
+
   const LargeScreen({super.key});
+
+  @override
+  State<LargeScreen> createState() => _LargeScreenState();
+}
+
+class _LargeScreenState extends State<LargeScreen> {
+  OrderBy orderBy = OrderBy.all;
 
   @override
   Widget build(BuildContext context) {
@@ -104,17 +113,51 @@ class LargeScreen extends StatelessWidget {
                                     ),
                                     ListTile(
                                       title: Text(AppStrings.orderByAll.tr),
-                                      trailing: const Icon(Icons.done,),
+                                      trailing: orderBy == OrderBy.all ?
+                                        const Icon(Icons.done,) : null,
                                       iconColor: ColorManager.yellow,
+                                      onTap: () {
+                                        setState(() {
+                                          orderBy = OrderBy.all;
+                                          Get.back();
+                                        });
+                                      },
                                     ),
                                     ListTile(
-                                        title: Text(AppStrings.orderByHigh.tr)
+                                      title: Text(AppStrings.orderByHigh.tr),
+                                      trailing: orderBy == OrderBy.highest ?
+                                      const Icon(Icons.done,) : null,
+                                      iconColor: ColorManager.yellow,
+                                      onTap: () {
+                                        setState(() {
+                                          orderBy = OrderBy.highest;
+                                          Get.back();
+                                        });
+                                      },
                                     ),
                                     ListTile(
-                                        title: Text(AppStrings.orderByLow.tr)
+                                      title: Text(AppStrings.orderByLow.tr),
+                                      trailing: orderBy == OrderBy.lowest ?
+                                      const Icon(Icons.done,) : null,
+                                      iconColor: ColorManager.yellow,
+                                      onTap: () {
+                                        setState(() {
+                                          orderBy = OrderBy.lowest;
+                                          Get.back();
+                                        });
+                                      },
                                     ),
                                     ListTile(
-                                        title: Text(AppStrings.orderByRecent.tr)
+                                      title: Text(AppStrings.orderByRecent.tr),
+                                      trailing: orderBy == OrderBy.recently ?
+                                      const Icon(Icons.done,) : null,
+                                      iconColor: ColorManager.yellow,
+                                      onTap: () {
+                                        setState(() {
+                                          orderBy = OrderBy.recently;
+                                          Get.back();
+                                        });
+                                      },
                                     ),
                                   ],
                                 ),
