@@ -34,6 +34,7 @@ class SwiperWidget extends StatelessWidget {
     return SizedBox(
       height: 150,
       child: Swiper(
+          autoplay: true,
           itemBuilder: (context, index) {
             return images[index];
           },
