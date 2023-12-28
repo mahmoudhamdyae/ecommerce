@@ -31,70 +31,34 @@ class _LargeScreenState extends State<LargeScreen> {
                 height: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      top: 24.0
+                      top: AppPadding.p28,
+                      right: AppPadding.mediumPadding,
+                      left: AppPadding.mediumPadding
                   ),
                   child: ListView(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            right: AppPadding.mediumPadding,
-                            left: AppPadding.mediumPadding
-                        ),
-                        child: Text(
-                          AppStrings.orderBy.tr,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: FontSize.s16
-                          ),
+                      Text(
+                        AppStrings.marka.tr,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: FontSize.s16
                         ),
                       ),
-                      ListTile(
-                        title: Text(AppStrings.orderByAll.tr),
-                        trailing: orderBy == OrderBy.all ?
-                        const Icon(Icons.done,) : null,
-                        iconColor: ColorManager.yellow,
-                        onTap: () {
-                          setState(() {
-                            orderBy = OrderBy.all;
-                            Get.back();
-                          });
-                        },
+                      const SizedBox(height: AppSize.s16,),
+                      Text(
+                        AppStrings.byPrice.tr,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: FontSize.s16
+                        ),
                       ),
-                      ListTile(
-                        title: Text(AppStrings.orderByHigh.tr),
-                        trailing: orderBy == OrderBy.highest ?
-                        const Icon(Icons.done,) : null,
-                        iconColor: ColorManager.yellow,
-                        onTap: () {
-                          setState(() {
-                            orderBy = OrderBy.highest;
-                            Get.back();
-                          });
-                        },
-                      ),
-                      ListTile(
-                        title: Text(AppStrings.orderByLow.tr),
-                        trailing: orderBy == OrderBy.lowest ?
-                        const Icon(Icons.done,) : null,
-                        iconColor: ColorManager.yellow,
-                        onTap: () {
-                          setState(() {
-                            orderBy = OrderBy.lowest;
-                            Get.back();
-                          });
-                        },
-                      ),
-                      ListTile(
-                        title: Text(AppStrings.orderByRecent.tr),
-                        trailing: orderBy == OrderBy.recently ?
-                        const Icon(Icons.done,) : null,
-                        iconColor: ColorManager.yellow,
-                        onTap: () {
-                          setState(() {
-                            orderBy = OrderBy.recently;
-                            Get.back();
-                          });
-                        },
+                      const SizedBox(height: AppSize.s16,),
+                      Text(
+                        AppStrings.byEvaluation.tr,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: FontSize.s16
+                        ),
                       ),
                     ],
                   ),
