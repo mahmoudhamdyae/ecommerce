@@ -1,5 +1,4 @@
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
-import 'package:flutter/cupertino.dart';
 
 enum OrderBy {
   all(AppStrings.orderByAll),
