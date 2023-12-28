@@ -100,4 +100,6 @@ class AppStrings {
   static const marka13 = 'marka13';
   static const byPrice = 'حسب السعر';
   static const byEvaluation = 'حسب التقييم';
+  static const showResults = 'اظهر النتائج';
+  static const reset = 'إعادة تعيين';
 }

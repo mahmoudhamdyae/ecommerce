@@ -93,6 +93,30 @@ class _LargeScreenState extends State<LargeScreen> {
                             color: ColorManager.white,
                           ),
                         ),
+                        const SizedBox(height: AppSize.s16,),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: FilledButton(
+                                  onPressed: () {
+                                  },
+                                  child: Text(
+                                    AppStrings.showResults.tr,
+                                  )
+                              ),
+                            ),
+                            const SizedBox(width: AppSize.s16,),
+                            Expanded(
+                              child: OutlinedButton(
+                                  onPressed: () {
+                                  },
+                                  child: Text(
+                                    AppStrings.reset.tr,
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

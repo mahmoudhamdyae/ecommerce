@@ -82,6 +82,8 @@ class AppLocal extends Translations {
       AppStrings.marka13: 'بوش',
       AppStrings.byPrice: 'حسب السعر',
       AppStrings.byEvaluation: 'حسب التقييم',
+      AppStrings.showResults: 'اظهر النتائج',
+      AppStrings.reset: 'إعادة تعيين',
     },
     'en': {
       AppStrings.appName: 'E commerce',
@@ -160,6 +162,8 @@ class AppLocal extends Translations {
       AppStrings.marka13: 'بوش',
       AppStrings.byPrice: 'حسب السعر',
       AppStrings.byEvaluation: 'حسب التقييم',
+      AppStrings.showResults: 'اظهر النتائج',
+      AppStrings.reset: 'إعادة تعيين',
     }
   };
 }
