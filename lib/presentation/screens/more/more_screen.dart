@@ -90,7 +90,7 @@ class MoreScreen extends StatelessWidget {
                         icon: Icons.view_list_outlined,
                         title: AppStrings.conditions.tr,
                         action: () {
-                          //
+                          Get.to(const WhoAreWeScreen());
                         },
                         isRed: false,
                       ),
