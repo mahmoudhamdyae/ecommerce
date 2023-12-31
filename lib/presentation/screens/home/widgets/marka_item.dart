@@ -1,5 +1,5 @@
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/large/widgets/markat_screen.dart';
+import 'package:ecommerce/presentation/screens/markat/widgets/markat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -5,8 +5,8 @@ import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StoreTypeScreen extends StatelessWidget {
-  const StoreTypeScreen({super.key});
+class UserTypeScreen extends StatelessWidget {
+  const UserTypeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +21,16 @@ class StoreTypeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppStrings.defineStore.tr,
+              AppStrings.userType.tr,
               style: const TextStyle(
-                fontSize: FontSize.s18,
-                fontWeight: FontWeight.w500
+                  fontSize: FontSize.s18,
+                  fontWeight: FontWeight.w500
               ),
             ),
             Text(
-              AppStrings.defineStoreDesc.tr,
+              AppStrings.userTypeDesc.tr,
               style: const TextStyle(
-                color: ColorManager.grey
+                  color: ColorManager.grey
               ),
             ),
             const SizedBox(height: AppSize.s20,),
@@ -41,8 +41,8 @@ class StoreTypeScreen extends StatelessWidget {
               },
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Color(0xFFD32026),
-                  borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius))
+                    color: Color(0xFFD32026),
+                    borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius))
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(AppPadding.largePadding),
@@ -56,12 +56,12 @@ class StoreTypeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: AppSize.s16,),
                       Text(
-                          AppStrings.handTools.tr,
-                          style: const TextStyle(
-                            color: ColorManager.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: FontSize.s16,
-                          ),
+                        AppStrings.handTools.tr,
+                        style: const TextStyle(
+                          color: ColorManager.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: FontSize.s16,
+                        ),
                       ),
                       const SizedBox(height: AppSize.s4,),
                       Text(

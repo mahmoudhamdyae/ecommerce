@@ -1,6 +1,6 @@
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/large/widgets/filter_screen.dart';
+import 'package:ecommerce/presentation/screens/markat/widgets/filter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

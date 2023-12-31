@@ -65,6 +65,13 @@ class AppStrings {
   static const airConditionStore = 'متجر التكييفات';
   static const airConditionStoreDesc = 'أكبر متجر للتكييفات حيث قمنا بتوفير كافة التكييفات فى مكان واحد';
 
+  // User Type
+  static const userType = 'نوع العضوية';
+  static const userTypeDesc = 'يرجى تحديد نوع العضوية ';
+  static const user = 'مستخدم';
+  static const trader = 'تاجر';
+  static const userTypeConfirm = 'تأكيد';
+
   // Require Auth Dialog
   static const pleaseLogIn = 'يجب عليك تسجيل الدخول أولا';
   static const loginContinueButton = '  تسجيل دخول';
