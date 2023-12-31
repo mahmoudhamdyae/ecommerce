@@ -23,7 +23,7 @@ class SimilarProducts extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSize.s8,),
-        ProductsList(),
+        ProductsList(products: Product.getMockProducts()),
       ],
     );
   }

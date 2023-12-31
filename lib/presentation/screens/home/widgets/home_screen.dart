@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
           Flexible(
               child: Container(
                   color: ColorManager.lightGrey,
-                  child: const HomeScreenBody()
+                  child: HomeScreenBody()
               )
           ),
         ],

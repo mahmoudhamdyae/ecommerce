@@ -6,8 +6,8 @@ import '../../../resources/values_manager.dart';
 
 class ProductsList extends StatelessWidget {
 
-  final List<Product> products = Product.getMockProducts();
-  ProductsList({super.key});
+  final List<Product> products;
+  const ProductsList({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {

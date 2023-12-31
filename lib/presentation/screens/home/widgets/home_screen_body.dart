@@ -1,3 +1,4 @@
+import 'package:ecommerce/domain/models/marka.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
@@ -7,11 +8,14 @@ import 'package:ecommerce/presentation/screens/home/widgets/swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/models/product.dart';
 import 'products_list.dart';
 
 class HomeScreenBody extends StatelessWidget {
 
-  const HomeScreenBody({super.key});
+  final List<Product> bestSellerProducts = Product.getMockProducts();
+  final List<Product> recentlyAddedProducts = Product.getMockProducts();
+  HomeScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class HomeScreenBody extends StatelessWidget {
         SwiperWidget(),
         Padding(
           padding: const EdgeInsets.only(top: AppPadding.mediumPadding),
-          child: MarkatList(),
+          child: MarkatList(markat: Marka.getMockMarkat(),),
         ),
         // الأكثر مبيعا
         Row(
@@ -59,7 +63,7 @@ class HomeScreenBody extends StatelessWidget {
             )
           ],
         ),
-        ProductsList(),
+        ProductsList(products: bestSellerProducts,),
         // المضاف حديثا
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -97,7 +101,7 @@ class HomeScreenBody extends StatelessWidget {
             )
           ],
         ),
-        ProductsList(),
+        ProductsList(products: bestSellerProducts,),
       ],
     );
   }
