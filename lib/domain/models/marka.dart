@@ -12,9 +12,9 @@ class Marka {
   static List<Marka> getMockMarkat() {
     return [
       Marka('معدات كهربية', ImageAssets.test, Product.getMockProducts()),
-      Marka('معدات كهربية', ImageAssets.test, Product.getMockProducts()),
-      Marka('معدات كهربية', ImageAssets.test, Product.getMockProducts()),
-      Marka('معدات كهربية', ImageAssets.test, Product.getMockProducts()),
+      Marka('معدات يدوية', ImageAssets.test, Product.getMockProducts()),
+      Marka('معدات ليثيوم', ImageAssets.test, Product.getMockProducts()),
+      Marka('أدوات السلامة', ImageAssets.test, Product.getMockProducts()),
       Marka('معدات كهربية', ImageAssets.test, Product.getMockProducts()),
       Marka('معدات كهربية', ImageAssets.test, Product.getMockProducts()),
       Marka('معدات كهربية', ImageAssets.test, Product.getMockProducts()),

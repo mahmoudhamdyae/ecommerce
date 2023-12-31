@@ -21,6 +21,7 @@ class MarkaItem extends StatelessWidget {
         child: Column(
           children: [
             CircleAvatar(
+              minRadius: 40,
               backgroundImage: AssetImage(marka.image),
             ),
             const SizedBox(height: AppSize.s8,),

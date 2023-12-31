@@ -10,7 +10,7 @@ class MarkatList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 150,
       child: ListView.builder(
           shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
