@@ -12,7 +12,7 @@ class ProductsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 375,
+      height: 310,
       child: ListView.builder(
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
