@@ -44,14 +44,14 @@ class UserTypeScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: const Color(0xFFF0B441), width: 2),
                   borderRadius: BorderRadius.circular(AppSize.borderRadius),
-                  color: const Color(0xFFFEF7E7),
+                  color: ColorManager.white,
                 ),
                 child: Center(
                   child: Text(
-                    AppStrings.writeYourComment.tr,
+                    AppStrings.user.tr,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      color: Color(0xFFF5B755),
+                      color: ColorManager.black,
                       fontWeight: FontWeight.w500,
                       fontSize: FontSize.s18,
                     ),
@@ -71,14 +71,14 @@ class UserTypeScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: const Color(0xFFF0B441), width: 2),
                   borderRadius: BorderRadius.circular(AppSize.borderRadius),
-                  color: const Color(0xFFFEF7E7),
+                  color: ColorManager.white,
                 ),
                 child: Center(
                   child: Text(
-                    AppStrings.writeYourComment.tr,
+                    AppStrings.trader.tr,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      color: Color(0xFFF5B755),
+                      color: ColorManager.black,
                       fontWeight: FontWeight.w500,
                       fontSize: FontSize.s18,
                     ),
@@ -100,7 +100,16 @@ class UserTypeScreen extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                     ),
                     onPressed: () {
-                    }, child: Text(AppStrings.userTypeConfirm.tr),
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppPadding.mediumPadding),
+                      child: Text(
+                        AppStrings.userTypeConfirm.tr,
+                        style: const TextStyle(
+                          fontSize: FontSize.s16,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
