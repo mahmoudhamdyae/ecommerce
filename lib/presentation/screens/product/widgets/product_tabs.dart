@@ -8,12 +8,12 @@ class ProductTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-        height: 200,
+    return SizedBox(
+        height: 100,
         child: TabBarView(
           children: [
-            ProductDetailsFirst(),
-            ProductDetailsSecond(),
+            const ProductDetailsFirst(),
+            const ProductDetailsSecond(),
             ProductComments(),
           ],
         ));
