@@ -2,12 +2,12 @@ import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/home/widgets/products_list.dart';
+import 'package:ecommerce/presentation/screens/home/widgets/markat_list.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'best_seller_list.dart';
+import 'products_list.dart';
 
 class HomeScreenBody extends StatelessWidget {
 
@@ -20,7 +20,7 @@ class HomeScreenBody extends StatelessWidget {
         SwiperWidget(),
         Padding(
           padding: const EdgeInsets.only(top: AppPadding.mediumPadding),
-          child: ProductsList(),
+          child: MarkatList(),
         ),
         // الأكثر مبيعا
         Row(
@@ -59,7 +59,7 @@ class HomeScreenBody extends StatelessWidget {
             )
           ],
         ),
-        BestSellerList(),
+        ProductsList(),
         // المضاف حديثا
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -97,7 +97,7 @@ class HomeScreenBody extends StatelessWidget {
             )
           ],
         ),
-        BestSellerList(),
+        ProductsList(),
       ],
     );
   }

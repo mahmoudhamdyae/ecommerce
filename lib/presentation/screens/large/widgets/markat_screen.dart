@@ -7,17 +7,17 @@ import 'package:get/get.dart';
 import '../../../../domain/models/order_by.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
-import 'best_seller_grid_view.dart';
+import 'products_grid_view.dart';
 
-class LargeScreen extends StatefulWidget {
+class MarkatScreen extends StatefulWidget {
 
-  const LargeScreen({super.key});
+  const MarkatScreen({super.key});
 
   @override
-  State<LargeScreen> createState() => _LargeScreenState();
+  State<MarkatScreen> createState() => _MarkatScreenState();
 }
 
-class _LargeScreenState extends State<LargeScreen> {
+class _MarkatScreenState extends State<MarkatScreen> {
   OrderBy orderBy = OrderBy.all;
 
   @override
@@ -200,7 +200,7 @@ class _LargeScreenState extends State<LargeScreen> {
                   ],
                 ),
               ),
-              Expanded(child: BestSellerGridView()),
+              Expanded(child: ProductsGridView()),
             ],
           ),
         ),

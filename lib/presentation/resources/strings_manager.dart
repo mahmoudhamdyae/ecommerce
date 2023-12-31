@@ -76,6 +76,7 @@ class AppStrings {
   static const productDetails2 = 'مواصفات المنتج';
   static const comments = 'التعليقات';
   static const writeYourComment = 'اكتب تعليقك';
+  static const similarProducts = 'منتجات مشابهة';
 
   // Modal Bottom Sheet
   static const orderBy = 'رتب حسب';

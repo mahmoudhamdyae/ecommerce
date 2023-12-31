@@ -2,6 +2,7 @@ import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_tab_bar.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_tabs.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_top_bar.dart';
+import 'package:ecommerce/presentation/screens/product/widgets/similar_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ class ProductScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         body: Container(
-          color: ColorManager.grey,
+          color: ColorManager.lightGrey,
           child: ListView(
             children: [
               ProductTopBar(),
@@ -121,6 +122,7 @@ class ProductScreen extends StatelessWidget {
               ),
               const ProductTabBar(),
               const ProductTabs(),
+              SimilarProducts(),
             ],
           ),
         ),

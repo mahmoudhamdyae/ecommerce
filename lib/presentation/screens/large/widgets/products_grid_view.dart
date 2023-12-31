@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../domain/models/product.dart';
 import '../../../resources/values_manager.dart';
-import '../../home/widgets/best_seller_item.dart';
+import '../../home/widgets/product_item.dart';
 
-class BestSellerGridView extends StatelessWidget {
+class ProductsGridView extends StatelessWidget {
 
   final List<Product> products = Product.getMockProducts();
-  BestSellerGridView({super.key});
+  ProductsGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class BestSellerGridView extends StatelessWidget {
       crossAxisCount: (MediaQuery.of(context).size.width ~/ 150).toInt(),
       childAspectRatio: (1/1.8),
       children: List.generate(products.length, (index) {
-        return BestSellerItem(product: products[index],);
+        return ProductItem(product: products[index],);
       }),
     );
   }

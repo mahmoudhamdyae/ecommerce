@@ -1,7 +1,8 @@
+import 'package:ecommerce/domain/models/product.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/product_item.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../../domain/models/product.dart';
+import '../../../resources/values_manager.dart';
 
 class ProductsList extends StatelessWidget {
 
@@ -11,15 +12,17 @@ class ProductsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 375,
       child: ListView.builder(
-          shrinkWrap: true,
-          physics: const ClampingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: products.length,
-          itemBuilder: (BuildContext context, int index) {
-        return ProductItem(product: products[index]);
-      }),
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p12),
+        itemCount: products.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return ProductItem(product: products[index],);
+        },
+      ),
     );
   }
 }
