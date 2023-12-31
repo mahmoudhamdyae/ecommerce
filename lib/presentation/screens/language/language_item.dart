@@ -8,6 +8,7 @@ class LanguageItem extends StatelessWidget {
   final String languageName;
   final Function() action;
   final bool isSelected;
+
   const LanguageItem({super.key, required this.icon, required this.languageName, required this.action, required this.isSelected});
 
   @override
@@ -18,8 +19,12 @@ class LanguageItem extends StatelessWidget {
           padding: const EdgeInsets.all(AppPadding.mediumPadding),
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: ColorManager.yellow, width: 1),
+              border: Border.all(
+                  color: isSelected ? ColorManager.yellow : ColorManager.grey,
+                  width: 1
+              ),
               borderRadius: BorderRadius.circular(AppSize.borderRadius),
+              color: isSelected ? const Color(0xFFF9E8CC) : ColorManager.white
             ),
             child: Padding(
               padding: const EdgeInsets.all(AppPadding.mediumPadding),

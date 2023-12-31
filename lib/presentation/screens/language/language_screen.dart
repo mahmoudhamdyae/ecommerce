@@ -14,6 +14,7 @@ import '../../resources/values_manager.dart';
 class LanguageScreen extends StatelessWidget {
 
   final AppLocalController _controller = Get.put(AppLocalController(instance<AppPreferences>()), permanent: true);
+  final bool isArabicSelected = true;
   LanguageScreen({super.key});
 
   @override
@@ -80,18 +81,20 @@ class LanguageScreen extends StatelessWidget {
             LanguageItem(
                 icon: ImageAssets.arabic,
                 languageName: AppStrings.arabicLanguage.tr,
-                isSelected: true,
+                isSelected: isArabicSelected,
                 action: () {
                   Get.updateLocale(const Locale('ar'));
                   _controller.changeLanguage('ar');
+                  // isArabicSelected = !isArabicSelected;
                 }),
             LanguageItem(
                 icon: ImageAssets.english,
                 languageName: AppStrings.englishLanguage.tr,
-                isSelected: false,
+                isSelected: !isArabicSelected,
                 action: () {
                   Get.updateLocale(const Locale('en'));
                   _controller.changeLanguage('en');
+                  // isArabicSelected = !isArabicSelected;
                 }),
             Expanded(child: Container()),
             Padding(

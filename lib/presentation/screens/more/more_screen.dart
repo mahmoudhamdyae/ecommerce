@@ -13,7 +13,6 @@ import '../../resources/font_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/cart_icon.dart';
-import '../usertype/widgets/user_type_screen.dart';
 
 class MoreScreen extends StatelessWidget {
 
@@ -100,9 +99,7 @@ class MoreScreen extends StatelessWidget {
                         icon: Icons.published_with_changes,
                         title: AppStrings.changeStore.tr,
                         action: () {
-                          // todo
-                          // Get.to(const StoreTypeScreen());
-                          Get.to(const UserTypeScreen());
+                          Get.to(const StoreTypeScreen());
                         },
                         isRed: false,
                       ),
