@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import '../../../../resources/color_manager.dart';
 
 class ProductScreenBottom extends StatelessWidget {
+
+  final int productNumber = 1;
   const ProductScreenBottom({super.key});
 
   @override
@@ -16,13 +18,13 @@ class ProductScreenBottom extends StatelessWidget {
         children: [
           // أضف للسلة
           Expanded(
-            flex: 3,
+            flex: 2,
             child: SizedBox.expand(
               child: FilledButton(
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all(
                       const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
+                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s8)),
                       )
                   ),
                   backgroundColor: MaterialStateProperty.all(ColorManager.primary),
@@ -35,9 +37,10 @@ class ProductScreenBottom extends StatelessWidget {
           const SizedBox(width: AppSize.s16,),
           // Numbers
           Expanded(
-            flex: 2,
+            flex: 1,
             child: SizedBox.expand(
               child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: AppMargin.m8),
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
                     border: Border.all(color: ColorManager.grey)
@@ -48,16 +51,43 @@ class ProductScreenBottom extends StatelessWidget {
                     children: [
                       InkWell(
                           onTap: () {
-                          }, child: const Text('-')
+                            if (productNumber != 1) {
+                              debugPrint('Minus Clicked');
+                            }
+                          }, child: Text(
+                          '-',
+                        style: TextStyle(
+                          color: productNumber != 1 ? ColorManager.black : ColorManager.grey,
+                          fontSize: 32,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      )),
+                      Expanded(child: Container()),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            right: AppPadding.smallPadding,
+                            left: AppPadding.smallPadding,
+                            top: 6,
+                        ),
+                        child: Text(
+                          productNumber.toString(),
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: AppPadding.smallPadding),
-                        child: Text('1'),
-                      ),
+                      Expanded(child: Container()),
                       InkWell(
                           onTap: () {
-                          }, child: const Text('+')
-                      ),
+                            debugPrint('Plus Clicked');
+                          }, child: const Text(
+                        '+',
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      )),
                     ],
                   ),
                 ),
