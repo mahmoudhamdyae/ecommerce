@@ -3,6 +3,7 @@ import 'package:ecommerce/presentation/screens/product/widgets/product_tab_bar.d
 import 'package:ecommerce/presentation/screens/product/widgets/product_tabs.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_top_bar.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/similar_products.dart';
+import 'package:ecommerce/presentation/screens/product/widgets/tabs/product_screen_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class ProductScreen extends StatelessWidget {
           children: [
             Container(
               color: ColorManager.lightGrey,
-              padding: const EdgeInsets.only(bottom: 75),
+              padding: const EdgeInsets.only(bottom: 90),
               child: ListView(
                 children: [
                   ProductTopBar(),
@@ -133,7 +134,8 @@ class ProductScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
                 child: Container(
                   color: ColorManager.white,
-                  height: 75,
+                  height: 90,
+                  child: const ProductScreenBottom(),
                 )
             )
           ],
