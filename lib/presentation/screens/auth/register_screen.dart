@@ -124,10 +124,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 textInputAction: TextInputAction.done,
                                 keyboardType: TextInputType.phone,
                                 validator: (val) {
-                                  if (val.toString().isNotEmpty) {
-                                    return null;
+                                  if (val.toString().length < 11) {
+                                    return AppStrings.mobileNumberInvalid.tr;
                                   }
-                                  return AppStrings.mobileNumberInvalid.tr;
+                                  return null;
                                 },
                                 decoration: InputDecoration(
                                   hintText: AppStrings.phoneNoHint.tr,

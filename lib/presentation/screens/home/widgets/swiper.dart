@@ -47,11 +47,10 @@ class SwiperWidget extends StatelessWidget {
                   (BuildContext context, SwiperPluginConfig config) {
                 return ConstrainedBox(
                   constraints: const BoxConstraints.expand(height: 50.0),
-                  child: Expanded(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child:
-                      AnimatedSmoothIndicator(
+                  child: Container(
+                    color: ColorManager.white,
+                    child: Center(
+                      child: AnimatedSmoothIndicator(
                         activeIndex: config.activeIndex,
                         count: images.length,
                         effect:  const SlideEffect(

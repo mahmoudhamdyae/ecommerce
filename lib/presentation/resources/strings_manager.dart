@@ -5,7 +5,7 @@ class AppStrings {
   // Auth
   static const phoneNo = 'رقم الجوال';
   static const phoneNoHint = 'الرجاء إدخال رقم الجوال';
-  static const mobileNumberInvalid = 'رقم الهاتف غير صالح';
+  static const mobileNumberInvalid = 'رقم الجوال يجب ألا يكون أكبر من 11 رقم';
   static const passwordInvalid = "كلمة المرور لا يمكن أن تكون فارغة";
 
   // Login Screen
