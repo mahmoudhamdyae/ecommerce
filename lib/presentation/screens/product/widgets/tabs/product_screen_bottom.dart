@@ -49,6 +49,7 @@ class ProductScreenBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(AppPadding.smallPadding),
                   child: Row(
                     children: [
+                      // - Button
                       InkWell(
                           onTap: () {
                             if (productNumber != 1) {
@@ -78,6 +79,7 @@ class ProductScreenBottom extends StatelessWidget {
                         ),
                       ),
                       Expanded(child: Container()),
+                      // + Button
                       InkWell(
                           onTap: () {
                             debugPrint('Plus Clicked');

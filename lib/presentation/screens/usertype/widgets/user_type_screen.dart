@@ -17,8 +17,7 @@ class UserTypeScreen extends StatelessWidget {
           right: AppPadding.largePadding,
           left: AppPadding.largePadding,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             Text(
               AppStrings.userType.tr,
@@ -34,90 +33,77 @@ class UserTypeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSize.s20,),
-            // العدد و الأدوات اليدوية
+            // مستخدم
             InkWell(
               onTap: () {
-                debugPrint('العدد و الأدوات اليدوية Clicked');
+                debugPrint('مستخدم Clicked');
               },
               child: Container(
-                decoration: const BoxDecoration(
-                    color: Color(0xFFD32026),
-                    borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius))
+                height: 175,
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: const Color(0xFFF0B441), width: 2),
+                  borderRadius: BorderRadius.circular(AppSize.borderRadius),
+                  color: const Color(0xFFFEF7E7),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(AppPadding.largePadding),
-                  child: Column(
-                    children: [
-                      // Image
-                      Container(
-                        height: 50,
-                        width: 100,
-                        color: ColorManager.grey,
-                      ),
-                      const SizedBox(height: AppSize.s16,),
-                      Text(
-                        AppStrings.handTools.tr,
-                        style: const TextStyle(
-                          color: ColorManager.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: FontSize.s16,
-                        ),
-                      ),
-                      const SizedBox(height: AppSize.s4,),
-                      Text(
-                        AppStrings.handToolsDesc.tr,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: ColorManager.white,
-                        ),
-                      ),
-                    ],
+                child: Center(
+                  child: Text(
+                    AppStrings.writeYourComment.tr,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(0xFFF5B755),
+                      fontWeight: FontWeight.w500,
+                      fontSize: FontSize.s18,
+                    ),
                   ),
                 ),
               ),
             ),
             const SizedBox(height: AppSize.s28,),
-            // متجر التكييفات
+            // تاجر
             InkWell(
               onTap: () {
-                debugPrint('متجر التكييفات Clicked');
+                debugPrint('تاجر Clicked');
               },
               child: Container(
-                decoration: const BoxDecoration(
-                    color: ColorManager.lightBlue,
-                    borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius))
+                height: 175,
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: const Color(0xFFF0B441), width: 2),
+                  borderRadius: BorderRadius.circular(AppSize.borderRadius),
+                  color: const Color(0xFFFEF7E7),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(AppPadding.largePadding),
-                  child: Column(
-                    children: [
-                      // Image
-                      Container(
-                        height: 50,
-                        width: 100,
-                        color: ColorManager.grey,
-                      ),
-                      const SizedBox(height: AppSize.s16,),
-                      Text(
-                        AppStrings.airConditionStore.tr,
-                        style: const TextStyle(
-                          color: ColorManager.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: FontSize.s16,
-                        ),
-                      ),
-                      const SizedBox(height: AppSize.s4,),
-                      Text(
-                        AppStrings.airConditionStoreDesc.tr,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: ColorManager.white,
-                        ),
-                      ),
-                    ],
+                child: Center(
+                  child: Text(
+                    AppStrings.writeYourComment.tr,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(0xFFF5B755),
+                      fontWeight: FontWeight.w500,
+                      fontSize: FontSize.s18,
+                    ),
                   ),
                 ),
               ),
+            ),
+            const SizedBox(height: AppSize.s28,),
+            Row(
+              children: [
+                Expanded(
+                  child: FilledButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                          const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(AppSize.s8)),
+                          )
+                      ),
+                      backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+                    ),
+                    onPressed: () {
+                    }, child: Text(AppStrings.userTypeConfirm.tr),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
