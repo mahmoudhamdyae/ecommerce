@@ -80,7 +80,7 @@ class LanguageScreen extends StatelessWidget {
             ),
             LanguageItem(
                 icon: ImageAssets.arabic,
-                languageName: AppStrings.arabicLanguage.tr,
+                languageName: AppStrings.arabicLanguage,
                 isSelected: isArabicSelected,
                 action: () {
                   Get.updateLocale(const Locale('ar'));
@@ -89,7 +89,7 @@ class LanguageScreen extends StatelessWidget {
                 }),
             LanguageItem(
                 icon: ImageAssets.english,
-                languageName: AppStrings.englishLanguage.tr,
+                languageName: AppStrings.englishLanguage,
                 isSelected: !isArabicSelected,
                 action: () {
                   Get.updateLocale(const Locale('en'));
