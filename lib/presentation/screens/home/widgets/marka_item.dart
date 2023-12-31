@@ -25,7 +25,15 @@ class MarkaItem extends StatelessWidget {
               backgroundImage: AssetImage(marka.image),
             ),
             const SizedBox(height: AppSize.s8,),
-            Text(marka.name),
+            SizedBox(
+              width: 85,
+              child: Text(
+                marka.name,
+                maxLines: 2,
+                softWrap: false,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ],
         ),
       ),

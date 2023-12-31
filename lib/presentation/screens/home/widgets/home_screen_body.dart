@@ -23,7 +23,7 @@ class HomeScreenBody extends StatelessWidget {
       children: [
         SwiperWidget(),
         Padding(
-          padding: const EdgeInsets.only(top: AppPadding.mediumPadding),
+          padding: const EdgeInsets.only(top: AppPadding.largePadding),
           child: MarkatList(markat: Marka.getMockMarkat(),),
         ),
         // الأكثر مبيعا
