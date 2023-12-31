@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserTypeScreen extends StatelessWidget {
+
+  final isUserSelected = true;
   const UserTypeScreen({super.key});
 
   @override
@@ -13,12 +15,22 @@ class UserTypeScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(
-          top: 60,
           right: AppPadding.largePadding,
           left: AppPadding.largePadding,
         ),
         child: ListView(
           children: [
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: const Icon(Icons.close),
+                )
+              ],
+            ),
+            const SizedBox(height: AppSize.s16,),
             Text(
               AppStrings.userType.tr,
               style: const TextStyle(
@@ -42,19 +54,33 @@ class UserTypeScreen extends StatelessWidget {
                 height: 175,
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFF0B441), width: 2),
+                  border: Border.all(
+                      color: !isUserSelected ? ColorManager.grey : const Color(0xFFF0B441),
+                      width: 2
+                  ),
                   borderRadius: BorderRadius.circular(AppSize.borderRadius),
-                  color: ColorManager.white,
+                  color: isUserSelected ? const Color(0xFFFEF7E7) : ColorManager.white,
                 ),
                 child: Center(
-                  child: Text(
-                    AppStrings.user.tr,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: ColorManager.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: FontSize.s18,
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: isUserSelected ? ColorManager.yellow : ColorManager.grey,
+                        size: 50,
+                      ),
+                      const SizedBox(height: 16,),
+                      Text(
+                        AppStrings.user.tr,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: ColorManager.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: FontSize.s18,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -69,19 +95,33 @@ class UserTypeScreen extends StatelessWidget {
                 height: 175,
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFF0B441), width: 2),
+                  border: Border.all(
+                      color: isUserSelected ? ColorManager.grey : const Color(0xFFF0B441),
+                      width: 2
+                  ),
                   borderRadius: BorderRadius.circular(AppSize.borderRadius),
-                  color: ColorManager.white,
+                  color: !isUserSelected ? const Color(0xFFFEF7E7) : ColorManager.white,
                 ),
                 child: Center(
-                  child: Text(
-                    AppStrings.trader.tr,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: ColorManager.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: FontSize.s18,
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.home,
+                        color: !isUserSelected ? ColorManager.yellow : ColorManager.grey,
+                        size: 50,
+                      ),
+                      const SizedBox(height: 16,),
+                      Text(
+                        AppStrings.trader.tr,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: ColorManager.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: FontSize.s18,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
