@@ -10,8 +10,18 @@ class ProductDetailsSecond extends StatelessWidget {
       color: ColorManager.white,
       child: const Padding(
         padding: EdgeInsets.all(8.0),
-        child: Text(
-          'Product Details',
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'C Clamp',
+              style: TextStyle(
+                color: ColorManager.grey,
+              ),
+            ),
+            SizedBox(width: 90,),
+            Text('300.14'),
+          ],
         ),
       ),
     );
