@@ -65,7 +65,7 @@ class UserTypeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.person,
                         color: isUserSelected ? ColorManager.yellow : ColorManager.grey,
                         size: 50,
@@ -106,7 +106,7 @@ class UserTypeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.home,
                         color: !isUserSelected ? ColorManager.yellow : ColorManager.grey,
                         size: 50,

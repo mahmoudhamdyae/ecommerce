@@ -55,7 +55,7 @@ class ProductScreenBottom extends StatelessWidget {
                             if (productNumber != 1) {
                               debugPrint('Minus Clicked');
                             }
-                          }, child: Text(
+                          }, child: const Text(
                           '-',
                         style: TextStyle(
                           color: productNumber != 1 ? ColorManager.black : ColorManager.grey,
