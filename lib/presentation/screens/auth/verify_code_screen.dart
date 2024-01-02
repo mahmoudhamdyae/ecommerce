@@ -1,5 +1,6 @@
 import 'package:ecommerce/presentation/screens/auth/register_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 import 'package:get/get.dart';
 
@@ -140,6 +141,8 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         ),
                         const SizedBox(height: AppSize.s16,),
                         PinCodeFields(
+                            fieldBorderStyle: FieldBorderStyle.square,
+                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                             onComplete: (text)  {
                               debugPrint('text = $text');
                               code = text;
