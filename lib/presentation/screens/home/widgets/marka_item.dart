@@ -22,16 +22,19 @@ class MarkaItem extends StatelessWidget {
           children: [
             // Image.network(category?.image ?? 'https://34b3-196-153-69-204.ngrok-free.app/uploads/divisions_images/30-04-231682875874952550779.png'),
             CircleAvatar(
-              minRadius: 40,
-              maxRadius: 40,
-              child: Image.network(category?.image ?? 'https://34b3-196-153-69-204.ngrok-free.app/uploads/divisions_images/30-04-231682875874952550779.png'),
-              // backgroundImage: AssetImage(category.image),
+              radius: 40,
+              child: ClipOval(
+                  child: Image.network(
+                    category?.image ?? 'https://34b3-196-153-69-204.ngrok-free.app/uploads/divisions_images/30-04-231682875874952550779.png',
+                    fit: BoxFit.fill,
+                  )
+              ),
             ),
             const SizedBox(height: AppSize.s8,),
             SizedBox(
               width: 85,
               child: Text(
-                category?.name ?? 'd',
+                category?.name ?? '',
                 maxLines: 2,
                 softWrap: false,
                 overflow: TextOverflow.ellipsis,

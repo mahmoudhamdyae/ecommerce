@@ -60,22 +60,21 @@ class Data {
     if (json['sliders'] != null) {
       sliders = <Sliders>[];
       json['sliders'].forEach((v) {
-        sliders!.add(new Sliders.fromJson(v));
+        sliders!.add(Sliders.fromJson(v));
       });
     }
     if (json['cards_ads'] != null) {
       cardsAds = <CardsAds>[];
       json['cards_ads'].forEach((v) {
-        cardsAds!.add(new CardsAds.fromJson(v));
+        cardsAds!.add(CardsAds.fromJson(v));
       });
     }
     onePanner = json['one_panner'] != null
-        ? new CardsAds.fromJson(json['one_panner'])
-        : null;
+        ? CardsAds.fromJson(json['one_panner']) : null;
     if (json['Categories'] != null) {
       categories = <Categories>[];
       json['Categories'].forEach((v) {
-        categories!.add(new Categories.fromJson(v));
+        categories!.add(Categories.fromJson(v));
       });
     }
     favourites = json['favourites'];
@@ -83,29 +82,29 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.latestProducts != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (latestProducts != null) {
       data['latest_products'] =
-          this.latestProducts!.map((v) => v.toJson()).toList();
+          latestProducts!.map((v) => v.toJson()).toList();
     }
-    if (this.salariesProducts != null) {
+    if (salariesProducts != null) {
       data['salaries_products'] =
-          this.salariesProducts!.map((v) => v.toJson()).toList();
+          salariesProducts!.map((v) => v.toJson()).toList();
     }
-    if (this.sliders != null) {
-      data['sliders'] = this.sliders!.map((v) => v.toJson()).toList();
+    if (sliders != null) {
+      data['sliders'] = sliders!.map((v) => v.toJson()).toList();
     }
-    if (this.cardsAds != null) {
-      data['cards_ads'] = this.cardsAds!.map((v) => v.toJson()).toList();
+    if (cardsAds != null) {
+      data['cards_ads'] = cardsAds!.map((v) => v.toJson()).toList();
     }
-    if (this.onePanner != null) {
-      data['one_panner'] = this.onePanner!.toJson();
+    if (onePanner != null) {
+      data['one_panner'] = onePanner!.toJson();
     }
-    if (this.categories != null) {
-      data['Categories'] = this.categories!.map((v) => v.toJson()).toList();
+    if (categories != null) {
+      data['Categories'] = categories!.map((v) => v.toJson()).toList();
     }
-    data['favourites'] = this.favourites;
-    data['card'] = this.card;
+    data['favourites'] = favourites;
+    data['card'] = card;
     return data;
   }
 }
@@ -145,16 +144,16 @@ class LatestProducts {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['rate'] = this.rate;
-    data['old_price'] = this.oldPrice;
-    data['card_image'] = this.cardImage;
-    data['rate_num'] = this.rateNum;
-    data['discount'] = this.discount;
-    data['price_new'] = this.priceNew;
-    data['fav'] = this.fav;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['rate'] = rate;
+    data['old_price'] = oldPrice;
+    data['card_image'] = cardImage;
+    data['rate_num'] = rateNum;
+    data['discount'] = discount;
+    data['price_new'] = priceNew;
+    data['fav'] = fav;
     return data;
   }
 }
@@ -175,11 +174,11 @@ class Sliders {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['desc'] = this.desc;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['desc'] = desc;
+    data['image'] = image;
     return data;
   }
 }
