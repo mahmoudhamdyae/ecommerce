@@ -1,5 +1,4 @@
 import 'package:ecommerce/presentation/main_screen.dart';
-import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,7 +37,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.register(widget.phoneNumber, codeController.text).then((userCredential) {
+        await _repository.enterCode(widget.phoneNumber, codeController.text, 'c').then((userCredential) {
           _appPreferences.setUserLoggedIn();
           Get.offAll(() => const MainScreen());
         });
@@ -52,7 +51,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   _confirmPhoneNumber() async {
     try {
       showLoading(context);
-      await _repository.confirmPhoneNumber(widget.phoneNumber).then((userCredential) {
+      await _repository.confirmPhoneNumber(widget.phoneNumber, 'c').then((userCredential) {
         Get.back();
         Get.showSnackbar(
           const GetSnackBar(

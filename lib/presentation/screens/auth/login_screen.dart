@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.login(phoneController.text, passwordTextController.text).then((userCredential) {
+        await _repository.login(phoneController.text, passwordTextController.text, 'c').then((userCredential) {
           _appPreferences.setUserLoggedIn();
           Get.offAll(const MainScreen());
         });

@@ -12,9 +12,10 @@ import '../../core/app_prefs.dart';
 import '../../presentation/resources/strings_manager.dart';
 
 abstract class RemoteDataSource {
-  Future<void> login(String phoneNumber, String password);
-  Future<void> confirmPhoneNumber(String phoneNumber);
-  Future<void> register(String phoneNumber, String code);
+  Future<void> login(String phoneNumber, String password, String kind);
+  Future<void> confirmPhoneNumber(String phoneNumber, String kind);
+  Future<void> enterCode(String phoneNumber, String code, String kind);
+  Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -45,7 +46,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<void> login(String phoneNumber, String password) async {
+  Future<void> login(String phoneNumber, String password, String kind) async {
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}auth/login?&password=$password&phone=$phoneNumber";
     final response = await http.post(Uri.parse(url));
@@ -59,7 +60,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<void> confirmPhoneNumber(String phoneNumber) async {
+  Future<void> confirmPhoneNumber(String phoneNumber, String kind) async {
     await _checkNetworkAndServer();
     try {
       // Initialize Ip Address
@@ -70,7 +71,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       // debugPrint(data.toString());
 
       // Confirm Phone Number
-      String url = "${AppConstants.baseUrl}register-Verify-Send-Code?active_phone=$phoneNumber&phone=$phoneNumber&kind=c";
+      String url = "${AppConstants.baseUrl}register-Verify-Send-Code?active_phone=$phoneNumber&phone=$phoneNumber&kind=$kind";
       final response = await http.post(Uri.parse(url));
 
       var responseData = json.decode(response.body);
@@ -81,9 +82,19 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<void> register(String phoneNumber, String code) async {
+  Future<void> enterCode(String phoneNumber, String code, String kind) async {
     await _checkNetworkAndServer();
-    String url = "${AppConstants.baseUrl}register-Verify-enter-Code?code=$code&phone=$phoneNumber&kind=c";
+    String url = "${AppConstants.baseUrl}register-Verify-enter-Code?code=$code&phone=$phoneNumber&kind=$kind";
+    final response = await http.post(Uri.parse(url));
+
+    var responseData = json.decode(response.body);
+    debugPrint('Enter Code Response: $responseData');
+  }
+
+  @override
+  Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}register-info?kind=$kind&phone=$phoneNumber&name=$name&email=$email&password=&$password&con_password=$conPassword";
     final response = await http.post(Uri.parse(url));
 
     var responseData = json.decode(response.body);
