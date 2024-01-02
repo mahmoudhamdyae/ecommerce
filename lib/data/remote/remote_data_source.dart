@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:ecommerce/core/constants.dart';
 import 'package:ecommerce/data/network_info.dart';
@@ -45,18 +44,23 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     // }
   }
 
+  _checkResponse(dynamic responseData) {
+    if (responseData['status'] != 200) {
+      throw Exception(responseData['message']);
+    }
+  }
+
   @override
   Future<void> login(String phoneNumber, String password, String kind) async {
     await _checkNetworkAndServer();
-    String url = "${AppConstants.baseUrl}auth/login?&password=$password&phone=$phoneNumber";
+    String url = "${AppConstants.baseUrl}login?password=$password&phone=$phoneNumber&kind=$kind";
     final response = await http.post(Uri.parse(url));
 
     var responseData = json.decode(response.body);
     debugPrint('Login Response: $responseData');
-    if (responseData["access_token"] == null) {
-      throw Exception(AppStrings.wrongPhoneOrPassword);
-    }
-    _appPreferences.setToken('');
+    _checkResponse(responseData);
+    _appPreferences.setToken(responseData['data']['api_token']);
+    debugPrint('Register Response api token: ${responseData['data']['api_token']}');
   }
 
   @override
@@ -76,6 +80,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
       var responseData = json.decode(response.body);
       debugPrint('Confirm Response: $responseData');
+      _checkResponse(responseData);
     } on IpAddressException catch (exception) {
       debugPrint(exception.message);
     }
@@ -89,6 +94,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
     var responseData = json.decode(response.body);
     debugPrint('Enter Code Response: $responseData');
+    _checkResponse(responseData);
   }
 
   @override
@@ -99,6 +105,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
     var responseData = json.decode(response.body);
     debugPrint('Register Response: $responseData');
+    _checkResponse(responseData);
     _appPreferences.setToken(responseData['data']['api_token']);
     debugPrint('Register Response api token: ${responseData['data']['api_token']}');
   }
