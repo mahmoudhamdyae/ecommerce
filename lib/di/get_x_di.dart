@@ -7,6 +7,7 @@ import '../data/network_info.dart';
 import '../data/remote/remote_data_source.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
+import '../presentation/screens/language/controller/language_controller.dart';
 import '../presentation/screens/usertype/controller/user_type_controller.dart';
 import 'di.dart';
 
@@ -20,5 +21,6 @@ class GetXDi implements Bindings {
 
     Get.put<AppLocalController>(AppLocalController(instance<AppPreferences>()), permanent: true);
     Get.lazyPut<UserTypeController>(() => UserTypeController(), fenix: true);
+    Get.lazyPut<LanguageController>(() => LanguageController(), fenix: true);
   }
 }

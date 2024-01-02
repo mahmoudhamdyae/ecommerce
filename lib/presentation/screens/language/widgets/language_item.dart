@@ -9,7 +9,13 @@ class LanguageItem extends StatelessWidget {
   final Function() action;
   final bool isSelected;
 
-  const LanguageItem({super.key, required this.icon, required this.languageName, required this.action, required this.isSelected});
+  const LanguageItem({
+    super.key,
+    required this.icon,
+    required this.languageName,
+    required this.action,
+    required this.isSelected
+  });
 
   @override
   Widget build(BuildContext context) {

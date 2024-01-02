@@ -1,4 +1,4 @@
-import 'package:ecommerce/presentation/screens/language/language_screen.dart';
+import 'package:ecommerce/presentation/screens/language/widgets/language_screen.dart';
 import 'package:ecommerce/presentation/screens/more/more_single_item.dart';
 import 'package:ecommerce/presentation/screens/storetype/widgets/store_type_screen.dart';
 import 'package:ecommerce/presentation/screens/usertype/widgets/user_type_screen.dart';
