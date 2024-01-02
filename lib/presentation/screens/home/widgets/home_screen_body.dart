@@ -22,9 +22,9 @@ class HomeScreenBody extends StatelessWidget {
     return ListView(
       children: [
         SwiperWidget(),
-        Padding(
-          padding: const EdgeInsets.only(top: AppPadding.largePadding),
-          child: MarkatList(markat: Marka.getMockMarkat(),),
+        const Padding(
+          padding: EdgeInsets.only(top: AppPadding.largePadding),
+          child: MarkatList(),
         ),
         // الأكثر مبيعا
         Row(

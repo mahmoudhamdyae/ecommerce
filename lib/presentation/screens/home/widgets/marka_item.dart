@@ -3,12 +3,12 @@ import 'package:ecommerce/presentation/screens/markat/widgets/markat_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../domain/models/marka.dart';
+import '../../../../domain/models/home/home_data.dart';
 
 class MarkaItem extends StatelessWidget {
 
-  final Marka marka;
-  const MarkaItem({super.key, required this.marka});
+  final Categories? category;
+  const MarkaItem({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +20,18 @@ class MarkaItem extends StatelessWidget {
         padding: const EdgeInsets.all(AppPadding.smallPadding),
         child: Column(
           children: [
+            // Image.network(category?.image ?? 'https://34b3-196-153-69-204.ngrok-free.app/uploads/divisions_images/30-04-231682875874952550779.png'),
             CircleAvatar(
               minRadius: 40,
-              backgroundImage: AssetImage(marka.image),
+              maxRadius: 40,
+              child: Image.network(category?.image ?? 'https://34b3-196-153-69-204.ngrok-free.app/uploads/divisions_images/30-04-231682875874952550779.png'),
+              // backgroundImage: AssetImage(category.image),
             ),
             const SizedBox(height: AppSize.s8,),
             SizedBox(
               width: 85,
               child: Text(
-                marka.name,
+                category?.name ?? 'd',
                 maxLines: 2,
                 softWrap: false,
                 overflow: TextOverflow.ellipsis,
