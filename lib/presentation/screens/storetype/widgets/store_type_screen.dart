@@ -1,3 +1,6 @@
+import 'package:ecommerce/core/app_prefs.dart';
+import 'package:ecommerce/di/di.dart';
+import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
@@ -6,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class StoreTypeScreen extends StatelessWidget {
-  const StoreTypeScreen({super.key});
+
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+  StoreTypeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +43,8 @@ class StoreTypeScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 debugPrint('العدد و الأدوات اليدوية Clicked');
+                _appPreferences.setStoreType('1');
+                Get.offAll(() => const MainScreen());
               },
               child: Container(
                 decoration: const BoxDecoration(
@@ -81,6 +88,8 @@ class StoreTypeScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 debugPrint('متجر التكييفات Clicked');
+                _appPreferences.setStoreType('2');
+                Get.offAll(() => const MainScreen());
               },
               child: Container(
                 decoration: const BoxDecoration(

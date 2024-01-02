@@ -99,7 +99,7 @@ class MoreScreen extends StatelessWidget {
                         icon: Icons.published_with_changes,
                         title: AppStrings.changeStore.tr,
                         action: () {
-                          Get.to(const StoreTypeScreen());
+                          Get.to(StoreTypeScreen());
                         },
                         isRed: false,
                       ),
