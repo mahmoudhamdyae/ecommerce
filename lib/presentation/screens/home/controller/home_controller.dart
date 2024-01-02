@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';
@@ -14,10 +13,25 @@ class HomeController extends GetxController {
 
   HomeController(this._repository, this._appPreferences);
 
-  getData() {
+  @override
+  void onInit() {
+    super.onInit();
+    _getData();
+  }
+
+  _getData() {
     String lang = _appPreferences.getLang();
     String section = _appPreferences.getStoreType();
-    _repository.getHomeData(section, lang);
-    isLoading.value = false;
+    isLoading.value = true;
+    error.value = '';
+    try {
+      _repository.getHomeData(section, lang).then((value) {
+        isLoading.value = false;
+        error.value = '';
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
   }
 }

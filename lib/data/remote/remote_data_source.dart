@@ -116,7 +116,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<void> getHomeData(String section, String lang) async {
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}home";
-    debugPrint('Get Home Data Response123: $url');
     final response = await http.get(
         Uri.parse(url),
         headers: {

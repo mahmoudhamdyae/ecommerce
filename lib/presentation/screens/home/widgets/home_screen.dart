@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<HomeController>().getData();
+    // Get.find<HomeController>().getData();
     return Scaffold(
       body: GetX<HomeController>(
         init: Get.find<HomeController>(),
