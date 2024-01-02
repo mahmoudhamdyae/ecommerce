@@ -32,7 +32,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       try {
         showLoading(context);
         await _repository.confirmPhoneNumber(phoneController.text).then((userCredential) {
-          Get.to(VerifyCodeScreen(phoneNumber: phoneController.text));
+          Get.back();
+          Get.to(() => VerifyCodeScreen(phoneNumber: phoneController.text));
         });
       } on Exception catch(e) {
         Get.back();

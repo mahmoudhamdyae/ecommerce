@@ -83,7 +83,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<void> register(String phoneNumber, String code) async {
     await _checkNetworkAndServer();
-    String url = "${AppConstants.baseUrl}register-Verify-Enter-Code?code=$code&phone=$phoneNumber&kind=c";
+    String url = "${AppConstants.baseUrl}register-Verify-enter-Code?code=$code&phone=$phoneNumber&kind=c";
     final response = await http.post(Uri.parse(url));
 
     var responseData = json.decode(response.body);

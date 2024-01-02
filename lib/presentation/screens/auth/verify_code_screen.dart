@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +40,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
         showLoading(context);
         await _repository.register(widget.phoneNumber, codeController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
-          Get.offAll(() => const HomeScreen());
+          Get.offAll(() => const MainScreen());
         });
       } on Exception catch(e) {
         Get.back();
