@@ -16,4 +16,9 @@ class RepositoryImpl implements Repository {
   Future<void> confirmPhoneNumber(String phoneNumber) async {
     await _remoteDataSource.confirmPhoneNumber(phoneNumber);
   }
+
+  @override
+  Future<void> register(String phoneNumber, String code) async {
+    await _remoteDataSource.register(phoneNumber, code);
+  }
 }

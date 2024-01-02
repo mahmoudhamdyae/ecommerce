@@ -28,6 +28,11 @@ class AppStrings {
   static const confirmPhoneNo = 'تأكيد رقم الجوال';
   static const hasAccount = 'لديك حساب بالفعل ؟';
   static const clickHere = 'اضغط هنا';
+  static const activationCode = 'كود التفعيل';
+  static const activationCodeDesc = 'برجاء إدخال الكود المرسل إليك عبر الهاتف المسجل';
+  static const save = 'حفظ';
+  static const notGetCode = 'لم تستلم الكود؟';
+  static const codeResend = 'تم إرسال الكود مرة أخرى';
 
   // Bottom Navigation Bar
   static const main = 'الرئيسية';

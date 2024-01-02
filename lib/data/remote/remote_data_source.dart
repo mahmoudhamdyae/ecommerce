@@ -14,6 +14,7 @@ import '../../presentation/resources/strings_manager.dart';
 abstract class RemoteDataSource {
   Future<void> login(String phoneNumber, String password);
   Future<void> confirmPhoneNumber(String phoneNumber);
+  Future<void> register(String phoneNumber, String code);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -23,25 +24,24 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   RemoteDataSourceImpl(this._networkInfo, this._appPreferences);
 
-  @override
-  Future<void> confirmPhoneNumber(String phoneNumber) async {
-    await _checkServer();
-    try {
-      // Initialize Ip Address
-      var ipAddress = IpAddress(type: RequestType.json);
-
-      // Get the IpAddress based on requestType.
-      dynamic data = await ipAddress.getIpAddress();
-      debugPrint(data.toString());
-
-      String url = "${AppConstants.baseUrl}register-Verify-Send-Code?active_phone=$phoneNumber&phone=$phoneNumber&kind=c";
-      final response = await http.post(Uri.parse(url));
-
-      var responseData = json.decode(response.body);
-      debugPrint('Confirm Response: $responseData');
-    } on IpAddressException catch (exception) {
-      debugPrint(exception.message);
+  _checkNetworkAndServer() async {
+    if (await _networkInfo.isConnected) {
+      await _checkServer();
+    } else {
+      throw Exception(AppStrings.noInternetError.tr);
     }
+  }
+
+  _checkServer() async {
+    // try {
+    //   final result = await InternetAddress.lookup(AppConstants.baseUrl);
+    //   if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+    //     debugPrint('connected');
+    //   }
+    // } on SocketException catch (_) {
+    //   debugPrint(AppStrings.serverDown.tr);
+    //   throw Exception(AppStrings.serverDown);
+    // }
   }
 
   @override
@@ -58,23 +58,35 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     _appPreferences.setToken('');
   }
 
-  _checkNetworkAndServer() async {
-    if (await _networkInfo.isConnected) {
-      await _checkServer();
-    } else {
-      throw Exception(AppStrings.noInternetError.tr);
+  @override
+  Future<void> confirmPhoneNumber(String phoneNumber) async {
+    await _checkNetworkAndServer();
+    try {
+      // Initialize Ip Address
+      // var ipAddress = IpAddress(type: RequestType.json);
+      //
+      // // Get the IpAddress based on requestType.
+      // dynamic data = await ipAddress.getIpAddress();
+      // debugPrint(data.toString());
+
+      // Confirm Phone Number
+      String url = "${AppConstants.baseUrl}register-Verify-Send-Code?active_phone=$phoneNumber&phone=$phoneNumber&kind=c";
+      final response = await http.post(Uri.parse(url));
+
+      var responseData = json.decode(response.body);
+      debugPrint('Confirm Response: $responseData');
+    } on IpAddressException catch (exception) {
+      debugPrint(exception.message);
     }
   }
 
-  _checkServer() async {
-    try {
-      final result = await InternetAddress.lookup(AppConstants.baseUrl);
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        debugPrint('connected');
-      }
-    } on SocketException catch (_) {
-      debugPrint(AppStrings.serverDown.tr);
-      throw Exception(AppStrings.serverDown);
-    }
+  @override
+  Future<void> register(String phoneNumber, String code) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}register-Verify-Enter-Code?code=$code&phone=$phoneNumber&kind=c";
+    final response = await http.post(Uri.parse(url));
+
+    var responseData = json.decode(response.body);
+    debugPrint('Register Response: $responseData');
   }
 }
