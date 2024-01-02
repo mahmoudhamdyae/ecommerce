@@ -1,6 +1,8 @@
 import 'package:ecommerce/data/remote/remote_data_source.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 
+import '../../domain/models/home/home_data.dart';
+
 class RepositoryImpl implements Repository {
 
   final RemoteDataSource _remoteDataSource;
@@ -28,7 +30,7 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<void> getHomeData(String section, String lang) async {
-    await _remoteDataSource.getHomeData(section, lang);
+  Future<HomeData> getHomeData(String section, String lang) async {
+    return await _remoteDataSource.getHomeData(section, lang);
   }
 }

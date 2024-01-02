@@ -1,3 +1,4 @@
+import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';
@@ -7,6 +8,7 @@ class HomeController extends GetxController {
 
   final RxBool isLoading = true.obs;
   final RxString error = ''.obs;
+  final Rx<HomeData> homeData = HomeData().obs;
 
   final Repository _repository;
   final AppPreferences _appPreferences;
@@ -28,6 +30,7 @@ class HomeController extends GetxController {
       _repository.getHomeData(section, lang).then((value) {
         isLoading.value = false;
         error.value = '';
+        homeData.value = value;
       });
     } on Exception catch (e) {
       isLoading.value = false;

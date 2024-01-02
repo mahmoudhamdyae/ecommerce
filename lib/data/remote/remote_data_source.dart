@@ -17,7 +17,7 @@ abstract class RemoteDataSource {
   Future<void> enterCode(String phoneNumber, String code, String kind);
   Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword);
 
-  Future<void> getHomeData(String section, String lang);
+  Future<HomeData> getHomeData(String section, String lang);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -114,7 +114,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<void> getHomeData(String section, String lang) async {
+  Future<HomeData> getHomeData(String section, String lang) async {
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}home";
     final response = await http.get(
@@ -130,5 +130,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     HomeData homeData = HomeData.fromJson(responseData);
     debugPrint('Get Home Data Response Home Data: $homeData');
     _checkResponse(responseData);
+    return homeData;
   }
 }
