@@ -2,7 +2,7 @@ import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
-import 'package:ecommerce/presentation/screens/auth/register_screen.dart';
+import 'package:ecommerce/presentation/screens/auth/phone_number_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    if (_checkAuth()) Get.offAll(const MainScreen());
+    if (_checkAuth()) Get.offAll(() => const MainScreen());
   }
 
   bool _checkAuth() {
@@ -285,7 +285,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(AppStrings.noAccount.tr),
                             InkWell(
                                 onTap: () {
-                                  Get.to(const RegisterScreen());
+                                  Get.to(const PhoneNumberScreen());
                                 },
                                 child: Text(
                                     AppStrings.createAccount.tr,

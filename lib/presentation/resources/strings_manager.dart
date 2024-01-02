@@ -6,7 +6,7 @@ class AppStrings {
   static const phoneNo = 'رقم الجوال';
   static const phoneNoHint = 'الرجاء إدخال رقم الجوال';
   static const mobileNumberInvalid = 'رقم الجوال يجب ألا يكون أكبر من 11 رقم';
-  static const passwordInvalid = "كلمة المرور لا يمكن أن تكون فارغة";
+  static const passwordInvalid = 'كلمة المرور لا يمكن أن تكون فارغة';
 
   // Login Screen
   static const loginLabel = 'تسجيل الدخول';
@@ -19,7 +19,7 @@ class AppStrings {
   static const loginAsGuest = 'الدخول كزائر';
   static const noAccount = 'ليس لديك حساب ؟';
   static const createAccount = 'إنشاء حساب';
-  static const wrongPhoneOrPassword = "رقم الهاتف أو كلمة المرور خاطئة";
+  static const wrongPhoneOrPassword = 'رقم الهاتف أو كلمة المرور خاطئة';
 
   // Register
   static const createAccountLabel = ' إنشاء حساب';
@@ -33,6 +33,13 @@ class AppStrings {
   static const save = 'حفظ';
   static const notGetCode = 'لم تستلم الكود؟';
   static const codeResend = 'تم إرسال الكود مرة أخرى';
+  static const userNameInvalid = 'اسم المستخدم لا يمكن أن يكون فارغا';
+  static const emailInvalid = 'الإيميل لا يمكن أن يكون فارغا';
+  static const passwordConfirmInvalid = 'كلمة المرور غير متطابقة';
+  static const passwordConfirm = 'تأكيد كلمة السر';
+  static const register = 'التسجيل';
+  static const email = 'الإيميل';
+  static const username = 'اسم المستخدم';
 
   // Bottom Navigation Bar
   static const main = 'الرئيسية';
@@ -120,11 +127,11 @@ class AppStrings {
   static const reset = 'إعادة تعيين';
 
   // Errors
-  static const serverDown = "لا يمكن الاتصال بالسيرفر!";
-  static const String noInternetError = "يُرجى التحقق من اتصالك بالإنترنت";
+  static const serverDown = 'لا يمكن الاتصال بالسيرفر!';
+  static const String noInternetError = 'يُرجى التحقق من اتصالك بالإنترنت';
 
   // Dialogs
-  static const loading = "جاري التحميل...";
-  static const retryAgain = "حاول مرة أخرى";
-  static const errorDialogTitle = "خطأ!";
+  static const loading = 'جاري التحميل...';
+  static const retryAgain = 'حاول مرة أخرى';
+  static const errorDialogTitle = 'خطأ!';
 }

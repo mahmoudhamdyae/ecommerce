@@ -1,17 +1,21 @@
-import 'package:ecommerce/presentation/resources/color_manager.dart';
-import 'package:ecommerce/presentation/resources/strings_manager.dart';
-import 'package:ecommerce/presentation/screens/auth/verify_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/app_prefs.dart';
+import '../../../di/di.dart';
 import '../../../domain/repository/repository.dart';
+import '../../main_screen.dart';
+import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
+import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/dialogs/error_dialog.dart';
 import '../../widgets/dialogs/loading_dialog.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+
+  final String phoneNumber;
+  const RegisterScreen({super.key, required this.phoneNumber});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -19,21 +23,34 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
 
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   final Repository _repository = Get.find<Repository>();
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  final TextEditingController phoneController = TextEditingController();
 
-  _confirmPhoneNumber() async {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+  TextEditingController confirmPassController = TextEditingController();
+
+  bool _obscureText = true;
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  _register() async {
     var formData = formState.currentState;
 
     if (formData!.validate()) {
       formData.save();
       try {
         showLoading(context);
-        await _repository.confirmPhoneNumber(phoneController.text, 'c').then((userCredential) {
-          Get.back();
-          Get.to(() => VerifyCodeScreen(phoneNumber: phoneController.text));
+        await _repository.register(widget.phoneNumber, nameController.text, 'c', emailController.text, passController.text, confirmPassController.text).then((userCredential) {
+          _appPreferences.setUserLoggedIn();
+          Get.offAll(() => const MainScreen());
         });
       } on Exception catch(e) {
         Get.back();
@@ -45,180 +62,137 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.white,
+      appBar: AppBar(
+        elevation: AppSize.s0,
+        backgroundColor: ColorManager.white,
+        iconTheme: const IconThemeData(color: ColorManager.primary),
+      ),
       body: Container(
-        height: double.infinity,
-        color: ColorManager.grey,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: ColorManager.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppPadding.p50,
-                    bottom: AppPadding.mediumPadding,
-                    right: AppPadding.mediumPadding,
-                    left: AppPadding.mediumPadding,
-                  ),
-                  child: Row(
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          icon: const Icon(Icons.arrow_back),
-                      ),
-                      Text(
-                        AppStrings.createAccountLabel.tr,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeightManager.medium,
-                        ),
-                      ),
-                    ],
-                  ),
+        padding: const EdgeInsets.all(AppPadding.p20),
+        child: Form(
+            key: formState,
+            child: ListView(
+              children: [
+                TextFormField(
+                  controller: nameController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.text,
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return AppStrings.userNameInvalid.tr;
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.person),
+                      hintText: AppStrings.username.tr,
+                      border: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 1))),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(AppMargin.loginMargin),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: ColorManager.white,
-                    borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppPadding.smallPadding),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // حساب جديد
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: AppPadding.mediumPadding,
-                            right: AppPadding.smallPadding,
-                            left: AppPadding.smallPadding,
-                          ),
-                          child: Text(
-                            AppStrings.newAccount.tr,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeightManager.bold,
-                            ),
-                          ),
+                const SizedBox(
+                  height: AppSize.s28,
+                ),
+                TextFormField(
+                  controller: emailController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (val) {
+                    if (val.toString().isNotEmpty) {
+                      return null;
+                    }
+                    return AppStrings.emailInvalid.tr;
+                  },
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.email),
+                      hintText: AppStrings.email.tr,
+                      border: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 1))),
+                ),
+                const SizedBox(
+                  height: AppSize.s28,
+                ),
+                TextFormField(
+                  controller: passController,
+                  textInputAction: TextInputAction.next,
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return AppStrings.passwordInvalid.tr;
+                    }
+                    return null;
+                  },
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(_obscureText
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          _toggle();
+                        },
+                      ),
+                      hintText: AppStrings.password.tr,
+                      border: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 1))),
+                ),
+                const SizedBox(
+                  height: AppSize.s28,
+                ),
+                TextFormField(
+                  controller: confirmPassController,
+                  textInputAction: TextInputAction.done,
+                  validator: (val) {
+                    if (val != passController.text) {
+                      return AppStrings.passwordConfirmInvalid.tr;
+                    }
+                    return null;
+                  },
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(_obscureText
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          _toggle();
+                        },
+                      ),
+                      hintText: AppStrings.passwordConfirm.tr,
+                      border: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 1))),
+                ),
+                const SizedBox(
+                  height: AppSize.s40,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                          const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
+                          )
+                      ),
+                      backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+                    ),
+                    onPressed: () async {
+                      await _register();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
+                      child: Text(
+                        AppStrings.register.tr,
+                        style: const TextStyle(
+                            fontSize: FontSize.s16
                         ),
-                        // يرجى تحديد نوع العضوية
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: AppPadding.smallPadding,
-                            left: AppPadding.smallPadding,
-                          ),
-                          child: Text(
-                            AppStrings.newAccountDesc.tr,
-                            style: const TextStyle(
-                              color: ColorManager.grey,
-                              fontSize: 16,
-                              fontWeight: FontWeightManager.regular,
-                            ),
-                          ),
-                        ),
-                        Form(
-                          key: formState,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: AppPadding.mediumPadding,
-                                  bottom: AppPadding.smallPadding,
-                                  right: AppPadding.smallPadding,
-                                  left: AppPadding.smallPadding,
-                                ),
-                                child: Text(AppStrings.phoneNo.tr),
-                              ),
-                              TextFormField(
-                                controller: phoneController,
-                                textInputAction: TextInputAction.done,
-                                keyboardType: TextInputType.phone,
-                                validator: (val) {
-                                  if (val.toString().length < 11) {
-                                    return AppStrings.mobileNumberInvalid.tr;
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: AppStrings.phoneNoHint.tr,
-                                  hintStyle: const TextStyle(
-                                    color: ColorManager.grey,
-                                  ),
-                                  border: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(AppSize.borderRadius),
-                                    ),
-                                    borderSide: BorderSide(
-                                        width: 1,
-                                        color: ColorManager.grey
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        // Confirm Phone Number Button
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: AppPadding.mediumPadding),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: FilledButton(
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all(
-                                    const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
-                                    )
-                                ),
-                                backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-                              ),
-                              onPressed: () async {
-                                await _confirmPhoneNumber();
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
-                                child: Text(
-                                  AppStrings.confirmPhoneNo.tr,
-                                  style: const TextStyle(
-                                      fontSize: FontSize.s16
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(AppStrings.hasAccount.tr),
-                            InkWell(
-                                onTap: () {
-                                  Get.to(const RegisterScreen());
-                                },
-                                child: Text(
-                                  AppStrings.clickHere.tr,
-                                  style: const TextStyle(
-                                    color: ColorManager.yellow,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                )
-                            ),
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
+              ],
+            )),
       ),
     );
   }
