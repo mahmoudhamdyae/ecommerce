@@ -14,7 +14,9 @@ import '../../widgets/dialogs/error_dialog.dart';
 import '../../widgets/dialogs/loading_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+
+  final String kind;
+  const LoginScreen({super.key, required this.kind});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -30,16 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordTextController = TextEditingController();
   bool _obscureText = false;
 
-  @override
-  void initState() {
-    super.initState();
-    if (_checkAuth()) Get.offAll(() => const MainScreen());
-  }
-
-  bool _checkAuth() {
-    return _appPreferences.isUserLoggedIn();
-  }
-
   // Toggles the password show status
   void _toggle() {
     setState(() {
@@ -53,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.login(phoneController.text, passwordTextController.text, 'c').then((userCredential) {
+        await _repository.login(phoneController.text, passwordTextController.text, widget.kind).then((userCredential) {
           _appPreferences.setUserLoggedIn();
           Get.offAll(const MainScreen());
         });
@@ -285,7 +277,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(AppStrings.noAccount.tr),
                             InkWell(
                                 onTap: () {
-                                  Get.to(const PhoneNumberScreen());
+                                  Get.to(PhoneNumberScreen(kind: widget.kind));
                                 },
                                 child: Text(
                                     AppStrings.createAccount.tr,

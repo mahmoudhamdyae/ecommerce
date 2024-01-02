@@ -15,7 +15,8 @@ import '../../widgets/dialogs/loading_dialog.dart';
 class RegisterScreen extends StatefulWidget {
 
   final String phoneNumber;
-  const RegisterScreen({super.key, required this.phoneNumber});
+  final String kind;
+  const RegisterScreen({super.key, required this.phoneNumber, required this.kind});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -48,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.register(widget.phoneNumber, nameController.text, 'c', emailController.text, passController.text, confirmPassController.text).then((userCredential) {
+        await _repository.register(widget.phoneNumber, nameController.text, widget.kind, emailController.text, passController.text, confirmPassController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
           Get.offAll(() => const MainScreen());
         });

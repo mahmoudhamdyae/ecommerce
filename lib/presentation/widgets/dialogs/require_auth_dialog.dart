@@ -1,11 +1,11 @@
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
+import 'package:ecommerce/presentation/screens/usertype/widgets/user_type_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
-import '../../screens/auth/login_screen.dart';
 
 showRequireAuthDialog(BuildContext context) {
   return showDialog(
@@ -48,7 +48,7 @@ showRequireAuthDialog(BuildContext context) {
                         ),
                         onPressed: () {
                           Get.back();
-                          Get.to(const LoginScreen());
+                          Get.to(const UserTypeScreen());
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: AppPadding.mediumPadding),

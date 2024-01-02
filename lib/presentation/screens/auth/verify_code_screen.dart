@@ -1,10 +1,7 @@
-import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/screens/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/app_prefs.dart';
-import '../../../di/di.dart';
 import '../../../domain/repository/repository.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
@@ -16,7 +13,8 @@ import '../../widgets/dialogs/loading_dialog.dart';
 class VerifyCodeScreen extends StatefulWidget {
 
   final String phoneNumber;
-  const VerifyCodeScreen({super.key, required this.phoneNumber});
+  final String kind;
+  const VerifyCodeScreen({super.key, required this.phoneNumber, required this.kind});
 
   @override
   State<VerifyCodeScreen> createState() => _VerifyCodeScreenState();
@@ -37,9 +35,9 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.enterCode(widget.phoneNumber, codeController.text, 'c').then((userCredential) {
+        await _repository.enterCode(widget.phoneNumber, codeController.text, widget.kind).then((userCredential) {
           Get.back();
-          Get.to(() => RegisterScreen(phoneNumber: widget.phoneNumber));
+          Get.to(() => RegisterScreen(phoneNumber: widget.phoneNumber, kind: widget.kind));
         });
       } on Exception catch(e) {
         Get.back();

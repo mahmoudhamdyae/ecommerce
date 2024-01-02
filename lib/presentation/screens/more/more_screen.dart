@@ -1,7 +1,7 @@
-import 'package:ecommerce/presentation/screens/auth/login_screen.dart';
 import 'package:ecommerce/presentation/screens/language/language_screen.dart';
 import 'package:ecommerce/presentation/screens/more/more_single_item.dart';
 import 'package:ecommerce/presentation/screens/storetype/widgets/store_type_screen.dart';
+import 'package:ecommerce/presentation/screens/usertype/widgets/user_type_screen.dart';
 import 'package:ecommerce/presentation/screens/whoarewe/who_are_we_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -109,7 +109,7 @@ class MoreScreen extends StatelessWidget {
                         title: _appPreferences.isUserLoggedIn() ? AppStrings.signOut.tr : AppStrings.signIn.tr,
                         action: () {
                           _appPreferences.logout();
-                          Get.to(const LoginScreen());
+                          Get.to(const UserTypeScreen());
                         },
                         isRed: true,
                       ),

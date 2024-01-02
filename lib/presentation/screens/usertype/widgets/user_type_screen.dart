@@ -2,13 +2,21 @@ import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UserTypeScreen extends StatelessWidget {
+class UserTypeScreen extends StatefulWidget {
+
+  const UserTypeScreen({super.key});
+
+  @override
+  State<UserTypeScreen> createState() => _UserTypeScreenState();
+}
+
+class _UserTypeScreenState extends State<UserTypeScreen> {
 
   final isUserSelected = true;
-  const UserTypeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +57,7 @@ class UserTypeScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 debugPrint('مستخدم Clicked');
+                Get.to(() => const LoginScreen(kind: 'c'));
               },
               child: Container(
                 height: 175,
@@ -65,7 +74,7 @@ class UserTypeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.person,
                         color: isUserSelected ? ColorManager.yellow : ColorManager.grey,
                         size: 50,
@@ -90,6 +99,7 @@ class UserTypeScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 debugPrint('تاجر Clicked');
+                Get.to(() => const LoginScreen(kind: 'd'));
               },
               child: Container(
                 height: 175,
@@ -106,7 +116,7 @@ class UserTypeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.home,
                         color: !isUserSelected ? ColorManager.yellow : ColorManager.grey,
                         size: 50,

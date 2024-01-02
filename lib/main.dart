@@ -1,5 +1,6 @@
+import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/resources/theme_manager.dart';
-import 'package:ecommerce/presentation/screens/auth/login_screen.dart';
+import 'package:ecommerce/presentation/screens/usertype/widgets/user_type_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,7 @@ void main() async {
 class MyApp extends StatelessWidget {
 
   final AppLocalController _controller = AppLocalController(instance<AppPreferences>());
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   MyApp({super.key});
 
   @override
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: _controller.initialLang,
       translations: AppLocal(),
-      home: const LoginScreen(),
+      home: _appPreferences.isUserLoggedIn() ? const MainScreen() : const UserTypeScreen(),
       initialBinding: GetXDi(),
     );
   }
