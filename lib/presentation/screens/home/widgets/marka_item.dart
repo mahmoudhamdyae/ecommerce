@@ -20,12 +20,11 @@ class MarkaItem extends StatelessWidget {
         padding: const EdgeInsets.all(AppPadding.smallPadding),
         child: Column(
           children: [
-            // Image.network(category?.image ?? 'https://34b3-196-153-69-204.ngrok-free.app/uploads/divisions_images/30-04-231682875874952550779.png'),
             CircleAvatar(
               radius: 40,
               child: ClipOval(
                   child: Image.network(
-                    category?.image ?? 'https://34b3-196-153-69-204.ngrok-free.app/uploads/divisions_images/30-04-231682875874952550779.png',
+                    category?.image ?? '',
                     fit: BoxFit.fill,
                   )
               ),

@@ -1,4 +1,3 @@
-import 'package:ecommerce/domain/models/marka.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
@@ -21,7 +20,7 @@ class HomeScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        SwiperWidget(),
+        const SwiperWidget(),
         const Padding(
           padding: EdgeInsets.only(top: AppPadding.largePadding),
           child: MarkatList(),
