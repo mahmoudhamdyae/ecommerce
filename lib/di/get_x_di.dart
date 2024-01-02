@@ -23,6 +23,6 @@ class GetXDi implements Bindings {
     Get.put<AppLocalController>(AppLocalController(instance<AppPreferences>()), permanent: true);
     Get.lazyPut<UserTypeController>(() => UserTypeController(), fenix: true);
     Get.lazyPut<LanguageController>(() => LanguageController(), fenix: true);
-    Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
+    Get.lazyPut<HomeController>(() => HomeController(Get.find<Repository>(), instance<AppPreferences>()), fenix: true);
   }
 }

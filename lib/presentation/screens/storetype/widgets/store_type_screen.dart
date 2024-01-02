@@ -43,7 +43,7 @@ class StoreTypeScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 debugPrint('العدد و الأدوات اليدوية Clicked');
-                _appPreferences.setStoreType('1');
+                _appPreferences.setStoreType('2');
                 Get.offAll(() => const MainScreen());
               },
               child: Container(
@@ -88,7 +88,7 @@ class StoreTypeScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 debugPrint('متجر التكييفات Clicked');
-                _appPreferences.setStoreType('2');
+                _appPreferences.setStoreType('1');
                 Get.offAll(() => const MainScreen());
               },
               child: Container(

@@ -15,6 +15,8 @@ abstract class RemoteDataSource {
   Future<void> confirmPhoneNumber(String phoneNumber, String kind);
   Future<void> enterCode(String phoneNumber, String code, String kind);
   Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword);
+
+  Future<void> getHomeData(String section, String lang);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -108,5 +110,23 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     _checkResponse(responseData);
     _appPreferences.setToken(responseData['data']['api_token']);
     debugPrint('Register Response api token: ${responseData['data']['api_token']}');
+  }
+
+  @override
+  Future<void> getHomeData(String section, String lang) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}home";
+    debugPrint('Get Home Data Response123: $url');
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'section': section,
+          'lang': lang,
+        }
+    );
+
+    var responseData = json.decode(response.body);
+    debugPrint('Get Home Data Response: $responseData');
+    _checkResponse(responseData);
   }
 }

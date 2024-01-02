@@ -26,4 +26,9 @@ class RepositoryImpl implements Repository {
   Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword) async {
     await _remoteDataSource.register(phoneNumber, name, kind, email, password, conPassword);
   }
+
+  @override
+  Future<void> getHomeData(String section, String lang) async {
+    await _remoteDataSource.getHomeData(section, lang);
+  }
 }
