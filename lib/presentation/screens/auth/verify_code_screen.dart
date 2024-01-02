@@ -1,5 +1,6 @@
 import 'package:ecommerce/presentation/screens/auth/register_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/repository/repository.dart';
@@ -23,19 +24,13 @@ class VerifyCodeScreen extends StatefulWidget {
 class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
 
   final Repository _repository = Get.find<Repository>();
-
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
-
-  final TextEditingController codeController = TextEditingController();
+  String code = '';
 
   _verifyCode() async {
-    var formData = formState.currentState;
-
-    if (formData!.validate()) {
-      formData.save();
+    if (code != '') {
       try {
         showLoading(context);
-        await _repository.enterCode(widget.phoneNumber, codeController.text, widget.kind).then((userCredential) {
+        await _repository.enterCode(widget.phoneNumber, code, widget.kind).then((userCredential) {
           Get.back();
           Get.to(() => RegisterScreen(phoneNumber: widget.phoneNumber, kind: widget.kind));
         });
@@ -144,34 +139,12 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                           ),
                         ),
                         const SizedBox(height: AppSize.s16,),
-                        Form(
-                          key: formState,
-                          child: TextFormField(
-                            controller: codeController,
-                            textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.number,
-                            validator: (val) {
-                              if (val.toString().isEmpty) {
-                                return AppStrings.activationCodeDesc.tr;
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              hintText: AppStrings.activationCode.tr,
-                              hintStyle: const TextStyle(
-                                color: ColorManager.grey,
-                              ),
-                              border: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(AppSize.borderRadius),
-                                ),
-                                borderSide: BorderSide(
-                                    width: 1,
-                                    color: ColorManager.grey
-                                ),
-                              ),
-                            ),
-                          ),
+                        PinCodeFields(
+                            onComplete: (text)  {
+                              debugPrint('text = $text');
+                              code = text;
+                              _verifyCode();
+                            }
                         ),
                         // Register Button
                         Padding(
