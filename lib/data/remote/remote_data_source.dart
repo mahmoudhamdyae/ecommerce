@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ecommerce/core/constants.dart';
 import 'package:ecommerce/data/network_info.dart';
+import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_ip_address/get_ip_address.dart';
@@ -126,6 +127,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
     var responseData = json.decode(response.body);
     debugPrint('Get Home Data Response: $responseData');
+    HomeData homeData = HomeData.fromJson(responseData);
+    debugPrint('Get Home Data Response Home Data: $homeData');
     _checkResponse(responseData);
   }
 }
