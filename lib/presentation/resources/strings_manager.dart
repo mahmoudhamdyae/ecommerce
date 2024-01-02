@@ -19,6 +19,7 @@ class AppStrings {
   static const loginAsGuest = 'الدخول كزائر';
   static const noAccount = 'ليس لديك حساب ؟';
   static const createAccount = 'إنشاء حساب';
+  static const wrongPhoneOrPassword = "رقم الهاتف أو كلمة المرور خاطئة";
 
   // Register
   static const createAccountLabel = ' إنشاء حساب';
@@ -112,4 +113,13 @@ class AppStrings {
   static const byEvaluation = 'حسب التقييم';
   static const showResults = 'اظهر النتائج';
   static const reset = 'إعادة تعيين';
+
+  // Errors
+  static const serverDown = "لا يمكن الاتصال بالسيرفر!";
+  static const String noInternetError = "يُرجى التحقق من اتصالك بالإنترنت";
+
+  // Dialogs
+  static const loading = "جاري التحميل...";
+  static const retryAgain = "حاول مرة أخرى";
+  static const errorDialogTitle = "خطأ!";
 }

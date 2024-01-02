@@ -21,6 +21,7 @@ class AppLocal extends Translations {
       AppStrings.loginAsGuest: 'الدخول كزائر',
       AppStrings.noAccount: 'ليس لديك حساب ؟',
       AppStrings.createAccount: 'إنشاء حساب',
+      AppStrings.wrongPhoneOrPassword: 'رقم الهاتف أو كلمة المرور خاطئة',
       AppStrings.createAccountLabel: 'إنشاء حساب',
       AppStrings.newAccount: 'حساب جديد',
       AppStrings.newAccountDesc: 'يرجى تحديد نوع العضوية',
@@ -90,6 +91,11 @@ class AppLocal extends Translations {
       AppStrings.byEvaluation: 'حسب التقييم',
       AppStrings.showResults: 'اظهر النتائج',
       AppStrings.reset: 'إعادة تعيين',
+      AppStrings.serverDown: 'لا يمكن الاتصال بالسيرفر!',
+      AppStrings.noInternetError: 'يُرجى التحقق من اتصالك بالإنترنت',
+      AppStrings.loading: 'جاري التحميل...',
+      AppStrings.retryAgain: 'حاول مرة أخرى',
+      AppStrings.errorDialogTitle: 'خطأ!',
     },
     'en': {
       AppStrings.appName: 'Gado Store',
@@ -107,6 +113,7 @@ class AppLocal extends Translations {
       AppStrings.loginAsGuest: 'Login as a guest',
       AppStrings.noAccount: 'Don\'t have an account?' ,
       AppStrings.createAccount: 'Create an account',
+      AppStrings.wrongPhoneOrPassword: 'رقم الهاتف أو كلمة المرور خاطئة',
       AppStrings.createAccountLabel: 'Create an account',
       AppStrings.newAccount: 'new account',
       AppStrings.newAccountDesc: 'يرجى تحديد نوع العضوية',
@@ -176,6 +183,11 @@ class AppLocal extends Translations {
       AppStrings.byEvaluation: 'حسب التقييم',
       AppStrings.showResults: 'اظهر النتائج',
       AppStrings.reset: 'إعادة تعيين',
+      AppStrings.serverDown: 'لا يمكن الاتصال بالسيرفر!',
+      AppStrings.noInternetError: 'يُرجى التحقق من اتصالك بالإنترنت',
+      AppStrings.loading: 'جاري التحميل...',
+      AppStrings.retryAgain: 'حاول مرة أخرى',
+      AppStrings.errorDialogTitle: 'خطأ!',
     }
   };
 }

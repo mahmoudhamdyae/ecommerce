@@ -3,9 +3,14 @@ import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/app_prefs.dart';
+import '../../../di/di.dart';
+import '../../../domain/repository/repository.dart';
 import '../../main_screen.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
+import '../../widgets/dialogs/error_dialog.dart';
+import '../../widgets/dialogs/loading_dialog.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -16,13 +21,28 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
 
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final Repository _repository = Get.find<Repository>();
+
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
 
   _confirmPhoneNumber() async {
     var formData = formState.currentState;
+
+
     if (formData!.validate()) {
-      Get.offAll(const MainScreen());
+      formData.save();
+      try {
+        showLoading(context);
+        await _repository.confirmPhoneNumber(phoneController.text).then((userCredential) {
+          _appPreferences.setUserLoggedIn();
+          Get.offAll(() => const MainScreen());
+        });
+      } on Exception catch(e) {
+        Get.back();
+        if (context.mounted) showError(context, e.toString(), () {});
+      }
     }
   }
 

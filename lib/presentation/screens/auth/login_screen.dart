@@ -1,3 +1,4 @@
+import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
@@ -9,6 +10,8 @@ import '../../../core/app_prefs.dart';
 import '../../../di/di.dart';
 import '../../main_screen.dart';
 import '../../resources/values_manager.dart';
+import '../../widgets/dialogs/error_dialog.dart';
+import '../../widgets/dialogs/loading_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,6 +23,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
 
   final AppPreferences _appPreferences = instance<AppPreferences>();
+  final Repository _repository = Get.find<Repository>();
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
@@ -48,14 +52,14 @@ class _LoginScreenState extends State<LoginScreen> {
     if (formData!.validate()) {
       formData.save();
       try {
-        // showLoading(context);
-        // await _accountService._logIn(phoneController.text, passwordTextController.text).then((userCredential) {
+        showLoading(context);
+        await _repository.login(phoneController.text, passwordTextController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
           Get.offAll(const MainScreen());
-        // });
-      } on Exception {
+        });
+      } on Exception catch(e) {
         Get.back();
-        // if (context.mounted) showError(context, e.toString(), () {});
+        if (context.mounted) showError(context, e.toString(), () {});
       }
     }
   }
