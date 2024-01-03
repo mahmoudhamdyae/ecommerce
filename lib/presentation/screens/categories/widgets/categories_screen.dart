@@ -205,8 +205,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   child: GetX<HomeController>(
                     init: Get.find<HomeController>(),
                       builder: (controller) {
-                        debugPrint('===sdsf===============');
-                        debugPrint(controller.homeData.value.data?.latestProducts?.length.toString());
                         return ProductsGridView(products: controller.homeData.value.data?.latestProducts ?? []);
                       },
                   )
