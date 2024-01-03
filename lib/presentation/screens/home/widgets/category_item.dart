@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 
 import '../../../../domain/models/home/home_data.dart';
 
-class MarkaItem extends StatelessWidget {
+class CategoryItem extends StatelessWidget {
 
   final Categories? category;
-  const MarkaItem({super.key, required this.category});
+  const CategoryItem({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,8 @@ class MarkaItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.smallPadding),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
               radius: 40,
@@ -36,6 +38,7 @@ class MarkaItem extends StatelessWidget {
                 category?.name ?? '',
                 maxLines: 2,
                 softWrap: false,
+                textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
               ),
             ),

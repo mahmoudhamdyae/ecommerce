@@ -1,11 +1,11 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
-import 'package:ecommerce/presentation/screens/home/widgets/marka_item.dart';
+import 'package:ecommerce/presentation/screens/home/widgets/category_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class MarkatList extends StatelessWidget {
-  const MarkatList({super.key});
+class CategoriesList extends StatelessWidget {
+  const CategoriesList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class MarkatList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: categories?.length,
               itemBuilder: (BuildContext context, int index) {
-                return MarkaItem(category: categories?[index]);
+                return CategoryItem(category: categories?[index]);
               });
         },
       ),

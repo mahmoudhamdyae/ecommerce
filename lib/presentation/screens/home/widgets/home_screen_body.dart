@@ -4,7 +4,7 @@ import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
-import 'package:ecommerce/presentation/screens/home/widgets/markat_list.dart';
+import 'package:ecommerce/presentation/screens/home/widgets/categories_list.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +30,7 @@ class HomeScreenBody extends StatelessWidget {
             const SwiperWidget(),
             const Padding(
               padding: EdgeInsets.only(top: AppPadding.largePadding),
-              child: MarkatList(),
+              child: CategoriesList(),
             ),
             // الأكثر مبيعا
             Row(
