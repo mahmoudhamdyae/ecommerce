@@ -1,5 +1,3 @@
-import 'package:ecommerce/domain/models/home/salaries_products.dart';
-
 class HomeData {
   int? status;
   String? message;
@@ -26,7 +24,7 @@ class HomeData {
 
 class Data {
   List<LatestProducts>? latestProducts;
-  List<SalariesProducts>? salariesProducts;
+  List<LatestProducts>? salariesProducts;
   List<Sliders>? sliders;
   List<CardsAds>? cardsAds;
   CardsAds? onePanner;
@@ -52,9 +50,9 @@ class Data {
       });
     }
     if (json['salaries_products'] != null) {
-      salariesProducts = <SalariesProducts>[];
+      salariesProducts = <LatestProducts>[];
       json['salaries_products'].forEach((v) {
-        salariesProducts!.add(SalariesProducts.fromJson(v));
+        salariesProducts!.add(LatestProducts.fromJson(v));
       });
     }
     if (json['sliders'] != null) {
@@ -117,7 +115,7 @@ class LatestProducts {
   String? cardImage;
   int? rateNum;
   int? discount;
-  double? priceNew;
+  dynamic priceNew;
   bool? fav;
 
   LatestProducts(

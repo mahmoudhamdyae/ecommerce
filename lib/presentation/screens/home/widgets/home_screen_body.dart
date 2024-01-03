@@ -24,6 +24,7 @@ class HomeScreenBody extends StatelessWidget {
       init: Get.find<HomeController>(),
       builder: (HomeController controller) {
         List<LatestProducts>? latestProducts = controller.homeData.value.data?.latestProducts;
+        List<LatestProducts>? bestSellerProducts = controller.homeData.value.data?.salariesProducts;
         return ListView(
           children: [
             const SwiperWidget(),
@@ -68,7 +69,7 @@ class HomeScreenBody extends StatelessWidget {
                 )
               ],
             ),
-            ProductsList(products: latestProducts ?? [],),
+            ProductsList(products: bestSellerProducts ?? [],),
             // المضاف حديثا
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
