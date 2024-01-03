@@ -1,5 +1,5 @@
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/markat/widgets/markat_screen.dart';
+import 'package:ecommerce/presentation/screens/markat/widgets/categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +14,7 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(const MarkatScreen());
+        Get.to(const CategoriesScreen());
       },
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.smallPadding),

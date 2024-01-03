@@ -9,15 +9,15 @@ import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
 import 'products_grid_view.dart';
 
-class MarkatScreen extends StatefulWidget {
+class CategoriesScreen extends StatefulWidget {
 
-  const MarkatScreen({super.key});
+  const CategoriesScreen({super.key});
 
   @override
-  State<MarkatScreen> createState() => _MarkatScreenState();
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
-class _MarkatScreenState extends State<MarkatScreen> {
+class _CategoriesScreenState extends State<CategoriesScreen> {
   OrderBy orderBy = OrderBy.all;
 
   @override
