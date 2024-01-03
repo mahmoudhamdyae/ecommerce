@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/screens/conditions/conditions_screen.dart';
 import 'package:ecommerce/presentation/screens/language/widgets/language_screen.dart';
 import 'package:ecommerce/presentation/screens/more/more_single_item.dart';
 import 'package:ecommerce/presentation/screens/storetype/widgets/store_type_screen.dart';
@@ -90,7 +91,7 @@ class MoreScreen extends StatelessWidget {
                         icon: Icons.view_list_outlined,
                         title: AppStrings.conditions.tr,
                         action: () {
-                          Get.to(const WhoAreWeScreen());
+                          Get.to(const ConditionsScreen());
                         },
                         isRed: false,
                       ),
