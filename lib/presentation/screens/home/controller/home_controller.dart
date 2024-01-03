@@ -1,4 +1,5 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';
@@ -22,6 +23,7 @@ class HomeController extends GetxController {
   }
 
   _getData() {
+    debugPrint('Get Home Data Response Home Data: 1111');
     String lang = _appPreferences.getLang();
     String section = _appPreferences.getStoreType();
     isLoading.value = true;

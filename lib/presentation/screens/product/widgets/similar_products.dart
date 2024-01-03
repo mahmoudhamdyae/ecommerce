@@ -1,14 +1,13 @@
-import 'package:ecommerce/domain/models/product.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
+import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/products_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class SimilarProducts extends StatelessWidget {
 
-  final List<Product> products = Product.getMockProducts();
-  SimilarProducts({super.key});
+  const SimilarProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,11 @@ class SimilarProducts extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSize.s8,),
-        ProductsList(products: Product.getMockProducts()),
+        GetX<HomeController>(
+            init: Get.find<HomeController>(),
+            builder: (controller) {
+              return ProductsList(products: controller.homeData.value.data?.latestProducts ?? []);
+            }),
       ],
     );
   }

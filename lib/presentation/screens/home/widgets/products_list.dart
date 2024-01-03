@@ -1,4 +1,4 @@
-import 'package:ecommerce/domain/models/product.dart';
+import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/product_item.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -6,7 +6,7 @@ import '../../../resources/values_manager.dart';
 
 class ProductsList extends StatelessWidget {
 
-  final List<Product> products;
+  final List<LatestProducts> products;
   const ProductsList({super.key, required this.products});
 
   @override

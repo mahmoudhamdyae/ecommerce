@@ -200,7 +200,7 @@ class _MarkatScreenState extends State<MarkatScreen> {
                   ],
                 ),
               ),
-              Expanded(child: ProductsGridView()),
+              const Expanded(child: ProductsGridView()),
             ],
           ),
         ),

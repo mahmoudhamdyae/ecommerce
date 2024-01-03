@@ -1,4 +1,4 @@
-import 'package:ecommerce/domain/models/product.dart';
+import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 class ProductItem extends StatelessWidget {
 
-  final Product product;
+  final LatestProducts product;
   const ProductItem({super.key, required this.product});
 
   @override
@@ -47,7 +47,7 @@ class ProductItem extends StatelessWidget {
                               vertical: 2,
                           ),
                           child: Text(
-                            '${product.percent} %',
+                            '30 %',
                             style: const TextStyle(
                               color: ColorManager.white
                             ),
@@ -71,23 +71,23 @@ class ProductItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        color: ColorManager.grey,
+                      Image.network(
+                        product.cardImage ?? '',
                         height: 100,
                         width: 130,
                       ),
                     ],
                   ),
                   const SizedBox(height: AppSize.s8,),
-                  const Text(
-                    'هيلتى كباية 1050 وات ظرف 26 مللى - ERHRP1052',
-                    style: TextStyle(
+                  Text(
+                    product.name ?? '',
+                    style: const TextStyle(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   const SizedBox(height: AppSize.s8,),
                   RatingBar.builder(
-                    initialRating: product.rate,
+                    initialRating: product.rate?.toDouble() ?? 0.0,
                     minRating: 0,
                     updateOnDrag: false,
                     ignoreGestures: true,
@@ -105,16 +105,16 @@ class ProductItem extends StatelessWidget {
                   const SizedBox(height: AppSize.s8,),
                   // Price
                   Text(
-                    '${product.price} EGP',
+                    '${product.priceNew} EGP',
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: FontSize.s16,
                     ),
                   ),
                   // Price Discount
-                  const Text(
-                    '350 EGP',
-                    style: TextStyle(
+                  Text(
+                    '${product.oldPrice} EGP',
+                    style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: FontSize.s14,
                         color: ColorManager.grey,
