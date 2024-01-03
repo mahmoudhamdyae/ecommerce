@@ -1,12 +1,13 @@
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/markat/widgets/filter_screen.dart';
+import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/order_by.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
+import 'filter_screen.dart';
 import 'products_grid_view.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -200,7 +201,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ],
                 ),
               ),
-              const Expanded(child: ProductsGridView()),
+              Expanded(
+                  child: GetX<HomeController>(
+                    init: Get.find<HomeController>(),
+                      builder: (controller) {
+                        debugPrint('===sdsf===============');
+                        debugPrint(controller.homeData.value.data?.latestProducts?.length.toString());
+                        return ProductsGridView(products: controller.homeData.value.data?.latestProducts ?? []);
+                      },
+                  )
+              ),
             ],
           ),
         ),

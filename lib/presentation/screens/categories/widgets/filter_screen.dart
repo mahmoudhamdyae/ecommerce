@@ -1,4 +1,4 @@
-import 'package:ecommerce/presentation/screens/markat/widgets/static_rating_bar.dart';
+import 'package:ecommerce/presentation/screens/categories/widgets/static_rating_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

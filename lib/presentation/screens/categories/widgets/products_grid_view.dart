@@ -1,0 +1,28 @@
+import 'package:ecommerce/domain/models/home/home_data.dart';
+import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+
+import '../../../resources/values_manager.dart';
+import '../../home/widgets/product_item.dart';
+
+class ProductsGridView extends StatelessWidget {
+
+  final List<LatestProducts> products;
+  const ProductsGridView({super.key, required this.products});
+
+  @override
+  Widget build(BuildContext context) {
+    return  GridView.count(
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppPadding.smallPadding,
+          vertical: AppPadding.smallPadding
+      ),
+      crossAxisCount: (MediaQuery.of(context).size.width ~/ 150).toInt(),
+      childAspectRatio: (1/1.8),
+      children: List.generate(products.length, (index) {
+        return ProductItem(product: products[index],);
+      }),
+    );
+  }
+}

@@ -1,9 +1,9 @@
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/markat/widgets/categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/home/home_data.dart';
+import '../../categories/widgets/categories_screen.dart';
 
 class CategoryItem extends StatelessWidget {
 
