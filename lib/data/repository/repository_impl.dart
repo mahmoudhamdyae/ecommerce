@@ -33,4 +33,9 @@ class RepositoryImpl implements Repository {
   Future<HomeData> getHomeData(String section, String lang) async {
     return await _remoteDataSource.getHomeData(section, lang);
   }
+
+  @override
+  Future<String> getAboutUs() async {
+    return await _remoteDataSource.getAboutUs();
+  }
 }

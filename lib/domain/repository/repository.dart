@@ -8,4 +8,5 @@ abstract class Repository {
   Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword);
 
   Future<HomeData> getHomeData(String section, String lang);
+  Future<String> getAboutUs();
 }
