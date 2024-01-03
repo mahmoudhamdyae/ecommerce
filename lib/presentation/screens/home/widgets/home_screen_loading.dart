@@ -12,7 +12,11 @@ class HomeScreenLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const HomeScreenHeader(),
+        Container(
+          padding: const EdgeInsets.only(top: AppPadding.mediumPadding),
+          color: ColorManager.primary,
+          child: const HomeScreenHeader(),
+        ),
         _buildSwiper(),
         _buildCategories(),
         _buildProducts(),

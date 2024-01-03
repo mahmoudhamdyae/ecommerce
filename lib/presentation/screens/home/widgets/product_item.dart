@@ -47,7 +47,7 @@ class ProductItem extends StatelessWidget {
                               vertical: 2,
                           ),
                           child: Text(
-                            '30 %',
+                            '${(1 - product.priceNew / product.oldPrice).toInt().toString()}%',
                             style: const TextStyle(
                               color: ColorManager.white
                             ),

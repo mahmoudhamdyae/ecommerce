@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../resources/color_manager.dart';
+import '../../../resources/values_manager.dart';
 import 'home_screen_header.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,7 +22,11 @@ class HomeScreen extends StatelessWidget {
           } else {
             return Column(
               children: [
-                const HomeScreenHeader(),
+                Container(
+                  padding: const EdgeInsets.only(top: AppPadding.p50),
+                  color: ColorManager.primary,
+                  child: const HomeScreenHeader(),
+                ),
                 Flexible(
                     child: Container(
                         color: ColorManager.lightGrey,

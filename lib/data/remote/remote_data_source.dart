@@ -115,6 +115,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<HomeData> getHomeData(String section, String lang) async {
+    debugPrint('Get Home Data Response1111111123:');
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}home";
     final response = await http.get(
@@ -125,6 +126,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         }
     );
 
+    debugPrint('Get Home Data Response: ${response.body}');
     var responseData = json.decode(response.body);
     debugPrint('Get Home Data Response: $responseData');
     HomeData homeData = HomeData.fromJson(responseData);

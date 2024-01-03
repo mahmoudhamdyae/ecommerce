@@ -13,7 +13,6 @@ class HomeScreenHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: AppPadding.mediumPadding),
       color: ColorManager.primary,
       child: Column(children: [
         Padding(
