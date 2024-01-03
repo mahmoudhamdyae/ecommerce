@@ -5,6 +5,7 @@ import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
+import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,6 +46,7 @@ class StoreTypeScreen extends StatelessWidget {
                 debugPrint('العدد و الأدوات اليدوية Clicked');
                 _appPreferences.setStoreType('2');
                 Get.offAll(() => const MainScreen());
+                Get.find<HomeController>().getData();
               },
               child: Container(
                 decoration: const BoxDecoration(
@@ -90,6 +92,7 @@ class StoreTypeScreen extends StatelessWidget {
                 debugPrint('متجر التكييفات Clicked');
                 _appPreferences.setStoreType('1');
                 Get.offAll(() => const MainScreen());
+                Get.find<HomeController>().getData();
               },
               child: Container(
                 decoration: const BoxDecoration(

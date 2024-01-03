@@ -19,10 +19,10 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _getData();
+    getData();
   }
 
-  _getData() {
+  getData() {
     debugPrint('Get Home Data Response Home Data: 1111');
     String lang = _appPreferences.getLang();
     String section = _appPreferences.getStoreType();
