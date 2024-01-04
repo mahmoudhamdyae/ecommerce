@@ -1,34 +1,26 @@
-import 'package:ecommerce/domain/models/home/home_data.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';
 import '../../../../domain/repository/repository.dart';
 
-class HomeController extends GetxController {
+class ProductController extends GetxController {
 
   final RxBool isLoading = true.obs;
   final RxString error = ''.obs;
-  final Rx<HomeData> homeData = HomeData().obs;
+  final Rx<Product> homeData = Product().obs;
 
   final Repository _repository;
   final AppPreferences _appPreferences;
 
-  HomeController(this._repository, this._appPreferences);
+  ProductController(this._repository, this._appPreferences);
 
-  @override
-  void onInit() {
-    super.onInit();
-    getData();
-  }
-
-  void getData() {
-    String lang = _appPreferences.getLang();
+  void getProductDetails(String id) {
     String section = _appPreferences.getStoreType();
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getHomeData(section, lang).then((value) {
+      _repository.getProductDetails(id, section).then((value) {
         isLoading.value = false;
         error.value = '';
         homeData.value = value;

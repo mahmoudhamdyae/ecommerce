@@ -9,14 +9,11 @@ import 'package:ecommerce/presentation/screens/home/widgets/swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../domain/models/product.dart';
 import 'products_list.dart';
 
 class HomeScreenBody extends StatelessWidget {
 
-  final List<Product> bestSellerProducts = Product.getMockProducts();
-  final List<Product> recentlyAddedProducts = Product.getMockProducts();
-  HomeScreenBody({super.key});
+  const HomeScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {

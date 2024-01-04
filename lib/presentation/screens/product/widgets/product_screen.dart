@@ -1,4 +1,5 @@
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
+import 'package:ecommerce/presentation/screens/product/controller/product_controller.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_tab_bar.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_tabs.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_top_bar.dart';
@@ -12,10 +13,15 @@ import '../../../resources/color_manager.dart';
 import '../../../resources/values_manager.dart';
 
 class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key});
+
+  final ProductController controller = Get.find<ProductController>();
+  final String productId;
+
+  ProductScreen({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context) {
+    controller.getProductDetails(productId);
     return DefaultTabController(
       length: 3,
       child: Scaffold(

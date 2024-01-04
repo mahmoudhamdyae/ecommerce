@@ -1,4 +1,5 @@
 import '../models/home/home_data.dart';
+import '../models/product/product.dart';
 
 abstract class Repository {
 
@@ -9,4 +10,5 @@ abstract class Repository {
 
   Future<HomeData> getHomeData(String section, String lang);
   Future<String> getAboutUs();
+  Future<Product> getProductDetails(String id, String section);
 }

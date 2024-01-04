@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:ecommerce/core/constants.dart';
 import 'package:ecommerce/data/network_info.dart';
 import 'package:ecommerce/domain/models/home/home_data.dart';
+import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_ip_address/get_ip_address.dart';
@@ -19,6 +20,7 @@ abstract class RemoteDataSource {
 
   Future<HomeData> getHomeData(String section, String lang);
   Future<String> getAboutUs();
+  Future<Product> getProductDetails(String id, String section);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -116,7 +118,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<HomeData> getHomeData(String section, String lang) async {
-    debugPrint('Get Home Data Response1111111123:');
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}home";
     final response = await http.get(
@@ -148,6 +149,26 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     _checkResponse(responseData);
     debugPrint('Who Are We Response: ${responseData['data']['about']}');
     return responseData['data']['about'];
+  }
+
+  @override
+  Future<Product> getProductDetails(String id, String section) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}detials-product";
+    final response = await http.get(
+        Uri.parse(url).replace(queryParameters: {
+          'id' : id,
+        }),
+        headers: {
+          'section': section,
+        }
+    );
+
+    var responseData = json.decode(response.body);
+    _checkResponse(responseData);
+    debugPrint('Product Details Response: $responseData');
+    Product product = ProductResponse.fromJson(responseData).data ?? Product();
+    return product;
   }
 
 }

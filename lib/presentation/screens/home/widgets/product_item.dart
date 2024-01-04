@@ -16,7 +16,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(const ProductScreen());
+        Get.to(ProductScreen(productId: product.id.toString(),));
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
