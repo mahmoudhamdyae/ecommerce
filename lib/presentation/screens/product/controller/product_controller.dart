@@ -8,7 +8,7 @@ class ProductController extends GetxController {
 
   final RxBool isLoading = true.obs;
   final RxString error = ''.obs;
-  final Rx<Product> homeData = Product().obs;
+  final Rx<Product> product = Product().obs;
 
   final Repository _repository;
   final AppPreferences _appPreferences;
@@ -23,7 +23,7 @@ class ProductController extends GetxController {
       _repository.getProductDetails(id, section).then((value) {
         isLoading.value = false;
         error.value = '';
-        homeData.value = value;
+        product.value = value;
       });
     } on Exception catch (e) {
       isLoading.value = false;
