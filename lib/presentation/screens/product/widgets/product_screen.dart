@@ -138,7 +138,7 @@ class ProductScreen extends StatelessWidget {
                       ),
                       const ProductTabBar(),
                       const ProductTabs(),
-                      const SimilarProducts(),
+                      SimilarProducts(products: product.copiesProducts ?? []),
                     ],
                   );
                 },

@@ -1,13 +1,17 @@
+import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/products_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/models/home/home_data.dart';
+import '../controller/product_controller.dart';
+
 class SimilarProducts extends StatelessWidget {
 
-  const SimilarProducts({super.key});
+  final List<CopiesProducts> products;
+  const SimilarProducts({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +26,28 @@ class SimilarProducts extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSize.s8,),
-        GetX<HomeController>(
-            init: Get.find<HomeController>(),
+        GetX<ProductController>(
+            init: Get.find<ProductController>(),
             builder: (controller) {
-              return ProductsList(products: controller.homeData.value.data?.latestProducts ?? []);
+              return ProductsList(products: controller.product.value.copiesProducts
+                  ?.map((CopiesProducts copiesProduct) => convertCopiesToLatest(copiesProduct))
+                  .toList() ?? []);
             }),
       ],
     );
   }
+}
+
+LatestProducts convertCopiesToLatest(CopiesProducts copiesProduct) {
+  return LatestProducts(
+    id: copiesProduct.id,
+    name: copiesProduct.name,
+    rate: copiesProduct.rate,
+    oldPrice: copiesProduct.oldPrice,
+    cardImage: copiesProduct.cardImage,
+    rateNum: copiesProduct.rateNum,
+    discount: copiesProduct.discount,
+    priceNew: copiesProduct.priceNew,
+    fav: copiesProduct.fav,
+  );
 }
