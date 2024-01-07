@@ -33,7 +33,7 @@ class HomeScreenBody extends StatelessWidget {
             // الأكثر مبيعا
             InkWell(
               onTap: () {
-                controller.getLatestProducts().then((value) {
+                controller.getBestSellerProducts().then((value) {
                   Get.to(() => ProductsScreen(
                       appBarName: AppStrings.bestSeller,
                       products: controller.latestProducts)

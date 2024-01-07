@@ -51,4 +51,17 @@ class HomeController extends GetxController {
       error.value = e.toString();
     }
   }
+
+  Future<void> getBestSellerProducts() async {
+    String section = _appPreferences.getStoreType();
+    error.value = '';
+    try {
+      await _repository.getBestSellerProducts(section).then((value) {
+        error.value = '';
+        latestProducts.value = value;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+    }
+  }
 }
