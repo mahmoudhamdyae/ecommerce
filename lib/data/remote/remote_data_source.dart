@@ -5,12 +5,10 @@ import 'package:ecommerce/data/network_info.dart';
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:get_ip_address/get_ip_address.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/app_prefs.dart';
-import '../../presentation/resources/strings_manager.dart';
 
 abstract class RemoteDataSource {
   Future<void> login(String phoneNumber, String password, String kind);
