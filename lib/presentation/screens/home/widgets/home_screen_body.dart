@@ -35,7 +35,7 @@ class HomeScreenBody extends StatelessWidget {
               onTap: () {
                 controller.getLatestProducts().then((value) {
                   Get.to(() => ProductsScreen(
-                      appBarName: AppStrings.recentlyAdded,
+                      appBarName: AppStrings.bestSeller,
                       products: controller.latestProducts)
                   );
                 });
