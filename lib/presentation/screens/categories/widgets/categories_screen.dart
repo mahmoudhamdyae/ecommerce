@@ -36,6 +36,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<CategoriesController>().getCategoriesProducts(widget.category.id.toString());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -219,7 +220,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   child: GetX<CategoriesController>(
                     init: Get.find<CategoriesController>(),
                       builder: (controller) {
-                      controller.getCategoriesProducts(widget.category.id.toString());
                         if (controller.isLoading.value) {
                           return const CategoriesLoadingScreen();
                         } else {
