@@ -88,9 +88,9 @@ class ProductScreen extends StatelessWidget {
                               const SizedBox(
                                 height: AppPadding.smallPadding,
                               ),
-                              const Text(
-                                'متوفر 3 قطع',
-                                style: TextStyle(
+                              Text(
+                                'متوفر ${product.stock} قطع',
+                                style: const TextStyle(
                                   color: ColorManager.red,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -130,8 +130,7 @@ class ProductScreen extends StatelessWidget {
                                 height: AppSize.s8,
                               ),
                               Text(
-                                // 'الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت الجهد: 220 فولت ',
-                                product.desc ?? '',
+                                reformatData(product.desc ?? ''),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w400,
                                     color: ColorManager.grey),
@@ -153,7 +152,7 @@ class ProductScreen extends StatelessWidget {
                 child: Container(
                   color: ColorManager.white,
                   height: 90,
-                  child: const ProductScreenBottom(),
+                  child: ProductScreenBottom(product: controller.product.value,),
                 )
             )
           ],
@@ -161,4 +160,9 @@ class ProductScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+String reformatData(String data) {
+  String reformattedData = data.replaceAll(RegExp(r'<[^>]*>'), '');
+  return reformattedData;
 }

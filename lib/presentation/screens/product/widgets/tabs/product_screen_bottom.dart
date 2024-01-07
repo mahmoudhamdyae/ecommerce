@@ -1,3 +1,4 @@
+import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,8 @@ import '../../../../resources/color_manager.dart';
 class ProductScreenBottom extends StatelessWidget {
 
   final int productNumber = 1;
-  const ProductScreenBottom({super.key});
+  final Product product;
+  const ProductScreenBottom({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ProductScreenBottom extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                 ),
                   onPressed: () {
-                  }, child: Text('${AppStrings.addToCart.tr}     28661 EGP'),
+                  }, child: Text('${AppStrings.addToCart.tr}     ${product.priceNew} EGP'),
               ),
             ),
           ),
