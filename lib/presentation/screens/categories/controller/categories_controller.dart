@@ -34,6 +34,7 @@ class CategoriesController extends GetxController {
 
   void search(String searchString) {
     searchedProducts.value = latestProducts.where((product) =>
-            product.nameAr!.contains(searchString)).toList();
+            product.nameAr!.contains(searchString) ||
+                product.desAr!.contains(searchString)).toList();
   }
 }
