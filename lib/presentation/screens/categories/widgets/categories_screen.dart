@@ -1,6 +1,7 @@
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:ecommerce/presentation/screens/categories/controller/categories_controller.dart';
+import 'package:ecommerce/presentation/screens/categories/widgets/categories_loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -208,20 +209,24 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     init: Get.find<CategoriesController>(),
                       builder: (controller) {
                       controller.getCategoriesProducts(widget.category.id.toString());
-                        return ProductsGridView(products: controller.latestProducts.map((e) {
-                          return LatestProducts(
-                            id: e.id,
-                            name: e.nameAr,
-                            rate: e.rate?.toInt(),
-                            oldPrice: e.priceDiscount?.toInt(),
-                            cardImage: e.cardImage,
-                            rateNum: e.rate?.toInt(),
-                            discount: e.priceDiscount?.toInt(),
-                            priceNew: e.price,
-                          );
-                        }).toList());
-                      },
-                  )
+                        if (controller.isLoading.value) {
+                          return const CategoriesLoadingScreen();
+                        } else {
+                          return ProductsGridView(products: controller.latestProducts.map((e) {
+                            return LatestProducts(
+                              id: e.id,
+                              name: e.nameAr,
+                              rate: e.rate?.toInt(),
+                              oldPrice: e.priceDiscount?.toInt(),
+                              cardImage: e.cardImage,
+                              rateNum: e.rate?.toInt(),
+                              discount: e.priceDiscount?.toInt(),
+                              priceNew: e.price,
+                            );
+                          }).toList());
+                        }
+                    }
+                  ),
               ),
             ],
           ),

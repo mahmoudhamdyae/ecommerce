@@ -17,7 +17,6 @@ class CategoriesController extends GetxController {
 
   void getCategoriesProducts(String categoryId) {
     String section = _appPreferences.getStoreType();
-    isLoading.value = true;
     error.value = '';
     try {
       _repository.getCategoryProducts(categoryId, section).then((value) {
