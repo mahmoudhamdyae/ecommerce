@@ -6,6 +6,7 @@ import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
+import '../controller/categories_controller.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
@@ -33,7 +34,29 @@ class _FilterScreenState extends State<FilterScreen> {
     AppStrings.marka12.tr,
     AppStrings.marka13.tr,
   ];
-  RangeValues _currentRangeValues = const RangeValues(0, 30000);
+  RangeValues _currentRangeValues = const RangeValues(0, 100000);
+
+  void _filter(String minPrice, String maxPrice) {
+    List<String> rate = [];
+    int count = 0;
+    for (bool star in _stars) {
+      if (star) {
+        rate.add(count.toString());
+      }
+      count++;
+    }
+    List<String> sections = [];
+    count = 0;
+    for (bool marka in _markat) {
+      if (marka) {
+        sections.add(count.toString());
+      }
+      count++;
+    }
+    CategoriesController controller = Get.find<CategoriesController>();
+    controller.isSearching.value = false;
+    controller.filterProducts(rate, minPrice, maxPrice, sections);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +126,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 child: RangeSlider(
                   values: _currentRangeValues,
-                  max: 30000,
+                  max: 100000,
                   divisions: 5000,
                   labels: RangeLabels(
                     _currentRangeValues.start.round().toString(),
@@ -156,10 +179,12 @@ class _FilterScreenState extends State<FilterScreen> {
               // Two Buttons
               Row(
                 children: [
+                  // أظهر النتائج
                   Expanded(
                     child: FilledButton(
                         onPressed: () {
                           Get.back();
+                          _filter(_currentRangeValues.start.toString(), _currentRangeValues.end.toString());
                         },
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(
@@ -175,9 +200,12 @@ class _FilterScreenState extends State<FilterScreen> {
                     ),
                   ),
                   const SizedBox(width: AppSize.s16,),
+                  // إغادة تعيين
                   Expanded(
                     child: OutlinedButton(
                         onPressed: () {
+                          _filter('0', '100000');
+                          Get.back();
                         },
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(

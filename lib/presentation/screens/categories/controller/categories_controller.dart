@@ -1,3 +1,4 @@
+import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';
@@ -25,6 +26,30 @@ class CategoriesController extends GetxController {
         isLoading.value = false;
         error.value = '';
         latestProducts.value = value;
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
+
+  void filterProducts(List<String> rate, String minPrice, String maxPrice, List<String> sections) {
+    String section = _appPreferences.getStoreType();
+    error.value = '';
+    try {
+      _repository.filter(rate, minPrice, maxPrice, sections, section).then((value) {
+        isLoading.value = false;
+        error.value = '';
+        latestProducts.value = value.map((e) => CategoryProduct(
+            id : e.id,
+            nameAr : e.name,
+            nameEn : e.name,
+            price : e.priceNew,
+            priceDiscount : e.oldPrice,
+            dealerPrice : e.priceNew,
+            rate : e.rate,
+            cardImage : e.cardImage,
+        )).toList();
       });
     } on Exception catch (e) {
       isLoading.value = false;
