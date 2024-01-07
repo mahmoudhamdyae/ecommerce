@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +9,18 @@ import '../../../resources/values_manager.dart';
 import '../../../widgets/cart_icon.dart';
 
 class HomeScreenHeader extends StatelessWidget {
-  const HomeScreenHeader({super.key});
+
+  final Function(bool) isSearching;
+  const HomeScreenHeader({super.key, required this.isSearching});
+
+  void _search(String searchString) {
+    if (searchString.isNotEmpty) {
+      Get.find<HomeController>().search(searchString);
+      isSearching(true);
+    } else {
+      isSearching(false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +50,9 @@ class HomeScreenHeader extends StatelessWidget {
           padding: const EdgeInsets.all(
             AppPadding.mediumPadding,
           ),
+          // Search Text Field
           child: TextField(
+            onChanged: (searchString) => _search(searchString),
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
               filled: true,

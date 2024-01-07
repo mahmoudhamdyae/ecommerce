@@ -64,4 +64,16 @@ class HomeController extends GetxController {
       error.value = e.toString();
     }
   }
+
+  Future<void> search(String searchString) async {
+    error.value = '';
+    try {
+      await _repository.search(searchString).then((value) {
+        error.value = '';
+        latestProducts.value = value;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+    }
+  }
 }

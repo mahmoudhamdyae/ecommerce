@@ -1,6 +1,6 @@
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/categories/widgets/products_grid_view.dart';
+import 'package:ecommerce/presentation/screens/products/widgets/products_screen_body.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/models/home/home_data.dart';
@@ -36,9 +36,7 @@ class ProductsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-                child: ProductsGridView(products: products,)
-            ),
+            ProductsScreenBody(products: products,),
           ],
         ),
       ),

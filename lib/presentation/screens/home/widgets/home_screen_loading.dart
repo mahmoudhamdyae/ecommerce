@@ -15,7 +15,7 @@ class HomeScreenLoading extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(top: AppPadding.mediumPadding),
           color: ColorManager.primary,
-          child: const HomeScreenHeader(),
+          child: HomeScreenHeader(isSearching: (_) {  },),
         ),
         _buildSwiper(),
         _buildCategories(),
