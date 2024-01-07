@@ -13,4 +13,5 @@ abstract class Repository {
   Future<Product> getProductDetails(String id, String section);
   Future<List<LatestProducts>> getLatestProducts(String section);
   Future<List<LatestProducts>> getBestSellerProducts(String section);
+  Future<List<LatestProducts>> search(String searchString);
 }
