@@ -1,5 +1,4 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';
@@ -10,6 +9,7 @@ class HomeController extends GetxController {
   final RxBool isLoading = true.obs;
   final RxString error = ''.obs;
   final Rx<HomeData> homeData = HomeData().obs;
+  final RxList<LatestProducts> latestProducts = RxList.empty();
 
   final Repository _repository;
   final AppPreferences _appPreferences;
@@ -32,6 +32,22 @@ class HomeController extends GetxController {
         isLoading.value = false;
         error.value = '';
         homeData.value = value;
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
+
+  void getLatestProducts() {
+    String section = _appPreferences.getStoreType();
+    isLoading.value = true;
+    error.value = '';
+    try {
+      _repository.getLatestProducts(section).then((value) {
+        isLoading.value = false;
+        error.value = '';
+        latestProducts.value = value;
       });
     } on Exception catch (e) {
       isLoading.value = false;

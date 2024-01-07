@@ -11,4 +11,5 @@ abstract class Repository {
   Future<HomeData> getHomeData(String section, String lang);
   Future<String> getAboutUs();
   Future<Product> getProductDetails(String id, String section);
+  Future<List<LatestProducts>> getLatestProducts(String section);
 }

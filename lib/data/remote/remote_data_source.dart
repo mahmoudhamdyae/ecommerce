@@ -21,6 +21,7 @@ abstract class RemoteDataSource {
   Future<HomeData> getHomeData(String section, String lang);
   Future<String> getAboutUs();
   Future<Product> getProductDetails(String id, String section);
+  Future<List<LatestProducts>> getLatestProducts(String section);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -169,6 +170,22 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     debugPrint('Product Details Response: $responseData');
     Product product = ProductResponse.fromJson(responseData).data ?? Product();
     return product;
+  }
+
+  @override
+  Future<List<LatestProducts>> getLatestProducts(String section) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}latest-products";
+    final response = await http.get(Uri.parse(url));
+
+    var responseData = json.decode(response.body);
+    _checkResponse(responseData);
+    debugPrint('Get Latest Products Response: $responseData');
+    List<LatestProducts> products = [];
+    for (var singleProduct in responseData['data']['latest_products']) {
+      products.add(LatestProducts.fromJson(singleProduct));
+    }
+    return products;
   }
 
 }

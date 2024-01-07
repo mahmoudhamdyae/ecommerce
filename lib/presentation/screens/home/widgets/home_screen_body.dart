@@ -6,6 +6,7 @@ import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/categories_list.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/swiper.dart';
+import 'package:ecommerce/presentation/screens/products/widgets/products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,79 +31,95 @@ class HomeScreenBody extends StatelessWidget {
               child: CategoriesList(),
             ),
             // الأكثر مبيعا
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // الأكثر مبيعا
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppPadding.mediumPadding,
-                    right: AppPadding.mediumPadding,
-                    left: AppPadding.mediumPadding,
-                  ),
-                  child: Text(
-                    AppStrings.bestSeller.tr,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: FontSize.s16
+            InkWell(
+              onTap: () {
+                Get.to(() => ProductsScreen(
+                    appBarName: AppStrings.recentlyAdded,
+                    products: controller.latestProducts)
+                );
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // الأكثر مبيعا
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: AppPadding.mediumPadding,
+                      right: AppPadding.mediumPadding,
+                      left: AppPadding.mediumPadding,
+                    ),
+                    child: Text(
+                      AppStrings.bestSeller.tr,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: FontSize.s16
+                      ),
                     ),
                   ),
-                ),
-                // إظهار المزيد
-                Expanded(child: Container()),
-                Text(
-                  AppStrings.showMore.tr,
-                  style: const TextStyle(
-                      color: ColorManager.grey
+                  // إظهار المزيد
+                  Expanded(child: Container()),
+                  Text(
+                    AppStrings.showMore.tr,
+                    style: const TextStyle(
+                        color: ColorManager.grey
+                    ),
                   ),
-                ),
-                IconButton(
-                    onPressed: () {
-                    },
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      color: ColorManager.yellow,
-                    )
-                )
-              ],
+                  IconButton(
+                      onPressed: () {
+                      },
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: ColorManager.yellow,
+                      )
+                  )
+                ],
+              ),
             ),
             ProductsList(products: bestSellerProducts ?? [],),
             // المضاف حديثا
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // المضاف حديثا
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppPadding.mediumPadding,
-                    right: AppPadding.mediumPadding,
-                    left: AppPadding.mediumPadding,
-                  ),
-                  child: Text(
-                    AppStrings.recentlyAdded.tr,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: FontSize.s16
+            InkWell(
+              onTap: () {
+                Get.to(() => ProductsScreen(
+                    appBarName: AppStrings.recentlyAdded,
+                    products: controller.latestProducts)
+                );
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // المضاف حديثا
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: AppPadding.mediumPadding,
+                      right: AppPadding.mediumPadding,
+                      left: AppPadding.mediumPadding,
+                    ),
+                    child: Text(
+                      AppStrings.recentlyAdded.tr,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: FontSize.s16
+                      ),
                     ),
                   ),
-                ),
-                // إظهار المزيد
-                Expanded(child: Container()),
-                Text(
-                  AppStrings.showMore.tr,
-                  style: const TextStyle(
-                      color: ColorManager.grey
+                  // إظهار المزيد
+                  Expanded(child: Container()),
+                  Text(
+                    AppStrings.showMore.tr,
+                    style: const TextStyle(
+                        color: ColorManager.grey
+                    ),
                   ),
-                ),
-                IconButton(
-                    onPressed: () {
-                    },
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      color: ColorManager.yellow,
-                    )
-                )
-              ],
+                  IconButton(
+                      onPressed: () {
+                      },
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: ColorManager.yellow,
+                      )
+                  )
+                ],
+              ),
             ),
             ProductsList(products: latestProducts ?? [],),
           ],

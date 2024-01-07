@@ -44,4 +44,9 @@ class RepositoryImpl implements Repository {
   Future<Product> getProductDetails(String id, String section) async {
     return await _remoteDataSource.getProductDetails(id, section);
   }
+
+  @override
+  Future<List<LatestProducts>> getLatestProducts(String section) async {
+    return await _remoteDataSource.getLatestProducts(section);
+  }
 }
