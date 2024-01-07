@@ -4,16 +4,17 @@ import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';
 
-class FavController extends GetxController {
+class CartController extends GetxController {
 
   final RxBool isLoading = true.obs;
   final RxString error = ''.obs;
-  final RxList<LatestProducts> fav = RxList.empty();
+  final RxList<LatestProducts> cart = RxList.empty();
 
   final Repository _repository;
   final AppPreferences _appPreferences;
 
-  FavController(this._repository, this._appPreferences);
+  CartController(this._repository, this._appPreferences);
+
 
   @override
   void onInit() {
@@ -26,10 +27,10 @@ class FavController extends GetxController {
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getFav(userToken).then((remoteFav) {
+      _repository.getCart(userToken).then((remoteFav) {
         isLoading.value = false;
         error.value = '';
-        fav.value = remoteFav;
+        cart.value = remoteFav;
       });
     } on Exception catch (e) {
       isLoading.value = false;

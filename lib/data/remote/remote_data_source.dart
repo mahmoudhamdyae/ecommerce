@@ -27,6 +27,7 @@ abstract class RemoteDataSource {
   Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section);
 
   Future<List<LatestProducts>> getFav(String userToken);
+  Future<List<LatestProducts>> getCart(String userToken);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -289,6 +290,26 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<LatestProducts>> getFav(String userToken) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}search";
+    final response = await http.get(
+      Uri.parse(url).replace(queryParameters: {
+        'search' : '',
+      }),
+    );
+
+    var responseData = json.decode(response.body);
+    _checkResponse(responseData);
+    debugPrint('Search Response: $responseData');
+    List<LatestProducts> products = [];
+    for (var singleProduct in responseData['data']['latest_products']) {
+      products.add(LatestProducts.fromJson(singleProduct));
+    }
+    return products;
+  }
+
+  @override
+  Future<List<LatestProducts>> getCart(String userToken) async {
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}search";
     final response = await http.get(

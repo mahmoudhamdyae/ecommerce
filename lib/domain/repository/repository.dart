@@ -19,4 +19,5 @@ abstract class Repository {
   Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section);
 
   Future<List<LatestProducts>> getFav(String userToken);
+  Future<List<LatestProducts>> getCart(String userToken);
 }

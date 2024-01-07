@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/translations/local_controller.dart';
+import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
 import 'package:ecommerce/presentation/screens/product/controller/product_controller.dart';
 import 'package:get/get.dart';
@@ -31,6 +32,8 @@ class GetXDi implements Bindings {
     Get.lazyPut<WhoAreWeController>(() => WhoAreWeController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<ProductController>(() => ProductController(Get.find<Repository>(), instance<AppPreferences>()), fenix: true);
     Get.lazyPut<CategoriesController>(() => CategoriesController(Get.find<Repository>(), instance<AppPreferences>()), fenix: true);
+
     Get.lazyPut<FavController>(() => FavController(Get.find<Repository>(), instance<AppPreferences>()), fenix: true);
+    Get.lazyPut<CartController>(() => CartController(Get.find<Repository>(), instance<AppPreferences>()), fenix: true);
   }
 }

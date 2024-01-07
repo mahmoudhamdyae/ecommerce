@@ -75,4 +75,9 @@ class RepositoryImpl implements Repository {
   Future<List<LatestProducts>> getFav(String userToken) {
     return _remoteDataSource.getFav(userToken);
   }
+
+  @override
+  Future<List<LatestProducts>> getCart(String userToken) {
+    return _remoteDataSource.getCart(userToken);
+  }
 }
