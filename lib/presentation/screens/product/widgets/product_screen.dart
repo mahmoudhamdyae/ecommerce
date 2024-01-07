@@ -10,6 +10,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/product/product.dart';
+import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/values_manager.dart';
 
@@ -38,16 +39,19 @@ class ProductScreen extends StatelessWidget {
                   return ListView(
                     children: [
                       ProductTopBar(),
-                      Container(
-                        height: 200,
-                        color: ColorManager.grey,
+                      FadeInImage.assetNetwork(
+                          height: 200,
+                          placeholder: ImageAssets.loading,
+                          image: product.images![0].image ?? ''
                       ),
                       Container(
                         decoration: const BoxDecoration(
                             color: ColorManager.white,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(AppSize.borderRadius),
-                                topRight: Radius.circular(AppSize.borderRadius))),
+                                topRight: Radius.circular(AppSize.borderRadius),
+                            )
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.all(AppPadding.mediumPadding),
                           child: Column(
