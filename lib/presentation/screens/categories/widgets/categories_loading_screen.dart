@@ -14,7 +14,7 @@ class CategoriesLoadingScreen extends StatelessWidget {
           vertical: AppPadding.smallPadding
       ),
       crossAxisCount: (MediaQuery.of(context).size.width ~/ 150).toInt(),
-      childAspectRatio: (1/2),
+      childAspectRatio: (1/1.7),
       children: List.generate(6, (_) {
         return const RectShimmer();
       }),
