@@ -23,7 +23,10 @@ class SwiperWidget extends StatelessWidget {
           return Swiper(
             autoplay: true,
             itemBuilder: (context, index) {
-              return Image.network(sliders[index].image ?? '');
+              return FadeInImage.assetNetwork(
+                  placeholder: ImageAssets.loading,
+                  image: sliders[index].image ?? ''
+              );
             },
             indicatorLayout: PageIndicatorLayout.COLOR,
             itemCount: sliders.length,
