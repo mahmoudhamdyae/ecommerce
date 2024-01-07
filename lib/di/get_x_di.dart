@@ -9,6 +9,7 @@ import '../data/network_info.dart';
 import '../data/remote/remote_data_source.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
+import '../presentation/screens/categories/controller/categories_controller.dart';
 import '../presentation/screens/language/controller/language_controller.dart';
 import '../presentation/screens/usertype/controller/user_type_controller.dart';
 import '../presentation/screens/whoarewe/controller/who_are_we_controller.dart';
@@ -28,5 +29,6 @@ class GetXDi implements Bindings {
     Get.lazyPut<HomeController>(() => HomeController(Get.find<Repository>(), instance<AppPreferences>()), fenix: true);
     Get.lazyPut<WhoAreWeController>(() => WhoAreWeController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<ProductController>(() => ProductController(Get.find<Repository>(), instance<AppPreferences>()), fenix: true);
+    Get.lazyPut<CategoriesController>(() => CategoriesController(Get.find<Repository>(), instance<AppPreferences>()), fenix: true);
   }
 }

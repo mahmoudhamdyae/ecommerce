@@ -1,3 +1,4 @@
+import '../models/category_product.dart';
 import '../models/home/home_data.dart';
 import '../models/product/product.dart';
 
@@ -15,4 +16,5 @@ abstract class Repository {
   Future<List<LatestProducts>> getBestSellerProducts(String section);
   Future<List<LatestProducts>> search(String searchString);
   Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections, String section);
+  Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section);
 }

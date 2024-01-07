@@ -1,9 +1,10 @@
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
+import 'package:ecommerce/presentation/screens/categories/controller/categories_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/models/home/home_data.dart';
 import '../../../../domain/models/order_by.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
@@ -12,7 +13,8 @@ import 'products_grid_view.dart';
 
 class CategoriesScreen extends StatefulWidget {
 
-  const CategoriesScreen({super.key});
+  final Categories category;
+  const CategoriesScreen({super.key, required this.category});
 
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
@@ -56,9 +58,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       },
                       icon: const Icon(Icons.arrow_back),
                     ),
-                    const Text(
-                      'معدات كهربية',
-                      style: TextStyle(
+                    Text(
+                      widget.category.name ?? '',
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeightManager.medium,
                       ),
@@ -202,10 +204,22 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 ),
               ),
               Expanded(
-                  child: GetX<HomeController>(
-                    init: Get.find<HomeController>(),
+                  child: GetX<CategoriesController>(
+                    init: Get.find<CategoriesController>(),
                       builder: (controller) {
-                        return ProductsGridView(products: controller.homeData.value.data?.latestProducts ?? []);
+                      controller.getCategoriesProducts(widget.category.id.toString());
+                        return ProductsGridView(products: controller.latestProducts.map((e) {
+                          return LatestProducts(
+                            id: e.id,
+                            name: e.nameAr,
+                            rate: e.rate?.toInt(),
+                            oldPrice: e.priceDiscount?.toInt(),
+                            cardImage: e.cardImage,
+                            rateNum: e.rate?.toInt(),
+                            discount: e.priceDiscount?.toInt(),
+                            priceNew: e.price,
+                          );
+                        }).toList());
                       },
                   )
               ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ecommerce/core/constants.dart';
 import 'package:ecommerce/data/network_info.dart';
+import 'package:ecommerce/domain/models/category_product.dart';
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,6 +24,7 @@ abstract class RemoteDataSource {
   Future<List<LatestProducts>> getBestSellerProducts(String section);
   Future<List<LatestProducts>> search(String searchString);
   Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections, String section);
+  Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -257,6 +259,28 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     List<LatestProducts> products = [];
     for (var singleProduct in responseData['data']['latest_products']) {
       products.add(LatestProducts.fromJson(singleProduct));
+    }
+    return products;
+  }
+
+  @override
+  Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}get-categories-products";
+    final response = await http.get(
+        Uri.parse(url).replace(queryParameters: {
+          'id' : categoryId,
+        }),
+        headers: {
+          'section': section,
+        }
+    );
+
+    var responseData = json.decode(response.body);
+    debugPrint('Get Categories Products Response: $responseData');
+    List<CategoryProduct> products = [];
+    for (var singleProduct in responseData) {
+      products.add(CategoryProduct.fromJson(singleProduct));
     }
     return products;
   }

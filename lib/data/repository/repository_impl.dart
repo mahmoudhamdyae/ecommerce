@@ -2,6 +2,7 @@ import 'package:ecommerce/data/remote/remote_data_source.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 
+import '../../domain/models/category_product.dart';
 import '../../domain/models/home/home_data.dart';
 
 class RepositoryImpl implements Repository {
@@ -63,5 +64,10 @@ class RepositoryImpl implements Repository {
   @override
   Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections, String section) {
     return _remoteDataSource.filter(rate, minPrice, maxPrice, sections, section);
+  }
+
+  @override
+  Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section) {
+    return _remoteDataSource.getCategoryProducts(categoryId, section);
   }
 }

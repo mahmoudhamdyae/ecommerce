@@ -15,7 +15,7 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(const CategoriesScreen());
+        Get.to(CategoriesScreen(category: category ?? Categories()));
       },
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.smallPadding),
