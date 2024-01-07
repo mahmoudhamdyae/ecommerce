@@ -52,6 +52,6 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<List<LatestProducts>> getBestSellerProducts(String section) async {
-    return await _remoteDataSource.getLatestProducts(section);
+    return await _remoteDataSource.getBestSellerProducts(section);
   }
 }

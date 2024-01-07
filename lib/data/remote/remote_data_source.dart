@@ -36,7 +36,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     if (await _networkInfo.isConnected) {
       await _checkServer();
     } else {
-      throw Exception(AppStrings.noInternetError.tr);
+      // throw Exception(AppStrings.noInternetError.tr);
     }
   }
 
