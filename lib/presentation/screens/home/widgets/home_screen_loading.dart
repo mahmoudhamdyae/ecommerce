@@ -28,7 +28,7 @@ class HomeScreenLoading extends StatelessWidget {
 
 Widget _buildSwiper() {
   return Padding(
-    padding: EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(8.0),
     child: Shimmer.fromColors(
       baseColor: ColorManager.grey,
       highlightColor: ColorManager.lightGrey,

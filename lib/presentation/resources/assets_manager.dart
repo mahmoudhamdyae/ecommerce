@@ -4,4 +4,5 @@ class ImageAssets {
   static const String arabic = "$imagePath/arabic.png";
   static const String english = "$imagePath/english.png";
   static const String test = "$imagePath/test.png";
+  static const String loading = "$imagePath/loading.gif";
 }

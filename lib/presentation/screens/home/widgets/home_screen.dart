@@ -18,8 +18,10 @@ class HomeScreen extends StatelessWidget {
         init: Get.find<HomeController>(),
         builder: (controller) {
           if (controller.isLoading.value) {
+            print('==f== loading');
             return const HomeScreenLoading();
           } else {
+            print('==f== not loading');
             return Column(
               children: [
                 Container(

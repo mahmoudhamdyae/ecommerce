@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/home/home_data.dart';
+import '../../../resources/assets_manager.dart';
 import '../../categories/widgets/categories_screen.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -25,10 +26,15 @@ class CategoryItem extends StatelessWidget {
             CircleAvatar(
               radius: 40,
               child: ClipOval(
-                  child: Image.network(
-                    category?.image ?? '',
-                    fit: BoxFit.fill,
+                  child: FadeInImage.assetNetwork(
+                      placeholder: ImageAssets.loading,
+                      image: category?.image ?? '',
                   )
+
+                // Image.network(
+                //     category?.image ?? '',
+                //     fit: BoxFit.fill,
+                //   )
               ),
             ),
             const SizedBox(height: AppSize.s8,),
