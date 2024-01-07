@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
+import '../../../resources/assets_manager.dart';
+
 class ProductItem extends StatelessWidget {
 
   final LatestProducts product;
@@ -71,10 +73,11 @@ class ProductItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.network(
-                        product.cardImage ?? '',
-                        height: 100,
-                        width: 130,
+                      FadeInImage.assetNetwork(
+                          height: 100,
+                          width: 130,
+                          placeholder: ImageAssets.loading,
+                          image: product.cardImage ?? ''
                       ),
                     ],
                   ),
