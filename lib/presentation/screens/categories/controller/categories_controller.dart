@@ -9,6 +9,8 @@ class CategoriesController extends GetxController {
   final RxBool isLoading = true.obs;
   final RxString error = ''.obs;
   final RxList<CategoryProduct> latestProducts = RxList.empty();
+  final RxList<CategoryProduct> searchedProducts = RxList.empty();
+  final RxBool isSearching = false.obs;
 
   final Repository _repository;
   final AppPreferences _appPreferences;
@@ -28,5 +30,10 @@ class CategoriesController extends GetxController {
       isLoading.value = false;
       error.value = e.toString();
     }
+  }
+
+  void search(String searchString) {
+    searchedProducts.value = latestProducts.where((product) =>
+            product.nameAr!.contains(searchString)).toList();
   }
 }

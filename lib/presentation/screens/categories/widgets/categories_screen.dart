@@ -24,6 +24,16 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   OrderBy orderBy = OrderBy.all;
 
+  void _search(String searchString) {
+    CategoriesController controller = Get.find<CategoriesController>();
+    if (searchString.isNotEmpty) {
+      controller.search(searchString);
+      controller.isSearching.value = true;
+    } else {
+      controller.isSearching.value = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,6 +87,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     // Search Edit Text
                     Expanded(
                       child: TextField(
+                        onChanged: _search,
                         textInputAction: TextInputAction.search,
                         decoration: InputDecoration(
                           filled: true,
@@ -212,18 +223,33 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         if (controller.isLoading.value) {
                           return const CategoriesLoadingScreen();
                         } else {
-                          return ProductsGridView(products: controller.latestProducts.map((e) {
-                            return LatestProducts(
-                              id: e.id,
-                              name: e.nameAr,
-                              rate: e.rate?.toInt(),
-                              oldPrice: e.priceDiscount?.toInt(),
-                              cardImage: e.cardImage,
-                              rateNum: e.rate?.toInt(),
-                              discount: e.priceDiscount?.toInt(),
-                              priceNew: e.price,
-                            );
-                          }).toList());
+                          return ProductsGridView(
+                              products: controller.isSearching.value ?
+                              controller.searchedProducts.map((e) {
+                                return LatestProducts(
+                                  id: e.id,
+                                  name: e.nameAr,
+                                  rate: e.rate?.toInt(),
+                                  oldPrice: e.priceDiscount?.toInt(),
+                                  cardImage: e.cardImage,
+                                  rateNum: e.rate?.toInt(),
+                                  discount: e.priceDiscount?.toInt(),
+                                  priceNew: e.price,
+                                );
+                              }).toList()
+                                  : controller.latestProducts.map((e) {
+                                    return LatestProducts(
+                                      id: e.id,
+                                      name: e.nameAr,
+                                      rate: e.rate?.toInt(),
+                                      oldPrice: e.priceDiscount?.toInt(),
+                                      cardImage: e.cardImage,
+                                      rateNum: e.rate?.toInt(),
+                                      discount: e.priceDiscount?.toInt(),
+                                      priceNew: e.price,
+                                    );
+                                  }).toList()
+                          );
                         }
                     }
                   ),
