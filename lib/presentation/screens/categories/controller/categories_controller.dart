@@ -13,6 +13,8 @@ class CategoriesController extends GetxController {
   final RxList<CategoryProduct> searchedProducts = RxList.empty();
   final RxBool isSearching = false.obs;
 
+  List<CategoryProduct> cashedProducts = [];
+
   final Repository _repository;
   final AppPreferences _appPreferences;
 
@@ -66,14 +68,21 @@ class CategoriesController extends GetxController {
   void sortBy(OrderBy orderBy) {
     switch(orderBy) {
       case OrderBy.all:
+        if(cashedProducts.isNotEmpty) {
+          latestProducts.value = cashedProducts;
+        }
         break;
       case OrderBy.highest:
+        cashedProducts = latestProducts;
         latestProducts.sort((b, a) => a.price!.compareTo(b.price as num));
         break;
       case OrderBy.lowest:
+        cashedProducts = latestProducts;
         latestProducts.sort((a, b) => a.price!.compareTo(b.price as num));
         break;
       case OrderBy.recently:
+        cashedProducts = latestProducts;
+        latestProducts.sort((a, b) => a.createdAt!.compareTo(b.createdAt ?? ''));
         break;
     }
   }

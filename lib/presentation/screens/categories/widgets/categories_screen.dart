@@ -23,6 +23,7 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
   OrderBy orderBy = OrderBy.all;
+  // bool _isFirstTime = true;
 
   void _search(String searchString) {
     CategoriesController controller = Get.find<CategoriesController>();
@@ -35,8 +36,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     Get.find<CategoriesController>().getCategoriesProducts(widget.category.id.toString());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // if (_isFirstTime) {
+    //   _isFirstTime = false;
+    // }
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -246,7 +255,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       id: e.id,
                                       name: e.nameAr,
                                       rate: e.rate?.toInt(),
-                                      oldPrice: e.priceDiscount?.toInt(),
+                                      oldPrice: e.priceDiscount?.toInt() + e.price,
                                       cardImage: e.cardImage,
                                       rateNum: e.rate?.toInt(),
                                       discount: e.priceDiscount?.toInt(),
