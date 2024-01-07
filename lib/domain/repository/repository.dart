@@ -17,4 +17,6 @@ abstract class Repository {
   Future<List<LatestProducts>> search(String searchString);
   Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections, String section);
   Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section);
+
+  Future<List<LatestProducts>> getFav(String userToken);
 }

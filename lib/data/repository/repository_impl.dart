@@ -70,4 +70,9 @@ class RepositoryImpl implements Repository {
   Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section) {
     return _remoteDataSource.getCategoryProducts(categoryId, section);
   }
+
+  @override
+  Future<List<LatestProducts>> getFav(String userToken) {
+    return _remoteDataSource.getFav(userToken);
+  }
 }
