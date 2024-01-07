@@ -59,4 +59,9 @@ class RepositoryImpl implements Repository {
   Future<List<LatestProducts>> search(String searchString) async {
     return await _remoteDataSource.search(searchString);
   }
+
+  @override
+  Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections, String section) {
+    return _remoteDataSource.filter(rate, minPrice, maxPrice, sections, section);
+  }
 }
