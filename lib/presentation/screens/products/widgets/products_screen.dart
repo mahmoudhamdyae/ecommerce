@@ -1,7 +1,9 @@
+import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:ecommerce/presentation/screens/categories/widgets/products_grid_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/models/home/home_data.dart';
+import '../../../resources/font_manager.dart';
 
 class ProductsScreen extends StatelessWidget {
 
@@ -11,8 +13,29 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('aaaaaaaaaaaaaaa ${products.length}');
     return Scaffold(
-      body: ProductsGridView(products: products,),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+                top: AppPadding.p50,
+                right: AppPadding.smallPadding,
+            ),
+            child: Text(
+              appBarName,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeightManager.medium,
+              ),
+            ),
+          ),
+          Expanded(
+              child: ProductsGridView(products: products,)
+          ),
+        ],
+      ),
     );
   }
 }

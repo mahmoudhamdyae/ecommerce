@@ -39,12 +39,12 @@ class HomeController extends GetxController {
     }
   }
 
-  void getLatestProducts() {
+  Future<void> getLatestProducts() async {
     String section = _appPreferences.getStoreType();
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getLatestProducts(section).then((value) {
+      await _repository.getLatestProducts(section).then((value) {
         isLoading.value = false;
         error.value = '';
         latestProducts.value = value;

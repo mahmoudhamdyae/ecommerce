@@ -33,10 +33,12 @@ class HomeScreenBody extends StatelessWidget {
             // الأكثر مبيعا
             InkWell(
               onTap: () {
-                Get.to(() => ProductsScreen(
-                    appBarName: AppStrings.recentlyAdded,
-                    products: controller.latestProducts)
-                );
+                controller.getLatestProducts().then((value) {
+                  Get.to(() => ProductsScreen(
+                      appBarName: AppStrings.recentlyAdded,
+                      products: controller.latestProducts)
+                  );
+                });
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,10 +81,12 @@ class HomeScreenBody extends StatelessWidget {
             // المضاف حديثا
             InkWell(
               onTap: () {
-                Get.to(() => ProductsScreen(
-                    appBarName: AppStrings.recentlyAdded,
-                    products: controller.latestProducts)
-                );
+                controller.getLatestProducts().then((value) {
+                  Get.to(() => ProductsScreen(
+                      appBarName: AppStrings.recentlyAdded,
+                      products: controller.latestProducts)
+                  );
+                });
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

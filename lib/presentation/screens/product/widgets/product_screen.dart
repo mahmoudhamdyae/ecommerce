@@ -42,7 +42,7 @@ class ProductScreen extends StatelessWidget {
                       FadeInImage.assetNetwork(
                           height: 200,
                           placeholder: ImageAssets.loading,
-                          image: product.images![0].image ?? ''
+                          image: product.images?[0].image ?? ''
                       ),
                       Container(
                         decoration: const BoxDecoration(

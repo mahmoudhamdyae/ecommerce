@@ -176,7 +176,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<List<LatestProducts>> getLatestProducts(String section) async {
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}latest-products";
-    final response = await http.get(Uri.parse(url));
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'section': section,
+        }
+    );
 
     var responseData = json.decode(response.body);
     _checkResponse(responseData);
