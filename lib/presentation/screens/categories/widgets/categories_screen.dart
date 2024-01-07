@@ -151,6 +151,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       iconColor: ColorManager.yellow,
                                       onTap: () {
                                         setState(() {
+                                          Get.find<CategoriesController>().sortBy(OrderBy.all);
                                           orderBy = OrderBy.all;
                                           Get.back();
                                         });
@@ -163,6 +164,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       iconColor: ColorManager.yellow,
                                       onTap: () {
                                         setState(() {
+                                          Get.find<CategoriesController>().sortBy(OrderBy.highest);
                                           orderBy = OrderBy.highest;
                                           Get.back();
                                         });
@@ -175,6 +177,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       iconColor: ColorManager.yellow,
                                       onTap: () {
                                         setState(() {
+                                          Get.find<CategoriesController>().sortBy(OrderBy.lowest);
                                           orderBy = OrderBy.lowest;
                                           Get.back();
                                         });
@@ -187,6 +190,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       iconColor: ColorManager.yellow,
                                       onTap: () {
                                         setState(() {
+                                          Get.find<CategoriesController>().sortBy(OrderBy.recently);
                                           orderBy = OrderBy.recently;
                                           Get.back();
                                         });

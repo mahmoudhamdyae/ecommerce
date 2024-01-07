@@ -1,4 +1,4 @@
-import 'package:ecommerce/domain/models/home/home_data.dart';
+import 'package:ecommerce/domain/models/order_by.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';
@@ -61,5 +61,20 @@ class CategoriesController extends GetxController {
     searchedProducts.value = latestProducts.where((product) =>
             product.nameAr!.contains(searchString) ||
                 product.desAr!.contains(searchString)).toList();
+  }
+
+  void sortBy(OrderBy orderBy) {
+    switch(orderBy) {
+      case OrderBy.all:
+        break;
+      case OrderBy.highest:
+        latestProducts.sort((b, a) => a.price!.compareTo(b.price as num));
+        break;
+      case OrderBy.lowest:
+        latestProducts.sort((a, b) => a.price!.compareTo(b.price as num));
+        break;
+      case OrderBy.recently:
+        break;
+    }
   }
 }
