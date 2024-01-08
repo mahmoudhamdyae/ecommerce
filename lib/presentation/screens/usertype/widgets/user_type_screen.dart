@@ -149,9 +149,9 @@ class UserTypeScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           if (isUserSelected) {
-                            Get.to(() => const LoginScreen(kind: 'c'));
+                            Get.to(() => const LoginScreen());
                           } else {
-                            Get.to(() => const LoginScreen(kind: 'd'));
+                            Get.to(() => const LoginScreen());
                           }
                         },
                         child: Padding(

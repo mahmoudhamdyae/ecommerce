@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/app_prefs.dart';
+import 'package:ecommerce/data/local/app_prefs.dart';
 import 'package:ecommerce/core/translations/local_controller.dart';
 import 'package:ecommerce/di/di.dart';
 import 'package:ecommerce/presentation/resources/assets_manager.dart';

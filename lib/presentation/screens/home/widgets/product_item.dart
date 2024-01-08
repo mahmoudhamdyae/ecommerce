@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/app_prefs.dart';
+import '../../../../data/local/app_prefs.dart';
 import '../../../../di/di.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/strings_manager.dart';

@@ -1,7 +1,6 @@
 import 'package:ecommerce/domain/models/order_by.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/app_prefs.dart';
 import '../../../../domain/models/category_product.dart';
 import '../../../../domain/repository/repository.dart';
 
@@ -14,15 +13,13 @@ class CategoriesController extends GetxController {
   final RxBool isSearching = false.obs;
 
   final Repository _repository;
-  final AppPreferences _appPreferences;
 
-  CategoriesController(this._repository, this._appPreferences);
+  CategoriesController(this._repository);
 
   void getCategoriesProducts(String categoryId) {
-    String section = _appPreferences.getStoreType();
     error.value = '';
     try {
-      _repository.getCategoryProducts(categoryId, section).then((value) {
+      _repository.getCategoryProducts(categoryId).then((value) {
         isLoading.value = false;
         error.value = '';
         latestProducts.value = value;
@@ -34,10 +31,9 @@ class CategoriesController extends GetxController {
   }
 
   void filterProducts(List<String> rate, String minPrice, String maxPrice, List<String> sections) {
-    String section = _appPreferences.getStoreType();
     error.value = '';
     try {
-      _repository.filter(rate, minPrice, maxPrice, sections, section).then((value) {
+      _repository.filter(rate, minPrice, maxPrice, sections).then((value) {
         isLoading.value = false;
         error.value = '';
         latestProducts.value = value.map((e) => CategoryProduct(

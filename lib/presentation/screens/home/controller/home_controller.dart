@@ -1,7 +1,7 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/app_prefs.dart';
+import '../../../../data/local/app_prefs.dart';
 import '../../../../domain/repository/repository.dart';
 
 class HomeController extends GetxController {
@@ -13,9 +13,8 @@ class HomeController extends GetxController {
   final RxList<LatestProducts> latestProducts = RxList.empty();
 
   final Repository _repository;
-  final AppPreferences _appPreferences;
 
-  HomeController(this._repository, this._appPreferences);
+  HomeController(this._repository);
 
   @override
   void onInit() {
@@ -24,12 +23,10 @@ class HomeController extends GetxController {
   }
 
   void getData() {
-    String lang = _appPreferences.getLang();
-    String section = _appPreferences.getStoreType();
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getHomeData(section, lang).then((value) {
+      _repository.getHomeData().then((value) {
         isLoading.value = false;
         error.value = '';
         homeData.value = value;
@@ -41,11 +38,10 @@ class HomeController extends GetxController {
   }
 
   Future<void> getLatestProducts() async {
-    String section = _appPreferences.getStoreType();
     isProductsLoading.value = true;
     error.value = '';
     try {
-      await _repository.getLatestProducts(section).then((value) {
+      await _repository.getLatestProducts().then((value) {
         error.value = '';
         isProductsLoading.value = false;
         latestProducts.value = value;
@@ -57,11 +53,10 @@ class HomeController extends GetxController {
   }
 
   Future<void> getBestSellerProducts() async {
-    String section = _appPreferences.getStoreType();
     error.value = '';
     isProductsLoading.value = true;
     try {
-      await _repository.getBestSellerProducts(section).then((value) {
+      await _repository.getBestSellerProducts().then((value) {
         error.value = '';
         isProductsLoading.value = false;
         latestProducts.value = value;

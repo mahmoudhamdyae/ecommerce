@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../../../core/app_prefs.dart';
+import '../../../../data/local/app_prefs.dart';
 import '../../../../di/di.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';

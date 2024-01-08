@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/app_prefs.dart';
+import 'package:ecommerce/data/local/app_prefs.dart';
 import 'package:get/get.dart';
 
 class UserTypeController extends GetxController {

@@ -1,7 +1,7 @@
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/app_prefs.dart';
+import '../../../../data/local/app_prefs.dart';
 import '../../../../domain/repository/repository.dart';
 
 class ProductController extends GetxController {
@@ -11,16 +11,14 @@ class ProductController extends GetxController {
   final Rx<Product> product = Product().obs;
 
   final Repository _repository;
-  final AppPreferences _appPreferences;
 
-  ProductController(this._repository, this._appPreferences);
+  ProductController(this._repository);
 
   void getProductDetails(String id) {
-    String section = _appPreferences.getStoreType();
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getProductDetails(id, section).then((value) {
+      _repository.getProductDetails(id).then((value) {
         isLoading.value = false;
         error.value = '';
         product.value = value;

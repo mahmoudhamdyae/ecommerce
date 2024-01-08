@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../core/app_prefs.dart';
+import '../data/local/app_prefs.dart';
 
 final instance = GetIt.instance;
 

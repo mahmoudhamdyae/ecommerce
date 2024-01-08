@@ -5,36 +5,38 @@ import 'package:ecommerce/domain/repository/repository.dart';
 
 import '../../domain/models/category_product.dart';
 import '../../domain/models/home/home_data.dart';
+import '../local/app_prefs.dart';
 
 class RepositoryImpl implements Repository {
 
   final RemoteDataSource _remoteDataSource;
+  final AppPreferences _appPreferences;
 
-  RepositoryImpl(this._remoteDataSource);
+  RepositoryImpl(this._remoteDataSource, this._appPreferences);
 
   @override
-  Future<void> login(String phoneNumber, String password, String kind) async {
-    await _remoteDataSource.login(phoneNumber, password, kind);
+  Future<void> login(String phoneNumber, String password) async {
+    await _remoteDataSource.login(phoneNumber, password, _appPreferences.getKind());
   }
 
   @override
-  Future<void> confirmPhoneNumber(String phoneNumber, String kind) async {
-    await _remoteDataSource.confirmPhoneNumber(phoneNumber, kind);
+  Future<void> confirmPhoneNumber(String phoneNumber) async {
+    await _remoteDataSource.confirmPhoneNumber(phoneNumber, _appPreferences.getKind());
   }
 
   @override
-  Future<void> enterCode(String phoneNumber, String code, String kind) async {
-    await _remoteDataSource.enterCode(phoneNumber,code, kind);
+  Future<void> enterCode(String phoneNumber, String code) async {
+    await _remoteDataSource.enterCode(phoneNumber,code, _appPreferences.getKind());
   }
 
   @override
-  Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword) async {
-    await _remoteDataSource.register(phoneNumber, name, kind, email, password, conPassword);
+  Future<void> register(String phoneNumber, String name, String email, String password, String conPassword) async {
+    await _remoteDataSource.register(phoneNumber, name, _appPreferences.getKind(), email, password, conPassword);
   }
 
   @override
-  Future<HomeData> getHomeData(String section, String lang) async {
-    return await _remoteDataSource.getHomeData(section, lang);
+  Future<HomeData> getHomeData() async {
+    return await _remoteDataSource.getHomeData(_appPreferences.getStoreType(), _appPreferences.getLang());
   }
 
   @override
@@ -43,18 +45,18 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Product> getProductDetails(String id, String section) async {
-    return await _remoteDataSource.getProductDetails(id, section);
+  Future<Product> getProductDetails(String id) async {
+    return await _remoteDataSource.getProductDetails(id, _appPreferences.getStoreType());
   }
 
   @override
-  Future<List<LatestProducts>> getLatestProducts(String section) async {
-    return await _remoteDataSource.getLatestProducts(section);
+  Future<List<LatestProducts>> getLatestProducts() async {
+    return await _remoteDataSource.getLatestProducts(_appPreferences.getStoreType());
   }
 
   @override
-  Future<List<LatestProducts>> getBestSellerProducts(String section) async {
-    return await _remoteDataSource.getBestSellerProducts(section);
+  Future<List<LatestProducts>> getBestSellerProducts() async {
+    return await _remoteDataSource.getBestSellerProducts(_appPreferences.getStoreType());
   }
 
   @override
@@ -63,32 +65,32 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections, String section) {
-    return _remoteDataSource.filter(rate, minPrice, maxPrice, sections, section);
+  Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections) {
+    return _remoteDataSource.filter(rate, minPrice, maxPrice, sections, _appPreferences.getStoreType());
   }
 
   @override
-  Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section) {
-    return _remoteDataSource.getCategoryProducts(categoryId, section);
+  Future<List<CategoryProduct>> getCategoryProducts(String categoryId) {
+    return _remoteDataSource.getCategoryProducts(categoryId, _appPreferences.getStoreType());
   }
 
   @override
-  Future<bool> addFav(String userToken, String productId, String kind) {
-    return _remoteDataSource.addFav(userToken, productId, kind);
+  Future<bool> addFav(String productId) {
+    return _remoteDataSource.addFav(_appPreferences.getToken(), productId, _appPreferences.getKind());
   }
 
   @override
-  Future<List<LatestProducts>> getFav(String userToken, String kind) {
-    return _remoteDataSource.getFav(userToken, kind);
+  Future<List<LatestProducts>> getFav() {
+    return _remoteDataSource.getFav(_appPreferences.getToken(), _appPreferences.getKind());
   }
 
   @override
-  Future<List<LatestProducts>> getCart(String userToken) {
-    return _remoteDataSource.getCart(userToken);
+  Future<List<LatestProducts>> getCart() {
+    return _remoteDataSource.getCart(_appPreferences.getToken());
   }
 
   @override
-  Future<Profile> getProfile(String userToken, String kind) {
-    return _remoteDataSource.getProfile(userToken, kind);
+  Future<Profile> getProfile() {
+    return _remoteDataSource.getProfile(_appPreferences.getToken(), _appPreferences.getKind());
   }
 }

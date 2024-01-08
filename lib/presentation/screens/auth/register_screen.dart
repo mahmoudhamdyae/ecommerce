@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/app_prefs.dart';
+import '../../../data/local/app_prefs.dart';
 import '../../../di/di.dart';
 import '../../../domain/repository/repository.dart';
 import '../../main_screen.dart';
@@ -15,8 +15,7 @@ import '../../widgets/dialogs/loading_dialog.dart';
 class RegisterScreen extends StatefulWidget {
 
   final String phoneNumber;
-  final String kind;
-  const RegisterScreen({super.key, required this.phoneNumber, required this.kind});
+  const RegisterScreen({super.key, required this.phoneNumber});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -49,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.register(widget.phoneNumber, nameController.text, widget.kind, emailController.text, passController.text, confirmPassController.text).then((userCredential) {
+        await _repository.register(widget.phoneNumber, nameController.text, emailController.text, passController.text, confirmPassController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
           Get.offAll(() => const MainScreen());
         });

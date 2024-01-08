@@ -30,7 +30,7 @@ class AppPreferences {
     _sharedPreferences.setString(prefsKeyToken, token);
   }
 
-  Future<String> getToken() async {
+  String getToken() {
     return _sharedPreferences.getString(prefsKeyToken) ?? '';
   }
 

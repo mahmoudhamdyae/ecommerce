@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/app_prefs.dart';
+import 'package:ecommerce/data/local/app_prefs.dart';
 import 'package:ecommerce/di/di.dart';
 import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';

@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get_ip_address/get_ip_address.dart';
 import 'package:http/http.dart' as http;
 
-import '../../core/app_prefs.dart';
+import '../local/app_prefs.dart';
 import '../../domain/models/profile.dart';
 
 abstract class RemoteDataSource {

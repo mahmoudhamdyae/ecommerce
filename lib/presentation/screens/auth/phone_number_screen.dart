@@ -12,8 +12,7 @@ import '../../widgets/dialogs/loading_dialog.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
 
-  final String kind;
-  const PhoneNumberScreen({super.key, required this.kind});
+  const PhoneNumberScreen({super.key});
 
   @override
   State<PhoneNumberScreen> createState() => _PhoneNumberScreenState();
@@ -33,9 +32,9 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.confirmPhoneNumber(phoneController.text, widget.kind).then((userCredential) {
+        await _repository.confirmPhoneNumber(phoneController.text).then((userCredential) {
           Get.back();
-          Get.to(() => VerifyCodeScreen(phoneNumber: phoneController.text, kind: widget.kind));
+          Get.to(() => VerifyCodeScreen(phoneNumber: phoneController.text));
         });
       } on Exception catch(e) {
         Get.back();
@@ -201,7 +200,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                             Text(AppStrings.hasAccount.tr),
                             InkWell(
                                 onTap: () {
-                                  Get.to(VerifyCodeScreen(phoneNumber: phoneController.text, kind: widget.kind));
+                                  Get.to(VerifyCodeScreen(phoneNumber: phoneController.text));
                                 },
                                 child: Text(
                                   AppStrings.clickHere.tr,

@@ -2,7 +2,7 @@ import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/app_prefs.dart';
+import '../../../../data/local/app_prefs.dart';
 
 class CartController extends GetxController {
 
@@ -11,9 +11,8 @@ class CartController extends GetxController {
   final RxList<LatestProducts> cart = RxList.empty();
 
   final Repository _repository;
-  final AppPreferences _appPreferences;
 
-  CartController(this._repository, this._appPreferences);
+  CartController(this._repository);
 
   @override
   void onInit() {
@@ -22,11 +21,10 @@ class CartController extends GetxController {
   }
 
   _getFav() async {
-    String userToken = await _appPreferences.getToken();
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getCart(userToken).then((remoteFav) {
+      _repository.getCart().then((remoteFav) {
         isLoading.value = false;
         error.value = '';
         cart.value = remoteFav;

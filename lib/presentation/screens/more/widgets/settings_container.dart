@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/app_prefs.dart';
+import '../../../../data/local/app_prefs.dart';
 import '../../../../di/di.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/strings_manager.dart';

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:badges/badges.dart' as badges;
 
-import '../../core/app_prefs.dart';
+import '../../data/local/app_prefs.dart';
 import '../../di/di.dart';
 import '../resources/color_manager.dart';
 

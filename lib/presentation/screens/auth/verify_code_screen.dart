@@ -15,8 +15,7 @@ import '../../widgets/dialogs/loading_dialog.dart';
 class VerifyCodeScreen extends StatefulWidget {
 
   final String phoneNumber;
-  final String kind;
-  const VerifyCodeScreen({super.key, required this.phoneNumber, required this.kind});
+  const VerifyCodeScreen({super.key, required this.phoneNumber});
 
   @override
   State<VerifyCodeScreen> createState() => _VerifyCodeScreenState();
@@ -31,9 +30,9 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     if (code != '') {
       try {
         showLoading(context);
-        await _repository.enterCode(widget.phoneNumber, code, widget.kind).then((userCredential) {
+        await _repository.enterCode(widget.phoneNumber, code).then((userCredential) {
           Get.back();
-          Get.to(() => RegisterScreen(phoneNumber: widget.phoneNumber, kind: widget.kind));
+          Get.to(() => RegisterScreen(phoneNumber: widget.phoneNumber));
         });
       } on Exception catch(e) {
         Get.back();
@@ -45,7 +44,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   _confirmPhoneNumber() async {
     try {
       showLoading(context);
-      await _repository.confirmPhoneNumber(widget.phoneNumber, 'c').then((userCredential) {
+      await _repository.confirmPhoneNumber(widget.phoneNumber).then((userCredential) {
         Get.back();
         Get.showSnackbar(
           GetSnackBar(

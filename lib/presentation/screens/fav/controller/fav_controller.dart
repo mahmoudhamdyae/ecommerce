@@ -2,7 +2,7 @@ import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/app_prefs.dart';
+import '../../../../data/local/app_prefs.dart';
 
 class FavController extends GetxController {
 
@@ -11,9 +11,8 @@ class FavController extends GetxController {
   final RxList<LatestProducts> fav = RxList.empty();
 
   final Repository _repository;
-  final AppPreferences _appPreferences;
 
-  FavController(this._repository, this._appPreferences);
+  FavController(this._repository);
 
   @override
   void onInit() {
@@ -22,12 +21,10 @@ class FavController extends GetxController {
   }
 
   _getFav() async {
-    String userToken = await _appPreferences.getToken();
-    String kind = _appPreferences.getKind();
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getFav(userToken, kind).then((remoteFav) {
+      _repository.getFav().then((remoteFav) {
         isLoading.value = false;
         error.value = '';
         fav.value = remoteFav;
@@ -39,12 +36,10 @@ class FavController extends GetxController {
   }
 
   Future<bool> addFav(LatestProducts product) async {
-    String userToken = await _appPreferences.getToken();
-    String kind = _appPreferences.getKind();
     bool isAdded = false;
     error.value = '';
     try {
-      await _repository.addFav(userToken, product.id.toString(), kind).then((value) {
+      await _repository.addFav(product.id.toString()).then((value) {
         error.value = '';
         isAdded = value;
         if (isAdded) {

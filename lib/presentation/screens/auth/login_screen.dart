@@ -6,7 +6,7 @@ import 'package:ecommerce/presentation/screens/auth/phone_number_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/app_prefs.dart';
+import '../../../data/local/app_prefs.dart';
 import '../../../di/di.dart';
 import '../../main_screen.dart';
 import '../../resources/values_manager.dart';
@@ -15,8 +15,7 @@ import '../../widgets/dialogs/loading_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
 
-  final String kind;
-  const LoginScreen({super.key, required this.kind});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -45,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.login(phoneController.text, passwordTextController.text, widget.kind).then((userCredential) {
+        await _repository.login(phoneController.text, passwordTextController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
           Get.offAll(const MainScreen());
         });
@@ -277,7 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(AppStrings.noAccount.tr),
                             InkWell(
                                 onTap: () {
-                                  Get.to(PhoneNumberScreen(kind: widget.kind));
+                                  Get.to(const PhoneNumberScreen());
                                 },
                                 child: Text(
                                     AppStrings.createAccount.tr,
