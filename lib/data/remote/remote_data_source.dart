@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ecommerce/core/constants.dart';
 import 'package:ecommerce/data/network_info.dart';
+import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/models/category_product.dart';
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
@@ -30,7 +31,7 @@ abstract class RemoteDataSource {
   Future<List<LatestProducts>> getFav(String userToken, String kind);
   Future<bool> addFav(String userToken, String productId, String kind);
 
-  Future<List<LatestProducts>> getCart(String userToken);
+  Future<List<Carts>> getCart(String userToken, String kind);
 
   Future<Profile> getProfile(String userToken, String kind);
 }
@@ -346,23 +347,25 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<List<LatestProducts>> getCart(String userToken) async {
+  Future<List<Carts>> getCart(String userToken, String kind) async {
+    debugPrint('aaaaaaaaaaaaa --- $userToken $kind');
     await _checkNetworkAndServer();
-    String url = "${AppConstants.baseUrl}search";
+    String url = "${AppConstants.baseUrl}cart";
     final response = await http.get(
-      Uri.parse(url).replace(queryParameters: {
-        'search' : '',
-      }),
+      Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          'authorization' : 'bearer sEdMIZEGrxa1ZcjXwmYgCkhjYsh4LIu3k8U0Gl1uj1l9ToCErACkYjWaVdLP',
+          'kind' : kind
+        }
     );
 
     var responseData = json.decode(response.body);
     _checkResponse(responseData);
     debugPrint('Cart Response: $responseData');
-    List<LatestProducts> products = [];
-    for (var singleProduct in responseData['data']['latest_products']) {
-      products.add(LatestProducts.fromJson(singleProduct));
-    }
-    return products;
+    Cart cart = Cart.fromJson(responseData);
+    return cart.data?.carts ?? [];
   }
 
   @override

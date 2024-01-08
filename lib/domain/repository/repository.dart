@@ -1,3 +1,4 @@
+import '../models/cart/cart.dart';
 import '../models/category_product.dart';
 import '../models/home/home_data.dart';
 import '../models/product/product.dart';
@@ -23,7 +24,7 @@ abstract class Repository {
   Future<List<LatestProducts>> getFav();
   Future<bool> addFav(String productId);
 
-  Future<List<LatestProducts>> getCart();
+  Future<List<Carts>> getCart();
 
   Future<Profile> getProfile();
 }

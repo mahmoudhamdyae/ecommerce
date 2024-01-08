@@ -1,14 +1,12 @@
-import 'package:ecommerce/domain/models/home/home_data.dart';
+import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
-
-import '../../../../data/local/app_prefs.dart';
 
 class CartController extends GetxController {
 
   final RxBool isLoading = true.obs;
   final RxString error = ''.obs;
-  final RxList<LatestProducts> cart = RxList.empty();
+  final RxList<Carts> cart = RxList.empty();
 
   final Repository _repository;
 
@@ -24,10 +22,10 @@ class CartController extends GetxController {
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getCart().then((remoteFav) {
+      _repository.getCart().then((remoteCart) {
         isLoading.value = false;
         error.value = '';
-        cart.value = remoteFav;
+        cart.value = remoteCart;
       });
     } on Exception catch (e) {
       isLoading.value = false;

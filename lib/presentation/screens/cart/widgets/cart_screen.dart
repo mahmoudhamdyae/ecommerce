@@ -2,6 +2,7 @@ import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/models/home/home_data.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
@@ -42,7 +43,20 @@ class CartScreen extends StatelessWidget {
                   builder: (CartController controller) {
                     return controller.isLoading.value ? const GridShimmer()
                         :
-                    ProductsGridView(products: controller.cart,);
+                    ProductsGridView(
+                      products: controller.cart.map((e) {
+                        return LatestProducts(
+                          id: e.id,
+                          name: e.name,
+                          rate: e.rate?.toInt(),
+                          oldPrice: e.priceOld?.toInt(),
+                          cardImage: e.image,
+                          rateNum: e.rate?.toInt(),
+                          discount: e.priceOld?.toInt(),
+                          priceNew: e.price?.toInt(),
+                        );
+                      }).toList(),
+                    );
                   },
                 )
             ),

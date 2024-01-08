@@ -1,4 +1,5 @@
 import 'package:ecommerce/data/remote/remote_data_source.dart';
+import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/models/profile.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
@@ -85,8 +86,8 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<List<LatestProducts>> getCart() {
-    return _remoteDataSource.getCart(_appPreferences.getToken());
+  Future<List<Carts>> getCart() {
+    return _remoteDataSource.getCart(_appPreferences.getToken(), _appPreferences.getKind());
   }
 
   @override
