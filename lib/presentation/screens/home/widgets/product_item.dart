@@ -70,7 +70,6 @@ class ProductItem extends StatelessWidget {
                             onTap: () async {
                               if (_appPreferences.isUserLoggedIn()) {
                                 await controller.addFav(product.id.toString()).then((isAdded) {
-                                  debugPrint('aaaaaaaaaaaaaaaaaaaa Added $isAdded');
                                   Get.showSnackbar(
                                     GetSnackBar(
                                       message: isAdded ? AppStrings.addedFavSnackBar.tr : AppStrings.removeFavSnackBar.tr,

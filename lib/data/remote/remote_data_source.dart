@@ -295,7 +295,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     debugPrint('aaaaaaaaaaaaaaaaaaaa $userToken $kind');
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}favourites";
-    final response = await http.post(
+    final response = await http.get(
         Uri.parse(url),
         headers: {
           'content-type': 'application/json;charset=utf-8',

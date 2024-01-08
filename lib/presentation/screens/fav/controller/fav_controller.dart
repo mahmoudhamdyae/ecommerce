@@ -32,6 +32,7 @@ class FavController extends GetxController {
         isLoading.value = false;
         error.value = '';
         fav.value = remoteFav;
+        debugPrint('aaaaaaaaaaaaaaaaaaaa get fav $remoteFav');
       });
     } on Exception catch (e) {
       isLoading.value = false;
