@@ -348,7 +348,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<Carts>> getCart(String userToken, String kind) async {
-    debugPrint('aaaaaaaaaaaaa --- $userToken $kind');
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}cart";
     final response = await http.get(
@@ -356,7 +355,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         headers: {
           'content-type': 'application/json;charset=utf-8',
           'charset': 'utf-8',
-          'authorization' : 'bearer sEdMIZEGrxa1ZcjXwmYgCkhjYsh4LIu3k8U0Gl1uj1l9ToCErACkYjWaVdLP',
+          'authorization' : 'bearer $userToken',
           'kind' : kind
         }
     );

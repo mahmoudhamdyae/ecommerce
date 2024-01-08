@@ -24,10 +24,10 @@ class Cart {
 
 class Data {
   int? orderId;
-  double? orderTotal;
+  dynamic orderTotal;
   int? dilivary;
   int? discount;
-  double? grandTotal;
+  dynamic grandTotal;
   List<Carts>? carts;
 
   Data(
