@@ -39,11 +39,11 @@ class ProductScreen extends StatelessWidget {
                   Product product = controller.product.value;
                   return controller.isLoading.value ? const ProductScreenLoading() : ListView(
                     children: [
-                      ProductTopBar(),
+                      ProductTopBar(product: product,),
                       FadeInImage.assetNetwork(
                           height: 200,
                           placeholder: ImageAssets.loading,
-                          image: product.images?[0].image ?? ''
+                          image: (product.images != null && product.images!.isNotEmpty) ? (product.images?[0].image ?? '') : ''
                       ),
                       Container(
                         decoration: const BoxDecoration(

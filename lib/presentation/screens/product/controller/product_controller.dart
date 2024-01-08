@@ -1,7 +1,6 @@
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/app_prefs.dart';
 import '../../../../domain/repository/repository.dart';
 
 class ProductController extends GetxController {
