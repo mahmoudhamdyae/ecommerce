@@ -7,6 +7,7 @@ class CartController extends GetxController {
   final RxBool isLoading = true.obs;
   final RxString error = ''.obs;
   final RxList<Carts> cart = RxList.empty();
+  final RxInt count = 1.obs;
 
   final Repository _repository;
 
@@ -18,7 +19,7 @@ class CartController extends GetxController {
     _getCart();
   }
 
-  _getCart() async {
+  _getCart() {
     isLoading.value = true;
     error.value = '';
     try {
@@ -33,11 +34,11 @@ class CartController extends GetxController {
     }
   }
 
-  addToCart(String productId, String count) async {
+  addToCart(String productId) async {
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.addToCart(productId, count).then((_) {
+      await _repository.addToCart(productId, count.value.toString()).then((_) {
         isLoading.value = false;
         error.value = '';
       });
@@ -45,5 +46,13 @@ class CartController extends GetxController {
       isLoading.value = false;
       error.value = e.toString();
     }
+  }
+
+  void incrementCount() {
+    count.value++;
+  }
+
+  void decrementCount() {
+    count.value--;
   }
 }
