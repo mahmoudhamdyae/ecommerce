@@ -5,6 +5,7 @@ const String prefsKeyIsUserLoggedIn = "PREFS_KEY_IS_USER_LOGGED_IN";
 const String prefsKeyToken = "PREFS_KEY_TOKEN_IN";
 const String prefsKeyLang = "PREFS_KEY_LANG";
 const String prefsKeyStoreType = "PREFS_KEY_STORE_TYPE";
+const String prefsKeyKind = "PREFS_KEY_KIND";
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -30,7 +31,7 @@ class AppPreferences {
   }
 
   Future<String> getToken() async {
-    return _sharedPreferences.getString(prefsKeyToken) ?? "";
+    return _sharedPreferences.getString(prefsKeyToken) ?? '';
   }
 
   Future<void> setLanguage(String language) async {
@@ -47,5 +48,13 @@ class AppPreferences {
 
   String getStoreType() {
     return _sharedPreferences.getString(prefsKeyStoreType) ?? '1';
+  }
+
+  Future<void> setKind(String kind) async {
+    _sharedPreferences.setString(prefsKeyKind, kind);
+  }
+
+  String getKind() {
+    return _sharedPreferences.getString(prefsKeyKind) ?? 'c';
   }
 }

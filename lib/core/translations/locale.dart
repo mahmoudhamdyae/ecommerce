@@ -108,6 +108,8 @@ class AppLocal extends Translations {
       AppStrings.loading: 'جاري التحميل...',
       AppStrings.retryAgain: 'حاول مرة أخرى',
       AppStrings.errorDialogTitle: 'خطأ!',
+      AppStrings.addedFavSnackBar: 'تمت الإضافة إلى المفضلة',
+      AppStrings.removeFavSnackBar: 'تمت الإزالة من المفضلة',
     },
     'en': {
       AppStrings.appName: 'Gado Store',
@@ -212,6 +214,8 @@ class AppLocal extends Translations {
       AppStrings.loading: 'جاري التحميل...',
       AppStrings.retryAgain: 'حاول مرة أخرى',
       AppStrings.errorDialogTitle: 'خطأ!',
+      AppStrings.addedFavSnackBar: 'تمت الإضافة إلى المفضلة',
+      AppStrings.removeFavSnackBar: 'تمت الإزالة من المفضلة',
     }
   };
 }

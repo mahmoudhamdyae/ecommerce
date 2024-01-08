@@ -26,7 +26,9 @@ abstract class RemoteDataSource {
   Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections, String section);
   Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section);
 
-  Future<List<LatestProducts>> getFav(String userToken);
+  Future<List<LatestProducts>> getFav(String userToken, String kind);
+  Future<bool> addFav(String userToken, String productId, String kind);
+
   Future<List<LatestProducts>> getCart(String userToken);
 }
 
@@ -289,23 +291,56 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<List<LatestProducts>> getFav(String userToken) async {
+  Future<List<LatestProducts>> getFav(String userToken, String kind) async {
+    debugPrint('aaaaaaaaaaaaaaaaaaaa $userToken $kind');
     await _checkNetworkAndServer();
-    String url = "${AppConstants.baseUrl}search";
-    final response = await http.get(
-      Uri.parse(url).replace(queryParameters: {
-        'search' : '',
-      }),
+    String url = "${AppConstants.baseUrl}favourites";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          'authorization' : 'bearer $userToken',
+          'kind' : kind
+        }
     );
 
     var responseData = json.decode(response.body);
     _checkResponse(responseData);
-    debugPrint('Search Response: $responseData');
+    debugPrint('Get Fav Response: $responseData');
     List<LatestProducts> products = [];
     for (var singleProduct in responseData['data']['latest_products']) {
       products.add(LatestProducts.fromJson(singleProduct));
     }
     return products;
+  }
+
+  @override
+  Future<bool> addFav(String userToken, String productId, String kind) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}add-favourites";
+    final response = await http.post(
+        Uri.parse(url).replace(queryParameters: {
+          'id' : productId,
+        }),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          'authorization' : 'bearer $userToken',
+          'kind' : kind
+        }
+    );
+
+    var responseData = json.decode(response.body);
+    _checkResponse(responseData);
+    debugPrint('Add Fav Response: $responseData');
+    bool isAdded;
+    if (responseData['message'].toString().contains('add')) {
+      isAdded = true;
+    } else {
+      isAdded = false;
+    }
+    return isAdded;
   }
 
   @override
@@ -320,7 +355,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
     var responseData = json.decode(response.body);
     _checkResponse(responseData);
-    debugPrint('Search Response: $responseData');
+    debugPrint('Cart Response: $responseData');
     List<LatestProducts> products = [];
     for (var singleProduct in responseData['data']['latest_products']) {
       products.add(LatestProducts.fromJson(singleProduct));

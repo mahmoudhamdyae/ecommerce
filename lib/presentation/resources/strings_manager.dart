@@ -134,4 +134,8 @@ class AppStrings {
   static const loading = 'جاري التحميل...';
   static const retryAgain = 'حاول مرة أخرى';
   static const errorDialogTitle = 'خطأ!';
+
+  // Fav
+  static const addedFavSnackBar = 'تمت الإضافة إلى المفضلة';
+  static const removeFavSnackBar = 'تمت الإزالة من المفضلة';
 }

@@ -18,6 +18,8 @@ abstract class Repository {
   Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections, String section);
   Future<List<CategoryProduct>> getCategoryProducts(String categoryId, String section);
 
-  Future<List<LatestProducts>> getFav(String userToken);
+  Future<List<LatestProducts>> getFav(String userToken, String kind);
+  Future<bool> addFav(String userToken, String productId, String kind);
+
   Future<List<LatestProducts>> getCart(String userToken);
 }
