@@ -3,7 +3,7 @@ class Profile {
   String? email;
   String? phone;
 
-  Profile(this.name, this.email, this.phone);
+  Profile({this.name, this.email, this.phone});
 
   Profile.fromJson(Map<String, dynamic> json) {
     name = json['name'];

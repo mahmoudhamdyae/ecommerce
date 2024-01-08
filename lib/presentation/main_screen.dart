@@ -2,7 +2,7 @@ import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/screens/fav/widgets/fav_screen.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
-import 'package:ecommerce/presentation/screens/more/more_screen.dart';
+import 'package:ecommerce/presentation/screens/more/widgets/more_screen.dart';
 import 'package:ecommerce/presentation/screens/orders/widgets/orders_screen.dart';
 import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';

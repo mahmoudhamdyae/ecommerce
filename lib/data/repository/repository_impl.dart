@@ -1,5 +1,6 @@
 import 'package:ecommerce/data/remote/remote_data_source.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
+import 'package:ecommerce/domain/models/profile.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 
 import '../../domain/models/category_product.dart';
@@ -87,7 +88,7 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<dynamic> getProfile(String userToken, String kind) {
+  Future<Profile> getProfile(String userToken, String kind) {
     return _remoteDataSource.getProfile(userToken, kind);
   }
 }

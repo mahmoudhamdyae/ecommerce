@@ -1,6 +1,7 @@
 import '../models/category_product.dart';
 import '../models/home/home_data.dart';
 import '../models/product/product.dart';
+import '../models/profile.dart';
 
 abstract class Repository {
 

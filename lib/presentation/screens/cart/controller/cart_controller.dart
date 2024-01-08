@@ -15,7 +15,6 @@ class CartController extends GetxController {
 
   CartController(this._repository, this._appPreferences);
 
-
   @override
   void onInit() {
     super.onInit();
