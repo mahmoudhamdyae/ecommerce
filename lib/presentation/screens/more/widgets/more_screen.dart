@@ -15,7 +15,7 @@ class MoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
-      color: ColorManager.grey,
+      color: ColorManager.lightGrey,
       child: SingleChildScrollView(
         child: Column(
           children: [
