@@ -1,3 +1,5 @@
+import 'package:ecommerce/data/local/app_prefs.dart';
+import 'package:ecommerce/di/di.dart';
 import 'package:ecommerce/presentation/screens/more/controller/more_controller.dart';
 import 'package:ecommerce/presentation/screens/more/widgets/more_screen_top_bar.dart';
 import 'package:ecommerce/presentation/screens/more/widgets/profile_container.dart';
@@ -9,7 +11,8 @@ import '../../../resources/color_manager.dart';
 
 class MoreScreen extends StatelessWidget {
 
-  const MoreScreen({super.key});
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+  MoreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,12 @@ class MoreScreen extends StatelessWidget {
         child: Column(
           children: [
             const MoreScreenTopBar(),
-            GetX<MoreController>(
+            _appPreferences.isUserLoggedIn() ? GetX<MoreController>(
               init: Get.find<MoreController>(),
               builder: (MoreController controller) {
                 return ProfileContainer(profile: controller.profile.value);
               },
-            ),
+            ) : Container(),
             SettingsContainer(),
           ],
         ),

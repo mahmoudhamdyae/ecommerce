@@ -33,6 +33,7 @@ abstract class RemoteDataSource {
 
   Future<List<Carts>> getCart(String userToken, String kind);
   Future<void> addToCart(String userToken, String kind, String productId, String count);
+  // Future<void> removeCart(String userToken, String kind, String productId, String count);
 
   Future<Profile> getProfile(String userToken, String kind);
 }
