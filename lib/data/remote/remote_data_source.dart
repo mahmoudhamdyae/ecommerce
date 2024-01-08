@@ -32,6 +32,7 @@ abstract class RemoteDataSource {
   Future<bool> addFav(String userToken, String productId, String kind);
 
   Future<List<Carts>> getCart(String userToken, String kind);
+  Future<void> addToCart(String userToken, String kind, String productId, String count);
 
   Future<Profile> getProfile(String userToken, String kind);
 }
@@ -365,6 +366,28 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     debugPrint('Cart Response: $responseData');
     Cart cart = Cart.fromJson(responseData);
     return cart.data?.carts ?? [];
+  }
+
+  @override
+  Future<void> addToCart(String userToken, String kind, String productId, String count) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}add-produt";
+    final response = await http.post(
+        Uri.parse(url).replace(queryParameters: {
+          'id' : productId,
+          'count' : count,
+        }),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          'authorization' : 'bearer $userToken',
+          'kind' : kind
+        }
+    );
+
+    var responseData = json.decode(response.body);
+    _checkResponse(responseData);
+    debugPrint('Add to Cart Response: $responseData');
   }
 
   @override

@@ -25,6 +25,7 @@ abstract class Repository {
   Future<bool> addFav(String productId);
 
   Future<List<Carts>> getCart();
+  Future<void> addToCart(String productId, String count);
 
   Future<Profile> getProfile();
 }

@@ -91,6 +91,11 @@ class RepositoryImpl implements Repository {
   }
 
   @override
+  Future<void> addToCart(String productId, String count) {
+    return _remoteDataSource.addToCart(_appPreferences.getToken(), _appPreferences.getKind(), productId, count);
+  }
+
+  @override
   Future<Profile> getProfile() {
     return _remoteDataSource.getProfile(_appPreferences.getToken(), _appPreferences.getKind());
   }

@@ -15,10 +15,10 @@ class CartController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _getFav();
+    _getCart();
   }
 
-  _getFav() async {
+  _getCart() async {
     isLoading.value = true;
     error.value = '';
     try {
@@ -26,6 +26,20 @@ class CartController extends GetxController {
         isLoading.value = false;
         error.value = '';
         cart.value = remoteCart;
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
+
+  addToCart(String productId, String count) async {
+    isLoading.value = true;
+    error.value = '';
+    try {
+      _repository.addToCart(productId, count).then((_) {
+        isLoading.value = false;
+        error.value = '';
       });
     } on Exception catch (e) {
       isLoading.value = false;
