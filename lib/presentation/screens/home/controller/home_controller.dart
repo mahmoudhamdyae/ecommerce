@@ -7,6 +7,7 @@ import '../../../../domain/repository/repository.dart';
 class HomeController extends GetxController {
 
   final RxBool isLoading = true.obs;
+  final RxBool isProductsLoading = true.obs;
   final RxString error = ''.obs;
   final Rx<HomeData> homeData = HomeData().obs;
   final RxList<LatestProducts> latestProducts = RxList.empty();
@@ -41,27 +42,33 @@ class HomeController extends GetxController {
 
   Future<void> getLatestProducts() async {
     String section = _appPreferences.getStoreType();
+    isProductsLoading.value = true;
     error.value = '';
     try {
       await _repository.getLatestProducts(section).then((value) {
         error.value = '';
+        isProductsLoading.value = false;
         latestProducts.value = value;
       });
     } on Exception catch (e) {
       error.value = e.toString();
+      isProductsLoading.value = false;
     }
   }
 
   Future<void> getBestSellerProducts() async {
     String section = _appPreferences.getStoreType();
     error.value = '';
+    isProductsLoading.value = true;
     try {
       await _repository.getBestSellerProducts(section).then((value) {
         error.value = '';
+        isProductsLoading.value = false;
         latestProducts.value = value;
       });
     } on Exception catch (e) {
       error.value = e.toString();
+      isProductsLoading.value = false;
     }
   }
 
