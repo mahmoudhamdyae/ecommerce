@@ -32,7 +32,6 @@ class FavController extends GetxController {
         isLoading.value = false;
         error.value = '';
         fav.value = remoteFav;
-        debugPrint('aaaaaaaaaaaaaaaaaaaa get fav $remoteFav');
       });
     } on Exception catch (e) {
       isLoading.value = false;
@@ -40,20 +39,22 @@ class FavController extends GetxController {
     }
   }
 
-  Future<bool> addFav(String productId) async {
+  Future<bool> addFav(LatestProducts product) async {
     String userToken = await _appPreferences.getToken();
     String kind = _appPreferences.getKind();
     bool isAdded = false;
-    isLoading.value = true;
     error.value = '';
     try {
-      await _repository.addFav(userToken, productId, kind).then((value) {
-        isLoading.value = false;
+      await _repository.addFav(userToken, product.id.toString(), kind).then((value) {
         error.value = '';
         isAdded = value;
+        if (isAdded) {
+          fav.add(product);
+        } else {
+          fav.remove(product);
+        }
       });
     } on Exception catch (e) {
-      isLoading.value = false;
       error.value = e.toString();
     }
     return isAdded;
