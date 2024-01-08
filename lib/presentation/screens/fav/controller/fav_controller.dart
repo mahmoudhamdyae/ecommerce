@@ -1,6 +1,5 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/app_prefs.dart';

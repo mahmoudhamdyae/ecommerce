@@ -1,5 +1,6 @@
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/screens/product/controller/product_controller.dart';
+import 'package:ecommerce/presentation/screens/product/widgets/product_screen_loading.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_tab_bar.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_tabs.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_top_bar.dart';
@@ -36,7 +37,7 @@ class ProductScreen extends StatelessWidget {
                 init: Get.find<ProductController>(),
                 builder: (ProductController controller) {
                   Product product = controller.product.value;
-                  return ListView(
+                  return controller.isLoading.value ? const ProductScreenLoading() : ListView(
                     children: [
                       ProductTopBar(),
                       FadeInImage.assetNetwork(
