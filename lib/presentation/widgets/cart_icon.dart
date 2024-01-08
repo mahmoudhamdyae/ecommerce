@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:ecommerce/presentation/screens/cart/widgets/cart_screen.dart';
 import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +29,11 @@ class CartIcon extends StatelessWidget {
         },
         badgeStyle: const badges.BadgeStyle(badgeColor: ColorManager.yellow),
         position: badges.BadgePosition.topStart(top: -10, start: -12),
-        badgeContent: const Padding(
-          padding: EdgeInsets.only(top: 4.0),
+        badgeContent: Padding(
+          padding: const EdgeInsets.only(top: 4.0),
           child: Text(
-            '0',
-            style: TextStyle(
+            _appPreferences.isUserLoggedIn() ? Get.find<CartController>().cart.length.toString() : '0',
+            style: const TextStyle(
               color: ColorManager.white,
             ),
           ),

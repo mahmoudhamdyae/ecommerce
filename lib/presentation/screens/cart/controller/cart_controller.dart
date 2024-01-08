@@ -48,6 +48,20 @@ class CartController extends GetxController {
     }
   }
 
+  removeFromCart(String productId) async {
+    isLoading.value = true;
+    error.value = '';
+    try {
+      await _repository.addToCart(productId, count.value.toString()).then((_) {
+        isLoading.value = false;
+        error.value = '';
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
+
   void incrementCount() {
     count.value++;
   }
