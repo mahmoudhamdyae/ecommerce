@@ -69,7 +69,7 @@ class ProductItem extends StatelessWidget {
                           return InkWell(
                             onTap: () async {
                               if (_appPreferences.isUserLoggedIn()) {
-                                await controller.addFav(product.id.toString()).then((isAdded) {
+                                await controller.addFav(product).then((isAdded) {
                                   Get.showSnackbar(
                                     GetSnackBar(
                                       message: isAdded ? AppStrings.addedFavSnackBar.tr : AppStrings.removeFavSnackBar.tr,

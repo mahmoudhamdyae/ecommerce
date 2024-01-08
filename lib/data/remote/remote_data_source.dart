@@ -292,7 +292,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<LatestProducts>> getFav(String userToken, String kind) async {
-    debugPrint('aaaaaaaaaaaaaaaaaaaa $userToken $kind');
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}favourites";
     final response = await http.get(
