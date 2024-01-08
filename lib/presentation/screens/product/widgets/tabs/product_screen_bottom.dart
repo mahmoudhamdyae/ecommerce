@@ -38,7 +38,10 @@ class ProductScreenBottom extends StatelessWidget {
                       controller.addToCart(product.id.toString()).then((_) {
                         Get.back();
                       });
-                    }, child: Text('${AppStrings.addToCart.tr}     ${product.priceNew} EGP'),
+                    }, child: Text(
+                      controller.isInCart(product) ? AppStrings.removeFromCart.tr :
+                      '${AppStrings.addToCart.tr}     ${product.priceNew} EGP'
+                  ),
                   ),
                 ),
               ),

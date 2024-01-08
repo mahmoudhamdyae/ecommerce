@@ -1,4 +1,5 @@
 import 'package:ecommerce/domain/models/cart/cart.dart';
+import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
 
@@ -60,6 +61,10 @@ class CartController extends GetxController {
       isLoading.value = false;
       error.value = e.toString();
     }
+  }
+
+  bool isInCart(Product product) {
+    return cart.any((element) => element.id.toString() == product.id.toString());
   }
 
   void incrementCount() {
