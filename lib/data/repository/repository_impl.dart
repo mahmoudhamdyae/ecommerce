@@ -85,4 +85,9 @@ class RepositoryImpl implements Repository {
   Future<List<LatestProducts>> getCart(String userToken) {
     return _remoteDataSource.getCart(userToken);
   }
+
+  @override
+  Future<dynamic> getProfile(String userToken, String kind) {
+    return _remoteDataSource.getProfile(userToken, kind);
+  }
 }

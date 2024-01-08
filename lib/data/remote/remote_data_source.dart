@@ -10,6 +10,7 @@ import 'package:get_ip_address/get_ip_address.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/app_prefs.dart';
+import '../../domain/models/profile.dart';
 
 abstract class RemoteDataSource {
   Future<void> login(String phoneNumber, String password, String kind);
@@ -30,6 +31,8 @@ abstract class RemoteDataSource {
   Future<bool> addFav(String userToken, String productId, String kind);
 
   Future<List<LatestProducts>> getCart(String userToken);
+
+  Future<Profile> getProfile(String userToken, String kind);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -360,6 +363,27 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       products.add(LatestProducts.fromJson(singleProduct));
     }
     return products;
+  }
+
+  @override
+  Future<Profile> getProfile(String userToken, String kind) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}profile";
+    final response = await http.get(
+      Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          'authorization' : 'bearer $userToken',
+          'kind' : kind
+        }
+    );
+
+    var responseData = json.decode(response.body);
+    _checkResponse(responseData);
+    debugPrint('Profile Response: $responseData');
+    Profile profile = Profile.fromJson(responseData['data']);
+    return profile;
   }
 
 }
