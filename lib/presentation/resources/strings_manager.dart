@@ -138,4 +138,7 @@ class AppStrings {
   // Fav
   static const addedFavSnackBar = 'تمت الإضافة إلى المفضلة';
   static const removeFavSnackBar = 'تمت الإزالة من المفضلة';
+
+  // Cart
+  static const noCart = 'لا يوجد منتجات فى السلة';
 }

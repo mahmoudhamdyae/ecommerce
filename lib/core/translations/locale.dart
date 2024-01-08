@@ -110,6 +110,7 @@ class AppLocal extends Translations {
       AppStrings.errorDialogTitle: 'خطأ!',
       AppStrings.addedFavSnackBar: 'تمت الإضافة إلى المفضلة',
       AppStrings.removeFavSnackBar: 'تمت الإزالة من المفضلة',
+      AppStrings.noCart: 'لا يوجد منتجات فى السلة',
     },
     'en': {
       AppStrings.appName: 'Gado Store',
@@ -216,6 +217,7 @@ class AppLocal extends Translations {
       AppStrings.errorDialogTitle: 'خطأ!',
       AppStrings.addedFavSnackBar: 'تمت الإضافة إلى المفضلة',
       AppStrings.removeFavSnackBar: 'تمت الإزالة من المفضلة',
+      AppStrings.noCart: 'لا يوجد منتجات فى السلة',
     }
   };
 }

@@ -9,6 +9,7 @@ import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
 import '../../../widgets/shimmer/grid_shimmer.dart';
 import '../../categories/widgets/products_grid_view.dart';
+import 'cart_empty_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -43,7 +44,7 @@ class CartScreen extends StatelessWidget {
                   builder: (CartController controller) {
                     return controller.isLoading.value ? const GridShimmer()
                         :
-                    ProductsGridView(
+                    controller.cart.isEmpty ? const CartEmptyScreen() : ProductsGridView(
                       products: controller.cart.map((e) {
                         return LatestProducts(
                           id: e.id,
