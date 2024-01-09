@@ -145,4 +145,10 @@ class AppStrings {
   static const noCart = 'لا يوجد منتجات فى السلة';
   static const noOrders = 'لا يوجد طلبات';
   static const order = 'طلب';
+  static const firstNameHint = 'الاسم الأول';
+  static const firstNameError = 'الاسم الأول لا يمكن أن يكون فارغا';
+  static const lastNameHint = 'الاسم الأخير';
+  static const lastNameError = 'الاسم الأخير لا يمكن أن يكون فارغا';
+  static const addressHint = 'العنوان';
+  static const addressError = 'العنوان لا يمكن أن يكون فارغا';
 }
