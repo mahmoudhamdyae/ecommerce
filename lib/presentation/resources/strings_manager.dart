@@ -143,4 +143,5 @@ class AppStrings {
 
   // Cart
   static const noCart = 'لا يوجد منتجات فى السلة';
+  static const noOrders = 'لا يوجد طلبات';
 }

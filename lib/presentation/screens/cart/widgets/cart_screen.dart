@@ -31,7 +31,7 @@ class CartScreen extends StatelessWidget {
                 right: AppPadding.smallPadding,
               ),
               child: Text(
-                AppStrings.addToCart.tr,
+                AppStrings.cart.tr,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeightManager.medium,

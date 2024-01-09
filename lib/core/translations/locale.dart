@@ -113,6 +113,7 @@ class AppLocal extends Translations {
       AppStrings.addedFavSnackBar: 'تمت الإضافة إلى المفضلة',
       AppStrings.removeFavSnackBar: 'تمت الإزالة من المفضلة',
       AppStrings.noCart: 'لا يوجد منتجات فى السلة',
+      AppStrings.noOrders: 'لا يوجد طلبات',
     },
     'en': {
       AppStrings.appName: 'Gado Store',
@@ -222,6 +223,7 @@ class AppLocal extends Translations {
       AppStrings.addedFavSnackBar: 'تمت الإضافة إلى المفضلة',
       AppStrings.removeFavSnackBar: 'تمت الإزالة من المفضلة',
       AppStrings.noCart: 'لا يوجد منتجات فى السلة',
+      AppStrings.noOrders: 'لا يوجد طلبات',
     }
   };
 }

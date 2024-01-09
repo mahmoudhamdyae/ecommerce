@@ -2,6 +2,7 @@ import 'package:ecommerce/core/translations/local_controller.dart';
 import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:ecommerce/presentation/screens/home/controller/home_controller.dart';
 import 'package:ecommerce/presentation/screens/more/controller/more_controller.dart';
+import 'package:ecommerce/presentation/screens/orders/controller/order_controller.dart';
 import 'package:ecommerce/presentation/screens/product/controller/product_controller.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -37,5 +38,6 @@ class GetXDi implements Bindings {
     Get.lazyPut<FavController>(() => FavController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<CartController>(() => CartController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<MoreController>(() => MoreController(Get.find<Repository>()), fenix: true);
+    Get.lazyPut<OrderController>(() => OrderController(Get.find<Repository>()), fenix: true);
   }
 }

@@ -1,7 +1,6 @@
 import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -21,7 +20,7 @@ class CartController extends GetxController {
     _getCart();
   }
 
-  _getCart() {
+  void _getCart() {
     isLoading.value = true;
     error.value = '';
     try {
