@@ -5,6 +5,7 @@ import 'package:ecommerce/data/network_info.dart';
 import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/models/category_product.dart';
 import 'package:ecommerce/domain/models/home/home_data.dart';
+import 'package:ecommerce/domain/models/order.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_ip_address/get_ip_address.dart';
@@ -34,6 +35,8 @@ abstract class RemoteDataSource {
   Future<List<Carts>> getCart(String userToken, String kind);
   Future<void> addToCart(String userToken, String kind, String productId, String count);
   Future<void> removeFromCart(String cartId);
+
+  Future<List<Order>> getOrders(String userToken);
 
   Future<Profile> getProfile(String userToken, String kind);
 }
@@ -404,6 +407,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var responseData = json.decode(response.body);
     _checkResponse(responseData);
     debugPrint('Remove from Cart Response: $responseData');
+  }
+
+  @override
+  Future<List<Order>> getOrders(String userToken) {
+    List<Order> orders = [];
+    return Future(() => orders);
   }
 
   @override

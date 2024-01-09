@@ -22,11 +22,11 @@ class OrderController extends GetxController {
     isLoading.value = true;
     error.value = '';
     try {
-      // _repository.getOrders().then((remoteOrders) {
-      //   isLoading.value = false;
-      //   error.value = '';
-      //   orders.value = remoteOrders;
-      // });
+      _repository.getOrders().then((remoteOrders) {
+        isLoading.value = false;
+        error.value = '';
+        orders.value = remoteOrders;
+      });
     } on Exception catch (e) {
       isLoading.value = false;
       error.value = e.toString();

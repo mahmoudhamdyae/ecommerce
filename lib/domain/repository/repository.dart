@@ -1,6 +1,7 @@
 import '../models/cart/cart.dart';
 import '../models/category_product.dart';
 import '../models/home/home_data.dart';
+import '../models/order.dart';
 import '../models/product/product.dart';
 import '../models/profile.dart';
 
@@ -27,6 +28,8 @@ abstract class Repository {
   Future<List<Carts>> getCart();
   Future<void> addToCart(String productId, String count);
   Future<void> removeFromCart(String cartId);
+
+  Future<List<Order>> getOrders();
 
   Future<Profile> getProfile();
 }
