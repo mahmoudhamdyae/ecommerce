@@ -1,6 +1,7 @@
 import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -53,9 +54,16 @@ class CartController extends GetxController {
     isLoading.value = true;
     error.value = '';
     try {
-      await _repository.addToCart(productId, count.value.toString()).then((_) {
+      debugPrint('aaaaaaaaaaaaaaaaaaaaa ${cart.value.length}');
+      debugPrint('aaaaaaaaaaaaaaaaaaaaa ${cart.value[0].id}');
+      debugPrint('aaaaaaaaaaaaaaaaaaaaa ${cart.value[0].cartId}');
+      debugPrint('aaaaaaaaaaaaaaaaaaaaa $productId');
+      Carts selectedCart = cart.firstWhere((element) => element.id.toString() == productId);
+      String cartId = selectedCart.cartId.toString();
+      await _repository.removeFromCart(cartId).then((_) {
         isLoading.value = false;
         error.value = '';
+        cart.remove(selectedCart);
       });
     } on Exception catch (e) {
       isLoading.value = false;

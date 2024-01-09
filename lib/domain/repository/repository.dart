@@ -26,6 +26,7 @@ abstract class Repository {
 
   Future<List<Carts>> getCart();
   Future<void> addToCart(String productId, String count);
+  Future<void> removeFromCart(String cartId);
 
   Future<Profile> getProfile();
 }

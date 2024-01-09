@@ -42,7 +42,7 @@ LatestProducts convertCopiesToLatest(CopiesProducts copiesProduct) {
   return LatestProducts(
     id: copiesProduct.id,
     name: copiesProduct.name,
-    rate: copiesProduct.rate,
+    rate: (copiesProduct.rate) as int? ?? 0,
     oldPrice: copiesProduct.oldPrice,
     cardImage: copiesProduct.cardImage,
     rateNum: copiesProduct.rateNum,

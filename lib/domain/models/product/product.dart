@@ -136,7 +136,7 @@ class CopiesProducts {
   int? id;
   String? image;
   String? name;
-  int? rate;
+  dynamic rate;
   int? oldPrice;
   String? cardImage;
   int? rateNum;

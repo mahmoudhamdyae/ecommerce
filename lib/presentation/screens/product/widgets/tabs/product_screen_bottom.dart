@@ -35,9 +35,15 @@ class ProductScreenBottom extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                     ),
                     onPressed: () {
-                      controller.addToCart(product.id.toString()).then((_) {
-                        Get.back();
-                      });
+                      if (controller.isInCart(product)) {
+                        controller.removeFromCart(product.id.toString()).then((_) {
+                          Get.back();
+                        });
+                      } else {
+                        controller.addToCart(product.id.toString()).then((_) {
+                          Get.back();
+                        });
+                      }
                     }, child: Text(
                       controller.isInCart(product) ? AppStrings.removeFromCart.tr :
                       '${AppStrings.addToCart.tr}     ${product.priceNew} EGP'

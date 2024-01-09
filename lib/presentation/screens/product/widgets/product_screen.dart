@@ -1,4 +1,5 @@
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
+import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:ecommerce/presentation/screens/product/controller/product_controller.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_screen_loading.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_tab_bar.dart';
@@ -17,27 +18,27 @@ import '../../../resources/values_manager.dart';
 
 class ProductScreen extends StatelessWidget {
 
-  final ProductController controller = Get.find<ProductController>();
   final String productId;
+
+  final CartController cartController = Get.find<CartController>();
+  final ProductController productController = Get.find<ProductController>();
 
   ProductScreen({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context) {
-    controller.getProductDetails(productId);
+    productController.getProductDetails(productId);
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              color: ColorManager.lightGrey,
-              padding: const EdgeInsets.only(bottom: 90),
-              child: GetX<ProductController>(
-                init: Get.find<ProductController>(),
-                builder: (ProductController controller) {
-                  Product product = controller.product.value;
-                  return controller.isLoading.value ? const ProductScreenLoading() : ListView(
+        body: Obx(() {
+            Product product = productController.product.value;
+            return productController.isLoading.value ? const ProductScreenLoading() : Stack(
+              children: [
+                Container(
+                  color: ColorManager.lightGrey,
+                  padding: const EdgeInsets.only(bottom: 90),
+                  child: ListView(
                     children: [
                       ProductTopBar(product: product,),
                       FadeInImage.assetNetwork(
@@ -49,8 +50,8 @@ class ProductScreen extends StatelessWidget {
                         decoration: const BoxDecoration(
                             color: ColorManager.white,
                             borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(AppSize.borderRadius),
-                                topRight: Radius.circular(AppSize.borderRadius),
+                              topLeft: Radius.circular(AppSize.borderRadius),
+                              topRight: Radius.circular(AppSize.borderRadius),
                             )
                         ),
                         child: Padding(
@@ -144,19 +145,19 @@ class ProductScreen extends StatelessWidget {
                       const ProductTabs(),
                       SimilarProducts(products: product.copiesProducts ?? []),
                     ],
-                  );
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-                child: Container(
-                  color: ColorManager.white,
-                  height: 90,
-                  child: ProductScreenBottom(product: controller.product.value,),
+                  ),
+                ),
+                Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      color: ColorManager.white,
+                      height: 90,
+                      child: ProductScreenBottom(product: product,),
+                    )
                 )
-            )
-          ],
+              ],
+            );
+          },
         ),
       ),
     );

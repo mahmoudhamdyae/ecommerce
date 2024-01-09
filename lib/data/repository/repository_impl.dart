@@ -99,4 +99,9 @@ class RepositoryImpl implements Repository {
   Future<Profile> getProfile() {
     return _remoteDataSource.getProfile(_appPreferences.getToken(), _appPreferences.getKind());
   }
+
+  @override
+  Future<void> removeFromCart(String cartId) {
+    return _remoteDataSource.removeFromCart(cartId);
+  }
 }
