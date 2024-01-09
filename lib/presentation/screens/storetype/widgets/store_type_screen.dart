@@ -1,6 +1,7 @@
 import 'package:ecommerce/data/local/app_prefs.dart';
 import 'package:ecommerce/di/di.dart';
 import 'package:ecommerce/presentation/main_screen.dart';
+import 'package:ecommerce/presentation/resources/assets_manager.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
@@ -58,10 +59,9 @@ class StoreTypeScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       // Image
-                      Container(
-                        height: 50,
-                        width: 100,
-                        color: ColorManager.grey,
+                      Image.asset(
+                        ImageAssets.tools,
+                        height: 75,
                       ),
                       const SizedBox(height: AppSize.s16,),
                       Text(
@@ -104,10 +104,9 @@ class StoreTypeScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       // Image
-                      Container(
-                        height: 50,
-                        width: 100,
-                        color: ColorManager.grey,
+                      Image.asset(
+                        ImageAssets.air,
+                        height: 75,
                       ),
                       const SizedBox(height: AppSize.s16,),
                       Text(

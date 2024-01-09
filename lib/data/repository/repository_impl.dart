@@ -83,12 +83,20 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<List<LatestProducts>> getFav() {
-    return _remoteDataSource.getFav(_appPreferences.getToken(), _appPreferences.getKind());
+    if (_appPreferences.isUserLoggedIn()) {
+      return _remoteDataSource.getFav(_appPreferences.getToken(), _appPreferences.getKind());
+    } else {
+      return Future(() => []);
+    }
   }
 
   @override
   Future<List<Carts>> getCart() {
-    return _remoteDataSource.getCart(_appPreferences.getToken(), _appPreferences.getKind());
+    if (_appPreferences.isUserLoggedIn()) {
+      return _remoteDataSource.getCart(_appPreferences.getToken(), _appPreferences.getKind());
+    } else {
+      return Future(() => []);
+    }
   }
 
   @override
@@ -98,7 +106,11 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Profile> getProfile() {
-    return _remoteDataSource.getProfile(_appPreferences.getToken(), _appPreferences.getKind());
+    if (_appPreferences.isUserLoggedIn()) {
+      return _remoteDataSource.getProfile(_appPreferences.getToken(), _appPreferences.getKind());
+    } else {
+      return Future(() => Profile());
+    }
   }
 
   @override
