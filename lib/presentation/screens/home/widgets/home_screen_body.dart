@@ -10,6 +10,7 @@ import 'package:ecommerce/presentation/screens/products/widgets/products_screen.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'cards_list.dart';
 import 'products_list.dart';
 
 class HomeScreenBody extends StatelessWidget {
@@ -73,6 +74,13 @@ class HomeScreenBody extends StatelessWidget {
               ),
             ),
             ProductsList(products: bestSellerProducts ?? [],),
+            const SizedBox(height: 16,),
+            // Cards
+            SizedBox(
+                height: 150,
+                child: CardsList(cards: controller.homeData.value.data?.cardsAds ?? [],)
+            ),
+            const SizedBox(height: 16,),
             // المضاف حديثا
             InkWell(
               onTap: () {
