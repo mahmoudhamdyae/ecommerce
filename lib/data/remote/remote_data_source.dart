@@ -37,6 +37,8 @@ abstract class RemoteDataSource {
   Future<void> removeFromCart(String cartId);
 
   Future<List<Order>> getOrders(String userToken);
+  Future<void> finishOrder(String userToken, String kind, String firstName, String lastName, String phone, String address, String payType);
+  Future<void> getOrderDetails(String userToken, String kind, String orderId);
 
   Future<Profile> getProfile(String userToken, String kind);
 }
@@ -410,12 +412,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<List<Order>> getOrders(String userToken) {
-    List<Order> orders = [];
-    return Future(() => orders);
-  }
-
-  @override
   Future<Profile> getProfile(String userToken, String kind) async {
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}profile";
@@ -434,6 +430,72 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     debugPrint('Profile Response: $responseData');
     Profile profile = Profile.fromJson(responseData['data']);
     return profile;
+  }
+
+  @override
+  Future<List<Order>> getOrders(String userToken) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}my-orders";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          'authorization' : 'bearer $userToken',
+        }
+    );
+
+    var responseData = json.decode(response.body);
+    _checkResponse(responseData);
+    debugPrint('Get Orders Response: $responseData');
+    OrderResponse order = OrderResponse.fromJson(responseData);
+    return order.data?.orders ?? [];
+  }
+
+  @override
+  Future<void> finishOrder(String userToken, String kind, String firstName, String lastName, String phone, String address, String payType) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}finish-order";
+    final response = await http.post(
+        Uri.parse(url).replace(queryParameters: {
+          'name_first' : firstName,
+          'name_last' : lastName,
+          'phone' : phone,
+          'address' : address,
+          'pay_type' : payType,
+        }),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          'authorization': 'bearer $userToken',
+          'kind': kind
+        }
+    );
+
+    var responseData = json.decode(response.body);
+    debugPrint('Finish Order Response: $responseData');
+    _checkResponse(responseData);
+  }
+
+  @override
+  Future<void> getOrderDetails(String userToken, String kind, String orderId) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}detials-order";
+    final response = await http.get(
+        Uri.parse(url).replace(queryParameters: {
+          'id' : orderId,
+        }),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          'authorization': 'bearer $userToken',
+          'kind': kind
+        }
+    );
+
+    var responseData = json.decode(response.body);
+    debugPrint('Get Order Details Response: $responseData');
+    _checkResponse(responseData);
   }
 
 }

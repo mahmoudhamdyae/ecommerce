@@ -30,6 +30,8 @@ abstract class Repository {
   Future<void> removeFromCart(String cartId);
 
   Future<List<Order>> getOrders();
+  Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType);
+  Future<void> getOrderDetails(String orderId);
 
   Future<Profile> getProfile();
 }
