@@ -31,11 +31,16 @@ class CartIcon extends StatelessWidget {
         position: badges.BadgePosition.topStart(top: -10, start: -12),
         badgeContent: Padding(
           padding: const EdgeInsets.only(top: 4.0),
-          child: Text(
-            _appPreferences.isUserLoggedIn() ? Get.find<CartController>().cart.length.toString() : '0',
-            style: const TextStyle(
-              color: ColorManager.white,
-            ),
+          child: GetX<CartController>(
+            init: Get.find<CartController>(),
+            builder: (CartController controller) {
+              return Text(
+                _appPreferences.isUserLoggedIn() ? controller.cart.length.toString() : '0',
+                style: const TextStyle(
+                  color: ColorManager.white,
+                ),
+              );
+            },
           ),
         ),
         child: Icon(

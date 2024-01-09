@@ -54,10 +54,6 @@ class CartController extends GetxController {
     isLoading.value = true;
     error.value = '';
     try {
-      debugPrint('aaaaaaaaaaaaaaaaaaaaa ${cart.value.length}');
-      debugPrint('aaaaaaaaaaaaaaaaaaaaa ${cart.value[0].id}');
-      debugPrint('aaaaaaaaaaaaaaaaaaaaa ${cart.value[0].cartId}');
-      debugPrint('aaaaaaaaaaaaaaaaaaaaa $productId');
       Carts selectedCart = cart.firstWhere((element) => element.id.toString() == productId);
       String cartId = selectedCart.cartId.toString();
       await _repository.removeFromCart(cartId).then((_) {
