@@ -1,11 +1,11 @@
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/app_prefs.dart';
 import '../../../../domain/models/profile.dart';
 
 class MoreController extends GetxController {
 
+  final RxBool isLoading = true.obs;
   final Rx<Profile> profile = Profile().obs;
 
   final Repository _repository;
@@ -19,8 +19,14 @@ class MoreController extends GetxController {
   }
 
   void _getProfile() async {
-    _repository.getProfile().then((value) {
-      profile.value = value;
-    });
+    isLoading.value = true;
+    try {
+      _repository.getProfile().then((value) {
+        profile.value = value;
+        isLoading.value = false;
+      });
+    } on Exception {
+      isLoading.value = false;
+    }
   }
 }
