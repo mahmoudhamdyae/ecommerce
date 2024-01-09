@@ -2,6 +2,7 @@ import '../models/cart/cart.dart';
 import '../models/category_product.dart';
 import '../models/home/home_data.dart';
 import '../models/order.dart';
+import '../models/order_details.dart';
 import '../models/product/product.dart';
 import '../models/profile.dart';
 
@@ -31,7 +32,7 @@ abstract class Repository {
 
   Future<List<Order>> getOrders();
   Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType);
-  Future<void> getOrderDetails(String orderId);
+  Future<OrderDetails> getOrderDetails(String orderId);
 
   Future<Profile> getProfile();
 }

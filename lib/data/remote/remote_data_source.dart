@@ -6,6 +6,7 @@ import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/models/category_product.dart';
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/models/order.dart';
+import 'package:ecommerce/domain/models/order_details.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_ip_address/get_ip_address.dart';
@@ -36,9 +37,9 @@ abstract class RemoteDataSource {
   Future<void> addToCart(String userToken, String kind, String productId, String count);
   Future<void> removeFromCart(String cartId);
 
-  Future<List<Order>> getOrders(String userToken);
+  Future<List<Order>> getOrders(String userToken, String kind);
   Future<void> finishOrder(String userToken, String kind, String firstName, String lastName, String phone, String address, String payType);
-  Future<void> getOrderDetails(String userToken, String kind, String orderId);
+  Future<OrderDetails> getOrderDetails(String userToken, String kind, String orderId);
 
   Future<Profile> getProfile(String userToken, String kind);
 }
@@ -433,7 +434,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<List<Order>> getOrders(String userToken) async {
+  Future<List<Order>> getOrders(String userToken, String kind) async {
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}my-orders";
     final response = await http.get(
@@ -442,6 +443,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           'content-type': 'application/json;charset=utf-8',
           'charset': 'utf-8',
           'authorization' : 'bearer $userToken',
+          'kind': kind
         }
     );
 
@@ -478,7 +480,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<void> getOrderDetails(String userToken, String kind, String orderId) async {
+  Future<OrderDetails> getOrderDetails(String userToken, String kind, String orderId) async {
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}detials-order";
     final response = await http.get(
@@ -496,6 +498,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var responseData = json.decode(response.body);
     debugPrint('Get Order Details Response: $responseData');
     _checkResponse(responseData);
+    OrderDetails orderDetails = OrderDetails.fromJson(responseData);
+    return orderDetails;
   }
 
 }

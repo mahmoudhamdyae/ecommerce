@@ -7,6 +7,7 @@ import 'package:ecommerce/domain/repository/repository.dart';
 
 import '../../domain/models/category_product.dart';
 import '../../domain/models/home/home_data.dart';
+import '../../domain/models/order_details.dart';
 import '../local/app_prefs.dart';
 
 class RepositoryImpl implements Repository {
@@ -120,7 +121,7 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<List<Order>> getOrders() {
-    return _remoteDataSource.getOrders(_appPreferences.getToken());
+    return _remoteDataSource.getOrders(_appPreferences.getToken(), _appPreferences.getKind());
   }
 
   @override
@@ -129,7 +130,7 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<void> getOrderDetails(String orderId) {
+  Future<OrderDetails> getOrderDetails(String orderId) {
     return _remoteDataSource.getOrderDetails(_appPreferences.getToken(), _appPreferences.getKind(), orderId);
   }
 }

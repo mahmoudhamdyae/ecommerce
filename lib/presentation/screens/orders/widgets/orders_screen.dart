@@ -1,5 +1,6 @@
 import 'package:ecommerce/presentation/screens/orders/controller/order_controller.dart';
 import 'package:ecommerce/presentation/screens/orders/widgets/orders_empty_screen.dart';
+import 'package:ecommerce/presentation/screens/orders/widgets/orders_screen_body.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +42,9 @@ class OrdersScreen extends StatelessWidget {
               builder: (OrderController controller) {
                 return controller.isLoading.value ? const GridShimmer()
                     :
-                controller.orders.isEmpty ? const OrdersEmptyScreen() : Container();
+                (controller.orders.isEmpty ? const OrdersEmptyScreen()
+                    :
+                OrdersScreenBody(orders: controller.orders));
               },
             ),
           ),
