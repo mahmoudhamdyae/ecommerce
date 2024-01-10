@@ -144,6 +144,8 @@ class AppStrings {
   // Cart
   static const noCart = 'لا يوجد منتجات فى السلة';
   static const noOrders = 'لا يوجد طلبات';
+
+  // Orders
   static const order = 'طلب';
   static const firstNameHint = 'الاسم الأول';
   static const firstNameError = 'الاسم الأول لا يمكن أن يكون فارغا';
@@ -151,4 +153,5 @@ class AppStrings {
   static const lastNameError = 'الاسم الأخير لا يمكن أن يكون فارغا';
   static const addressHint = 'العنوان';
   static const addressError = 'العنوان لا يمكن أن يكون فارغا';
+  static const finishOrder = 'إكمال الطلب';
 }

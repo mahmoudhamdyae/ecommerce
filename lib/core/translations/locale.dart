@@ -115,6 +115,13 @@ class AppLocal extends Translations {
       AppStrings.noCart: 'لا يوجد منتجات فى السلة',
       AppStrings.noOrders: 'لا يوجد طلبات',
       AppStrings.order: 'طلب',
+      AppStrings.firstNameHint: 'الاسم الأول',
+      AppStrings.firstNameError: 'الاسم الأول لا يمكن أن يكون فارغا',
+      AppStrings.lastNameHint: 'الاسم الأخير',
+      AppStrings.lastNameError: 'الاسم الأخير لا يمكن أن يكون فارغا',
+      AppStrings.addressHint: 'العنوان',
+      AppStrings.addressError: 'العنوان لا يمكن أن يكون فارغا',
+      AppStrings.finishOrder: 'إكمال الطلب',
     },
     'en': {
       AppStrings.appName: 'Gado Store',
@@ -226,6 +233,13 @@ class AppLocal extends Translations {
       AppStrings.noCart: 'لا يوجد منتجات فى السلة',
       AppStrings.noOrders: 'لا يوجد طلبات',
       AppStrings.order: 'طلب',
+      AppStrings.firstNameHint: 'الاسم الأول',
+      AppStrings.firstNameError: 'الاسم الأول لا يمكن أن يكون فارغا',
+      AppStrings.lastNameHint: 'الاسم الأخير',
+      AppStrings.lastNameError: 'الاسم الأخير لا يمكن أن يكون فارغا',
+      AppStrings.addressHint: 'العنوان',
+      AppStrings.addressError: 'العنوان لا يمكن أن يكون فارغا',
+      AppStrings.finishOrder: 'إكمال الطلب',
     }
   };
 }

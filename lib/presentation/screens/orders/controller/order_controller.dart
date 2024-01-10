@@ -50,11 +50,11 @@ class OrderController extends GetxController {
     }
   }
 
-  void finishOrder(String firstName, String lastName, String phone, String address) {
+  Future<void> finishOrder(String firstName, String lastName, String phone, String address) async {
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.finishOrder(firstName, lastName, phone, address, '1').then((remoteOrders) {
+      await _repository.finishOrder(firstName, lastName, phone, address, '1').then((remoteOrders) {
         isLoading.value = false;
         error.value = '';
       });
