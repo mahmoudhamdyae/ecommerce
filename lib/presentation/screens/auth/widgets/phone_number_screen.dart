@@ -1,61 +1,46 @@
-import 'package:ecommerce/presentation/screens/auth/register_screen.dart';
+import 'package:ecommerce/presentation/resources/color_manager.dart';
+import 'package:ecommerce/presentation/resources/strings_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/widgets/verify_code_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 import 'package:get/get.dart';
 
-import '../../../domain/repository/repository.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/font_manager.dart';
-import '../../resources/strings_manager.dart';
-import '../../resources/values_manager.dart';
-import '../../widgets/dialogs/error_dialog.dart';
-import '../../widgets/dialogs/loading_dialog.dart';
+import '../../../../domain/repository/repository.dart';
+import '../../../resources/font_manager.dart';
+import '../../../resources/values_manager.dart';
+import '../../../widgets/dialogs/error_dialog.dart';
+import '../../../widgets/dialogs/loading_dialog.dart';
+import 'auth_widget.dart';
 
-class VerifyCodeScreen extends StatefulWidget {
+class PhoneNumberScreen extends StatefulWidget {
 
-  final String phoneNumber;
-  const VerifyCodeScreen({super.key, required this.phoneNumber});
+  const PhoneNumberScreen({super.key});
 
   @override
-  State<VerifyCodeScreen> createState() => _VerifyCodeScreenState();
+  State<PhoneNumberScreen> createState() => _PhoneNumberScreenState();
 }
 
-class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
+class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
 
   final Repository _repository = Get.find<Repository>();
-  String code = '';
 
-  _verifyCode() async {
-    if (code != '') {
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  final TextEditingController phoneController = TextEditingController();
+
+  _confirmPhoneNumber() async {
+    var formData = formState.currentState;
+
+    if (formData!.validate()) {
+      formData.save();
       try {
         showLoading(context);
-        await _repository.enterCode(widget.phoneNumber, code).then((userCredential) {
+        await _repository.confirmPhoneNumber(phoneController.text).then((userCredential) {
           Get.back();
-          Get.to(() => RegisterScreen(phoneNumber: widget.phoneNumber));
+          Get.to(() => VerifyCodeScreen(phoneNumber: phoneController.text));
         });
       } on Exception catch(e) {
         Get.back();
         if (context.mounted) showError(context, e.toString(), () {});
       }
-    }
-  }
-
-  _confirmPhoneNumber() async {
-    try {
-      showLoading(context);
-      await _repository.confirmPhoneNumber(widget.phoneNumber).then((userCredential) {
-        Get.back();
-        Get.showSnackbar(
-          GetSnackBar(
-            message: AppStrings.codeResend.tr,
-            duration: const Duration(seconds: 2),
-          ),
-        );
-      });
-    } on Exception catch(e) {
-      Get.back();
-      if (context.mounted) showError(context, e.toString(), () {});
     }
   }
 
@@ -80,10 +65,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                   child: Row(
                     children: [
                       IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: const Icon(Icons.arrow_back),
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: const Icon(Icons.arrow_back),
                       ),
                       Text(
                         AppStrings.createAccountLabel.tr,
@@ -108,7 +93,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // كود التفعيل
+                        // حساب جديد
                         Padding(
                           padding: const EdgeInsets.only(
                             top: AppPadding.mediumPadding,
@@ -116,21 +101,21 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                             left: AppPadding.smallPadding,
                           ),
                           child: Text(
-                            AppStrings.activationCode.tr,
+                            AppStrings.newAccount.tr,
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeightManager.bold,
                             ),
                           ),
                         ),
-                        // برجاء إدخال الكود المرسل إليك عبر الهاتف المسجل
+                        // يرجى تحديد نوع العضوية
                         Padding(
                           padding: const EdgeInsets.only(
                             right: AppPadding.smallPadding,
                             left: AppPadding.smallPadding,
                           ),
                           child: Text(
-                            AppStrings.activationCodeDesc.tr,
+                            AppStrings.newAccountDesc.tr,
                             style: const TextStyle(
                               color: ColorManager.grey,
                               fontSize: 16,
@@ -138,17 +123,50 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: AppSize.s16,),
-                        PinCodeFields(
-                            fieldBorderStyle: FieldBorderStyle.square,
-                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                            onComplete: (text)  {
-                              debugPrint('text = $text');
-                              code = text;
-                              _verifyCode();
-                            }
+                        Form(
+                          key: formState,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: AppPadding.mediumPadding,
+                                  bottom: AppPadding.smallPadding,
+                                  right: AppPadding.smallPadding,
+                                  left: AppPadding.smallPadding,
+                                ),
+                                child: Text(AppStrings.phoneNo.tr),
+                              ),
+                              TextFormField(
+                                controller: phoneController,
+                                textInputAction: TextInputAction.done,
+                                keyboardType: TextInputType.phone,
+                                validator: (val) {
+                                  if (val.toString().length < 11) {
+                                    return AppStrings.mobileNumberInvalid.tr;
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: AppStrings.phoneNoHint.tr,
+                                  hintStyle: const TextStyle(
+                                    color: ColorManager.grey,
+                                  ),
+                                  border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(AppSize.borderRadius),
+                                    ),
+                                    borderSide: BorderSide(
+                                        width: 1,
+                                        color: ColorManager.grey
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        // Register Button
+                        // Confirm Phone Number Button
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: AppPadding.mediumPadding),
                           child: SizedBox(
@@ -163,12 +181,12 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                                 backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                               ),
                               onPressed: () async {
-                                await _verifyCode();
+                                await _confirmPhoneNumber();
                               },
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
                                 child: Text(
-                                  AppStrings.save.tr,
+                                  AppStrings.confirmPhoneNo.tr,
                                   style: const TextStyle(
                                       fontSize: FontSize.s16
                                   ),
@@ -177,13 +195,16 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                             ),
                           ),
                         ),
+                        const SizedBox(height: AppSize.s16,),
+                        const AuthScreen(),
+                        const SizedBox(height: AppSize.s16,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(AppStrings.notGetCode.tr),
+                            Text(AppStrings.hasAccount.tr),
                             InkWell(
-                                onTap: () async {
-                                  await _confirmPhoneNumber();
+                                onTap: () {
+                                  Get.to(VerifyCodeScreen(phoneNumber: phoneController.text));
                                 },
                                 child: Text(
                                   AppStrings.clickHere.tr,

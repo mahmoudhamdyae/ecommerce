@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/local/app_prefs.dart';
-import '../../../di/di.dart';
-import '../../../domain/repository/repository.dart';
-import '../../main_screen.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/font_manager.dart';
-import '../../resources/strings_manager.dart';
-import '../../resources/values_manager.dart';
-import '../../widgets/dialogs/error_dialog.dart';
-import '../../widgets/dialogs/loading_dialog.dart';
+import '../../../../data/local/app_prefs.dart';
+import '../../../../di/di.dart';
+import '../../../../domain/repository/repository.dart';
+import '../../../main_screen.dart';
+import '../../../resources/color_manager.dart';
+import '../../../resources/font_manager.dart';
+import '../../../resources/strings_manager.dart';
+import '../../../resources/values_manager.dart';
+import '../../../widgets/dialogs/error_dialog.dart';
+import '../../../widgets/dialogs/loading_dialog.dart';
 
 class RegisterScreen extends StatefulWidget {
 

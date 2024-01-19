@@ -12,6 +12,7 @@ import '../data/network_info.dart';
 import '../data/remote/remote_data_source.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
+import '../presentation/screens/auth/controllers/auth_controller.dart';
 import '../presentation/screens/categories/controller/categories_controller.dart';
 import '../presentation/screens/fav/controller/fav_controller.dart';
 import '../presentation/screens/language/controller/language_controller.dart';
@@ -27,6 +28,10 @@ class GetXDi implements Bindings {
     Get.lazyPut<RemoteDataSource>(() => RemoteDataSourceImpl(Get.find<NetworkInfo>(), instance<AppPreferences>()), fenix: true);
     Get.lazyPut<Repository>(() => RepositoryImpl(Get.find<RemoteDataSource>(), instance<AppPreferences>()), fenix: true);
 
+    // Controllers
+    // Get.put<LoginController>(LoginController(Get.find<Repository>()), permanent: true);
+    // Get.put<RegisterController>(RegisterController(Get.find<Repository>()), permanent: true);
+    Get.put<AuthController>(AuthController(Get.find<Repository>()), permanent: true);
     Get.put<AppLocalController>(AppLocalController(instance<AppPreferences>()), permanent: true);
     Get.lazyPut<UserTypeController>(() => UserTypeController(instance<AppPreferences>()), fenix: true);
     Get.lazyPut<LanguageController>(() => LanguageController(), fenix: true);

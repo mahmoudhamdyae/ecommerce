@@ -6,7 +6,7 @@ import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
-import '../../auth/login_screen.dart';
+import '../../auth/widgets/login_screen.dart';
 
 class UserTypeScreen extends StatelessWidget {
 

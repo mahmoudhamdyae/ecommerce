@@ -2,16 +2,17 @@ import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
-import 'package:ecommerce/presentation/screens/auth/phone_number_screen.dart';
+import 'package:ecommerce/presentation/screens/auth/widgets/auth_widget.dart';
+import 'package:ecommerce/presentation/screens/auth/widgets/phone_number_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/local/app_prefs.dart';
-import '../../../di/di.dart';
-import '../../main_screen.dart';
-import '../../resources/values_manager.dart';
-import '../../widgets/dialogs/error_dialog.dart';
-import '../../widgets/dialogs/loading_dialog.dart';
+import '../../../../data/local/app_prefs.dart';
+import '../../../../di/di.dart';
+import '../../../main_screen.dart';
+import '../../../resources/values_manager.dart';
+import '../../../widgets/dialogs/error_dialog.dart';
+import '../../../widgets/dialogs/loading_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -264,12 +265,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               AppStrings.loginAsGuest.tr,
                               style: const TextStyle(
-                                color: ColorManager.black,
+                                color: ColorManager.primary,
                                 fontWeight: FontWeight.w400
                               ),
                             ),
                           ),
                         ),
+                        const SizedBox(height: AppSize.s16,),
+                        const AuthScreen(),
+                        const SizedBox(height: AppSize.s16,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
