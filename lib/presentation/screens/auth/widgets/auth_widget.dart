@@ -18,7 +18,9 @@ class AuthScreen extends StatelessWidget {
           children: [
             IconButton(
                 onPressed: () {
-                  Get.find<AuthController>().loginWithFacebook();
+                  Get.find<AuthController>().loginWithFacebook().then((value) {
+                    Get.offAll(() => const MainScreen());
+                  });
                 },
                 icon: Image.asset(
                   ImageAssets.facebook,
