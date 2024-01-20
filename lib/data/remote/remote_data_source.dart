@@ -9,6 +9,7 @@ import 'package:ecommerce/domain/models/order.dart';
 import 'package:ecommerce/domain/models/order_details.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get_ip_address/get_ip_address.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
@@ -95,11 +96,31 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<void> loginWithFacebook() {
-    _appPreferences.setUserLoginType('facebook');
-    _appPreferences.setUserLoggedIn();
-    // TODO: implement loginWithFacebook
-    throw UnimplementedError();
+  Future<void> loginWithFacebook() async {
+    final LoginResult result = await FacebookAuth.instance.login(
+      permissions: ['public_profile', 'email', 'pages_show_list', 'pages_messaging', 'pages_manage_metadata'],
+    );
+    if (result.status == LoginStatus.success) {
+      // you are logged
+      final userData = await FacebookAuth.instance.getUserData();
+      debugPrint('userData = $userData');
+      String userName = userData['name'];
+      String email = userData['email'];
+      debugPrint('userName = $userName');
+      debugPrint('email = $email');
+
+      // todo send these data to API and get token
+      _appPreferences.setUserLoginType('facebook');
+      _appPreferences.setUserLoggedIn();
+    } else {
+      debugPrint(result.status.toString());
+      debugPrint(result.message);
+      throw Exception(result.message);
+    }
+  }
+
+  void _signOutFromFacebook() async {
+    await FacebookAuth.instance.logOut();
   }
 
   @override
@@ -113,7 +134,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         debugPrint('userName = $userName');
         debugPrint('email = $email');
         // debugPrint('phoneNumber = $phone');
-        // todo send these data to API
+        // todo send these data to API aand get token
         _appPreferences.setUserLoginType('google');
         _appPreferences.setUserLoggedIn();
       });
