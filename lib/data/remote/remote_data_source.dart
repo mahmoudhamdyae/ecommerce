@@ -10,12 +10,16 @@ import 'package:ecommerce/domain/models/order_details.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_ip_address/get_ip_address.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
+import 'dart:io' show Platform;
 
 import '../local/app_prefs.dart';
 import '../../domain/models/profile.dart';
 
 abstract class RemoteDataSource {
+  Future<void> loginWithGoogle();
+  Future<void> loginWithFacebook();
   Future<void> login(String phoneNumber, String password, String kind);
   Future<void> confirmPhoneNumber(String phoneNumber, String kind);
   Future<void> enterCode(String phoneNumber, String code, String kind);
@@ -43,6 +47,19 @@ abstract class RemoteDataSource {
 
   Future<Profile> getProfile(String userToken, String kind);
 }
+
+const List<String> scopes = <String>[
+  'email',
+  'https://www.googleapis.com/auth/contacts.readonly',
+];
+
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  clientId:
+  Platform.isAndroid ? "555289215363-jtjqg8f735au6agda55qaaghmhuid6rj.apps.googleusercontent.com"
+      :
+  "555289215363-28b6purg9v36k8b7rj966c33u17qm585.apps.googleusercontent.com",
+  scopes: scopes,
+);
 
 class RemoteDataSourceImpl implements RemoteDataSource {
 
@@ -75,6 +92,39 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     if (responseData['status'] != 200) {
       throw Exception(responseData['message']);
     }
+  }
+
+  @override
+  Future<void> loginWithFacebook() {
+    _appPreferences.setUserLoginType('facebook');
+    _appPreferences.setUserLoggedIn();
+    // TODO: implement loginWithFacebook
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> loginWithGoogle() async {
+    try {
+      _googleSignIn.onCurrentUserChanged
+          .listen((GoogleSignInAccount? currentUser) async {
+        String userName = currentUser?.displayName ?? '';
+        String email = currentUser?.email ?? '';
+        // String phone = currentUser?.phone ?? '';
+        debugPrint('userName = $userName');
+        debugPrint('email = $email');
+        // debugPrint('phoneNumber = $phone');
+        // todo send these data to API
+        _appPreferences.setUserLoginType('google');
+        _appPreferences.setUserLoggedIn();
+      });
+      await _googleSignIn.signIn();
+    } catch (error) {
+      throw(Exception(error.toString()));
+    }
+  }
+
+  void _signOutFromGoogle() {
+    _googleSignIn.disconnect();
   }
 
   @override

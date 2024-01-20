@@ -1,5 +1,8 @@
+import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/resources/assets_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -15,6 +18,7 @@ class AuthScreen extends StatelessWidget {
           children: [
             IconButton(
                 onPressed: () {
+                  Get.find<AuthController>().loginWithFacebook();
                 },
                 icon: Image.asset(
                   ImageAssets.facebook,
@@ -23,6 +27,9 @@ class AuthScreen extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
+                Get.find<AuthController>().loginWithGoogle().then((value) {
+                  Get.offAll(() => const MainScreen());
+                });
               },
               icon: Image.asset(
                 ImageAssets.google,

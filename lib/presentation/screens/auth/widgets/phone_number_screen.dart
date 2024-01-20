@@ -1,5 +1,6 @@
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/widgets/login_screen.dart';
 import 'package:ecommerce/presentation/screens/auth/widgets/verify_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -204,7 +205,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                             Text(AppStrings.hasAccount.tr),
                             InkWell(
                                 onTap: () {
-                                  Get.to(VerifyCodeScreen(phoneNumber: phoneController.text));
+                                  Get.off(const LoginScreen());
                                 },
                                 child: Text(
                                   AppStrings.clickHere.tr,

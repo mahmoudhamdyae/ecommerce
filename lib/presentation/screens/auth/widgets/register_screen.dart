@@ -50,6 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         showLoading(context);
         await _repository.register(widget.phoneNumber, nameController.text, emailController.text, passController.text, confirmPassController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
+          _appPreferences.setUserLoginType('email');
           Get.offAll(() => const MainScreen());
         });
       } on Exception catch(e) {

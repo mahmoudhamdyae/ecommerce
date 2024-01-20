@@ -4,9 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/color_manager.dart';
-import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
-import 'more_single_item.dart';
 
 class ProfileContainer extends StatelessWidget {
 
@@ -37,7 +35,7 @@ class ProfileContainer extends StatelessWidget {
               ),
               // الإيميل
               Text(
-                  profile.email ?? '',
+                profile.email ?? '',
                 style: const TextStyle(
                   fontSize: FontSize.s16,
                   fontWeight: FontWeight.w400,

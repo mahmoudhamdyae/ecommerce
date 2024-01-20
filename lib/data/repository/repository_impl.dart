@@ -18,6 +18,16 @@ class RepositoryImpl implements Repository {
   RepositoryImpl(this._remoteDataSource, this._appPreferences);
 
   @override
+  Future<void> loginWithFacebook() {
+    return _remoteDataSource.loginWithFacebook();
+  }
+
+  @override
+  Future<void> loginWithGoogle() {
+    return _remoteDataSource.loginWithGoogle();
+  }
+
+  @override
   Future<void> login(String phoneNumber, String password) async {
     await _remoteDataSource.login(phoneNumber, password, _appPreferences.getKind());
   }

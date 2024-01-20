@@ -9,6 +9,8 @@ import '../models/profile.dart';
 abstract class Repository {
 
   // Authentication
+  Future<void> loginWithGoogle();
+  Future<void> loginWithFacebook();
   Future<void> login(String phoneNumber, String password);
   Future<void> confirmPhoneNumber(String phoneNumber);
   Future<void> enterCode(String phoneNumber, String code);

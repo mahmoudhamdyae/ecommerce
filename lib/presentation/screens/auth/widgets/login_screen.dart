@@ -47,6 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
         showLoading(context);
         await _repository.login(phoneController.text, passwordTextController.text).then((userCredential) {
           _appPreferences.setUserLoggedIn();
+          _appPreferences.setUserLoginType('email');
           Get.offAll(const MainScreen());
         });
       } on Exception catch(e) {
@@ -280,7 +281,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(AppStrings.noAccount.tr),
                             InkWell(
                                 onTap: () {
-                                  Get.to(const PhoneNumberScreen());
+                                  Get.off(const PhoneNumberScreen());
                                 },
                                 child: Text(
                                     AppStrings.createAccount.tr,

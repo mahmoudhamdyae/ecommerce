@@ -10,4 +10,12 @@ class AuthController extends GetxController {
   final Repository _repository;
 
   AuthController(this._repository);
+
+  Future<void> loginWithGoogle() async {
+    await _repository.loginWithGoogle();
+  }
+
+  void loginWithFacebook() {
+    _repository.loginWithFacebook();
+  }
 }
