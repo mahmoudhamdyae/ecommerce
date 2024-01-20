@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gado</string>
+    <string name="facebook_app_id">349405991206942</string>
+    <string name="fb_login_protocol_scheme">fb349405991206942</string>
+    <string name="facebook_client_token">5d2450d0e853fdbdaf7af3c7efe6ee3c</string>
+</resources>

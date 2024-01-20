@@ -50,15 +50,14 @@ abstract class RemoteDataSource {
 }
 
 const List<String> scopes = <String>[
-  'email',
-  'https://www.googleapis.com/auth/contacts.readonly',
+  'email'
 ];
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
-  clientId:
-  Platform.isAndroid ? "555289215363-jtjqg8f735au6agda55qaaghmhuid6rj.apps.googleusercontent.com"
-      :
-  "555289215363-28b6purg9v36k8b7rj966c33u17qm585.apps.googleusercontent.com",
+  // clientId:
+  // Platform.isAndroid ? "555289215363-jtjqg8f735au6agda55qaaghmhuid6rj.apps.googleusercontent.com"
+  //     :
+  // "555289215363-28b6purg9v36k8b7rj966c33u17qm585.apps.googleusercontent.com",
   scopes: scopes,
 );
 
@@ -98,7 +97,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<void> loginWithFacebook() async {
     final LoginResult result = await FacebookAuth.instance.login(
-      permissions: ['public_profile', 'email', 'pages_show_list', 'pages_messaging', 'pages_manage_metadata'],
+      permissions: ['public_profile', 'email'],
     );
     if (result.status == LoginStatus.success) {
       // you are logged
