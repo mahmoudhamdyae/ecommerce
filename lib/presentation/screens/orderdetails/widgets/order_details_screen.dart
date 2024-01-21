@@ -1,4 +1,7 @@
+import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/models/order_details.dart';
+import 'package:ecommerce/presentation/screens/categories/widgets/products_grid_view.dart';
+import 'package:ecommerce/presentation/screens/home/widgets/product_item.dart';
 import 'package:ecommerce/presentation/screens/orders/controller/order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +18,16 @@ class OrderDetailsScreen extends StatelessWidget {
         init: Get.find<OrderController>(),
         builder: (OrderController controller) {
           OrderDetails orderDetails = controller.orderDetails.value;
-          return Text(orderDetails.message.toString()  ?? '');
+          return Padding(
+            padding: const EdgeInsets.only(top: 32.0),
+            child: ProductsGridView(products: orderDetails.data!.carts!.map((e) => LatestProducts(
+              id: e.id,
+              priceNew: e.price,
+              oldPrice: e.priceOld,
+              cardImage: e.image,
+              name: e.name
+            )).toList()),
+          );
         },
       ),
     );
