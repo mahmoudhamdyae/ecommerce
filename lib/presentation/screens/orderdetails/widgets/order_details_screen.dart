@@ -1,6 +1,6 @@
 import 'package:ecommerce/domain/models/order_details.dart';
 import 'package:ecommerce/presentation/screens/orders/controller/order_controller.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
@@ -10,13 +10,14 @@ class OrderDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<OrderController>().getOrderDetails(orderId);
-    return GetX<OrderController>(
-      init: Get.find<OrderController>(),
-      builder: (OrderController controller) {
-        OrderDetails orderDetails = controller.orderDetails.value;
-        return Text(orderDetails.test  ?? '');
-      },
+    return Scaffold(
+      body: GetX<OrderController>(
+        init: Get.find<OrderController>(),
+        builder: (OrderController controller) {
+          OrderDetails orderDetails = controller.orderDetails.value;
+          return Text(orderDetails.message.toString()  ?? '');
+        },
+      ),
     );
   }
 }

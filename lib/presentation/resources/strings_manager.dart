@@ -154,4 +154,6 @@ class AppStrings {
   static const addressHint = 'العنوان';
   static const addressError = 'العنوان لا يمكن أن يكون فارغا';
   static const finishOrder = 'إكمال الطلب';
+  static const pay = 'الدفع عند الاستلام';
+  static const visa = 'الدفع بالفيزا';
 }

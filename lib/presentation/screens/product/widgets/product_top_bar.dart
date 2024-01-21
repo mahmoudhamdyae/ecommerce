@@ -72,11 +72,25 @@ class ProductTopBar extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: ColorManager.white,
                   border: Border.all(color: ColorManager.grey)),
-              child: const Padding(
-                padding: EdgeInsets.all(4.0),
-                child: Icon(
-                  Icons.favorite_border,
-                  color: ColorManager.grey,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: GetX<FavController>(
+                  builder: (FavController controller) {
+                    return Icon(
+                      Icons.favorite_border,
+                      color: controller.fav.contains(LatestProducts(
+                          id: product.id,
+                          name: product.name,
+                          rate: product.rate,
+                          oldPrice: product.oldPrice,
+                          cardImage: product.cardImage,
+                          rateNum: product.rateNum,
+                          discount: product.discount,
+                          priceNew: product.priceNew,
+                          fav: product.fav
+                      )) ? ColorManager.red : ColorManager.grey,
+                    );
+                  },
                 ),
               ),
             ),

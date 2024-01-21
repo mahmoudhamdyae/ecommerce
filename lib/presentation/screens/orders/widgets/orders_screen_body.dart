@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/order.dart';
+import '../controller/order_controller.dart';
 
 class OrdersScreenBody extends StatelessWidget {
 
@@ -15,17 +16,19 @@ class OrdersScreenBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(AppPadding.smallPadding),
       child: ListView.builder(
+        itemCount: orders.length,
         itemBuilder: (BuildContext context, int index) {
           Order order = orders[index];
           return InkWell(
             onTap: () {
-              Get.to(() => const OrderDetailsScreen(orderId: '',));
+              Get.find<OrderController>().getOrderDetails(order.orderNum.toString());
+              Get.to(() => OrderDetailsScreen(orderId: order.orderNum.toString()));
             },
             child: Card(
               child: ListTile(
                 leading: Image.network(order.image ?? ''),
                 title: Text(order.status ?? ''),
-                subtitle: Text(order.status ?? ''),
+                subtitle: Text(order.date ?? ''),
               ),
             ),
           );

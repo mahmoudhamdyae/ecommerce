@@ -26,6 +26,7 @@ class LocalDataSource {
   Future<void> logout() async {
     _sharedPreferences.remove(prefsKeyIsUserLoggedIn);
     _sharedPreferences.remove(prefsKeyLoginType);
+    _sharedPreferences.remove(prefsKeyToken);
   }
 
   Future<void> setUserLoginType(String type) async {

@@ -42,6 +42,7 @@ class CartController extends GetxController {
       await _repository.addToCart(productId, count.value.toString()).then((_) {
         isLoading.value = false;
         error.value = '';
+        _getCart();
       });
     } on Exception catch (e) {
       isLoading.value = false;
@@ -59,6 +60,7 @@ class CartController extends GetxController {
         isLoading.value = false;
         error.value = '';
         cart.remove(selectedCart);
+        _getCart();
       });
     } on Exception catch (e) {
       isLoading.value = false;

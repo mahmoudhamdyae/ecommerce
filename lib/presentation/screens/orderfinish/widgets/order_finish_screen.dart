@@ -22,6 +22,7 @@ class _OrderFinishScreenState extends State<OrderFinishScreen> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
+  PayType? _payType = PayType.pay;
 
   void _order() async {
     var formData = formState.currentState;
@@ -32,7 +33,8 @@ class _OrderFinishScreenState extends State<OrderFinishScreen> {
           _firstNameController.text,
           _lastNameController.text,
           _phoneController.text,
-          _addressController.text
+          _addressController.text,
+          _payType!.value
       ).then((_) {
         Get.back();
         Get.back();
@@ -194,6 +196,30 @@ class _OrderFinishScreenState extends State<OrderFinishScreen> {
                           ],
                         ),
                     ),
+                    ListTile(
+                      title: Text(AppStrings.pay.tr),
+                      leading: Radio<PayType>(
+                        value: PayType.pay,
+                        groupValue: _payType,
+                        onChanged: (PayType? value) {
+                          setState(() {
+                            _payType = value;
+                          });
+                        },
+                      ),
+                    ),
+                    ListTile(
+                      title: Text(AppStrings.visa.tr),
+                      leading: Radio<PayType>(
+                        value: PayType.visa,
+                        groupValue: _payType,
+                        onChanged: (PayType? value) {
+                          setState(() {
+                            _payType = value;
+                          });
+                        },
+                      ),
+                    ),
                     Row(
                       children: [
                         Expanded(
@@ -229,4 +255,12 @@ class _OrderFinishScreenState extends State<OrderFinishScreen> {
       ),
     );
   }
+}
+
+enum PayType {
+  visa('1'),
+  pay('2');
+
+  final String value;
+  const PayType(this.value);
 }
