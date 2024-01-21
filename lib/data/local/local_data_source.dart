@@ -8,10 +8,10 @@ const String prefsKeyLang = "PREFS_KEY_LANG";
 const String prefsKeyStoreType = "PREFS_KEY_STORE_TYPE";
 const String prefsKeyKind = "PREFS_KEY_KIND";
 
-class AppPreferences {
-  final SharedPreferences _sharedPreferences;
+class LocalDataSource {
 
-  AppPreferences(this._sharedPreferences);
+  final SharedPreferences _sharedPreferences;
+  LocalDataSource(this._sharedPreferences);
 
   // Authentication
 

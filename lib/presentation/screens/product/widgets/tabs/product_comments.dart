@@ -6,12 +6,12 @@ import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../data/local/app_prefs.dart';
+import '../../../../../data/local/local_data_source.dart';
 import '../../../../../di/di.dart';
 
 class ProductComments extends StatelessWidget {
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
   ProductComments({super.key});
 
   @override

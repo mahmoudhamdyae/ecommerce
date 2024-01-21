@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/app_prefs.dart';
+import '../../../../data/local/local_data_source.dart';
 import '../../../../di/di.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/strings_manager.dart';
 
 class ProductItem extends StatelessWidget {
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
   final LatestProducts product;
   ProductItem({super.key, required this.product});
 

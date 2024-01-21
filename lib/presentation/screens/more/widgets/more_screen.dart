@@ -1,4 +1,4 @@
-import 'package:ecommerce/data/local/app_prefs.dart';
+import 'package:ecommerce/data/local/local_data_source.dart';
 import 'package:ecommerce/di/di.dart';
 import 'package:ecommerce/presentation/screens/more/controller/more_controller.dart';
 import 'package:ecommerce/presentation/screens/more/widgets/more_screen_top_bar.dart';
@@ -11,7 +11,7 @@ import '../../../resources/color_manager.dart';
 
 class MoreScreen extends StatelessWidget {
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
   MoreScreen({super.key});
 
   @override

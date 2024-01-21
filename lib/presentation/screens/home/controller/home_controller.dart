@@ -1,7 +1,7 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/app_prefs.dart';
+import '../../../../data/local/local_data_source.dart';
 import '../../../../domain/repository/repository.dart';
 
 class HomeController extends GetxController {

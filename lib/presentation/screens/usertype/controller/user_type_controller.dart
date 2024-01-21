@@ -1,10 +1,10 @@
-import 'package:ecommerce/data/local/app_prefs.dart';
+import 'package:ecommerce/data/local/local_data_source.dart';
 import 'package:get/get.dart';
 
 class UserTypeController extends GetxController {
 
   final RxBool isUserSelected = true.obs;
-  final AppPreferences _appPreferences;
+  final LocalDataSource _appPreferences;
 
   UserTypeController(this._appPreferences);
 

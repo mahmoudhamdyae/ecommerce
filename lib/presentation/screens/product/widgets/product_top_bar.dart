@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../../../data/local/app_prefs.dart';
+import '../../../../data/local/local_data_source.dart';
 import '../../../../di/di.dart';
 import '../../../../domain/models/product/product.dart';
 import '../../../resources/color_manager.dart';
@@ -15,7 +15,7 @@ import '../../../resources/values_manager.dart';
 
 class ProductTopBar extends StatelessWidget {
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
   final Product product;
   ProductTopBar({super.key, required this.product});
 

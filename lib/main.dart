@@ -4,7 +4,7 @@ import 'package:ecommerce/presentation/screens/usertype/widgets/user_type_screen
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'data/local/app_prefs.dart';
+import 'data/local/local_data_source.dart';
 import 'core/translations/local_controller.dart';
 import 'core/translations/locale.dart';
 import 'di/di.dart';
@@ -18,8 +18,8 @@ void main() async {
 
 class MyApp extends StatelessWidget {
 
-  final AppLocalController _controller = AppLocalController(instance<AppPreferences>());
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final AppLocalController _controller = AppLocalController(instance<LocalDataSource>());
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
   MyApp({super.key});
 
   @override

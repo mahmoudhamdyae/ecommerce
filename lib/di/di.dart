@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../data/local/app_prefs.dart';
+import '../data/local/local_data_source.dart';
 
 final instance = GetIt.instance;
 
@@ -15,5 +15,5 @@ Future<void> initAppModule() async {
 
   // App prefs instance
   instance
-      .registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
+      .registerLazySingleton<LocalDataSource>(() => LocalDataSource(instance()));
 }

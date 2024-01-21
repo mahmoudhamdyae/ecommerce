@@ -8,7 +8,7 @@ import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../data/local/app_prefs.dart';
+import '../data/local/local_data_source.dart';
 import '../di/di.dart';
 
 class MainScreen extends StatefulWidget {
@@ -20,7 +20,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
   late final bool isUserLoggedIn;
 
   int _selectedIndex = 0;

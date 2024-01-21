@@ -8,14 +8,14 @@ import 'package:ecommerce/domain/repository/repository.dart';
 import '../../domain/models/category_product.dart';
 import '../../domain/models/home/home_data.dart';
 import '../../domain/models/order_details.dart';
-import '../local/app_prefs.dart';
+import '../local/local_data_source.dart';
 
 class RepositoryImpl implements Repository {
 
   final RemoteDataSource _remoteDataSource;
-  final AppPreferences _appPreferences;
+  final LocalDataSource _localDataSource;
 
-  RepositoryImpl(this._remoteDataSource, this._appPreferences);
+  RepositoryImpl(this._remoteDataSource, this._localDataSource);
 
   @override
   Future<void> loginWithFacebook() {
@@ -29,27 +29,27 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<void> login(String phoneNumber, String password) async {
-    await _remoteDataSource.login(phoneNumber, password, _appPreferences.getKind());
+    await _remoteDataSource.login(phoneNumber, password, _localDataSource.getKind());
   }
 
   @override
   Future<void> confirmPhoneNumber(String phoneNumber) async {
-    await _remoteDataSource.confirmPhoneNumber(phoneNumber, _appPreferences.getKind());
+    await _remoteDataSource.confirmPhoneNumber(phoneNumber, _localDataSource.getKind());
   }
 
   @override
   Future<void> enterCode(String phoneNumber, String code) async {
-    await _remoteDataSource.enterCode(phoneNumber,code, _appPreferences.getKind());
+    await _remoteDataSource.enterCode(phoneNumber,code, _localDataSource.getKind());
   }
 
   @override
   Future<void> register(String phoneNumber, String name, String email, String password, String conPassword) async {
-    await _remoteDataSource.register(phoneNumber, name, _appPreferences.getKind(), email, password, conPassword);
+    await _remoteDataSource.register(phoneNumber, name, _localDataSource.getKind(), email, password, conPassword);
   }
 
   @override
   Future<HomeData> getHomeData() async {
-    return await _remoteDataSource.getHomeData(_appPreferences.getStoreType(), _appPreferences.getLang());
+    return await _remoteDataSource.getHomeData(_localDataSource.getStoreType(), _localDataSource.getLang());
   }
 
   @override
@@ -59,17 +59,17 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Product> getProductDetails(String id) async {
-    return await _remoteDataSource.getProductDetails(id, _appPreferences.getStoreType());
+    return await _remoteDataSource.getProductDetails(id, _localDataSource.getStoreType());
   }
 
   @override
   Future<List<LatestProducts>> getLatestProducts() async {
-    return await _remoteDataSource.getLatestProducts(_appPreferences.getStoreType());
+    return await _remoteDataSource.getLatestProducts(_localDataSource.getStoreType());
   }
 
   @override
   Future<List<LatestProducts>> getBestSellerProducts() async {
-    return await _remoteDataSource.getBestSellerProducts(_appPreferences.getStoreType());
+    return await _remoteDataSource.getBestSellerProducts(_localDataSource.getStoreType());
   }
 
   @override
@@ -79,23 +79,23 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections) {
-    return _remoteDataSource.filter(rate, minPrice, maxPrice, sections, _appPreferences.getStoreType());
+    return _remoteDataSource.filter(rate, minPrice, maxPrice, sections, _localDataSource.getStoreType());
   }
 
   @override
   Future<List<CategoryProduct>> getCategoryProducts(String categoryId) {
-    return _remoteDataSource.getCategoryProducts(categoryId, _appPreferences.getStoreType());
+    return _remoteDataSource.getCategoryProducts(categoryId, _localDataSource.getStoreType());
   }
 
   @override
   Future<bool> addFav(String productId) {
-    return _remoteDataSource.addFav(_appPreferences.getToken(), productId, _appPreferences.getKind());
+    return _remoteDataSource.addFav(_localDataSource.getToken(), productId, _localDataSource.getKind());
   }
 
   @override
   Future<List<LatestProducts>> getFav() {
-    if (_appPreferences.isUserLoggedIn()) {
-      return _remoteDataSource.getFav(_appPreferences.getToken(), _appPreferences.getKind());
+    if (_localDataSource.isUserLoggedIn()) {
+      return _remoteDataSource.getFav(_localDataSource.getToken(), _localDataSource.getKind());
     } else {
       return Future(() => []);
     }
@@ -103,8 +103,8 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<List<Carts>> getCart() {
-    if (_appPreferences.isUserLoggedIn()) {
-      return _remoteDataSource.getCart(_appPreferences.getToken(), _appPreferences.getKind());
+    if (_localDataSource.isUserLoggedIn()) {
+      return _remoteDataSource.getCart(_localDataSource.getToken(), _localDataSource.getKind());
     } else {
       return Future(() => []);
     }
@@ -112,13 +112,13 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<void> addToCart(String productId, String count) {
-    return _remoteDataSource.addToCart(_appPreferences.getToken(), _appPreferences.getKind(), productId, count);
+    return _remoteDataSource.addToCart(_localDataSource.getToken(), _localDataSource.getKind(), productId, count);
   }
 
   @override
   Future<Profile> getProfile() {
-    if (_appPreferences.isUserLoggedIn()) {
-      return _remoteDataSource.getProfile(_appPreferences.getToken(), _appPreferences.getKind());
+    if (_localDataSource.isUserLoggedIn()) {
+      return _remoteDataSource.getProfile(_localDataSource.getToken(), _localDataSource.getKind());
     } else {
       return Future(() => Profile());
     }
@@ -131,16 +131,16 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<List<Order>> getOrders() {
-    return _remoteDataSource.getOrders(_appPreferences.getToken(), _appPreferences.getKind());
+    return _remoteDataSource.getOrders(_localDataSource.getToken(), _localDataSource.getKind());
   }
 
   @override
   Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType) {
-    return _remoteDataSource.finishOrder(_appPreferences.getToken(), _appPreferences.getKind(), firstName, lastName, phone, address, payType);
+    return _remoteDataSource.finishOrder(_localDataSource.getToken(), _localDataSource.getKind(), firstName, lastName, phone, address, payType);
   }
 
   @override
   Future<OrderDetails> getOrderDetails(String orderId) {
-    return _remoteDataSource.getOrderDetails(_appPreferences.getToken(), _appPreferences.getKind(), orderId);
+    return _remoteDataSource.getOrderDetails(_localDataSource.getToken(), _localDataSource.getKind(), orderId);
   }
 }

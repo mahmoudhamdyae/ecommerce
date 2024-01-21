@@ -15,7 +15,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io' show Platform;
 
-import '../local/app_prefs.dart';
+import '../local/local_data_source.dart';
 import '../../domain/models/profile.dart';
 
 abstract class RemoteDataSource {
@@ -64,7 +64,7 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 class RemoteDataSourceImpl implements RemoteDataSource {
 
   final NetworkInfo _networkInfo;
-  final AppPreferences _appPreferences;
+  final LocalDataSource _appPreferences;
 
   RemoteDataSourceImpl(this._networkInfo, this._appPreferences);
 

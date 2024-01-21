@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/app_prefs.dart';
+import '../../../../data/local/local_data_source.dart';
 import '../../../../di/di.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/strings_manager.dart';
@@ -15,7 +15,7 @@ import 'more_single_item.dart';
 
 class SettingsContainer extends StatelessWidget {
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
   SettingsContainer({super.key});
 
   @override

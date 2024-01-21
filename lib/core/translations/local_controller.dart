@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 
-import '../../data/local/app_prefs.dart';
+import '../../data/local/local_data_source.dart';
 
 class AppLocalController extends GetxController {
 
-  final AppPreferences _appPreferences;
+  final LocalDataSource _appPreferences;
   late Locale initialLang;
 
   AppLocalController(this._appPreferences) {

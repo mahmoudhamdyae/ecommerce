@@ -7,7 +7,7 @@ import 'package:ecommerce/presentation/screens/auth/widgets/phone_number_screen.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/app_prefs.dart';
+import '../../../../data/local/local_data_source.dart';
 import '../../../../di/di.dart';
 import '../../../main_screen.dart';
 import '../../../resources/values_manager.dart';
@@ -24,7 +24,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
   final Repository _repository = Get.find<Repository>();
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();

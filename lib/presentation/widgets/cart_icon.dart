@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 
 import 'package:badges/badges.dart' as badges;
 
-import '../../data/local/app_prefs.dart';
+import '../../data/local/local_data_source.dart';
 import '../../di/di.dart';
 import '../resources/color_manager.dart';
 
 class CartIcon extends StatelessWidget {
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
   final Color color;
 
   CartIcon({super.key, required this.color});

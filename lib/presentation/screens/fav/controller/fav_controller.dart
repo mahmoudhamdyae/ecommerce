@@ -2,7 +2,7 @@ import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/app_prefs.dart';
+import '../../../../data/local/local_data_source.dart';
 
 class FavController extends GetxController {
 
