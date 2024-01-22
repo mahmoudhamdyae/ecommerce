@@ -33,7 +33,7 @@ class ProductScreen extends StatelessWidget {
       child: Scaffold(
         body: Obx(() {
             Product product = productController.product.value;
-            return productController.isLoading.value ? const ProductScreenLoading() : Stack(
+            return productController.status.isLoading ? const ProductScreenLoading() : Stack(
               children: [
                 Container(
                   color: ColorManager.lightGrey,

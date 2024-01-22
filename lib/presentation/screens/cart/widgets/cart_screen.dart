@@ -45,7 +45,7 @@ class CartScreen extends StatelessWidget {
                     child: GetX<CartController>(
                       init: Get.find<CartController>(),
                       builder: (CartController controller) {
-                        return controller.isLoading.value ? const GridShimmer()
+                        return controller.status.isLoading ? const GridShimmer()
                             :
                         controller.cart.isEmpty ? const CartEmptyScreen() : ProductsGridView(
                           products: controller.cart.map((e) {

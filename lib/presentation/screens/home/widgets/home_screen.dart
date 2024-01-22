@@ -26,29 +26,28 @@ class _HomeScreenState extends State<HomeScreen> {
       body: GetX<HomeController>(
         init: Get.find<HomeController>(),
         builder: (controller) {
-          if (controller.isLoading.value) {
+          if (controller.status.isLoading) {
             return const HomeScreenLoading();
-          } else {
-            return Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(top: AppPadding.p50),
-                  color: ColorManager.primary,
-                  child: HomeScreenHeader(isSearching: (bool isSearching ) {
-                    setState(() {
-                      this.isSearching = isSearching;
-                    });
-                  },),
-                ),
-                Flexible(
-                    child: Container(
-                        color: ColorManager.lightGrey,
-                        child: isSearching ? ProductsScreenBody(products: controller.latestProducts,) : const HomeScreenBody()
-                    )
-                ),
-              ],
-            );
           }
+          return Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.only(top: AppPadding.p50),
+                color: ColorManager.primary,
+                child: HomeScreenHeader(isSearching: (bool isSearching ) {
+                  setState(() {
+                    this.isSearching = isSearching;
+                  });
+                },),
+              ),
+              Flexible(
+                  child: Container(
+                      color: ColorManager.lightGrey,
+                      child: isSearching ? ProductsScreenBody(products: controller.latestProducts,) : const HomeScreenBody()
+                  )
+              ),
+            ],
+          );
         },
       ),
     );

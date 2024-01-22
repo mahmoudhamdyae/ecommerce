@@ -5,7 +5,9 @@ import '../../../../domain/models/profile.dart';
 
 class MoreController extends GetxController {
 
-  final RxBool isLoading = true.obs;
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
+
   final Rx<Profile> profile = Profile().obs;
 
   final Repository _repository;
@@ -19,14 +21,14 @@ class MoreController extends GetxController {
   }
 
   void _getProfile() async {
-    isLoading.value = true;
+    _status.value = RxStatus.loading();
     try {
       _repository.getProfile().then((value) {
         profile.value = value;
-        isLoading.value = false;
+        _status.value = RxStatus.success();
       });
-    } on Exception {
-      isLoading.value = false;
+    } on Exception catch(e) {
+      _status.value = RxStatus.error(e.toString());
     }
   }
 }

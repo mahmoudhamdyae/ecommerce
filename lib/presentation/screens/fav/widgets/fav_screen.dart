@@ -41,7 +41,7 @@ class FavScreen extends StatelessWidget {
                 child: GetX<FavController>(
                   init: Get.find<FavController>(),
                     builder: (FavController controller) {
-                    return controller.isLoading.value ? const GridShimmer()
+                    return controller.status.isLoading ? const GridShimmer()
                         :
                     ProductsGridView(products: controller.fav,);
                     },

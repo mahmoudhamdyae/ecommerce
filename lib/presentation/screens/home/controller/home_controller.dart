@@ -1,16 +1,16 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/local_data_source.dart';
 import '../../../../domain/repository/repository.dart';
 
 class HomeController extends GetxController {
 
-  final RxBool isLoading = true.obs;
   final RxBool isProductsLoading = true.obs;
-  final RxString error = ''.obs;
   final Rx<HomeData> homeData = HomeData().obs;
   final RxList<LatestProducts> latestProducts = RxList.empty();
+
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
 
   final Repository _repository;
 
@@ -23,59 +23,53 @@ class HomeController extends GetxController {
   }
 
   void getData() {
-    isLoading.value = true;
-    error.value = '';
+    _status.value = RxStatus.loading();
     try {
       _repository.getHomeData().then((value) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         homeData.value = value;
       });
     } on Exception catch (e) {
-      isLoading.value = false;
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
   }
 
   Future<void> getLatestProducts() async {
     isProductsLoading.value = true;
-    error.value = '';
     try {
       await _repository.getLatestProducts().then((value) {
-        error.value = '';
         isProductsLoading.value = false;
         latestProducts.value = value;
+        _status.value = RxStatus.success();
       });
-    } on Exception catch (e) {
-      error.value = e.toString();
+    } on Exception catch(e) {
+      _status.value = RxStatus.error(e.toString());
       isProductsLoading.value = false;
     }
   }
 
   Future<void> getBestSellerProducts() async {
-    error.value = '';
     isProductsLoading.value = true;
     try {
       await _repository.getBestSellerProducts().then((value) {
-        error.value = '';
         isProductsLoading.value = false;
         latestProducts.value = value;
+        _status.value = RxStatus.success();
       });
     } on Exception catch (e) {
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
       isProductsLoading.value = false;
     }
   }
 
   Future<void> search(String searchString) async {
-    error.value = '';
     try {
       await _repository.search(searchString).then((value) {
-        error.value = '';
+        _status.value = RxStatus.success();
         latestProducts.value = value;
       });
     } on Exception catch (e) {
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
   }
 }

@@ -26,7 +26,9 @@ class MoreScreen extends StatelessWidget {
             _appPreferences.isUserLoggedIn() ? GetX<MoreController>(
               init: Get.find<MoreController>(),
               builder: (MoreController controller) {
-                return controller.isLoading.value ? Container() : ProfileContainer(profile: controller.profile.value);
+                return controller.status.isLoading ? Container()
+                    :
+                ProfileContainer(profile: controller.profile.value);
               },
             ) : Container(),
             SettingsContainer(),

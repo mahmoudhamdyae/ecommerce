@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 
 class CartController extends GetxController {
 
-  final RxBool isLoading = true.obs;
-  final RxString error = ''.obs;
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
   final RxList<Carts> cart = RxList.empty();
   final RxInt count = 1.obs;
 
@@ -24,15 +24,13 @@ class CartController extends GetxController {
   }
 
   void getCart() {
-    isLoading.value = true;
-    error.value = '';
+    _status.value = RxStatus.loading();
     try {
       LocalDataSource localDataSource = instance<LocalDataSource>();
       if (!localDataSource.isUserLoggedIn()) {
         List<String> productsIds = localDataSource.getLocalProducts();
         if (productsIds.isEmpty) {
-          isLoading.value = false;
-          error.value = '';
+          _status.value = RxStatus.success();
           cart.value = [];
         } else {
           String ids = '';
@@ -48,53 +46,44 @@ class CartController extends GetxController {
           _repository.getProductsFromId(ids).then((myResponse) {
             debugPrint('---------- ${myResponse.length}');
             cart.value = myResponse;
-            isLoading.value = false;
-            error.value = '';
+            _status.value = RxStatus.success();
           });
         }
       } else {
         _repository.getCart().then((remoteCart) {
-          isLoading.value = false;
-          error.value = '';
+          _status.value = RxStatus.success();
           cart.value = remoteCart;
         });
       }
     } on Exception catch (e) {
-      isLoading.value = false;
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
   }
 
   addToCart(String productId) async {
-    isLoading.value = true;
-    error.value = '';
+    _status.value = RxStatus.loading();
     try {
       await _repository.addToCart(productId, count.value.toString()).then((_) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         getCart();
       });
     } on Exception catch (e) {
-      isLoading.value = false;
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
   }
 
   removeFromCart(String productId) async {
-    isLoading.value = true;
-    error.value = '';
+    _status.value = RxStatus.loading();
     try {
       Carts selectedCart = cart.firstWhere((element) => element.id.toString() == productId);
       String cartId = selectedCart.cartId.toString();
       await _repository.removeFromCart(cartId).then((_) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         cart.remove(selectedCart);
         getCart();
       });
     } on Exception catch (e) {
-      isLoading.value = false;
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
   }
 

@@ -6,8 +6,9 @@ import '../../../../domain/repository/repository.dart';
 
 class CategoriesController extends GetxController {
 
-  final RxBool isLoading = true.obs;
-  final RxString error = ''.obs;
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
+
   final RxList<CategoryProduct> latestProducts = RxList.empty();
   final RxList<CategoryProduct> searchedProducts = RxList.empty();
   final RxBool isSearching = false.obs;
@@ -17,25 +18,22 @@ class CategoriesController extends GetxController {
   CategoriesController(this._repository);
 
   void getCategoriesProducts(String categoryId) {
-    error.value = '';
+    _status.value = RxStatus.loading();
     try {
       _repository.getCategoryProducts(categoryId).then((value) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         latestProducts.value = value;
       });
     } on Exception catch (e) {
-      isLoading.value = false;
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
   }
 
   void filterProducts(List<String> rate, String minPrice, String maxPrice, List<String> sections) {
-    error.value = '';
+    _status.value = RxStatus.loading();
     try {
       _repository.filter(rate, minPrice, maxPrice, sections).then((value) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         latestProducts.value = value.map((e) => CategoryProduct(
             id : e.id,
             nameAr : e.name,
@@ -48,8 +46,7 @@ class CategoriesController extends GetxController {
         )).toList();
       });
     } on Exception catch (e) {
-      isLoading.value = false;
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
   }
 

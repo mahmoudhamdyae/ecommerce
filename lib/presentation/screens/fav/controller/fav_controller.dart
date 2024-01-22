@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 
 class FavController extends GetxController {
 
-  final RxBool isLoading = true.obs;
-  final RxString error = ''.obs;
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
+
   final RxList<LatestProducts> fav = RxList.empty();
 
   final Repository _repository;
@@ -19,26 +20,23 @@ class FavController extends GetxController {
   }
 
   _getFav() async {
-    isLoading.value = true;
-    error.value = '';
+    _status.value = RxStatus.loading();
     try {
       _repository.getFav().then((remoteFav) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         fav.value = remoteFav;
       });
     } on Exception catch (e) {
-      isLoading.value = false;
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
   }
 
   Future<bool> addFav(LatestProducts product) async {
     bool isAdded = false;
-    error.value = '';
+    _status.value = RxStatus.loading();
     try {
       await _repository.addFav(product.id.toString()).then((value) {
-        error.value = '';
+        _status.value = RxStatus.success();
         isAdded = value;
         if (isAdded) {
           fav.add(product);
@@ -47,7 +45,7 @@ class FavController extends GetxController {
         }
       });
     } on Exception catch (e) {
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
     return isAdded;
   }

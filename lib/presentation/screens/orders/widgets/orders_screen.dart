@@ -40,7 +40,7 @@ class OrdersScreen extends StatelessWidget {
             child: GetX<OrderController>(
               init: Get.find<OrderController>(),
               builder: (OrderController controller) {
-                return controller.isLoading.value ? const GridShimmer()
+                return controller.status.isLoading ? const GridShimmer()
                     :
                 (controller.orders.isEmpty ? const OrdersEmptyScreen()
                     :

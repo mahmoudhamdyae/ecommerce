@@ -5,8 +5,9 @@ import '../../../../domain/repository/repository.dart';
 
 class ProductController extends GetxController {
 
-  final RxBool isLoading = true.obs;
-  final RxString error = ''.obs;
+  final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
+  RxStatus get status => _status.value;
+
   final Rx<Product> product = Product().obs;
 
   final Repository _repository;
@@ -14,17 +15,14 @@ class ProductController extends GetxController {
   ProductController(this._repository);
 
   void getProductDetails(String id) {
-    isLoading.value = true;
-    error.value = '';
+    _status.value = RxStatus.loading();
     try {
       _repository.getProductDetails(id).then((value) {
-        isLoading.value = false;
-        error.value = '';
+        _status.value = RxStatus.success();
         product.value = value;
       });
     } on Exception catch (e) {
-      isLoading.value = false;
-      error.value = e.toString();
+      _status.value = RxStatus.error(e.toString());
     }
   }
 }

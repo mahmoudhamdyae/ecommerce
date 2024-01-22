@@ -233,37 +233,36 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   child: GetX<CategoriesController>(
                     init: Get.find<CategoriesController>(),
                       builder: (controller) {
-                        if (controller.isLoading.value) {
+                        if (controller.status.isLoading) {
                           return const CategoriesLoadingScreen();
-                        } else {
-                          return ProductsGridView(
-                              products: controller.isSearching.value ?
-                              controller.searchedProducts.map((e) {
-                                return LatestProducts(
-                                  id: e.id,
-                                  name: e.nameAr,
-                                  rate: e.rate?.toInt(),
-                                  oldPrice: e.priceDiscount?.toInt(),
-                                  cardImage: e.cardImage,
-                                  rateNum: e.rate?.toInt(),
-                                  discount: e.priceDiscount?.toInt(),
-                                  priceNew: e.price,
-                                );
-                              }).toList()
-                                  : controller.latestProducts.map((e) {
-                                    return LatestProducts(
-                                      id: e.id,
-                                      name: e.nameAr,
-                                      rate: e.rate?.toInt(),
-                                      oldPrice: e.priceDiscount?.toInt() + e.price,
-                                      cardImage: e.cardImage,
-                                      rateNum: e.rate?.toInt(),
-                                      discount: e.priceDiscount?.toInt(),
-                                      priceNew: e.price,
-                                    );
-                                  }).toList()
-                          );
                         }
+                        return ProductsGridView(
+                            products: controller.isSearching.value ?
+                            controller.searchedProducts.map((e) {
+                              return LatestProducts(
+                                id: e.id,
+                                name: e.nameAr,
+                                rate: e.rate?.toInt(),
+                                oldPrice: e.priceDiscount?.toInt(),
+                                cardImage: e.cardImage,
+                                rateNum: e.rate?.toInt(),
+                                discount: e.priceDiscount?.toInt(),
+                                priceNew: e.price,
+                              );
+                            }).toList()
+                                : controller.latestProducts.map((e) {
+                              return LatestProducts(
+                                id: e.id,
+                                name: e.nameAr,
+                                rate: e.rate?.toInt(),
+                                oldPrice: e.priceDiscount?.toInt() + e.price,
+                                cardImage: e.cardImage,
+                                rateNum: e.rate?.toInt(),
+                                discount: e.priceDiscount?.toInt(),
+                                priceNew: e.price,
+                              );
+                            }).toList()
+                        );
                     }
                   ),
               ),
