@@ -4,6 +4,7 @@ import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/screens/auth/widgets/auth_widget.dart';
 import 'package:ecommerce/presentation/screens/auth/widgets/phone_number_screen.dart';
+import 'package:ecommerce/presentation/screens/auth/widgets/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -219,14 +220,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: AppPadding.mediumPadding,
-                                bottom: AppPadding.mediumPadding,
-                                right: AppPadding.smallPadding,
-                                left: AppPadding.smallPadding,
+                            InkWell(
+                              onTap: resetPassword,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: AppPadding.mediumPadding,
+                                  bottom: AppPadding.mediumPadding,
+                                  right: AppPadding.smallPadding,
+                                  left: AppPadding.smallPadding,
+                                ),
+                                child: Text(AppStrings.forgotPassword.tr),
                               ),
-                              child: Text(AppStrings.forgotPassword.tr),
                             ),
                           ],
                         ),
@@ -303,5 +307,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void resetPassword() {
+    Get.to(() => const ResetPasswordScreen());
   }
 }

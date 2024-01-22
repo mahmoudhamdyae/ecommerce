@@ -24,6 +24,7 @@ abstract class RemoteDataSource {
   Future<void> confirmPhoneNumber(String phoneNumber, String kind);
   Future<void> enterCode(String phoneNumber, String code, String kind);
   Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword);
+  Future<void> resetPassword(String phoneNumber);
 
   Future<HomeData> getHomeData(String section, String lang);
   Future<String> getAboutUs();
@@ -204,6 +205,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     _appPreferences.setToken(responseData['data']['api_token']);
     _appPreferences.setUserLoggedIn();
     debugPrint('Register Response api token: ${responseData['data']['api_token']}');
+  }
+
+  @override
+  Future<void> resetPassword(String phoneNumber) async {
   }
 
   @override

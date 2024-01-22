@@ -49,6 +49,11 @@ class RepositoryImpl implements Repository {
   }
 
   @override
+  Future<void> resetPassword(String phoneNumber) async {
+    await _remoteDataSource.resetPassword(phoneNumber);
+  }
+
+  @override
   Future<HomeData> getHomeData() async {
     return await _remoteDataSource.getHomeData(_localDataSource.getStoreType(), _localDataSource.getLang());
   }

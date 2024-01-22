@@ -20,6 +20,10 @@ class AppStrings {
   static const noAccount = 'ليس لديك حساب ؟';
   static const createAccount = 'إنشاء حساب';
   static const wrongPhoneOrPassword = 'رقم الهاتف أو كلمة المرور خاطئة';
+  static const resetTitle = 'إستعادة كلمة المرور';
+  static const resetDesc = 'برجاء ادخال رقم الجوال الخاص بك';
+  static const resetButton = 'استرجاع كلمة المرور';
+  static const resetHead = 'نسيت كلمة المرور';
 
   // Register
   static const createAccountLabel = ' إنشاء حساب';
