@@ -5,12 +5,15 @@ import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../data/local/local_data_source.dart';
+import '../../../../../di/di.dart';
 import '../../../../resources/color_manager.dart';
 
 class ProductScreenBottom extends StatelessWidget {
 
   final Product product;
-  const ProductScreenBottom({super.key, required this.product});
+  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  ProductScreenBottom({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,19 @@ class ProductScreenBottom extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                     ),
                     onPressed: () {
-                      if (controller.isInCart(product)) {
+                      if (!_appPreferences.isUserLoggedIn()) {
+                        if (_appPreferences.isInCart(product.id.toString())) {
+                          _appPreferences.removeFromCart(product.id.toString()).then((value) {
+                            controller.getCart();
+                            Get.back();
+                          });
+                        } else {
+                          _appPreferences.addToCart(product.id.toString()).then((value) {
+                            controller.getCart();
+                            Get.back();
+                          });
+                        }
+                      } else if (controller.isInCart(product)) {
                         controller.removeFromCart(product.id.toString()).then((_) {
                           Get.back();
                         });
@@ -45,8 +60,11 @@ class ProductScreenBottom extends StatelessWidget {
                         });
                       }
                     }, child: Text(
-                      controller.isInCart(product) ? AppStrings.removeFromCart.tr :
-                      '${AppStrings.addToCart.tr}     ${product.priceNew} EGP'
+                    !_appPreferences.isUserLoggedIn() ?
+                    (_appPreferences.isInCart(product.id.toString()) ? AppStrings.removeFromCart.tr : '${AppStrings.addToCart.tr}     ${product.priceNew} EGP' )
+                        :
+                    (controller.isInCart(product) ? AppStrings.removeFromCart.tr :
+                      '${AppStrings.addToCart.tr}     ${product.priceNew} EGP')
                   ),
                   ),
                 ),

@@ -64,4 +64,26 @@ class LocalDataSource {
   String getKind() {
     return _sharedPreferences.getString(prefsKeyKind) ?? 'c';
   }
+
+  Future<void> addToCart(String productId) async {
+    List<String> products = getLocalProducts();
+    products.add(productId);
+    await _sharedPreferences.setStringList('cart', products);
+  }
+
+  Future<void> removeFromCart(String productId) async {
+    List<String> products = getLocalProducts();
+    products.remove(productId);
+    await _sharedPreferences.setStringList('cart', products);
+  }
+
+  bool isInCart(String productId) {
+    List<String> products = getLocalProducts();
+    return products.contains(productId);
+  }
+
+  List<String> getLocalProducts() {
+    List<String> products = _sharedPreferences.getStringList('cart') ?? [];
+    return products;
+  }
 }

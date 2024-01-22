@@ -1,6 +1,9 @@
+import 'package:ecommerce/data/local/local_data_source.dart';
+import 'package:ecommerce/di/di.dart';
 import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -17,18 +20,45 @@ class CartController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _getCart();
+    getCart();
   }
 
-  void _getCart() {
+  void getCart() {
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getCart().then((remoteCart) {
-        isLoading.value = false;
-        error.value = '';
-        cart.value = remoteCart;
-      });
+      LocalDataSource localDataSource = instance<LocalDataSource>();
+      if (!localDataSource.isUserLoggedIn()) {
+        List<String> productsIds = localDataSource.getLocalProducts();
+        if (productsIds.isEmpty) {
+          isLoading.value = false;
+          error.value = '';
+          cart.value = [];
+        } else {
+          String ids = '';
+          int count = 0;
+          for (var element in productsIds) {
+            if (count == 0) {
+              ids += '?id[]=$element';
+            } else {
+              ids += '&id[]=$element';
+            }
+            count++;
+          }
+          _repository.getProductsFromId(ids).then((myResponse) {
+            debugPrint('---------- ${myResponse.length}');
+            cart.value = myResponse;
+            isLoading.value = false;
+            error.value = '';
+          });
+        }
+      } else {
+        _repository.getCart().then((remoteCart) {
+          isLoading.value = false;
+          error.value = '';
+          cart.value = remoteCart;
+        });
+      }
     } on Exception catch (e) {
       isLoading.value = false;
       error.value = e.toString();
@@ -42,7 +72,7 @@ class CartController extends GetxController {
       await _repository.addToCart(productId, count.value.toString()).then((_) {
         isLoading.value = false;
         error.value = '';
-        _getCart();
+        getCart();
       });
     } on Exception catch (e) {
       isLoading.value = false;
@@ -60,7 +90,7 @@ class CartController extends GetxController {
         isLoading.value = false;
         error.value = '';
         cart.remove(selectedCart);
-        _getCart();
+        getCart();
       });
     } on Exception catch (e) {
       isLoading.value = false;

@@ -37,4 +37,5 @@ abstract class Repository {
   Future<OrderDetails> getOrderDetails(String orderId);
 
   Future<Profile> getProfile();
+  Future<List<Carts>> getProductsFromId(String ids);
 }

@@ -1,6 +1,5 @@
 import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:ecommerce/presentation/screens/cart/widgets/cart_screen.dart';
-import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,11 +20,8 @@ class CartIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return badges.Badge(
         onTap: () {
-          if (_appPreferences.isUserLoggedIn()) {
-            Get.to(const CartScreen());
-          } else {
-            showRequireAuthDialog(context);
-          }
+          Get.to(const CartScreen());
+          Get.find<CartController>().getCart();
         },
         badgeStyle: const badges.BadgeStyle(badgeColor: ColorManager.yellow),
         position: badges.BadgePosition.topStart(top: -10, start: -12),

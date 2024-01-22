@@ -97,6 +97,17 @@ class Carts {
     count = json['count'];
   }
 
+  Carts.fromJson2(Map<String, dynamic> json) {
+    name = json['name'];
+    cartId = json['id'];
+    id = json['id'];
+    image = json['card_image'];
+    rate = json['rate'];
+    price = json['price_new'];
+    priceOld = json['old_price'];
+    count = 1;
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;

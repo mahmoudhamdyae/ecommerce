@@ -110,7 +110,7 @@ class Data {
 class LatestProducts {
   int? id;
   String? name;
-  int? rate;
+  dynamic rate;
   int? oldPrice;
   String? cardImage;
   int? rateNum;

@@ -13,8 +13,8 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get_ip_address/get_ip_address.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
-import 'dart:io' show Platform;
 
+import '../../domain/models/my_response.dart';
 import '../local/local_data_source.dart';
 import '../../domain/models/profile.dart';
 
@@ -47,19 +47,14 @@ abstract class RemoteDataSource {
   Future<OrderDetails> getOrderDetails(String userToken, String kind, String orderId);
 
   Future<Profile> getProfile(String userToken, String kind);
+  Future<List<Carts>> getProductsFromId(String ids);
 }
 
 const List<String> scopes = <String>[
   'email'
 ];
 
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  // clientId:
-  // Platform.isAndroid ? "555289215363-jtjqg8f735au6agda55qaaghmhuid6rj.apps.googleusercontent.com"
-  //     :
-  // "555289215363-28b6purg9v36k8b7rj966c33u17qm585.apps.googleusercontent.com",
-  scopes: scopes,
-);
+GoogleSignIn _googleSignIn = GoogleSignIn(scopes: scopes,);
 
 class RemoteDataSourceImpl implements RemoteDataSource {
 
@@ -108,9 +103,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       debugPrint('userName = $userName');
       debugPrint('email = $email');
 
-      // todo send these data to API and get token
-      _appPreferences.setUserLoginType('facebook');
-      _appPreferences.setUserLoggedIn();
+      // await register(null, userName, _appPreferences.getKind(), email, null, null).then((value) {
+        _appPreferences.setUserLoginType('facebook');
+        _appPreferences.setUserLoggedIn();
+      // });
     } else {
       debugPrint(result.status.toString());
       debugPrint(result.message);
@@ -132,10 +128,11 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         // String phone = currentUser?.phone ?? '';
         debugPrint('userName = $userName');
         debugPrint('email = $email');
-        // debugPrint('phoneNumber = $phone');
-        // todo send these data to API aand get token
-        _appPreferences.setUserLoginType('google');
-        _appPreferences.setUserLoggedIn();
+
+        // await register(null, userName, _appPreferences.getKind(), email, null, null).then((value) {
+          _appPreferences.setUserLoginType('google');
+          _appPreferences.setUserLoggedIn();
+        // });
       });
       await _googleSignIn.signIn();
     } catch (error) {
@@ -195,7 +192,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword) async {
+  Future<void> register(String? phoneNumber, String name, String kind, String email, String? password, String? conPassword) async {
+    debugPrint('Register Response: REGISTERING');
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}register-info?kind=$kind&phone=$phoneNumber&name=$name&email=$email&password=$password&con_password=$conPassword";
     final response = await http.post(Uri.parse(url));
@@ -570,6 +568,23 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     _checkResponse(responseData);
     OrderDetails orderDetails = OrderDetails.fromJson(responseData);
     return orderDetails;
+  }
+
+  @override
+  Future<List<Carts>> getProductsFromId(String ids) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}get-product-detials$ids";
+    debugPrint('---------- url $url');
+    final response = await http.get(Uri.parse(url),);
+
+    var responseData = json.decode(response.body);
+    // _checkResponse(responseData);
+    debugPrint('Get Products From Id Response: $responseData');
+    List<Carts> carts = [];
+    for (var singleProduct in responseData['datas']) {
+      carts.add(Carts.fromJson2(singleProduct));
+    }
+    return carts;
   }
 
 }

@@ -143,4 +143,9 @@ class RepositoryImpl implements Repository {
   Future<OrderDetails> getOrderDetails(String orderId) {
     return _remoteDataSource.getOrderDetails(_localDataSource.getToken(), _localDataSource.getKind(), orderId);
   }
+
+  @override
+  Future<List<Carts>> getProductsFromId(String ids) {
+    return _remoteDataSource.getProductsFromId(ids);
+  }
 }
