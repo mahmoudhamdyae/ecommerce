@@ -2,8 +2,6 @@ import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/local_data_source.dart';
-
 class FavController extends GetxController {
 
   final RxBool isLoading = true.obs;
@@ -52,5 +50,16 @@ class FavController extends GetxController {
       error.value = e.toString();
     }
     return isAdded;
+  }
+
+  bool isInFav(int favId) {
+    bool inFav = false;
+    for (LatestProducts favItem in fav) {
+      if (favItem.id == favId) {
+        inFav = true;
+        break;
+      }
+    }
+    return inFav;
   }
 }

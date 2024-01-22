@@ -67,32 +67,26 @@ class ProductTopBar extends StatelessWidget {
                 showRequireAuthDialog(context);
               }
             },
-            child: Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: ColorManager.white,
-                  border: Border.all(color: ColorManager.grey)),
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: GetX<FavController>(
-                  builder: (FavController controller) {
-                    return Icon(
+            child: GetX<FavController>(
+              init: Get.find<FavController>(),
+              builder: (FavController controller) {
+                return Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: ColorManager.white,
+                      border: Border.all(
+                          color: controller.isInFav(product.id ?? -1) ? ColorManager.red : ColorManager.grey
+                      ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Icon(
                       Icons.favorite_border,
-                      color: controller.fav.contains(LatestProducts(
-                          id: product.id,
-                          name: product.name,
-                          rate: product.rate,
-                          oldPrice: product.oldPrice,
-                          cardImage: product.cardImage,
-                          rateNum: product.rateNum,
-                          discount: product.discount,
-                          priceNew: product.priceNew,
-                          fav: product.fav
-                      )) ? ColorManager.red : ColorManager.grey,
-                    );
-                  },
-                ),
-              ),
+                      color: controller.isInFav(product.id ?? -1) ? ColorManager.red : ColorManager.grey,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
           const SizedBox(
