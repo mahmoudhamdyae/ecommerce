@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordTextController = TextEditingController();
+  bool _obscureText = false;
+
+  // Toggles the password show status
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   _resetPassword() async {
     var formData = formState.currentState;
@@ -31,9 +41,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.resetPassword(phoneController.text).then((userCredential) {
+        await _repository.resetPassword(phoneController.text, passwordTextController.text).then((userCredential) {
           Get.back();
-          // Get.to(() => VerifyCodeScreen(phoneNumber: phoneController.text));
+          Get.to(() => const HomeScreen());
         });
       } on Exception catch(e) {
         Get.back();
@@ -161,6 +171,43 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   ),
                                 ),
                               ),
+                              const SizedBox(height: 16.0,),
+                              TextFormField(
+                                controller: passwordTextController,
+                                textInputAction: TextInputAction.done,
+                                validator: (val) {
+                                  if (val == null || val.isEmpty) {
+                                    return AppStrings.passwordInvalid.tr;
+                                  }
+                                  return null;
+                                },
+                                obscureText: _obscureText,
+                                decoration: InputDecoration(
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _obscureText
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: ColorManager.grey,),
+                                    onPressed: () {
+                                      _toggle();
+                                    },
+                                  ),
+                                  hintText: AppStrings.passwordHint.tr,
+                                  hintStyle: const TextStyle(
+                                    color: ColorManager.grey,
+                                  ),
+                                  border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(AppSize.borderRadius,),
+                                    ),
+                                    borderSide: BorderSide(
+                                        width: 1,
+                                        color: ColorManager.grey
+                                    ),
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         ),

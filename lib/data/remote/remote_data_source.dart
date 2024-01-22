@@ -24,7 +24,7 @@ abstract class RemoteDataSource {
   Future<void> confirmPhoneNumber(String phoneNumber, String kind);
   Future<void> enterCode(String phoneNumber, String code, String kind);
   Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword);
-  Future<void> resetPassword(String phoneNumber);
+  Future<void> resetPassword(String phoneNumber, String password);
 
   Future<HomeData> getHomeData(String section, String lang);
   Future<String> getAboutUs();
@@ -208,7 +208,16 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<void> resetPassword(String phoneNumber) async {
+  Future<void> resetPassword(String phoneNumber, String password) async {
+    await _checkNetworkAndServer();
+    // Confirm Phone Number
+    String url = "${AppConstants.baseUrl}forget-password-rest?phone=$phoneNumber&password=$password";
+    final response = await http.post(Uri.parse(url));
+
+    var responseData = json.decode(response.body);
+    debugPrint('Reset Password Response: $responseData');
+    _checkResponse(responseData);
+    await login(phoneNumber, password, _appPreferences.getKind());
   }
 
   @override

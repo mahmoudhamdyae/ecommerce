@@ -49,8 +49,8 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<void> resetPassword(String phoneNumber) async {
-    await _remoteDataSource.resetPassword(phoneNumber);
+  Future<void> resetPassword(String phoneNumber, String password) async {
+    await _remoteDataSource.resetPassword(phoneNumber, password);
   }
 
   @override

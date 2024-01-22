@@ -15,7 +15,7 @@ abstract class Repository {
   Future<void> confirmPhoneNumber(String phoneNumber);
   Future<void> enterCode(String phoneNumber, String code);
   Future<void> register(String phoneNumber, String name, String email, String password, String conPassword);
-  Future<void> resetPassword(String phoneNumber);
+  Future<void> resetPassword(String phoneNumber, String password);
 
   Future<HomeData> getHomeData();
   Future<String> getAboutUs();
