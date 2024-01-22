@@ -10,8 +10,6 @@ class ProductsScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: ProductsGridView(products: products,)
-    );
+    return ProductsGridView(products: products,);
   }
 }
