@@ -4,6 +4,7 @@ import 'package:ecommerce/domain/models/order.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/models/profile.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../domain/models/category_product.dart';
 import '../../domain/models/home/home_data.dart';
@@ -136,6 +137,7 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType) {
+    debugPrint('------------ tokok ${_localDataSource.getToken()}');
     return _remoteDataSource.finishOrder(_localDataSource.getToken(), _localDataSource.getKind(), firstName, lastName, phone, address, payType);
   }
 

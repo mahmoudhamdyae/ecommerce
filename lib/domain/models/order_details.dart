@@ -26,7 +26,7 @@ class Data {
   int? orderId;
   int? orderTotal;
   int? discount;
-  double? grandTotal;
+  dynamic grandTotal;
   String? orderPay;
   int? dilivary;
   String? status;

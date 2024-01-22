@@ -67,36 +67,41 @@ class CartScreen extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  FilledButton(
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all(
-                            const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
-                            )
-                        ),
-                        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+          GetX<CartController>(
+            init: Get.find<CartController>(),
+            builder: (CartController controller) {
+              return controller.cart.isEmpty ? Container() : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      FilledButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                                const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
+                                )
+                            ),
+                            backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+                          ),
+                          onPressed: () {
+                            Get.to(() => const OrderFinishScreen());
+                          },
+                          child: Text(
+                            AppStrings.order.tr,
+                            style: const TextStyle(
+                                fontSize: FontSize.s16
+                            ),
+                          )
                       ),
-                      onPressed: () {
-                        Get.to(() => const OrderFinishScreen());
-                      },
-                      child: Text(
-                        AppStrings.order.tr,
-                        style: const TextStyle(
-                            fontSize: FontSize.s16
-                        ),
-                      )
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           )
         ],
       ),

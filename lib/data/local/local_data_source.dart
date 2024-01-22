@@ -77,6 +77,10 @@ class LocalDataSource {
     await _sharedPreferences.setStringList('cart', products);
   }
 
+  Future<void> removeAllFromCart() async {
+    await _sharedPreferences.setStringList('cart', []);
+  }
+
   bool isInCart(String productId) {
     List<String> products = getLocalProducts();
     return products.contains(productId);

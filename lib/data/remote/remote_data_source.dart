@@ -14,7 +14,6 @@ import 'package:get_ip_address/get_ip_address.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
-import '../../domain/models/my_response.dart';
 import '../local/local_data_source.dart';
 import '../../domain/models/profile.dart';
 
@@ -526,6 +525,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<void> finishOrder(String userToken, String kind, String firstName, String lastName, String phone, String address, String payType) async {
+    debugPrint('----------------- FINISHING');
+    debugPrint('----------------- FINISHING $userToken $kind $firstName last $lastName $phone $address patype $payType');
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}finish-order";
     final response = await http.post(

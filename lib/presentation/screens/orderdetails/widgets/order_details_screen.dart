@@ -1,7 +1,6 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/domain/models/order_details.dart';
 import 'package:ecommerce/presentation/screens/categories/widgets/products_grid_view.dart';
-import 'package:ecommerce/presentation/screens/home/widgets/product_item.dart';
 import 'package:ecommerce/presentation/screens/orders/controller/order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

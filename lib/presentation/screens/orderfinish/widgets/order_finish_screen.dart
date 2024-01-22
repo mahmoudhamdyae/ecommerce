@@ -34,7 +34,7 @@ class _OrderFinishScreenState extends State<OrderFinishScreen> {
           _lastNameController.text,
           _phoneController.text,
           _addressController.text,
-          _payType!.value
+          _payType?.value ?? '1'
       ).then((_) {
         Get.back();
         Get.back();
@@ -258,8 +258,8 @@ class _OrderFinishScreenState extends State<OrderFinishScreen> {
 }
 
 enum PayType {
-  visa('1'),
-  pay('2');
+  visa('2'),
+  pay('1');
 
   final String value;
   const PayType(this.value);

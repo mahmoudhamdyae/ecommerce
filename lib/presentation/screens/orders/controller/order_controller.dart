@@ -28,11 +28,18 @@ class OrderController extends GetxController {
     isLoading.value = true;
     error.value = '';
     try {
-      _repository.getOrders().then((remoteOrders) {
+      LocalDataSource localDataSource = instance<LocalDataSource>();
+      if (!localDataSource.isUserLoggedIn()) {
         isLoading.value = false;
         error.value = '';
-        orders.value = remoteOrders;
-      });
+        orders.value = [];
+      } else {
+        _repository.getOrders().then((remoteOrders) {
+          isLoading.value = false;
+          error.value = '';
+          orders.value = remoteOrders;
+        });
+      }
     } on Exception catch (e) {
       isLoading.value = false;
       error.value = e.toString();
@@ -60,6 +67,7 @@ class OrderController extends GetxController {
     try {
       LocalDataSource localDataSource = instance<LocalDataSource>();
       if (localDataSource.isUserLoggedIn()) {
+        localDataSource.removeAllFromCart();
         await _repository.finishOrder(firstName, lastName, phone, address, payType).then((remoteOrders) {
           isLoading.value = false;
           error.value = '';
