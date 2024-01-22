@@ -1,8 +1,7 @@
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/local_data_source.dart';
-import '../../../../di/di.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
@@ -15,7 +14,7 @@ import 'more_single_item.dart';
 
 class SettingsContainer extends StatelessWidget {
 
-  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
+  final AuthController _controller = Get.find<AuthController>();
   SettingsContainer({super.key});
 
   @override
@@ -69,10 +68,10 @@ class SettingsContainer extends StatelessWidget {
               ),
               // تسجيل دخول أو خروج
               MoreSingleItem(
-                icon: _appPreferences.isUserLoggedIn() ? Icons.logout_outlined : Icons.login,
-                title: _appPreferences.isUserLoggedIn() ? AppStrings.signOut.tr : AppStrings.signIn.tr,
+                icon: _controller.isUserLoggedIn() ? Icons.logout_outlined : Icons.login,
+                title: _controller.isUserLoggedIn() ? AppStrings.signOut.tr : AppStrings.signIn.tr,
                 action: () {
-                  _appPreferences.logout();
+                  _controller.signOut();
                   Get.to(const UserTypeScreen());
                 },
                 isRed: true,

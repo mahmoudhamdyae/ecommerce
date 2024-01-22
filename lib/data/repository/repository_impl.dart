@@ -108,13 +108,19 @@ class RepositoryImpl implements Repository {
   // Authentication
 
   @override
-  Future<void> loginWithFacebook() {
-    return _remoteDataSource.loginWithFacebook();
+  Future<void> loginWithFacebook() async {
+    await _remoteDataSource.loginWithFacebook().then((value) {
+      _localDataSource.setUserLoginType('facebook');
+      _localDataSource.setUserLoggedIn();
+    });
   }
 
   @override
-  Future<void> loginWithGoogle() {
-    return _remoteDataSource.loginWithGoogle();
+  Future<void> loginWithGoogle() async {
+    await _remoteDataSource.loginWithGoogle().then((value) {
+      _localDataSource.setUserLoginType('google');
+      _localDataSource.setUserLoggedIn();
+    });
   }
 
   @override

@@ -11,7 +11,6 @@ import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
-import 'package:get_ip_address/get_ip_address.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
@@ -61,9 +60,9 @@ GoogleSignIn _googleSignIn = GoogleSignIn(scopes: scopes,);
 class RemoteDataSourceImpl implements RemoteDataSource {
 
   final NetworkInfo _networkInfo;
-  final LocalDataSource _appPreferences;
+  final LocalDataSource _localDataSource;
 
-  RemoteDataSourceImpl(this._networkInfo, this._appPreferences);
+  RemoteDataSourceImpl(this._networkInfo, this._localDataSource);
 
   _checkNetworkAndServer() async {
     if (await _networkInfo.isConnected) {
@@ -74,15 +73,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   _checkServer() async {
-    // try {
-    //   final result = await InternetAddress.lookup(AppConstants.baseUrl);
-    //   if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-    //     debugPrint('connected');
-    //   }
-    // } on SocketException catch (_) {
-    //   debugPrint(AppStrings.serverDown.tr);
-    //   throw Exception(AppStrings.serverDown);
-    // }
   }
 
   _checkResponse(dynamic responseData) {
@@ -105,19 +95,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       debugPrint('userName = $userName');
       debugPrint('email = $email');
 
-      // await register(null, userName, _appPreferences.getKind(), email, null, null).then((value) {
-        _appPreferences.setUserLoginType('facebook');
-        _appPreferences.setUserLoggedIn();
-      // });
+      // await register(null, userName, _localDataSource.getKind(), email, null, null);
     } else {
       debugPrint(result.status.toString());
       debugPrint(result.message);
       throw Exception(result.message);
     }
-  }
-
-  void _signOutFromFacebook() async {
-    await FacebookAuth.instance.logOut();
   }
 
   @override
@@ -131,19 +114,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         debugPrint('userName = $userName');
         debugPrint('email = $email');
 
-        // await register(null, userName, _appPreferences.getKind(), email, null, null).then((value) {
-          _appPreferences.setUserLoginType('google');
-          _appPreferences.setUserLoggedIn();
-        // });
+        // await register(null, userName, _localDataSource.getKind(), email, null, null);
       });
       await _googleSignIn.signIn();
     } catch (error) {
       throw(Exception(error.toString()));
     }
-  }
-
-  void _signOutFromGoogle() {
-    _googleSignIn.disconnect();
   }
 
   @override
@@ -155,32 +131,21 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var responseData = json.decode(response.body);
     debugPrint('Login Response: $responseData');
     _checkResponse(responseData);
-    _appPreferences.setToken(responseData['data']['api_token']);
-    _appPreferences.setUserLoggedIn();
+    _localDataSource.setToken(responseData['data']['api_token']);
+    _localDataSource.setUserLoggedIn();
     debugPrint('Register Response api token: ${responseData['data']['api_token']}');
   }
 
   @override
   Future<void> confirmPhoneNumber(String phoneNumber, String kind) async {
     await _checkNetworkAndServer();
-    try {
-      // Initialize Ip Address
-      // var ipAddress = IpAddress(type: RequestType.json);
-      //
-      // // Get the IpAddress based on requestType.
-      // dynamic data = await ipAddress.getIpAddress();
-      // debugPrint(data.toString());
+    // Confirm Phone Number
+    String url = "${AppConstants.baseUrl}register-Verify-Send-Code?active_phone=$phoneNumber&phone=$phoneNumber&kind=$kind";
+    final response = await http.post(Uri.parse(url));
 
-      // Confirm Phone Number
-      String url = "${AppConstants.baseUrl}register-Verify-Send-Code?active_phone=$phoneNumber&phone=$phoneNumber&kind=$kind";
-      final response = await http.post(Uri.parse(url));
-
-      var responseData = json.decode(response.body);
-      debugPrint('Confirm Response: $responseData');
-      _checkResponse(responseData);
-    } on IpAddressException catch (exception) {
-      debugPrint(exception.message);
-    }
+    var responseData = json.decode(response.body);
+    debugPrint('Confirm Response: $responseData');
+    _checkResponse(responseData);
   }
 
   @override
@@ -204,8 +169,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var responseData = json.decode(response.body);
     debugPrint('Register Response: $responseData');
     _checkResponse(responseData);
-    _appPreferences.setToken(responseData['data']['api_token']);
-    _appPreferences.setUserLoggedIn();
+    _localDataSource.setToken(responseData['data']['api_token']);
+    _localDataSource.setUserLoggedIn();
     debugPrint('Register Response api token: ${responseData['data']['api_token']}');
   }
 
@@ -219,7 +184,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var responseData = json.decode(response.body);
     debugPrint('Reset Password Response: $responseData');
     _checkResponse(responseData);
-    await login(phoneNumber, password, _appPreferences.getKind());
+    await login(phoneNumber, password, _localDataSource.getKind());
   }
 
   @override

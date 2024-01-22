@@ -3,9 +3,6 @@ import 'package:ecommerce/domain/models/order_details.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/local_data_source.dart';
-import '../../../../di/di.dart';
-
 class OrderController extends GetxController {
 
   final Rx<RxStatus> _status = Rx<RxStatus>(RxStatus.empty());
@@ -27,8 +24,7 @@ class OrderController extends GetxController {
   void _getOrders() {
     _status.value = RxStatus.loading();
     try {
-      LocalDataSourceImpl localDataSource = instance<LocalDataSourceImpl>();
-      if (!localDataSource.isUserLoggedIn()) {
+      if (!_repository.isUserLoggedIn()) {
         _status.value = RxStatus.success();
         orders.value = [];
       } else {
@@ -57,9 +53,8 @@ class OrderController extends GetxController {
   Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType) async {
     _status.value = RxStatus.loading();
     try {
-      LocalDataSourceImpl localDataSource = instance<LocalDataSourceImpl>();
-      if (localDataSource.isUserLoggedIn()) {
-        localDataSource.removeAllFromCart();
+      if (_repository.isUserLoggedIn()) {
+        _repository.removeAllFromCart();
         await _repository.finishOrder(firstName, lastName, phone, address, payType).then((remoteOrders) {
           _status.value = RxStatus.success();
           _getOrders();

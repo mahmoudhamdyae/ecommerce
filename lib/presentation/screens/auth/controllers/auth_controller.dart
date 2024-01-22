@@ -18,4 +18,12 @@ class AuthController extends GetxController {
   Future<void> loginWithFacebook() async {
     await _repository.loginWithFacebook();
   }
+
+  Future<void> signOut() async {
+    return await _repository.logout();
+  }
+
+  bool isUserLoggedIn() {
+    return _repository.isUserLoggedIn();
+  }
 }

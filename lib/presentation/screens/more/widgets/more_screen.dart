@@ -1,5 +1,4 @@
-import 'package:ecommerce/data/local/local_data_source.dart';
-import 'package:ecommerce/di/di.dart';
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/more/controller/more_controller.dart';
 import 'package:ecommerce/presentation/screens/more/widgets/more_screen_top_bar.dart';
 import 'package:ecommerce/presentation/screens/more/widgets/profile_container.dart';
@@ -11,7 +10,7 @@ import '../../../resources/color_manager.dart';
 
 class MoreScreen extends StatelessWidget {
 
-  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
+  final AuthController _controller = Get.find<AuthController>();
   MoreScreen({super.key});
 
   @override
@@ -23,7 +22,7 @@ class MoreScreen extends StatelessWidget {
         child: Column(
           children: [
             const MoreScreenTopBar(),
-            _appPreferences.isUserLoggedIn() ? GetX<MoreController>(
+            _controller.isUserLoggedIn() ? GetX<MoreController>(
               init: Get.find<MoreController>(),
               builder: (MoreController controller) {
                 return controller.status.isLoading ? Container()

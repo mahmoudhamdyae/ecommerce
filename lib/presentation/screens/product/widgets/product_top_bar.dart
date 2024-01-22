@@ -1,12 +1,11 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/fav/controller/fav_controller.dart';
 import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../../../data/local/local_data_source.dart';
-import '../../../../di/di.dart';
 import '../../../../domain/models/product/product.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
@@ -15,7 +14,7 @@ import '../../../resources/values_manager.dart';
 
 class ProductTopBar extends StatelessWidget {
 
-  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
+  final AuthController _controller = Get.find<AuthController>();
   final Product product;
   ProductTopBar({super.key, required this.product});
 
@@ -44,7 +43,7 @@ class ProductTopBar extends StatelessWidget {
           // Fav Button
           InkWell(
             onTap: () {
-              if (_appPreferences.isUserLoggedIn()) {
+              if (_controller.isUserLoggedIn()) {
                 Get.find<FavController>().addFav(LatestProducts(
                     id: product.id,
                     name: product.name,

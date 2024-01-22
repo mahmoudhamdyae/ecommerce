@@ -1,6 +1,8 @@
 import 'package:ecommerce/domain/models/product/product.dart';
+import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +14,7 @@ import '../../../../resources/color_manager.dart';
 class ProductScreenBottom extends StatelessWidget {
 
   final Product product;
-  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
+  final Repository _repository = Get.find<Repository>();
   ProductScreenBottom({super.key, required this.product});
 
   @override
@@ -38,14 +40,14 @@ class ProductScreenBottom extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                     ),
                     onPressed: () {
-                      if (!_appPreferences.isUserLoggedIn()) {
-                        if (_appPreferences.isInCart(product.id.toString())) {
-                          _appPreferences.removeFromCart(product.id.toString()).then((value) {
+                      if (!_repository.isUserLoggedIn()) {
+                        if (_repository.isInCart(product.id.toString())) {
+                          _repository.removeFromCartLocal(product.id.toString()).then((value) {
                             controller.getCart();
                             Get.back();
                           });
                         } else {
-                          _appPreferences.addToCart(product.id.toString()).then((value) {
+                          _repository.addToCartLocal(product.id.toString()).then((value) {
                             controller.getCart();
                             Get.back();
                           });
@@ -60,8 +62,8 @@ class ProductScreenBottom extends StatelessWidget {
                         });
                       }
                     }, child: Text(
-                    !_appPreferences.isUserLoggedIn() ?
-                    (_appPreferences.isInCart(product.id.toString()) ? AppStrings.removeFromCart.tr : '${AppStrings.addToCart.tr}     ${product.priceNew} EGP' )
+                    !_repository.isUserLoggedIn() ?
+                    (_repository.isInCart(product.id.toString()) ? AppStrings.removeFromCart.tr : '${AppStrings.addToCart.tr}     ${product.priceNew} EGP' )
                         :
                     (controller.isInCart(product) ? AppStrings.removeFromCart.tr :
                       '${AppStrings.addToCart.tr}     ${product.priceNew} EGP')

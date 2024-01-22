@@ -1,5 +1,6 @@
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/fav/widgets/fav_screen.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
 import 'package:ecommerce/presentation/screens/more/widgets/more_screen.dart';
@@ -7,9 +8,6 @@ import 'package:ecommerce/presentation/screens/orders/widgets/orders_screen.dart
 import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../data/local/local_data_source.dart';
-import '../di/di.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,7 +18,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
+  final AuthController _controller = Get.find<AuthController>();
   late final bool isUserLoggedIn;
 
   int _selectedIndex = 0;
@@ -50,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    isUserLoggedIn = _appPreferences.isUserLoggedIn();
+    isUserLoggedIn = _controller.isUserLoggedIn();
   }
 
   @override

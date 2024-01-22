@@ -2,16 +2,14 @@ import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../data/local/local_data_source.dart';
-import '../../../../../di/di.dart';
-
 class ProductComments extends StatelessWidget {
 
-  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
+  final AuthController _controller = Get.find<AuthController>();
   ProductComments({super.key});
 
   @override
@@ -22,7 +20,7 @@ class ProductComments extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
           onTap: () {
-            if (_appPreferences.isUserLoggedIn()) {
+            if (_controller.isUserLoggedIn()) {
               //
             } else {
               showRequireAuthDialog(context);

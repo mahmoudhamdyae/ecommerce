@@ -1,5 +1,6 @@
 import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/resources/theme_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/usertype/widgets/user_type_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,8 +20,8 @@ void main() async {
 
 class MyApp extends StatelessWidget {
 
-  final AppLocalController _controller = Get.find<AppLocalController>();
-  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
+  final AppLocalController _localController = Get.find<AppLocalController>();
+  final AuthController _authController = Get.find<AuthController>();
   MyApp({super.key});
 
   @override
@@ -28,9 +29,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: getApplicationTheme(),
       debugShowCheckedModeBanner: false,
-      locale: _controller.initialLang,
+      locale: _localController.initialLang,
       translations: AppLocal(),
-      home: _appPreferences.isUserLoggedIn() ? const MainScreen() : const UserTypeScreen(),
+      home: _authController.isUserLoggedIn() ? const MainScreen() : const UserTypeScreen(),
       initialBinding: GetXDi(),
     );
   }

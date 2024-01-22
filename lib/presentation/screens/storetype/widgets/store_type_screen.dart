@@ -1,5 +1,4 @@
-import 'package:ecommerce/data/local/local_data_source.dart';
-import 'package:ecommerce/di/di.dart';
+import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/resources/assets_manager.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
@@ -12,7 +11,7 @@ import 'package:get/get.dart';
 
 class StoreTypeScreen extends StatelessWidget {
 
-  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
+  final Repository _repository = Get.find<Repository>();
   StoreTypeScreen({super.key});
 
   @override
@@ -45,7 +44,7 @@ class StoreTypeScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 debugPrint('العدد و الأدوات اليدوية Clicked');
-                _appPreferences.setStoreType('2');
+                _repository.setStoreType('2');
                 Get.offAll(() => const MainScreen());
                 Get.find<HomeController>().getData();
               },
@@ -90,7 +89,7 @@ class StoreTypeScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 debugPrint('متجر التكييفات Clicked');
-                _appPreferences.setStoreType('1');
+                _repository.setStoreType('1');
                 Get.offAll(() => const MainScreen());
                 Get.find<HomeController>().getData();
               },

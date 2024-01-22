@@ -1,5 +1,3 @@
-import 'package:ecommerce/data/local/local_data_source.dart';
-import 'package:ecommerce/di/di.dart';
 import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
@@ -26,9 +24,8 @@ class CartController extends GetxController {
   void getCart() {
     _status.value = RxStatus.loading();
     try {
-      LocalDataSourceImpl localDataSource = instance<LocalDataSourceImpl>();
-      if (!localDataSource.isUserLoggedIn()) {
-        List<String> productsIds = localDataSource.getLocalProducts();
+      if (!_repository.isUserLoggedIn()) {
+        List<String> productsIds = _repository.getLocalProducts();
         if (productsIds.isEmpty) {
           _status.value = RxStatus.success();
           cart.value = [];
