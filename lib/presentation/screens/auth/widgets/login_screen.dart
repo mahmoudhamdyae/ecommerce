@@ -25,7 +25,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   final Repository _repository = Get.find<Repository>();
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();

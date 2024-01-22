@@ -16,7 +16,7 @@ import '../../../resources/strings_manager.dart';
 
 class ProductItem extends StatelessWidget {
 
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   final LatestProducts product;
   ProductItem({super.key, required this.product});
 

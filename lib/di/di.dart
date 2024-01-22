@@ -15,5 +15,5 @@ Future<void> initAppModule() async {
 
   // App prefs instance
   instance
-      .registerLazySingleton<LocalDataSource>(() => LocalDataSource(instance()));
+      .registerLazySingleton<LocalDataSourceImpl>(() => LocalDataSourceImpl(instance()));
 }

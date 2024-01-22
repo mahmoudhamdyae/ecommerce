@@ -1,6 +1,4 @@
-import 'package:ecommerce/data/local/local_data_source.dart';
 import 'package:ecommerce/core/translations/local_controller.dart';
-import 'package:ecommerce/di/di.dart';
 import 'package:ecommerce/presentation/resources/assets_manager.dart';
 import 'package:ecommerce/presentation/screens/language/widgets/language_item.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +12,7 @@ import '../controller/language_controller.dart';
 
 class LanguageScreen extends StatelessWidget {
 
-  final AppLocalController _controller = Get.put(AppLocalController(instance<LocalDataSource>()), permanent: true);
+  final AppLocalController _controller = Get.find<AppLocalController>();
   LanguageScreen({super.key});
 
   @override

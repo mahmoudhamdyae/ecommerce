@@ -11,7 +11,7 @@ import '../../../resources/color_manager.dart';
 
 class MoreScreen extends StatelessWidget {
 
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   MoreScreen({super.key});
 
   @override

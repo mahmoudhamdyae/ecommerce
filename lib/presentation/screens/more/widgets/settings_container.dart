@@ -15,7 +15,7 @@ import 'more_single_item.dart';
 
 class SettingsContainer extends StatelessWidget {
 
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   SettingsContainer({super.key});
 
   @override

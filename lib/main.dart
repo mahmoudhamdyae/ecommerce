@@ -13,13 +13,14 @@ import 'di/get_x_di.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initAppModule();
+  await GetXDi().dependencies();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
 
-  final AppLocalController _controller = AppLocalController(instance<LocalDataSource>());
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final AppLocalController _controller = Get.find<AppLocalController>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   MyApp({super.key});
 
   @override

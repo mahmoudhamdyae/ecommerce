@@ -20,7 +20,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   late final bool isUserLoggedIn;
 
   int _selectedIndex = 0;

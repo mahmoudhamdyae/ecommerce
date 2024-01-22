@@ -1,15 +1,15 @@
-import 'package:ecommerce/data/local/local_data_source.dart';
+import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
 
 class UserTypeController extends GetxController {
 
   final RxBool isUserSelected = true.obs;
-  final LocalDataSource _appPreferences;
+  final Repository _repository;
 
-  UserTypeController(this._appPreferences);
+  UserTypeController(this._repository);
 
   setUserSelected(bool isUserSelected) {
     this.isUserSelected.value = isUserSelected;
-    _appPreferences.setKind(isUserSelected ? 'c' : 'd');
+    _repository.setKind(isUserSelected ? 'c' : 'd');
   }
 }

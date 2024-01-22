@@ -26,7 +26,7 @@ class CartController extends GetxController {
   void getCart() {
     _status.value = RxStatus.loading();
     try {
-      LocalDataSource localDataSource = instance<LocalDataSource>();
+      LocalDataSourceImpl localDataSource = instance<LocalDataSourceImpl>();
       if (!localDataSource.isUserLoggedIn()) {
         List<String> productsIds = localDataSource.getLocalProducts();
         if (productsIds.isEmpty) {

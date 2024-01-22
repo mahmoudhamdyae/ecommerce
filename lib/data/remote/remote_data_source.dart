@@ -10,10 +10,12 @@ import 'package:ecommerce/domain/models/order_details.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:get/get.dart';
 import 'package:get_ip_address/get_ip_address.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
+import '../../presentation/resources/strings_manager.dart';
 import '../local/local_data_source.dart';
 import '../../domain/models/profile.dart';
 
@@ -67,7 +69,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     if (await _networkInfo.isConnected) {
       await _checkServer();
     } else {
-      // throw Exception(AppStrings.noInternetError.tr);
+      throw Exception(AppStrings.noInternetError.tr);
     }
   }
 

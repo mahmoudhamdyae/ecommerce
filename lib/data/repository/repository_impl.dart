@@ -18,6 +18,95 @@ class RepositoryImpl implements Repository {
 
   RepositoryImpl(this._remoteDataSource, this._localDataSource);
 
+  // Local Data Source
+
+  @override
+  Future<void> addToCartLocal(String productId) async {
+    return await _localDataSource.addToCart(productId);
+  }
+
+  @override
+  String getKind() {
+    return _localDataSource.getKind();
+  }
+
+  @override
+  String getLang() {
+    return _localDataSource.getLang();
+  }
+
+  @override
+  List<String> getLocalProducts() {
+    return _localDataSource.getLocalProducts();
+  }
+
+  @override
+  String getStoreType() {
+    return _localDataSource.getStoreType();
+  }
+
+  @override
+  String getToken() {
+    return _localDataSource.getToken();
+  }
+
+  @override
+  bool isInCart(String productId) {
+    return _localDataSource.isInCart(productId);
+  }
+
+  @override
+  bool isUserLoggedIn() {
+    return _localDataSource.isUserLoggedIn();
+  }
+
+  @override
+  Future<void> logout() async {
+    return await _localDataSource.logout();
+  }
+
+  @override
+  Future<void> removeAllFromCart() async {
+    return await _localDataSource.removeAllFromCart();
+  }
+
+  @override
+  Future<void> removeFromCartLocal(String productId) async {
+    return await _localDataSource.removeFromCart(productId);
+  }
+
+  @override
+  Future<void> setKind(String kind) async {
+    return await _localDataSource.setKind(kind);
+  }
+
+  @override
+  Future<void> setLanguage(String language) async {
+    return await _localDataSource.setLanguage(language);
+  }
+
+  @override
+  Future<void> setStoreType(String storeType) async {
+    return await _localDataSource.setStoreType(storeType);
+  }
+
+  @override
+  Future<void> setToken(String token) async {
+    return await _localDataSource.setToken(token);
+  }
+
+  @override
+  Future<void> setUserLoggedIn() async {
+    return await _localDataSource.setUserLoggedIn();
+  }
+
+  @override
+  Future<void> setUserLoginType(String type) async {
+    return await _localDataSource.setUserLoginType(type);
+  }
+
+  // Authentication
+
   @override
   Future<void> loginWithFacebook() {
     return _remoteDataSource.loginWithFacebook();
@@ -52,6 +141,8 @@ class RepositoryImpl implements Repository {
   Future<void> resetPassword(String phoneNumber, String password) async {
     await _remoteDataSource.resetPassword(phoneNumber, password);
   }
+
+  // Remote Data Source
 
   @override
   Future<HomeData> getHomeData() async {

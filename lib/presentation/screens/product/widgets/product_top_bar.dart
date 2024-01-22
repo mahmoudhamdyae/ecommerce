@@ -15,7 +15,7 @@ import '../../../resources/values_manager.dart';
 
 class ProductTopBar extends StatelessWidget {
 
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   final Product product;
   ProductTopBar({super.key, required this.product});
 

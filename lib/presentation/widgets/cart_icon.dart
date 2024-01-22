@@ -11,7 +11,7 @@ import '../resources/color_manager.dart';
 
 class CartIcon extends StatelessWidget {
 
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   final Color color;
 
   CartIcon({super.key, required this.color});

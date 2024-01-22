@@ -12,7 +12,7 @@ import '../../../../resources/color_manager.dart';
 class ProductScreenBottom extends StatelessWidget {
 
   final Product product;
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   ProductScreenBottom({super.key, required this.product});
 
   @override

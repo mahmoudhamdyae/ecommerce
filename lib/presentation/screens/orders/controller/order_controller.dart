@@ -27,7 +27,7 @@ class OrderController extends GetxController {
   void _getOrders() {
     _status.value = RxStatus.loading();
     try {
-      LocalDataSource localDataSource = instance<LocalDataSource>();
+      LocalDataSourceImpl localDataSource = instance<LocalDataSourceImpl>();
       if (!localDataSource.isUserLoggedIn()) {
         _status.value = RxStatus.success();
         orders.value = [];
@@ -57,7 +57,7 @@ class OrderController extends GetxController {
   Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType) async {
     _status.value = RxStatus.loading();
     try {
-      LocalDataSource localDataSource = instance<LocalDataSource>();
+      LocalDataSourceImpl localDataSource = instance<LocalDataSourceImpl>();
       if (localDataSource.isUserLoggedIn()) {
         localDataSource.removeAllFromCart();
         await _repository.finishOrder(firstName, lastName, phone, address, payType).then((remoteOrders) {

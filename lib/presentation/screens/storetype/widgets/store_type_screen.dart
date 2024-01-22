@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 
 class StoreTypeScreen extends StatelessWidget {
 
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   StoreTypeScreen({super.key});
 
   @override

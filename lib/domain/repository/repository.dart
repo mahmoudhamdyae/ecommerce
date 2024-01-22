@@ -8,6 +8,25 @@ import '../models/profile.dart';
 
 abstract class Repository {
 
+  // Local Data Source
+  Future<void> setUserLoggedIn();
+  bool isUserLoggedIn();
+  Future<void> logout();
+  Future<void> setUserLoginType(String type);
+  Future<void> setToken(String token);
+  String getToken();
+  Future<void> setLanguage(String language);
+  String getLang();
+  Future<void> setStoreType(String storeType);
+  String getStoreType();
+  Future<void> setKind(String kind);
+  String getKind();
+  Future<void> addToCartLocal(String productId);
+  Future<void> removeFromCartLocal(String productId);
+  Future<void> removeAllFromCart();
+  bool isInCart(String productId);
+  List<String> getLocalProducts();
+
   // Authentication
   Future<void> loginWithGoogle();
   Future<void> loginWithFacebook();
@@ -17,6 +36,7 @@ abstract class Repository {
   Future<void> register(String phoneNumber, String name, String email, String password, String conPassword);
   Future<void> resetPassword(String phoneNumber, String password);
 
+  // Remote Data Source
   Future<HomeData> getHomeData();
   Future<String> getAboutUs();
   Future<Product> getProductDetails(String id);

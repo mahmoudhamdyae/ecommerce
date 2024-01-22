@@ -11,7 +11,7 @@ import '../../../../../di/di.dart';
 
 class ProductComments extends StatelessWidget {
 
-  final LocalDataSource _appPreferences = instance<LocalDataSource>();
+  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
   ProductComments({super.key});
 
   @override
