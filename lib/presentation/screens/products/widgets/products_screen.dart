@@ -30,12 +30,22 @@ class ProductsScreen extends StatelessWidget {
                   bottom: AppPadding.smallPadding,
                   right: AppPadding.smallPadding,
               ),
-              child: Text(
-                appBarName,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeightManager.medium,
-                ),
+              child: Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(Icons.arrow_back),
+                  ),
+                  Text(
+                    appBarName,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeightManager.medium,
+                    ),
+                  ),
+                ],
               ),
             ),
             Expanded(

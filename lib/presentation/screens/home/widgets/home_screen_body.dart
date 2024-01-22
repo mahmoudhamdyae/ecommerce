@@ -64,6 +64,7 @@ class HomeScreenBody extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: () {
+                        Get.to(() => const ProductsScreen(appBarName: AppStrings.bestSeller));
                       },
                       icon: const Icon(
                         Icons.arrow_forward_ios,
@@ -114,6 +115,7 @@ class HomeScreenBody extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: () {
+                        Get.to(() => const ProductsScreen(appBarName: AppStrings.recentlyAdded));
                       },
                       icon: const Icon(
                         Icons.arrow_forward_ios,
