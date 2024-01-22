@@ -1,7 +1,11 @@
 import 'package:ecommerce/domain/models/order.dart';
 import 'package:ecommerce/domain/models/order_details.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../../../../data/local/local_data_source.dart';
+import '../../../../di/di.dart';
 
 class OrderController extends GetxController {
 
@@ -54,10 +58,26 @@ class OrderController extends GetxController {
     isLoading.value = true;
     error.value = '';
     try {
-      await _repository.finishOrder(firstName, lastName, phone, address, payType).then((remoteOrders) {
-        isLoading.value = false;
-        error.value = '';
-      });
+      LocalDataSource localDataSource = instance<LocalDataSource>();
+      if (localDataSource.isUserLoggedIn()) {
+        await _repository.finishOrder(firstName, lastName, phone, address, payType).then((remoteOrders) {
+          isLoading.value = false;
+          error.value = '';
+        }); 
+      } else {
+        try {
+          await _repository.confirmPhoneNumber(phone).then((value) async => {
+            await _repository.register(phone, '$firstName $lastName', '', phone, phone).then((value) {
+              finishOrder(firstName, lastName, phone, address, payType);
+            })
+          });
+        } on Exception catch (e) {
+          debugPrint('---------- error --- $e');
+          await _repository.login(phone, phone).then((value) {
+            finishOrder(firstName, lastName, phone, address, payType);
+          });
+        }
+      }
     } on Exception catch (e) {
       isLoading.value = false;
       error.value = e.toString();

@@ -154,6 +154,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     debugPrint('Login Response: $responseData');
     _checkResponse(responseData);
     _appPreferences.setToken(responseData['data']['api_token']);
+    _appPreferences.setUserLoggedIn();
     debugPrint('Register Response api token: ${responseData['data']['api_token']}');
   }
 
@@ -202,6 +203,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     debugPrint('Register Response: $responseData');
     _checkResponse(responseData);
     _appPreferences.setToken(responseData['data']['api_token']);
+    _appPreferences.setUserLoggedIn();
     debugPrint('Register Response api token: ${responseData['data']['api_token']}');
   }
 

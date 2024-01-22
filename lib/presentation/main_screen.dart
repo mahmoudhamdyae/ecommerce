@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   void _onItemTapped(int index) {
-    if (index == 0 || index == 3) {
+    if (index == 0 || index == 3 || index == 1) {
       setState(() {
         _selectedIndex = index;
       });
