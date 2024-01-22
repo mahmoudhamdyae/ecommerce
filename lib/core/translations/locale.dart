@@ -124,6 +124,7 @@ class AppLocal extends Translations {
       AppStrings.finishOrder: 'إكمال الطلب',
       AppStrings.pay: 'الدفع عند الاستلام',
       AppStrings.visa: 'الدفع بالفيزا',
+      AppStrings.orderDetails: 'تفاصيل الطلب',
     },
     'en': {
       AppStrings.appName: 'Gado Store',
@@ -244,6 +245,7 @@ class AppLocal extends Translations {
       AppStrings.finishOrder: 'إكمال الطلب',
       AppStrings.pay: 'الدفع عند الاستلام',
       AppStrings.visa: 'الدفع بالفيزا',
+      AppStrings.orderDetails: 'تفاصيل الطلب',
     }
   };
 }

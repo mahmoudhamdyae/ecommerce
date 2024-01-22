@@ -71,6 +71,7 @@ class OrderController extends GetxController {
         await _repository.finishOrder(firstName, lastName, phone, address, payType).then((remoteOrders) {
           isLoading.value = false;
           error.value = '';
+          _getOrders();
         }); 
       } else {
         try {

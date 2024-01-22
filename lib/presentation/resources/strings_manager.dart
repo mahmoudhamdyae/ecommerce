@@ -156,4 +156,5 @@ class AppStrings {
   static const finishOrder = 'إكمال الطلب';
   static const pay = 'الدفع عند الاستلام';
   static const visa = 'الدفع بالفيزا';
+  static const orderDetails = 'تفاصيل الطلب';
 }
