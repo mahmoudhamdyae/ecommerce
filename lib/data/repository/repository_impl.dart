@@ -26,11 +26,6 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  String getKind() {
-    return _localDataSource.getKind();
-  }
-
-  @override
   String getLang() {
     return _localDataSource.getLang();
   }
@@ -43,11 +38,6 @@ class RepositoryImpl implements Repository {
   @override
   String getStoreType() {
     return _localDataSource.getStoreType();
-  }
-
-  @override
-  String getToken() {
-    return _localDataSource.getToken();
   }
 
   @override

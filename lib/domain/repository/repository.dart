@@ -14,13 +14,11 @@ abstract class Repository {
   Future<void> logout();
   Future<void> setUserLoginType(String type);
   Future<void> setToken(String token);
-  String getToken();
   Future<void> setLanguage(String language);
   String getLang();
   Future<void> setStoreType(String storeType);
   String getStoreType();
   Future<void> setKind(String kind);
-  String getKind();
   Future<void> addToCartLocal(String productId);
   Future<void> removeFromCartLocal(String productId);
   Future<void> removeAllFromCart();
