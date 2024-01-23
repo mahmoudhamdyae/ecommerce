@@ -95,12 +95,25 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       debugPrint('userName = $userName');
       debugPrint('email = $email');
 
-      // await register(null, userName, _localDataSource.getKind(), email, null, null);
+      _socialLogin(email, userName).then((value) {
+        _localDataSource.setToken(value);
+      });
     } else {
       debugPrint(result.status.toString());
       debugPrint(result.message);
       throw Exception(result.message);
     }
+  }
+
+  Future<String> _socialLogin(String email, String userName) async {
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}social-media-auth?email=$email&name=$userName";
+    final response = await http.post(Uri.parse(url));
+
+    var responseData = json.decode(response.body);
+    debugPrint('Social Login Response: $responseData');
+    debugPrint('Social Login Token Response: ${responseData['token']}');
+    return responseData['token'];
   }
 
   @override
@@ -110,11 +123,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           .listen((GoogleSignInAccount? currentUser) async {
         String userName = currentUser?.displayName ?? '';
         String email = currentUser?.email ?? '';
-        // String phone = currentUser?.phone ?? '';
         debugPrint('userName = $userName');
         debugPrint('email = $email');
 
-        // await register(null, userName, _localDataSource.getKind(), email, null, null);
+        _socialLogin(email, userName).then((value) {
+          _localDataSource.setToken(value);
+        });
       });
       await _googleSignIn.signIn();
     } catch (error) {
