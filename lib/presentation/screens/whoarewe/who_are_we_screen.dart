@@ -1,3 +1,4 @@
+import 'package:ecommerce/presentation/resources/assets_manager.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
@@ -43,20 +44,17 @@ class WhoAreWeScreen extends StatelessWidget {
                   color: ColorManager.white,
                   borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.all(AppPadding.mediumPadding),
+                child: Padding(
+                  padding: const EdgeInsets.all(AppPadding.mediumPadding),
                   child: Column(
                     children: [
-                      Text(
-                        'GAD',
-                        style: TextStyle(
-                          color: Color(0xFF0A458B),
-                          fontSize: 40,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      const SizedBox(height: 8.0,),
+                      Image.asset(
+                        ImageAssets.logoBlue,
+                        width: 200,
                       ),
-                      SizedBox(height: AppSize.s16,),
-                      Text(
+                      const SizedBox(height: 32.0,),
+                      const Text(
                         'تضم جادو جروب مجموعة من الشركات المصرية العاملة في مجالات مختلفة وهي:\n\nجادو كول - للتكييف والتجارة وهي موزع معتمد لشركات التكييف المحلية والعالمية. منذ إنشائها في عام 2014، لقد حققت الشركة وبشكل ملحوظ مكانة ثابتة كمركز محلي رائد في مجال HVAC باستمرار تقديم منتجات ذات مستوى عالمي لعملائها وذلك من خلال الابتكار والبحث مع مراعاة الجودة والسلامة موظفينا على أعلى مستوى ولفهم أن الشركات المملوكة محليا تبني مجتمعات قوية من خلال الحفاظ على سلالاتنا وقيمنا التقليدية وتنميتها في العالم الحديث.\n\nجادو تولز - للعدد والأدوات اليدوية والكهربائية\n\nيشرفنا أن نعلن أننا أصبحنا الوكيل الحصري لشركة EMTOP International في مصر. إنها شركة عالمية لها العديد من الفروع في مختلف دول العالم (اليابان - سنغافورة - فنزويلا - تشيلي - كوستاريكا - الأرجنتين - ألبانيا - الأردن - ليبيا - وأكثر من ذلك بكثير) تكرس شركة Emtop جهودها لإنشاء الأدوات الأكثر فعالية من حيث التكلفة (الأدوات اليدوية، ومصادر الطاقة، والأدوات الكهربائية، والملحقات الأخرى)، ونحن نركز على الجودة العالية وبأفضل الأسعار التنافسية. مهمتنا هي جلب أفضل الأدوات لعملك الخاص، لنكون معك.',
                         style: TextStyle(
                           fontWeight: FontWeight.w400

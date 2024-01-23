@@ -8,4 +8,5 @@ class ImageAssets {
   static const String air = "$imagePath/air.png";
   static const String google = "$imagePath/google.png";
   static const String facebook = "$imagePath/facebook.png";
+  static const String logoBlue = "$imagePath/logo_blue.png";
 }
