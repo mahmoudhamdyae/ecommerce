@@ -306,6 +306,29 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<LatestProducts>> filter(List<String> rate, String minPrice, String maxPrice, List<String> sections, String section) async {
+    String sectionsString = '';
+    String rateString = '';
+
+    int count = 0;
+    for (var element in sections) {
+      if (count == 0) {
+        sectionsString += '?id[]=$element';
+      } else {
+        sectionsString += '&id[]=$element';
+      }
+      count++;
+    }
+
+    count = 0;
+    for (var element in rate) {
+      if (count == 0) {
+        rateString += '?id[]=$element';
+      } else {
+        rateString += '&id[]=$element';
+      }
+      count++;
+    }
+
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}filter-products";
     final response = await http.get(

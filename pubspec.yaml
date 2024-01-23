@@ -67,7 +67,7 @@ dev_dependencies:
 flutter_native_splash:
   color: "#0A458B"
   image: assets/images/logo.png
-  branding: assets/images/air.png
+  branding: assets/images/coding_site.png
   android: true
   ios: true
   ios_content_mode: center_horizontal
@@ -75,7 +75,7 @@ flutter_native_splash:
   android_12:
     color: "#0A458B"
     image: assets/images/logo.png
-    branding: assets/images/air.png
+    branding: assets/images/coding_site.png
 
 flutter_launcher_icons:
   android: "launcher_icon"
