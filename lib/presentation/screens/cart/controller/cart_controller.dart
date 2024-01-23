@@ -41,7 +41,6 @@ class CartController extends GetxController {
             count++;
           }
           _repository.getProductsFromId(ids).then((myResponse) {
-            debugPrint('---------- ${myResponse.length}');
             cart.value = myResponse;
             _status.value = RxStatus.success();
           });

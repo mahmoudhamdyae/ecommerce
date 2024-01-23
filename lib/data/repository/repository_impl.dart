@@ -229,7 +229,6 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType) {
-    debugPrint('------------ tokok ${_localDataSource.getToken()}');
     return _remoteDataSource.finishOrder(_localDataSource.getToken(), _localDataSource.getKind(), firstName, lastName, phone, address, payType);
   }
 

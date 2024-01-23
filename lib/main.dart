@@ -5,7 +5,6 @@ import 'package:ecommerce/presentation/screens/usertype/widgets/user_type_screen
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'data/local/local_data_source.dart';
 import 'core/translations/local_controller.dart';
 import 'core/translations/locale.dart';
 import 'di/di.dart';
