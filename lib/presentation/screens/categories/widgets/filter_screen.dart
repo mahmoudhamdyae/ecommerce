@@ -79,7 +79,6 @@ class _FilterScreenState extends State<FilterScreen> {
               ),
               const SizedBox(height: AppSize.s16,),
               Container(
-                height: 730,
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(AppSize.borderRadius)),
