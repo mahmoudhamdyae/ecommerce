@@ -9,13 +9,14 @@ import '../../categories/widgets/categories_screen.dart';
 class CategoryItem extends StatelessWidget {
 
   final Categories? category;
-  const CategoryItem({super.key, required this.category});
+  final List<Categories> categories;
+  const CategoryItem({super.key, required this.category, required this.categories});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(CategoriesScreen(category: category ?? Categories()));
+        Get.to(CategoriesScreen(category: category ?? Categories(), categories: categories,));
       },
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.smallPadding),

@@ -15,7 +15,8 @@ import 'products_grid_view.dart';
 class CategoriesScreen extends StatefulWidget {
 
   final Categories category;
-  const CategoriesScreen({super.key, required this.category});
+  final List<Categories> categories;
+  const CategoriesScreen({super.key, required this.category, required this.categories});
 
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
@@ -23,7 +24,6 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
   OrderBy orderBy = OrderBy.all;
-  // bool _isFirstTime = true;
 
   void _search(String searchString) {
     CategoriesController controller = Get.find<CategoriesController>();
@@ -43,9 +43,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // if (_isFirstTime) {
-    //   _isFirstTime = false;
-    // }
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -53,7 +50,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             context: context,
             isScrollControlled: true,
             builder: (BuildContext context) {
-              return const FilterScreen();
+              return FilterScreen(categories: widget.categories,);
             },
           );
         },

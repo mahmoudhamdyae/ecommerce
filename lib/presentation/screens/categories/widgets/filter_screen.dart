@@ -2,6 +2,7 @@ import 'package:ecommerce/presentation/screens/categories/widgets/static_rating_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/models/home/home_data.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/strings_manager.dart';
@@ -9,7 +10,9 @@ import '../../../resources/values_manager.dart';
 import '../controller/categories_controller.dart';
 
 class FilterScreen extends StatefulWidget {
-  const FilterScreen({super.key});
+
+  final List<Categories> categories;
+  const FilterScreen({super.key, required this.categories});
 
   @override
   State<FilterScreen> createState() => _FilterScreenState();
@@ -18,23 +21,15 @@ class FilterScreen extends StatefulWidget {
 class _FilterScreenState extends State<FilterScreen> {
 
   final List<bool> _stars = List.filled(5, false);
-  final List<bool> _markat = List.filled(13, false);
-  final List<String> _markatNames = [
-    AppStrings.marka1.tr,
-    AppStrings.marka2.tr,
-    AppStrings.marka3.tr,
-    AppStrings.marka4.tr,
-    AppStrings.marka5.tr,
-    AppStrings.marka6.tr,
-    AppStrings.marka7.tr,
-    AppStrings.marka8.tr,
-    AppStrings.marka9.tr,
-    AppStrings.marka10.tr,
-    AppStrings.marka11.tr,
-    AppStrings.marka12.tr,
-    AppStrings.marka13.tr,
-  ];
+  late final List<bool> _markat;
   RangeValues _currentRangeValues = const RangeValues(0, 100000);
+
+
+  @override
+  void initState() {
+    super.initState();
+    _markat = List.filled(widget.categories.length, false);
+  }
 
   void _filter(String minPrice, String maxPrice) {
     List<String> rate = [];
@@ -49,7 +44,7 @@ class _FilterScreenState extends State<FilterScreen> {
     count = 0;
     for (bool marka in _markat) {
       if (marka) {
-        sections.add(count.toString());
+        sections.add(widget.categories[count].id.toString());
       }
       count++;
     }
@@ -92,9 +87,9 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 child: Column(
                   children:
-                  List.generate(_markat.length, (index) {
+                  List.generate(widget.categories.length, (index) {
                     return CheckboxListTile(
-                      title: Text(_markatNames[index]),
+                      title: Text(widget.categories[index].name ?? ''),
                       activeColor: ColorManager.primary,
                       value: _markat[index],
                       onChanged: (bool? newValue) {
