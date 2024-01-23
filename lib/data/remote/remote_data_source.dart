@@ -309,35 +309,19 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     String sectionsString = '';
     String rateString = '';
 
-    int count = 0;
     for (var element in sections) {
-      if (count == 0) {
-        sectionsString += '?id[]=$element';
-      } else {
-        sectionsString += '&id[]=$element';
-      }
-      count++;
+      sectionsString += '&sections[]=$element';
     }
 
-    count = 0;
     for (var element in rate) {
-      if (count == 0) {
-        rateString += '?id[]=$element';
-      } else {
-        rateString += '&id[]=$element';
-      }
-      count++;
+      rateString += '&rate[]=$element';
     }
 
     await _checkNetworkAndServer();
-    String url = "${AppConstants.baseUrl}filter-products";
+    String url = "${AppConstants.baseUrl}filter-products?min_price=$minPrice&max_price=$maxPrice$rateString$sectionsString";
+    debugPrint('------------ url $url');
     final response = await http.get(
-        Uri.parse(url).replace(queryParameters: {
-          'min_price' : minPrice,
-          'max_price' : maxPrice,
-          'rate' : rate,
-          'sections' : sections,
-        }),
+        Uri.parse(url),
         headers: {
           'section': section,
         }
