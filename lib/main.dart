@@ -1,7 +1,7 @@
 import 'package:ecommerce/presentation/main_screen.dart';
 import 'package:ecommerce/presentation/resources/theme_manager.dart';
 import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
-import 'package:ecommerce/presentation/screens/usertype/widgets/user_type_screen.dart';
+import 'package:ecommerce/presentation/screens/storetype/widgets/store_type_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: _localController.initialLang,
       translations: AppLocal(),
-      home: _authController.isUserLoggedIn() ? const MainScreen() : const UserTypeScreen(),
+      home: StoreTypeScreen(),//_authController.isUserLoggedIn() ? const MainScreen() : const UserTypeScreen(),
       initialBinding: GetXDi(),
     );
   }

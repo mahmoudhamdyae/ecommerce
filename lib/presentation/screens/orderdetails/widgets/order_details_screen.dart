@@ -49,13 +49,112 @@ class OrderDetailsScreen extends StatelessWidget {
                 OrderDetails orderDetails = controller.orderDetails.value;
                 return Padding(
                   padding: const EdgeInsets.only(top: 80.0),
-                  child: ProductsGridView(products: orderDetails.data?.carts?.map((e) => LatestProducts(
-                    id: e.id,
-                    priceNew: e.price,
-                    oldPrice: e.priceOld,
-                    cardImage: e.image,
-                    name: e.name
-                  )).toList() ?? []),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8.0,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                                'الإجمالى',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: FontSize.s16
+                              ),
+                            ),
+                            Text(
+                                '${orderDetails.data?.orderTotal.toString()} جنيه',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: FontSize.s16
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 8.0,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'الشحن',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: FontSize.s16
+                              ),
+                            ),
+                            Text(
+                              '${orderDetails.data?.dilivary.toString()} جنيه',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: FontSize.s16
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 8.0,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'الخصم',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: FontSize.s16
+                              ),
+                            ),
+                            Text(
+                              '${orderDetails.data?.discount.toString()} جنيه',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: FontSize.s16
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 8.0,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'المجموع الكلى',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: FontSize.s16
+                              ),
+                            ),
+                            Text(
+                              '${((orderDetails.data?.orderTotal ?? 0) + (orderDetails.data?.dilivary ?? 0) - ((orderDetails.data?.discount) ?? 0)).toString()} جنيه',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: FontSize.s16
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16.0,),
+                      Expanded(
+                        child: ProductsGridView(products: orderDetails.data?.carts?.map((e) => LatestProducts(
+                          id: e.id,
+                          priceNew: e.price,
+                          oldPrice: e.priceOld,
+                          cardImage: e.image,
+                          name: e.name
+                        )).toList() ?? []),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

@@ -9,9 +9,13 @@ import 'package:ecommerce/presentation/screens/home/controller/home_controller.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../auth/controllers/auth_controller.dart';
+import '../../usertype/widgets/user_type_screen.dart';
+
 class StoreTypeScreen extends StatelessWidget {
 
   final Repository _repository = Get.find<Repository>();
+  final AuthController _authController = Get.find<AuthController>();
   StoreTypeScreen({super.key});
 
   @override
@@ -45,8 +49,13 @@ class StoreTypeScreen extends StatelessWidget {
               onTap: () {
                 debugPrint('العدد و الأدوات اليدوية Clicked');
                 _repository.setStoreType('2');
-                Get.offAll(() => const MainScreen());
-                Get.find<HomeController>().getData();
+
+                if(_authController.isUserLoggedIn()) {
+                  Get.offAll(() => const MainScreen());
+                  Get.find<HomeController>().getData();
+                } else {
+                  Get.offAll(() => const UserTypeScreen());
+                }
               },
               child: Container(
                 decoration: const BoxDecoration(
@@ -90,8 +99,12 @@ class StoreTypeScreen extends StatelessWidget {
               onTap: () {
                 debugPrint('متجر التكييفات Clicked');
                 _repository.setStoreType('1');
-                Get.offAll(() => const MainScreen());
-                Get.find<HomeController>().getData();
+                if (_authController.isUserLoggedIn()) {
+                  Get.offAll(() => const MainScreen());
+                  Get.find<HomeController>().getData();
+                } else {
+                  Get.offAll(() => const UserTypeScreen());
+                }
               },
               child: Container(
                 decoration: const BoxDecoration(

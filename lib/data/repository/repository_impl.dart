@@ -4,7 +4,7 @@ import 'package:ecommerce/domain/models/order.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/models/profile.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../domain/models/category_product.dart';
 import '../../domain/models/home/home_data.dart';
@@ -228,8 +228,11 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType) {
-    return _remoteDataSource.finishOrder(_localDataSource.getToken(), _localDataSource.getKind(), firstName, lastName, phone, address, payType);
+  Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType) async {
+    if (_localDataSource.getToken() == '') {
+      _localDataSource.setToken(const Uuid().v4());
+    }
+    await _remoteDataSource.finishOrder(_localDataSource.getToken(), _localDataSource.getKind(), firstName, lastName, phone, address, payType);
   }
 
   @override
@@ -240,5 +243,30 @@ class RepositoryImpl implements Repository {
   @override
   Future<List<Carts>> getProductsFromId(String ids) {
     return _remoteDataSource.getProductsFromId(ids);
+  }
+
+  @override
+  Future<void> addToFavLocal(String productId) {
+    return _localDataSource.addToFav(productId);
+  }
+
+  @override
+  List<String> getLocalFavProductsLocal() {
+    return _localDataSource.getLocalFavProducts();
+  }
+
+  @override
+  bool isInFavLocal(String productId) {
+    return _localDataSource.isInFav(productId);
+  }
+
+  @override
+  Future<void> removeAllFromFavLocal() {
+    return _localDataSource.removeAllFromFav();
+  }
+
+  @override
+  Future<void> removeFromFavLocal(String productId) {
+    return _localDataSource.removeFromFav(productId);
   }
 }

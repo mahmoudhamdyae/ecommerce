@@ -21,6 +21,7 @@ class ResetPasswordScreen extends StatefulWidget {
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   final Repository _repository = Get.find<Repository>();
+  bool _isPassword = false;
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
@@ -32,6 +33,26 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     setState(() {
       _obscureText = !_obscureText;
     });
+  }
+
+  _sendNumber() async {
+    var formData = formState.currentState;
+
+    if (formData!.validate()) {
+      formData.save();
+      try {
+        showLoading(context);
+        await _repository.resetPassword(phoneController.text, passwordTextController.text).then((userCredential) {
+          Get.back();
+          setState(() {
+            _isPassword = true;
+          });
+        });
+      } on Exception catch(e) {
+        Get.back();
+        if (context.mounted) showError(context, e.toString(), () {});
+      }
+    }
   }
 
   _resetPassword() async {
@@ -143,36 +164,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   right: AppPadding.smallPadding,
                                   left: AppPadding.smallPadding,
                                 ),
-                                child: Text(AppStrings.phoneNo.tr),
+                                child: Text(_isPassword ? AppStrings.password.tr : AppStrings.phoneNo.tr),
                               ),
-                              TextFormField(
-                                controller: phoneController,
-                                textInputAction: TextInputAction.done,
-                                keyboardType: TextInputType.phone,
-                                validator: (val) {
-                                  if (val.toString().length < 11) {
-                                    return AppStrings.mobileNumberInvalid.tr;
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: AppStrings.phoneNoHint.tr,
-                                  hintStyle: const TextStyle(
-                                    color: ColorManager.grey,
-                                  ),
-                                  border: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(AppSize.borderRadius),
-                                    ),
-                                    borderSide: BorderSide(
-                                        width: 1,
-                                        color: ColorManager.grey
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 16.0,),
-                              TextFormField(
+                              _isPassword ? TextFormField(
                                 controller: passwordTextController,
                                 textInputAction: TextInputAction.done,
                                 validator: (val) {
@@ -208,6 +202,33 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   ),
                                 ),
                               )
+                                  :
+                              TextFormField(
+                                controller: phoneController,
+                                textInputAction: TextInputAction.done,
+                                keyboardType: TextInputType.phone,
+                                validator: (val) {
+                                  if (val.toString().length < 11) {
+                                    return AppStrings.mobileNumberInvalid.tr;
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: AppStrings.phoneNoHint.tr,
+                                  hintStyle: const TextStyle(
+                                    color: ColorManager.grey,
+                                  ),
+                                  border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(AppSize.borderRadius),
+                                    ),
+                                    borderSide: BorderSide(
+                                        width: 1,
+                                        color: ColorManager.grey
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -226,7 +247,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                               ),
                               onPressed: () async {
-                                await _resetPassword();
+                                if (_isPassword) {
+                                  await _resetPassword();
+                                } else {
+                                  await _sendNumber();
+                                }
                               },
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(vertical: AppSize.s16),

@@ -113,6 +113,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var responseData = json.decode(response.body);
     debugPrint('Social Login Response: $responseData');
     debugPrint('Social Login Token Response: ${responseData['token']}');
+    _localDataSource.removeAllFromCart();
+    _localDataSource.removeAllFromFav();
     return responseData['token'];
   }
 
@@ -147,6 +149,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     _checkResponse(responseData);
     _localDataSource.setToken(responseData['data']['api_token']);
     _localDataSource.setUserLoggedIn();
+    _localDataSource.removeAllFromCart();
+    _localDataSource.removeAllFromFav();
     debugPrint('Register Response api token: ${responseData['data']['api_token']}');
   }
 
@@ -185,6 +189,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     _checkResponse(responseData);
     _localDataSource.setToken(responseData['data']['api_token']);
     _localDataSource.setUserLoggedIn();
+    _localDataSource.removeAllFromCart();
+    _localDataSource.removeAllFromFav();
     debugPrint('Register Response api token: ${responseData['data']['api_token']}');
   }
 

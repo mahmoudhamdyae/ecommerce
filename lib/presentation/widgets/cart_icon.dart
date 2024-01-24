@@ -1,4 +1,3 @@
-import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:ecommerce/presentation/screens/cart/widgets/cart_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +9,8 @@ import '../resources/color_manager.dart';
 
 class CartIcon extends StatelessWidget {
 
-  final AuthController _controller = Get.find<AuthController>();
   final Color color;
-
-  CartIcon({super.key, required this.color});
+  const CartIcon({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +23,7 @@ class CartIcon extends StatelessWidget {
         position: badges.BadgePosition.topStart(top: -10, start: -12),
         badgeContent: Padding(
           padding: const EdgeInsets.only(top: 4.0),
-          child: _controller.isUserLoggedIn() ? GetX<CartController>(
+          child: GetX<CartController>(
             init: Get.find<CartController>(),
             builder: (CartController controller) {
               return Text(
@@ -36,11 +33,6 @@ class CartIcon extends StatelessWidget {
                 ),
               );
             },
-          ) : const Text(
-            '0',
-            style: TextStyle(
-              color: ColorManager.white,
-            ),
           ),
         ),
         child: Icon(

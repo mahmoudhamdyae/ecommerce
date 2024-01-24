@@ -21,11 +21,18 @@ abstract class LocalDataSource {
   String getStoreType();
   Future<void> setKind(String kind);
   String getKind();
+
   Future<void> addToCart(String productId);
   Future<void> removeFromCart(String productId);
   Future<void> removeAllFromCart();
   bool isInCart(String productId);
   List<String> getLocalProducts();
+
+  Future<void> addToFav(String productId);
+  Future<void> removeFromFav(String productId);
+  Future<void> removeAllFromFav();
+  bool isInFav(String productId);
+  List<String> getLocalFavProducts();
 }
 
 class LocalDataSourceImpl extends LocalDataSource {
@@ -126,5 +133,36 @@ class LocalDataSourceImpl extends LocalDataSource {
   List<String> getLocalProducts() {
     List<String> products = _sharedPreferences.getStringList('cart') ?? [];
     return products;
+  }
+
+  @override
+  Future<void> addToFav(String productId) async {
+    List<String> products = getLocalFavProducts();
+    products.add(productId);
+    await _sharedPreferences.setStringList('fav', products);
+  }
+
+  @override
+  List<String> getLocalFavProducts() {
+    List<String> products = _sharedPreferences.getStringList('fav') ?? [];
+    return products;
+  }
+
+  @override
+  bool isInFav(String productId) {
+    List<String> products = getLocalFavProducts();
+    return products.contains(productId);
+  }
+
+  @override
+  Future<void> removeAllFromFav() async {
+    await _sharedPreferences.setStringList('fav', []);
+  }
+
+  @override
+  Future<void> removeFromFav(String productId) async {
+    List<String> products = getLocalFavProducts();
+    products.remove(productId);
+    await _sharedPreferences.setStringList('fav', products);
   }
 }

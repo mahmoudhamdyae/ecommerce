@@ -14,7 +14,6 @@ class MoreScreenTopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      // height: double.infinity,
       color: ColorManager.white,
       child: Padding(
         padding: const EdgeInsets.only(
@@ -35,7 +34,7 @@ class MoreScreenTopBar extends StatelessWidget {
                 fontWeight: FontWeightManager.medium,
               ),
             ),
-            CartIcon(color: ColorManager.primary,),
+            const CartIcon(color: ColorManager.primary,),
           ],
         ),
       ),

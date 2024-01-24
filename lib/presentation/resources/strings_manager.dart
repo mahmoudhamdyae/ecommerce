@@ -144,6 +144,7 @@ class AppStrings {
   // Fav
   static const addedFavSnackBar = 'تمت الإضافة إلى المفضلة';
   static const removeFavSnackBar = 'تمت الإزالة من المفضلة';
+  static const noFav = 'لا يوجد منتجات فى المفضلة';
 
   // Cart
   static const noCart = 'لا يوجد منتجات فى السلة';
@@ -151,6 +152,7 @@ class AppStrings {
 
   // Orders
   static const order = 'طلب';
+  static const orderConfirm = 'تأكيد البيانات';
   static const firstNameHint = 'الاسم الأول';
   static const firstNameError = 'الاسم الأول لا يمكن أن يكون فارغا';
   static const lastNameHint = 'الاسم الأخير';

@@ -2,6 +2,7 @@ import 'package:ecommerce/domain/models/order.dart';
 import 'package:ecommerce/domain/models/order_details.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 class OrderController extends GetxController {
 
@@ -60,17 +61,18 @@ class OrderController extends GetxController {
           _getOrders();
         }); 
       } else {
-        try {
-          await _repository.confirmPhoneNumber(phone).then((value) async => {
-            await _repository.register(phone, '$firstName $lastName', '', phone, phone).then((value) {
-              finishOrder(firstName, lastName, phone, address, payType);
-            })
-          });
-        } on Exception {
-          await _repository.login(phone, phone).then((value) {
-            finishOrder(firstName, lastName, phone, address, payType);
-          });
-        }
+        // try {
+        //   await _repository.confirmPhoneNumber(phone).then((value) async => {
+        //     await _repository.register(phone, '$firstName $lastName', '', phone, phone).then((value) {
+        //       finishOrder(firstName, lastName, phone, address, payType);
+        //     })
+        //   });
+        // } on Exception {
+        //   await _repository.login(phone, phone).then((value) {
+        //     finishOrder(firstName, lastName, phone, address, payType);
+        //   });
+        // }
+        String token = const Uuid().v4();
       }
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());

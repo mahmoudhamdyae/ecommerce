@@ -33,12 +33,23 @@ class CartScreen extends StatelessWidget {
                     bottom: AppPadding.smallPadding,
                     right: AppPadding.smallPadding,
                   ),
-                  child: Text(
-                    AppStrings.cart.tr,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeightManager.medium,
-                    ),
+                  child: Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: const Icon(Icons.arrow_back),
+                      ),
+                      const SizedBox(width: 8.0,),
+                      Text(
+                        AppStrings.cart.tr,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeightManager.medium,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(

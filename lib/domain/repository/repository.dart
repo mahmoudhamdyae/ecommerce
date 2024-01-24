@@ -57,4 +57,10 @@ abstract class Repository {
 
   Future<Profile> getProfile();
   Future<List<Carts>> getProductsFromId(String ids);
+
+  Future<void> addToFavLocal(String productId);
+  Future<void> removeFromFavLocal(String productId);
+  Future<void> removeAllFromFavLocal();
+  bool isInFavLocal(String productId);
+  List<String> getLocalFavProductsLocal();
 }

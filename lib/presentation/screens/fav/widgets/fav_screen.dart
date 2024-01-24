@@ -1,5 +1,6 @@
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/screens/fav/controller/fav_controller.dart';
+import 'package:ecommerce/presentation/screens/fav/widgets/fav_empty_screen.dart';
 import 'package:ecommerce/presentation/widgets/shimmer/grid_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,6 +43,8 @@ class FavScreen extends StatelessWidget {
                   init: Get.find<FavController>(),
                     builder: (FavController controller) {
                     return controller.status.isLoading ? const GridShimmer()
+                        :
+                    controller.fav.isEmpty ? const FavEmptyScreen()
                         :
                     ProductsGridView(products: controller.fav,);
                     },

@@ -42,7 +42,7 @@ class HomeScreenHeader extends StatelessWidget {
                   fontWeight: FontWeightManager.medium,
                 ),
               ),
-              CartIcon(color: ColorManager.white),
+              const CartIcon(color: ColorManager.white),
             ],
           ),
         ),
