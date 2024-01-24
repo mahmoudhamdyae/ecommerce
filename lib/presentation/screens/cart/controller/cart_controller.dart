@@ -23,33 +23,33 @@ class CartController extends GetxController {
   void getCart() {
     _status.value = RxStatus.loading();
     try {
-      if (!_repository.isUserLoggedIn()) {
-        List<String> productsIds = _repository.getLocalProducts();
-        if (productsIds.isEmpty) {
-          _status.value = RxStatus.success();
-          cart.value = [];
-        } else {
-          String ids = '';
-          int count = 0;
-          for (var element in productsIds) {
-            if (count == 0) {
-              ids += '?id[]=$element';
-            } else {
-              ids += '&id[]=$element';
-            }
-            count++;
-          }
-          _repository.getProductsFromId(ids).then((myResponse) {
-            cart.value = myResponse;
-            _status.value = RxStatus.success();
-          });
-        }
-      } else {
+      // if (!_repository.isUserLoggedIn()) {
+      //   List<String> productsIds = _repository.getLocalProducts();
+      //   if (productsIds.isEmpty) {
+      //     _status.value = RxStatus.success();
+      //     cart.value = [];
+      //   } else {
+      //     String ids = '';
+      //     int count = 0;
+      //     for (var element in productsIds) {
+      //       if (count == 0) {
+      //         ids += '?id[]=$element';
+      //       } else {
+      //         ids += '&id[]=$element';
+      //       }
+      //       count++;
+      //     }
+      //     _repository.getProductsFromId(ids).then((myResponse) {
+      //       cart.value = myResponse;
+      //       _status.value = RxStatus.success();
+      //     });
+      //   }
+      // } else {
         _repository.getCart().then((remoteCart) {
           _status.value = RxStatus.success();
           cart.value = remoteCart;
         });
-      }
+      // }
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
     }

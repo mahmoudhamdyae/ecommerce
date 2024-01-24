@@ -45,6 +45,7 @@ abstract class RemoteDataSource {
 
   Future<List<Order>> getOrders(String userToken, String kind);
   Future<void> finishOrder(String userToken, String kind, String firstName, String lastName, String phone, String address, String payType);
+  Future<void> finishOrderUnAuth(String name, String phone, String address);
   Future<OrderDetails> getOrderDetails(String userToken, String kind, String orderId);
 
   Future<Profile> getProfile(String userToken, String kind);
@@ -433,16 +434,17 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<Carts>> getCart(String userToken, String kind) async {
+    Map<String, String> headers = _localDataSource.isUserLoggedIn() ? {
+      'content-type': 'application/json;charset=utf-8',
+      'charset': 'utf-8',
+      'authorization' : 'bearer $userToken',
+      'kind' : kind
+    } : {};
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}cart";
     final response = await http.get(
       Uri.parse(url),
-        headers: {
-          'content-type': 'application/json;charset=utf-8',
-          'charset': 'utf-8',
-          'authorization' : 'bearer $userToken',
-          'kind' : kind
-        }
+        headers: headers
     );
 
     var responseData = json.decode(response.body);
@@ -454,6 +456,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<void> addToCart(String userToken, String kind, String productId, String count) async {
+    Map<String, String> headers = _localDataSource.isUserLoggedIn() ? {
+      'content-type': 'application/json;charset=utf-8',
+      'charset': 'utf-8',
+      'authorization' : 'bearer $userToken',
+      'kind' : kind
+    } : {};
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}add-produt";
     final response = await http.post(
@@ -461,12 +469,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           'id' : productId,
           'count' : count,
         }),
-        headers: {
-          'content-type': 'application/json;charset=utf-8',
-          'charset': 'utf-8',
-          'authorization' : 'bearer $userToken',
-          'kind' : kind
-        }
+        headers: headers
     );
 
     var responseData = json.decode(response.body);
@@ -556,6 +559,21 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var responseData = json.decode(response.body);
     debugPrint('Finish Order Response: $responseData');
     _checkResponse(responseData);
+  }
+
+  @override
+  Future<void> finishOrderUnAuth(String name, String phone, String address) async {
+    debugPrint('----------------- FINISHING UN AUTH');
+    debugPrint('----------------- FINISHING $name $phone $address');
+    await _checkNetworkAndServer();
+    String url = "${AppConstants.baseUrl}unAuth/order?name=$name&phone=$phone&address=$address";
+    final response = await http.post(
+        Uri.parse(url),
+    );
+
+    var responseData = json.decode(response.body);
+    debugPrint('Finish Order Un Auth Response: $responseData');
+    // _checkResponse(responseData);
   }
 
   @override

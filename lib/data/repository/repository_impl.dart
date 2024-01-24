@@ -4,7 +4,6 @@ import 'package:ecommerce/domain/models/order.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/models/profile.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../domain/models/category_product.dart';
 import '../../domain/models/home/home_data.dart';
@@ -196,11 +195,7 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<List<Carts>> getCart() {
-    if (_localDataSource.isUserLoggedIn()) {
-      return _remoteDataSource.getCart(_localDataSource.getToken(), _localDataSource.getKind());
-    } else {
-      return Future(() => []);
-    }
+    return _remoteDataSource.getCart(_localDataSource.getToken(), _localDataSource.getKind());
   }
 
   @override
@@ -229,10 +224,11 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType) async {
-    if (_localDataSource.getToken() == '') {
-      _localDataSource.setToken(const Uuid().v4());
+    if (_localDataSource.isUserLoggedIn()) {
+      await _remoteDataSource.finishOrder(_localDataSource.getToken(), _localDataSource.getKind(), firstName, lastName, phone, address, payType);
+    } else {
+      await _remoteDataSource.finishOrderUnAuth('$firstName $lastName', phone, address);
     }
-    await _remoteDataSource.finishOrder(_localDataSource.getToken(), _localDataSource.getKind(), firstName, lastName, phone, address, payType);
   }
 
   @override

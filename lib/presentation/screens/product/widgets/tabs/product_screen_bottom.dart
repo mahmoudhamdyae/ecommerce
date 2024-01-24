@@ -40,19 +40,20 @@ class ProductScreenBottom extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                     ),
                     onPressed: () {
-                      if (!_repository.isUserLoggedIn()) {
-                        if (_repository.isInCart(product.id.toString())) {
-                          _repository.removeFromCartLocal(product.id.toString()).then((value) {
-                            controller.getCart();
-                            Get.back();
-                          });
-                        } else {
-                          _repository.addToCartLocal(product.id.toString()).then((value) {
-                            controller.getCart();
-                            Get.back();
-                          });
-                        }
-                      } else if (controller.isInCart(product)) {
+                      // if (!_repository.isUserLoggedIn()) {
+                      //   if (_repository.isInCart(product.id.toString())) {
+                      //     _repository.removeFromCartLocal(product.id.toString()).then((value) {
+                      //       controller.getCart();
+                      //       Get.back();
+                      //     });
+                      //   } else {
+                      //     _repository.addToCartLocal(product.id.toString()).then((value) {
+                      //       controller.getCart();
+                      //       Get.back();
+                      //     });
+                      //   }
+                      // } else
+                        if (controller.isInCart(product)) {
                         controller.removeFromCart(product.id.toString()).then((_) {
                           Get.back();
                         });
