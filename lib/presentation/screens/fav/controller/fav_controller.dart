@@ -29,35 +29,35 @@ class FavController extends GetxController {
           fav.value = remoteFav;
         });
       } else {
-        List<String> productsIds = _repository.getLocalFavProductsLocal();
-        if (productsIds.isEmpty) {
-          _status.value = RxStatus.success();
-          fav.value = [];
-        } else {
-          String ids = '';
-          int count = 0;
-          for (var element in productsIds) {
-            if (count == 0) {
-              ids += '?id[]=$element';
-            } else {
-              ids += '&id[]=$element';
-            }
-            count++;
-          }
-          _repository.getProductsFromId(ids).then((myResponse) {
-            fav.value = myResponse.map((e) => LatestProducts(
-              name: e.name,
-              id: e.id,
-              cardImage: e.image,
-              oldPrice: e.priceOld,
-              priceNew: e.price,
-              discount: e.priceOld,
-              rate: e.rate,
-              rateNum: e.rate,
-            )).toList();
-            _status.value = RxStatus.success();
-          });
-        }
+      //   List<String> productsIds = _repository.getLocalFavProductsLocal();
+      //   if (productsIds.isEmpty) {
+      //     _status.value = RxStatus.success();
+      //     fav.value = [];
+      //   } else {
+      //     String ids = '';
+      //     int count = 0;
+      //     for (var element in productsIds) {
+      //       if (count == 0) {
+      //         ids += '?id[]=$element';
+      //       } else {
+      //         ids += '&id[]=$element';
+      //       }
+      //       count++;
+      //     }
+      //     _repository.getProductsFromId(ids).then((myResponse) {
+      //       fav.value = myResponse.map((e) => LatestProducts(
+      //         name: e.name,
+      //         id: e.id,
+      //         cardImage: e.image,
+      //         oldPrice: e.priceOld,
+      //         priceNew: e.price,
+      //         discount: e.priceOld,
+      //         rate: e.rate,
+      //         rateNum: e.rate,
+      //       )).toList();
+      //       _status.value = RxStatus.success();
+      //     });
+      //   }
       }
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -79,23 +79,23 @@ class FavController extends GetxController {
           }
         });
       } else {
-        isAdded = _repository.isInFavLocal(product.id.toString());
-        debugPrint('---------------- aaaa $isAdded');
-        if (isAdded) {
-          await _repository.removeFromFavLocal(product.id.toString()).then((value) {
-            _status.value = RxStatus.success();
-            isAdded = false;
-            debugPrint('---------------- aaaa2 $isAdded');
-          });
-          fav.add(product);
-        } else {
-          await _repository.addToFavLocal(product.id.toString()).then((value) {
-            _status.value = RxStatus.success();
-            isAdded = true;
-            debugPrint('---------------- aaaa21 $isAdded');
-          });
-          fav.remove(product);
-        }
+        // isAdded = _repository.isInFavLocal(product.id.toString());
+        // debugPrint('---------------- aaaa $isAdded');
+        // if (isAdded) {
+        //   await _repository.removeFromFavLocal(product.id.toString()).then((value) {
+        //     _status.value = RxStatus.success();
+        //     isAdded = false;
+        //     debugPrint('---------------- aaaa2 $isAdded');
+        //   });
+        //   fav.add(product);
+        // } else {
+        //   await _repository.addToFavLocal(product.id.toString()).then((value) {
+        //     _status.value = RxStatus.success();
+        //     isAdded = true;
+        //     debugPrint('---------------- aaaa21 $isAdded');
+        //   });
+        //   fav.remove(product);
+        // }
       }
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
