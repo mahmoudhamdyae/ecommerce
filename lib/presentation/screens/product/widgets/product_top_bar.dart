@@ -1,5 +1,7 @@
 import 'package:ecommerce/domain/models/home/home_data.dart';
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/fav/controller/fav_controller.dart';
+import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
@@ -57,6 +59,7 @@ class _ProductTopBarState extends State<ProductTopBar> {
           // Fav Button
           InkWell(
             onTap: () {
+              Get.find<AuthController>().isUserLoggedIn() ?
                 Get.find<FavController>().addFav(LatestProducts(
                     id: widget.product.id,
                     name: widget.product.name,
@@ -77,7 +80,7 @@ class _ProductTopBarState extends State<ProductTopBar> {
                       duration: const Duration(seconds: 2),
                     ),
                   );
-                });
+                }) : showRequireAuthDialog(context);
             },
             child: Container(
               decoration: BoxDecoration(

@@ -2,8 +2,10 @@ import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
+import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/fav/controller/fav_controller.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_screen.dart';
+import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -64,6 +66,7 @@ class ProductItem extends StatelessWidget {
                         builder: (FavController controller) {
                           return InkWell(
                             onTap: () async {
+                              Get.find<AuthController>().isUserLoggedIn() ?
                               await controller.addFav(product).then((isAdded) {
                                 Get.showSnackbar(
                                   GetSnackBar(
@@ -71,7 +74,7 @@ class ProductItem extends StatelessWidget {
                                     duration: const Duration(seconds: 2),
                                   ),
                                 );
-                              });
+                              }) : showRequireAuthDialog(context);
                             },
                             child: Container(
                               decoration: BoxDecoration(

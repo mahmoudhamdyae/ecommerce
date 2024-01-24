@@ -2,13 +2,10 @@ import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
-import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../data/local/local_data_source.dart';
-import '../../../../../di/di.dart';
 import '../../../../resources/color_manager.dart';
 
 class ProductScreenBottom extends StatelessWidget {

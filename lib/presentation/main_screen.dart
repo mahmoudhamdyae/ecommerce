@@ -5,6 +5,7 @@ import 'package:ecommerce/presentation/screens/fav/widgets/fav_screen.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
 import 'package:ecommerce/presentation/screens/more/widgets/more_screen.dart';
 import 'package:ecommerce/presentation/screens/orders/widgets/orders_screen.dart';
+import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,9 +30,19 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index != 2) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    } else {
+      if (!Get.find<AuthController>().isUserLoggedIn()) {
+        showRequireAuthDialog(context);
+      } else {
+        setState(() {
+          _selectedIndex = index;
+        });
+      }
+    }
   }
 
   @override
