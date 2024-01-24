@@ -58,15 +58,15 @@ class OrderDetailsScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                                'الإجمالى',
-                              style: TextStyle(
+                              AppStrings.orderTotal.tr,
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: FontSize.s16
                               ),
                             ),
                             Text(
-                                '${orderDetails.data?.orderTotal.toString()} جنيه',
-                              style: TextStyle(
+                              '${orderDetails.data?.orderTotal.toString()} جنيه',
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: FontSize.s16
                               ),
@@ -81,15 +81,15 @@ class OrderDetailsScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              'الشحن',
-                              style: TextStyle(
+                              AppStrings.orderDilivary.tr,
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: FontSize.s16
                               ),
                             ),
                             Text(
-                              '${orderDetails.data?.dilivary.toString()} جنيه',
-                              style: TextStyle(
+                              '${orderDetails.data?.dilivary.toString()} ${AppStrings.pound.tr}',
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: FontSize.s16
                               ),
@@ -104,15 +104,15 @@ class OrderDetailsScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              'الخصم',
-                              style: TextStyle(
+                              AppStrings.orderDiscount.tr,
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: FontSize.s16
                               ),
                             ),
                             Text(
-                              '${orderDetails.data?.discount.toString()} جنيه',
-                              style: TextStyle(
+                              '${orderDetails.data?.discount.toString()} ${AppStrings.pound.tr}',
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: FontSize.s16
                               ),
@@ -127,15 +127,15 @@ class OrderDetailsScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              'المجموع الكلى',
-                              style: TextStyle(
+                              AppStrings.orderTotal2.tr,
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: FontSize.s16
                               ),
                             ),
                             Text(
-                              '${((orderDetails.data?.orderTotal ?? 0) + (orderDetails.data?.dilivary ?? 0) - ((orderDetails.data?.discount) ?? 0)).toString()} جنيه',
-                              style: TextStyle(
+                              '${((orderDetails.data?.orderTotal ?? 0) + (orderDetails.data?.dilivary ?? 0) - ((orderDetails.data?.discount) ?? 0)).toString()} ${AppStrings.pound.tr}',
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: FontSize.s16
                               ),

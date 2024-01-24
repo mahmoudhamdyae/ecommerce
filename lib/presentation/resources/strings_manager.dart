@@ -163,4 +163,9 @@ class AppStrings {
   static const pay = 'الدفع عند الاستلام';
   static const visa = 'الدفع بالفيزا';
   static const orderDetails = 'تفاصيل الطلب';
+  static const orderDilivary = 'الشحن';
+  static const orderDiscount = 'الخصم';
+  static const orderTotal = 'الاجمالى';
+  static const orderTotal2 = 'المجموع الكلى';
+  static const pound = 'جنيه';
 }

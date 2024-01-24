@@ -131,6 +131,11 @@ class AppLocal extends Translations {
       AppStrings.pay: 'الدفع عند الاستلام',
       AppStrings.visa: 'الدفع بالفيزا',
       AppStrings.orderDetails: 'تفاصيل الطلب',
+      AppStrings.orderDilivary: 'الشحن',
+      AppStrings.orderDiscount: 'الخصم',
+      AppStrings.orderTotal: 'الاجمالى',
+      AppStrings.orderTotal2: 'المجموع الكلى',
+      AppStrings.pound: 'جنيه',
     },
     'en': {
       AppStrings.appName: 'Gado Store',
@@ -258,6 +263,11 @@ class AppLocal extends Translations {
       AppStrings.pay: 'الدفع عند الاستلام',
       AppStrings.visa: 'الدفع بالفيزا',
       AppStrings.orderDetails: 'تفاصيل الطلب',
+      AppStrings.orderDilivary: 'الشحن',
+      AppStrings.orderDiscount: 'الخصم',
+      AppStrings.orderTotal: 'الاجمالى',
+      AppStrings.orderTotal2: 'المجموع الكلى',
+      AppStrings.pound: 'جنيه',
     }
   };
 }
