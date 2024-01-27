@@ -4,6 +4,7 @@ import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.
 import 'package:ecommerce/presentation/screens/fav/controller/fav_controller.dart';
 import 'package:ecommerce/presentation/screens/fav/widgets/fav_screen.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
+import 'package:ecommerce/presentation/screens/more/controller/more_controller.dart';
 import 'package:ecommerce/presentation/screens/more/widgets/more_screen.dart';
 import 'package:ecommerce/presentation/screens/orders/widgets/orders_screen.dart';
 import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
@@ -50,6 +51,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+    Get.find<MoreController>();
     isUserLoggedIn = _controller.isUserLoggedIn();
   }
 
