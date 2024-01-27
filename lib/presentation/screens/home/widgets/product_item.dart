@@ -82,9 +82,13 @@ class ProductItem extends StatelessWidget {
                                 color: controller.fav.contains(product) ? ColorManager.fav : ColorManager.lightGrey,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(4.0),
-                                child: Icon(Icons.favorite_border, size: 16,),
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Icon(
+                                  controller.fav.contains(product) ? Icons.favorite : Icons.favorite_border,
+                                  size: 20,
+                                  color: controller.fav.contains(product) ? ColorManager.white : ColorManager.black,
+                                ),
                               ),
                             ),
                           );
