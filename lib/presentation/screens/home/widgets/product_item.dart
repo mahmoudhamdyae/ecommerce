@@ -100,11 +100,15 @@ class ProductItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FadeInImage.assetNetwork(
-                          height: 100,
-                          width: 130,
-                          placeholder: ImageAssets.loading,
-                          image: product.cardImage ?? ''
+                      SizedBox(
+                        width: 130,
+                        height: 100,
+                        child: FadeInImage.assetNetwork(
+                            height: 100,
+                            width: 130,
+                            placeholder: ImageAssets.loading,
+                            image: product.cardImage ?? ''
+                        ),
                       ),
                     ],
                   ),
