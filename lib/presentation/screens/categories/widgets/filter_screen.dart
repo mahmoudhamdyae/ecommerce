@@ -210,7 +210,7 @@ class _FilterScreenState extends State<FilterScreen> {
                         ),
                         child: Text(
                           AppStrings.reset.tr,
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: ColorManager.primary,
                           ),
                         )

@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:ecommerce/data/remote/remote_data_source.dart';
 import 'package:ecommerce/domain/models/cart/cart.dart';
 import 'package:ecommerce/domain/models/order.dart';
 import 'package:ecommerce/domain/models/product/product.dart';
 import 'package:ecommerce/domain/models/profile.dart';
 import 'package:ecommerce/domain/repository/repository.dart';
+import 'package:ecommerce/presentation/resources/color_manager.dart';
+import 'package:flutter/material.dart';
 
 import '../../domain/models/category_product.dart';
 import '../../domain/models/home/home_data.dart';
@@ -76,6 +80,11 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<void> setStoreType(String storeType) async {
+    if (storeType == '2') {
+      ColorManager.primary = const Color(0xFFD32026);
+    } else {
+      ColorManager.primary = const Color(0xFF0A458B);
+    }
     return await _localDataSource.setStoreType(storeType);
   }
 
@@ -195,11 +204,17 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<List<Carts>> getCart() {
+    if (_localDataSource.getToken() == '') {
+      _localDataSource.setToken(Random().nextInt(16).toString());
+    }
     return _remoteDataSource.getCart(_localDataSource.getToken(), _localDataSource.getKind());
   }
 
   @override
   Future<void> addToCart(String productId, String count) {
+    if (_localDataSource.getToken() == '') {
+      _localDataSource.setToken(Random().nextInt(16).toString());
+    }
     return _remoteDataSource.addToCart(_localDataSource.getToken(), _localDataSource.getKind(), productId, count);
   }
 

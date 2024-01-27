@@ -43,14 +43,15 @@ class ProductItem extends StatelessWidget {
                     children: [
                       // Percentage
                       Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(AppSize.s8)),
                           color: ColorManager.primary
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 4,
-                              vertical: 2,
+                          padding: const EdgeInsets.only(
+                              right: 4,
+                              left: 4,
+                              top: 3,
                           ),
                           child: Text(
                             '${((1 - product.priceNew / product.oldPrice) * 100).toInt().toString()}%',
@@ -78,7 +79,7 @@ class ProductItem extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: controller.fav.contains(product) ? ColorManager.red : ColorManager.lightGrey,
+                                color: controller.fav.contains(product) ? ColorManager.fav : ColorManager.lightGrey,
                                 shape: BoxShape.circle,
                               ),
                               child: const Padding(

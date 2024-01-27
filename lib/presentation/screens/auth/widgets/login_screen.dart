@@ -269,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             child: Text(
                               AppStrings.loginAsGuest.tr,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: ColorManager.primary,
                                 fontWeight: FontWeight.w400
                               ),

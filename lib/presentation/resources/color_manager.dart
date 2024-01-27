@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class ColorManager {
-  static const Color primary = Color(0xff4A4E69);
+  static Color primary = const Color(0xff4A4E69);
   static const Color lightPrimary = Color(0xff1b7fbe);
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);
@@ -14,4 +14,5 @@ class ColorManager {
   static const Color orange = Color(0xFFFFA500);
   static const Color lightOrange = Color(0xFFFFDAB9 );
   static const Color error = Color(0xffff0000);
+  static const Color fav = Color(0xFFFF4747);
 }

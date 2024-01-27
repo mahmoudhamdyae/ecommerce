@@ -87,14 +87,14 @@ class _ProductTopBarState extends State<ProductTopBar> {
                 shape: BoxShape.circle,
                 color: ColorManager.white,
                 border: Border.all(
-                    color: added ? ColorManager.red : ColorManager.grey
+                    color: added ? ColorManager.fav : ColorManager.grey
                 ),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Icon(
                   Icons.favorite_border,
-                  color: added ? ColorManager.red : ColorManager.grey,
+                  color: added ? ColorManager.fav : ColorManager.grey,
                 ),
               ),
             ),

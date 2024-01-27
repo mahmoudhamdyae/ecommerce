@@ -68,14 +68,21 @@ class HomeScreenHeader extends StatelessWidget {
               hintStyle: const TextStyle(
                 color: ColorManager.grey,
               ),
-              border: const OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
                     AppSize.borderRadius,
                   ),
                 ),
-                borderSide:
-                BorderSide(width: 1, color: ColorManager.grey),
+                borderSide: BorderSide(width: 1, color: ColorManager.lightGrey),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    AppSize.borderRadius,
+                  ),
+                ),
+                borderSide: BorderSide(width: 1, color: ColorManager.lightGrey),
               ),
             ),
           ),

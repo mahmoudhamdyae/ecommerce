@@ -20,7 +20,7 @@ showRequireAuthDialog(BuildContext context) {
           title: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
+              Icon(
                 Icons.logout_outlined,
                 color: ColorManager.primary,
                 size: 50,

@@ -442,6 +442,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     } : {};
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}cart";
+    if (!_localDataSource.isUserLoggedIn()) {
+      url += '?ip=$userToken';
+    }
     final response = await http.get(
       Uri.parse(url),
         headers: headers
@@ -464,6 +467,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     } : {};
     await _checkNetworkAndServer();
     String url = "${AppConstants.baseUrl}add-produt";
+    if (!_localDataSource.isUserLoggedIn()) {
+      url += '?ip=$userToken';
+    }
     final response = await http.post(
         Uri.parse(url).replace(queryParameters: {
           'id' : productId,

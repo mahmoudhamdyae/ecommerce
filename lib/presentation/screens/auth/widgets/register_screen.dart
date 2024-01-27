@@ -67,7 +67,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: AppBar(
         elevation: AppSize.s0,
         backgroundColor: ColorManager.white,
-        iconTheme: const IconThemeData(color: ColorManager.primary),
+        iconTheme: IconThemeData(color: ColorManager.primary),
       ),
       body: Container(
         padding: const EdgeInsets.all(AppPadding.p20),
