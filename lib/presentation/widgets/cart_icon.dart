@@ -8,13 +8,18 @@ import 'package:badges/badges.dart' as badges;
 import '../resources/color_manager.dart';
 
 class CartIcon extends StatelessWidget {
-
   final Color color;
+
   const CartIcon({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
-    return badges.Badge(
+    return InkWell(
+      onTap: () {
+        Get.to(const CartScreen());
+        Get.find<CartController>().getCart();
+      },
+      child: badges.Badge(
         onTap: () {
           Get.to(const CartScreen());
           Get.find<CartController>().getCart();
@@ -40,6 +45,7 @@ class CartIcon extends StatelessWidget {
           color: color,
           size: 32,
         ),
-      );
+      ),
+    );
   }
 }

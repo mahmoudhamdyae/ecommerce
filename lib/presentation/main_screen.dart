@@ -1,6 +1,9 @@
+import 'package:badges/badges.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
+import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
+import 'package:ecommerce/presentation/screens/fav/controller/fav_controller.dart';
 import 'package:ecommerce/presentation/screens/fav/widgets/fav_screen.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
 import 'package:ecommerce/presentation/screens/more/widgets/more_screen.dart';
@@ -8,6 +11,7 @@ import 'package:ecommerce/presentation/screens/orders/widgets/orders_screen.dart
 import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:badges/badges.dart' as badges;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -84,10 +88,53 @@ class _MainScreenState extends State<MainScreen> {
           ),
           // المفضلة
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: /*Icon(
               Icons.favorite_border,
               color: _selectedIndex == 2 ? ColorManager.yellow : ColorManager.grey,
-            ),
+            )*/
+
+
+
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 6.0),
+                  child: Icon(
+                    Icons.favorite_border,
+                    color: _selectedIndex == 2 ? ColorManager.yellow : ColorManager.grey,
+                  ),
+                ),
+                Positioned(
+                  top: -5,
+                  child: badges.Badge(
+                    onTap: () {
+                    },
+                    badgeStyle: const badges.BadgeStyle(badgeColor: ColorManager.yellow),
+                    position: badges.BadgePosition.topStart(top: -10, start: -12),
+                    badgeContent: Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: GetX<FavController>(
+                        init: Get.find<FavController>(),
+                        builder: (FavController controller) {
+                          return Text(
+                            controller.fav.length.toString(),
+                            style: const TextStyle(
+                              color: ColorManager.white,
+                              fontSize: 10
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+
+
+
+
+            ,
             label: AppStrings.fav.tr,
           ),
           // المزيد
