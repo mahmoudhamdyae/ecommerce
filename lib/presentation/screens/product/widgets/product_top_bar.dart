@@ -87,7 +87,7 @@ class _ProductTopBarState extends State<ProductTopBar> {
                 shape: BoxShape.circle,
                 color: ColorManager.white,
                 border: Border.all(
-                    color: added ? ColorManager.fav : ColorManager.grey
+                    color: added ? ColorManager.fav : ColorManager.lightGrey,
                 ),
               ),
               child: Padding(
@@ -112,7 +112,7 @@ class _ProductTopBarState extends State<ProductTopBar> {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: ColorManager.white,
-                  border: Border.all(color: ColorManager.grey)),
+                  border: Border.all(color: ColorManager.lightGrey)),
               child: const Padding(
                 padding: EdgeInsets.all(4.0),
                 child: Icon(
