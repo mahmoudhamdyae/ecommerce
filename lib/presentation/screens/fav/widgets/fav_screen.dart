@@ -29,6 +29,7 @@ class FavScreen extends StatelessWidget {
                 top: AppPadding.p50,
                 bottom: AppPadding.smallPadding,
                 right: AppPadding.smallPadding,
+                left: AppPadding.smallPadding,
               ),
               child: Text(
                 AppStrings.fav.tr,

@@ -114,19 +114,6 @@ class AppStrings {
 
   // Filter Dialog
   static const marka = 'الماركة';
-  static const marka1 = 'marka1';
-  static const marka2 = 'marka2';
-  static const marka3 = 'marka3';
-  static const marka4 = 'marka4';
-  static const marka5 = 'marka5';
-  static const marka6 = 'marka6';
-  static const marka7 = 'marka7';
-  static const marka8 = 'marka8';
-  static const marka9 = 'marka9';
-  static const marka10 = 'marka10';
-  static const marka11 = 'marka11';
-  static const marka12 = 'marka12';
-  static const marka13 = 'marka13';
   static const byPrice = 'حسب السعر';
   static const byEvaluation = 'حسب التقييم';
   static const showResults = 'اظهر النتائج';

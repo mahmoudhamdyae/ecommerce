@@ -84,8 +84,6 @@ class LanguageScreen extends StatelessWidget {
                     languageName: AppStrings.arabicLanguage,
                     isSelected: controller.isArabicSelected.value,
                     action: () {
-                      Get.updateLocale(const Locale('ar'));
-                      _controller.changeLanguage('ar');
                       controller.setLanguage(true);
                     }),
                 LanguageItem(
@@ -93,8 +91,6 @@ class LanguageScreen extends StatelessWidget {
                     languageName: AppStrings.englishLanguage,
                     isSelected: !controller.isArabicSelected.value,
                     action: () {
-                      Get.updateLocale(const Locale('en'));
-                      _controller.changeLanguage('en');
                       controller.setLanguage(false);
                     }),
                 Expanded(child: Container()),
@@ -112,6 +108,8 @@ class LanguageScreen extends StatelessWidget {
                         backgroundColor: MaterialStateProperty.all(ColorManager.primary),
                       ),
                       onPressed: () async {
+                        Get.updateLocale(Locale(controller.isArabicSelected.value ? 'ar' : 'en'));
+                        _controller.changeLanguage(controller.isArabicSelected.value ? 'ar' : 'en');
                         Get.back();
                       },
                       child: Padding(

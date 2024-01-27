@@ -31,6 +31,7 @@ class ProductsScreen extends StatelessWidget {
                   right: AppPadding.smallPadding,
               ),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButton(
                       onPressed: () {

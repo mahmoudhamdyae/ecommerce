@@ -37,7 +37,7 @@ class GetXDi implements Bindings {
     Get.put<AuthController>(AuthController(Get.find<Repository>()), permanent: true);
     Get.put<AppLocalController>(AppLocalController(Get.find<Repository>()), permanent: true);
     Get.lazyPut<UserTypeController>(() => UserTypeController(Get.find<Repository>()), fenix: true);
-    Get.lazyPut<LanguageController>(() => LanguageController(), fenix: true);
+    Get.lazyPut<LanguageController>(() => LanguageController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<HomeController>(() => HomeController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<WhoAreWeController>(() => WhoAreWeController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<ProductController>(() => ProductController(Get.find<Repository>()), fenix: true);

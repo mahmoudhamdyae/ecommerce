@@ -34,7 +34,7 @@ class HomeScreenBody extends StatelessWidget {
             // الأكثر مبيعا
             InkWell(
               onTap: () {
-                Get.to(() => const ProductsScreen(appBarName: AppStrings.bestSeller));
+                Get.to(() => ProductsScreen(appBarName: AppStrings.bestSeller.tr));
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,7 +64,7 @@ class HomeScreenBody extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: () {
-                        Get.to(() => const ProductsScreen(appBarName: AppStrings.bestSeller));
+                        Get.to(() => ProductsScreen(appBarName: AppStrings.bestSeller.tr));
                       },
                       icon: const Icon(
                         Icons.arrow_forward_ios,
@@ -85,7 +85,7 @@ class HomeScreenBody extends StatelessWidget {
             // المضاف حديثا
             InkWell(
               onTap: () {
-                Get.to(() => const ProductsScreen(appBarName: AppStrings.recentlyAdded));
+                Get.to(() => ProductsScreen(appBarName: AppStrings.recentlyAdded.tr));
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -115,7 +115,7 @@ class HomeScreenBody extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: () {
-                        Get.to(() => const ProductsScreen(appBarName: AppStrings.recentlyAdded));
+                        Get.to(() => ProductsScreen(appBarName: AppStrings.recentlyAdded.tr));
                       },
                       icon: const Icon(
                         Icons.arrow_forward_ios,
