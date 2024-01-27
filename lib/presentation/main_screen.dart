@@ -1,8 +1,6 @@
-import 'package:badges/badges.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
-import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:ecommerce/presentation/screens/fav/controller/fav_controller.dart';
 import 'package:ecommerce/presentation/screens/fav/widgets/fav_screen.dart';
 import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
