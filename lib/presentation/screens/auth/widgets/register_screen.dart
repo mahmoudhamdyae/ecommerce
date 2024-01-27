@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/local/local_data_source.dart';
-import '../../../../di/di.dart';
 import '../../../../domain/repository/repository.dart';
 import '../../../main_screen.dart';
 import '../../../resources/color_manager.dart';
@@ -23,7 +21,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
 
-  final LocalDataSourceImpl _appPreferences = instance<LocalDataSourceImpl>();
+  final Repository _appPreferences = Get.find<Repository>();
   final Repository _repository = Get.find<Repository>();
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
