@@ -60,9 +60,9 @@ class ProductScreenBottom extends StatelessWidget {
                         });
                       }
                     }, child: Text(
-                    !_repository.isUserLoggedIn() ?
-                    (_repository.isInCart(product.id.toString()) ? AppStrings.removeFromCart.tr : '${AppStrings.addToCart.tr}     ${product.priceNew} EGP' )
-                        :
+                    // !_repository.isUserLoggedIn() ?
+                    // (_repository.isInCart(product.id.toString()) ? AppStrings.removeFromCart.tr : '${AppStrings.addToCart.tr}     ${product.priceNew} EGP' )
+                    //     :
                     (controller.isInCart(product) ? AppStrings.removeFromCart.tr :
                       '${AppStrings.addToCart.tr}     ${product.priceNew} EGP')
                   ),
