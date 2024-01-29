@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/extensions.dart';
 import '../../../../domain/models/product/product.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
@@ -162,9 +163,4 @@ class ProductScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-String reformatData(String data) {
-  String reformattedData = data.replaceAll(RegExp(r'<[^>]*>'), '');
-  return reformattedData;
 }
