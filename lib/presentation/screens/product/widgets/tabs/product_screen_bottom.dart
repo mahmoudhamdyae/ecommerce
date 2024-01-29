@@ -52,11 +52,11 @@ class ProductScreenBottom extends StatelessWidget {
                       // } else
                         if (controller.isInCart(product)) {
                         controller.removeFromCart(product.id.toString()).then((_) {
-                          Get.back();
+                          // Get.back();
                         });
                       } else {
                         controller.addToCart(product.id.toString()).then((_) {
-                          Get.back();
+                          // Get.back();
                         });
                       }
                     }, child: Text(
