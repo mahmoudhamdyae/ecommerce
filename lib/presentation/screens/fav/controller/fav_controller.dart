@@ -21,7 +21,7 @@ class FavController extends GetxController {
   }
 
   _getFav() async {
-    _status.value = RxStatus.loading();
+    // _status.value = RxStatus.loading();
     try {
       if (_repository.isUserLoggedIn()) {
         _repository.getFav().then((remoteFav) {
@@ -66,7 +66,7 @@ class FavController extends GetxController {
 
   Future<bool> addFav(LatestProducts product) async {
     bool isAdded = false;
-    _status.value = RxStatus.loading();
+    // _status.value = RxStatus.loading();
     try {
       if (_repository.isUserLoggedIn()) {
         await _repository.addFav(product.id.toString()).then((value) {
