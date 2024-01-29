@@ -8,6 +8,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../domain/models/home/home_data.dart';
 import '../../../resources/assets_manager.dart';
 import '../../product/widgets/product_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class SwiperWidget extends StatelessWidget {
 
@@ -28,9 +29,9 @@ class SwiperWidget extends StatelessWidget {
                 onTap: () {
                   Get.to(() => ProductScreen(productId: sliders[index].id.toString() ?? '',));
                 },
-                child: FadeInImage.assetNetwork(
-                    placeholder: ImageAssets.loading,
-                    image: sliders[index].image ?? ''
+                child: CachedNetworkImage(
+                  placeholder: (context, url) => Image.asset(ImageAssets.loading),
+                  imageUrl: sliders[index].image ?? '',
                 ),
               );
             },

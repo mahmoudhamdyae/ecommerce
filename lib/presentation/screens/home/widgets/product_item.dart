@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/domain/models/home/home_data.dart';
 import 'package:ecommerce/presentation/resources/color_manager.dart';
 import 'package:ecommerce/presentation/resources/font_manager.dart';
@@ -103,11 +104,9 @@ class ProductItem extends StatelessWidget {
                       SizedBox(
                         width: 130,
                         height: 100,
-                        child: FadeInImage.assetNetwork(
-                            height: 100,
-                            width: 130,
-                            placeholder: ImageAssets.loading,
-                            image: product.cardImage ?? ''
+                        child: CachedNetworkImage(
+                          placeholder: (context, url) => Image.asset(ImageAssets.loading),
+                          imageUrl: product.cardImage ?? '',
                         ),
                       ),
                     ],

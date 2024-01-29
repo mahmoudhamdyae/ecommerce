@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,15 +28,10 @@ class CategoryItem extends StatelessWidget {
             CircleAvatar(
               radius: 40,
               child: ClipOval(
-                  child: FadeInImage.assetNetwork(
-                      placeholder: ImageAssets.loading,
-                      image: category?.image ?? '',
+                  child: CachedNetworkImage(
+                    placeholder: (context, url) => Image.asset(ImageAssets.loading),
+                    imageUrl: category?.image ?? '',
                   )
-
-                // Image.network(
-                //     category?.image ?? '',
-                //     fit: BoxFit.fill,
-                //   )
               ),
             ),
             const SizedBox(height: AppSize.s8,),

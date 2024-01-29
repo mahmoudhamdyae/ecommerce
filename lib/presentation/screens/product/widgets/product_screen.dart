@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/presentation/resources/strings_manager.dart';
 import 'package:ecommerce/presentation/screens/cart/controller/cart_controller.dart';
 import 'package:ecommerce/presentation/screens/product/controller/product_controller.dart';
@@ -42,10 +43,10 @@ class ProductScreen extends StatelessWidget {
                   child: ListView(
                     children: [
                       ProductTopBar(product: product,),
-                      FadeInImage.assetNetwork(
-                          height: 200,
-                          placeholder: ImageAssets.loading,
-                          image: (product.images != null && product.images!.isNotEmpty) ? (product.cardImage ?? '') : ''
+                      CachedNetworkImage(
+                        height: 200,
+                        placeholder: (context, url) => Image.asset(ImageAssets.loading),
+                        imageUrl: (product.images != null && product.images!.isNotEmpty) ? (product.cardImage ?? '') : '',
                       ),
                       Container(
                         decoration: const BoxDecoration(
