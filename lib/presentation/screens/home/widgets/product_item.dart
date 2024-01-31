@@ -5,6 +5,7 @@ import 'package:ecommerce/presentation/resources/font_manager.dart';
 import 'package:ecommerce/presentation/resources/values_manager.dart';
 import 'package:ecommerce/presentation/screens/auth/controllers/auth_controller.dart';
 import 'package:ecommerce/presentation/screens/fav/controller/fav_controller.dart';
+import 'package:ecommerce/presentation/screens/product/controller/product_controller.dart';
 import 'package:ecommerce/presentation/screens/product/widgets/product_screen.dart';
 import 'package:ecommerce/presentation/widgets/dialogs/require_auth_dialog.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        Get.find<ProductController>().getProductDetails(product.id.toString());
         Get.to(ProductScreen(productId: product.id.toString(),));
       },
       child: Padding(
