@@ -1,5 +1,7 @@
 import 'package:ecommerce/presentation/screens/home/widgets/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/repository/repository.dart';
@@ -27,6 +29,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
   bool _obscureText = false;
+  String code = '';
 
   // Toggles the password show status
   void _toggle() {
@@ -42,7 +45,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.resetPassword(phoneController.text, passwordTextController.text).then((userCredential) {
+        await _repository.sendNumber(phoneController.text).then((userCredential) {
           Get.back();
           setState(() {
             _isPassword = true;
@@ -62,7 +65,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       formData.save();
       try {
         showLoading(context);
-        await _repository.resetPassword(phoneController.text, passwordTextController.text).then((userCredential) {
+        await _repository.resetPassword(phoneController.text, code, passwordTextController.text).then((userCredential) {
           Get.back();
           Get.to(() => const HomeScreen());
         });
@@ -166,41 +169,54 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 ),
                                 child: Text(_isPassword ? AppStrings.password.tr : AppStrings.phoneNo.tr),
                               ),
-                              _isPassword ? TextFormField(
-                                controller: passwordTextController,
-                                textInputAction: TextInputAction.done,
-                                validator: (val) {
-                                  if (val == null || val.isEmpty) {
-                                    return AppStrings.passwordInvalid.tr;
-                                  }
-                                  return null;
-                                },
-                                obscureText: _obscureText,
-                                decoration: InputDecoration(
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _obscureText
-                                          ? Icons.visibility
-                                          : Icons.visibility_off,
-                                      color: ColorManager.grey,),
-                                    onPressed: () {
-                                      _toggle();
+                              _isPassword ? Column(
+                                children: [
+                                  PinCodeFields(
+                                      fieldBorderStyle: FieldBorderStyle.square,
+                                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                      onComplete: (text)  {
+                                        debugPrint('text = $text');
+                                        code = text;
+                                      }
+                                  ),
+                                  const SizedBox(height: AppSize.s16,),
+                                  TextFormField(
+                                    controller: passwordTextController,
+                                    textInputAction: TextInputAction.done,
+                                    validator: (val) {
+                                      if (val == null || val.isEmpty) {
+                                        return AppStrings.passwordInvalid.tr;
+                                      }
+                                      return null;
                                     },
-                                  ),
-                                  hintText: AppStrings.passwordHint.tr,
-                                  hintStyle: const TextStyle(
-                                    color: ColorManager.grey,
-                                  ),
-                                  border: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(AppSize.borderRadius,),
+                                    obscureText: _obscureText,
+                                    decoration: InputDecoration(
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _obscureText
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: ColorManager.grey,),
+                                        onPressed: () {
+                                          _toggle();
+                                        },
+                                      ),
+                                      hintText: AppStrings.passwordHint.tr,
+                                      hintStyle: const TextStyle(
+                                        color: ColorManager.grey,
+                                      ),
+                                      border: const OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(AppSize.borderRadius,),
+                                        ),
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: ColorManager.grey
+                                        ),
+                                      ),
                                     ),
-                                    borderSide: BorderSide(
-                                        width: 1,
-                                        color: ColorManager.grey
-                                    ),
                                   ),
-                                ),
+                                ],
                               )
                                   :
                               TextFormField(

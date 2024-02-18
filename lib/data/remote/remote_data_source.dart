@@ -25,7 +25,8 @@ abstract class RemoteDataSource {
   Future<void> confirmPhoneNumber(String phoneNumber, String kind);
   Future<void> enterCode(String phoneNumber, String code, String kind);
   Future<void> register(String phoneNumber, String name, String kind, String email, String password, String conPassword);
-  Future<void> resetPassword(String phoneNumber, String password);
+  Future<void> sendNumber(String phoneNumber);
+  Future<void> resetPassword(String phoneNumber, String code, String password);
 
   Future<HomeData> getHomeData(String section, String lang);
   Future<String> getAboutUs();
@@ -196,10 +197,22 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<void> resetPassword(String phoneNumber, String password) async {
+  Future<void> sendNumber(String phoneNumber) async {
     await _checkNetworkAndServer();
     // Confirm Phone Number
-    String url = "${AppConstants.baseUrl}forget-password-rest?phone=$phoneNumber&password=$password";
+    String url = "${AppConstants.baseUrl}forget-password-rest?phone=$phoneNumber";
+    final response = await http.post(Uri.parse(url));
+
+    var responseData = json.decode(response.body);
+    debugPrint('Send Number Response: $responseData');
+    _checkResponse(responseData);
+  }
+
+  @override
+  Future<void> resetPassword(String phoneNumber, String code, String password) async {
+    await _checkNetworkAndServer();
+    // Confirm Phone Number
+    String url = "${AppConstants.baseUrl}forget-password-rest?code=$code&password=$password";
     final response = await http.post(Uri.parse(url));
 
     var responseData = json.decode(response.body);

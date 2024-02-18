@@ -32,7 +32,8 @@ abstract class Repository {
   Future<void> confirmPhoneNumber(String phoneNumber);
   Future<void> enterCode(String phoneNumber, String code);
   Future<void> register(String phoneNumber, String name, String email, String password, String conPassword);
-  Future<void> resetPassword(String phoneNumber, String password);
+  Future<void> sendNumber(String phoneNumber);
+  Future<void> resetPassword(String phoneNumber, String code, String password);
 
   // Remote Data Source
   Future<HomeData> getHomeData();
