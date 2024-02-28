@@ -9,36 +9,21 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        const SizedBox(width: 24.0,),
         const Text('أو من خلال'),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-                onPressed: () {
-                  Get.find<AuthController>().loginWithFacebook().then((value) {
-                    Get.offAll(() => const MainScreen());
-                  });
-                },
-                icon: Image.asset(
-                  ImageAssets.facebook,
-                  height: 64,
-                ),
-            ),
-            IconButton(
-              onPressed: () {
-                Get.find<AuthController>().loginWithGoogle().then((value) {
-                  Get.offAll(() => const MainScreen());
-                });
-              },
-              icon: Image.asset(
-                ImageAssets.google,
-                height: 64,
-              ),
-            ),
-          ],
+        IconButton(
+          onPressed: () {
+            Get.find<AuthController>().loginWithGoogle().then((value) {
+              Get.offAll(() => const MainScreen());
+            });
+          },
+          icon: Image.asset(
+            ImageAssets.google,
+            height: 64,
+          ),
         ),
       ],
     );
