@@ -53,26 +53,11 @@ class OrderController extends GetxController {
   Future<void> finishOrder(String firstName, String lastName, String phone, String address, String payType) async {
     _status.value = RxStatus.loading();
     try {
-      // if (_repository.isUserLoggedIn()) {
-        _repository.removeAllFromCart();
-        await _repository.finishOrder(firstName, lastName, phone, address, payType).then((remoteOrders) {
-          _status.value = RxStatus.success();
-          _getOrders();
-        }); 
-      // } else {
-        // try {
-        //   await _repository.confirmPhoneNumber(phone).then((value) async => {
-        //     await _repository.register(phone, '$firstName $lastName', '', phone, phone).then((value) {
-        //       finishOrder(firstName, lastName, phone, address, payType);
-        //     })
-        //   });
-        // } on Exception {
-        //   await _repository.login(phone, phone).then((value) {
-        //     finishOrder(firstName, lastName, phone, address, payType);
-        //   });
-        // }
-        // String token = const Uuid().v4();
-      // }
+      _repository.removeAllFromCart();
+      await _repository.finishOrder(firstName, lastName, phone, address, payType).then((remoteOrders) {
+        _status.value = RxStatus.success();
+        _getOrders();
+      });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
     }
