@@ -1,4 +1,4 @@
-package com.gadoeg.app
+package com.gadoeg.app2
 
 import io.flutter.embedding.android.FlutterActivity
 
